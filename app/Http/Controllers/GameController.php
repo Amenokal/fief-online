@@ -35,10 +35,4 @@ class GameController extends Controller
 
     }
 
-    public function nextTurn(){
-
-        $Turn = new TurnsHandler();
-        return $Turn->nextPhase();
-
-    }
 }

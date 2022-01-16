@@ -1,0 +1,40 @@
+[
+    {
+        "name": "Oyez-Oyez!",
+        "phases": [
+            {"name": "Mariages"},
+            {"name": "Élection des Évêques"},
+            {"name": "Élection du Pape"},
+            {"name": "Élection du Roi"}
+        ]
+    },
+    {
+        "name": "Cartes",
+        "phases": [
+            {"name": "Défausse"},
+            {"name": "Pioche"},
+            {"name": "Calamités"},
+            {"name": "Pose"}
+        ]
+    },
+    {
+        "name": "Finances",
+        "phases": [
+            {"name": "Revenus"},
+            {"name": "Dépenses"}
+
+        ]
+    },
+    {
+        "name": "Campagne",
+        "phases": [
+            {"name": "Mouvements"},
+            {"name": "Batailles"},
+            {"name": "Pillages"}
+
+        ]
+    },
+    {
+        "name": "Fin du Tour"
+    }
+]
