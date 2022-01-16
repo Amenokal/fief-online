@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
-    public function boot(Request $request){
+    public function test(Request $request){
 
-        $gb = new GameBooter('vanilla');
-        $gb->init();
+        dd('ok?');
 
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\LobbyController;
 use App\Http\Controllers\LogEventController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,7 @@ Route::post('/draw/event', [CardsHandler::class, 'drawEvent']);
 Route::post('/discard', [CardsHandler::class, 'discard']);
 
 // TEST
-// Route::get('/test', [GameBooter::class, 'test']);
+Route::get('/test', [TestController::class, 'test']);
 
 
 
