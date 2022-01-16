@@ -1,0 +1,21 @@
+[
+    {"name": "Henri","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "Baudoin","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "Blanche","type": "lord","gender": "F","img_src": "storage/cards/lords/Mireille.png","nb": 1},
+    {"name": "Jeanne","type": "lord","gender": "F","img_src": "storage/cards/lords/Mireille.png","nb": 1},
+    {"name": "Henri","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "Philippe","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "Lambert","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "Mireille","type": "lord","gender": "F","img_src": "storage/cards/lords/Mireille.png","nb": 1},
+    {"name": "Aliénor","type": "lord","gender": "F","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "Charles","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "Guenièvre","type": "lord","gender": "F","img_src": "storage/cards/lords/Mireille.png","nb": 1},
+    {"name": "Gauvin","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "François","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "Thierry","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "Othon","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "Quentin","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "Eric","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "d'Arc","type": "lord","gender": "O","img_src": "storage/cards/lords/Eric.png","nb": 1},
+    {"name": "Cardinal","type": "lord","gender": "O","img_src": "storage/cards/lords/Eric.png","nb": 3}
+]

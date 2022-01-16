@@ -1,0 +1,67 @@
+  /**
+    * CARDS
+    * -----
+    *
+    */
+
+.card {
+    height: 100px;
+    width: 70px;
+    border-radius: .5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    
+    
+    img {
+        height: 50%;
+        width: auto;
+        transition: .6s ease;
+        &:hover {
+            transform: scale(1.4) translateY(-2em);
+        }
+    }
+
+    .overline {
+        position: absolute;
+        height: 85%;
+        width: 85%;
+        border-radius: .5em;
+    }
+}
+
+
+.lord-card {
+    background-color: rgb(197, 128, 1);
+    .overline {
+        border: 4px solid rgb(39, 39, 39);
+    }
+}
+
+.event-card {
+    background-color: rgb(133, 133, 133);
+    .overline {
+        border: 4px solid rgb(39, 39, 39);
+    }
+}
+
+.disaster-card,
+.incomming-disaster {
+    background-color: rgb(39, 39, 39);
+    .overline {
+        border: 4px solid rgb(218, 218, 218);
+    }
+}
+
+.discard-pile {
+    border: 1px solid rgb(218, 218, 218);
+}
+
+.player-hand {
+    .card {
+        height: 250px;
+        width: 230px;
+        transform: translateY(-1.8em);
+    }
+}

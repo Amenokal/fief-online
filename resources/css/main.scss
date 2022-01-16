@@ -1,0 +1,21 @@
+@use 'game';
+@use 'login';
+@use 'lobby';
+
+@use 'components/game/token';
+@use 'components/game/dice';
+@use 'components/game/card';
+@use 'components/game/villages';
+
+* {
+    margin: 0;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.1rem;
+}
+
+body {
+
+    height: 100vh;
+    width: 100vw;
+
+}

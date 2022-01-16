@@ -1,0 +1,339 @@
+:root {
+    --red: firebrick;
+    --red-strong: rgb(122, 6, 6);
+    --red-txt: rgb(255, 217, 0);
+
+    --green: rgb(19, 134, 19);
+    --green-strong: rgb(16, 85, 16);
+    --green-txt: rgb(255, 236, 62);
+
+    --white: rgb(247, 247, 247);
+    --white-strong: rgb(185, 185, 185);
+    --white-txt: rgb(31, 30, 30);
+
+    --blue: rgb(17, 81, 146);
+    --blue-strong: rgb(8, 61, 114);
+    --blue-txt: rgb(96, 205, 255);
+
+    --yellow: rgb(233, 183, 57);
+    --yellow-strong: rgb(185, 135, 6);
+    --yellow-txt: rgb(30, 30, 30);
+
+    --black: rgb(36, 36, 36);
+    --black-strong: rgb(19, 19, 19);
+    --black-txt: rgb(236, 236, 236);
+
+    --background-black: rgb(26, 26, 26);
+}
+
+@mixin redTheme {
+    color: var(--red-txt);
+    box-sizing: border-box;
+    border: 5px solid var(--red-strong);
+    background-color: var(--red);
+    &>.player-name{border-bottom: 1px solid var(--red-strong)}
+}
+@mixin greenTheme {
+    color: var(--green-txt);
+    box-sizing: border-box;
+    border: 5px solid var(--green-strong);
+    background-color: var(--green);
+    &>.player-name{border-bottom: 1px solid var(--green-strong)}
+}
+@mixin whiteTheme {
+    color: var(--white-txt);
+    box-sizing: border-box;
+    border: 5px solid var(--white-strong);
+    background-color: var(--white);
+    &>.player-name{border-bottom: 1px solid var(--white-strong)}
+}
+@mixin blueTheme {
+    color: var(--blue-txt);
+    box-sizing: border-box;
+    border: 5px solid var(--blue-strong);
+    background-color: var(--blue);
+    &>.player-name{border-bottom: 1px solid var(--blue-strong)}
+}
+@mixin yellowTheme {
+    color: var(--yellow-txt);
+    box-sizing: border-box;
+    border: 5px solid var(--yellow-strong);
+    background-color: var(--yellow);
+    &>.player-name{border-bottom: 1px solid var(--yellow-strong)}
+}
+@mixin blackTheme {
+    color: var(--black-txt);
+    box-sizing: border-box;
+    border: 5px solid var(--black-strong);
+    background-color: var(--black);
+    &>.player-name{border-bottom: 1px solid var(--black-strong)}
+}
+.red{@include redTheme}
+.green{@include greenTheme}
+.white{@include whiteTheme}
+.blue{@include blueTheme}
+.yellow{@include yellowTheme}
+.black{@include blackTheme}
+
+@mixin test {
+    box-sizing: border-box;
+    border: 1px solid rgb(230, 209, 182);
+}
+
+
+@keyframes draw {
+    from {
+        transform: translateX(0px) translateY(0px) rotate(0deg),
+    }
+    50% {
+        transform: translateX(-300px) translateY(200px) rotate(-45deg)
+    }
+    to {
+        transform: translateX(-300px) translateY(700px) rotate(-90deg)
+    }
+}
+@keyframes inHandCard {
+    from {
+        transform: translateY(100px)
+    }
+    to {
+        transform: translateY(-1.8em);
+    }
+}
+// // // // // // // // // 
+
+.game-container {
+    background-color: var(--background-black);
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+
+header {
+    height: 30px;
+    box-sizing: border-box;
+    border: 2px solid rgb(143, 116, 80);
+    background-color: burlywood;
+    display: flex;
+    justify-content: center;
+
+    section {
+        box-sizing: border-box;
+        border-right: 1px solid rgb(143, 116, 80);
+        width: 10%;
+        font-size: .7rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:last-child {
+            border: none;
+        }
+    }
+}
+
+main {
+    width: 100%;
+    display: flex;
+}
+
+.players {
+    width: 250px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+        
+    .player-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+
+
+
+
+
+.main-section {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+
+    .game-board {
+        height: 550px;
+        width: 100%;
+        display: flex;
+
+        .locations {
+            height: 100%;
+            width: max-content;
+            position: relative;
+
+            span {
+                position: absolute;
+                height: 8%;
+                width: 6%;  
+                display: block;
+                opacity: .8;
+                border-radius: .3em;
+                transition: .3s ease;
+                
+                &:hover{
+                    opacity: 1;
+                    transform: scale(1.2);
+                }
+            }
+        }
+
+        .board-img {
+            height: 100%;
+            width: auto;
+
+
+        }
+
+        .game-cards {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: .5s ease;
+
+            .card-pile {
+                position: relative;
+                height: 70px;
+                width: 100px;
+                border: 1px solid white;
+                border-radius: .5em;
+
+                .card {
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+    
+                    img {
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+        }
+    }
+
+    .player-board {
+        height: 110px;
+        width: 100%;
+
+        .player-hand {
+            height: 100%;
+            width: 25%;
+            display: flex;
+            justify-content: space-around;
+            transition: .5s ease;
+            align-self: flex-end;
+        }
+
+        .in-hand-card {
+            animation: 'inHandCard' 1s ease forwards;
+        }
+
+    }    
+}
+
+
+// .game-navbar{
+//     width: 4%;
+//     display: flex;
+//     flex-direction: column;
+//     background-color: var(--background-black);
+
+//     button {
+//         padding: .5em;
+//         border: 1px solid gray;
+//         width: 100%;
+//         text-align: center;
+//         background-color: lightgray;
+//         margin: 0;
+
+//         &:hover {
+//             cursor: pointer;
+//         }
+//     }
+
+//     .game-btn-active {
+//         color: var(--white-strong);
+//         background-color: var(--black-strong);
+//     }
+
+//     .end-turn-btn {
+//         margin-top: 1em;
+
+//         &:active {
+//             color: var(--white-strong);
+//             background-color: var(--black-strong);  
+//         }
+//     }
+// }
+
+
+// FOOTER
+
+
+// footer {
+//     height: 200px;
+//     display: flex;
+//     justify-content: center;
+
+
+// }
+
+// MODAL
+.modal-wrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 15%;
+    opacity: 0;
+    z-index: -1;
+    transition: .5s ease;
+
+    .modal {
+        display: flex;
+        justify-content: center;
+        
+        p {
+            width: 40%;
+            text-align: center;
+            border: 5px solid gray;
+            background-color: lightgray;
+            box-sizing: border-box;
+            padding: 1em;
+        }
+    }
+
+}
+
+@keyframes modalshow{
+    from {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.modal-show {
+    z-index: 2;
+    opacity: 0;
+    animation: 'modalshow' 2.5s forwards;
+}
+
+}

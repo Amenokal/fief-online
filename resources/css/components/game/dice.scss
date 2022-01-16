@@ -1,0 +1,147 @@
+  /**
+    * DICES
+    * -----
+    *
+    */
+
+// dice general setup
+@mixin dice {
+    border-radius: .5em;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 .2em;
+
+    img{
+        width: auto;
+        height: 80%;
+        position: relative;
+    }
+
+    .dice-dot {
+        border: 3px solid black;
+        border-radius: 100%;
+        position: relative;
+    }
+
+}
+.dice-b,
+.dice-w,
+.dice-n {
+    @include dice;
+}
+
+
+
+// dice colors
+.dice-w {
+    border: 1px solid rgb(226, 220, 213);
+    background-color: rgb(255, 250, 244);
+}
+.dice-b {
+    border: 1px solid rgb(66, 66, 66);
+    background-color: rgb(39, 39, 39);
+}
+.dice-n {
+    border: 1px solid rgb(216, 198, 137);
+    background-color: rgb(248, 234, 187);
+}
+
+
+
+
+
+
+// battle dices
+.d-f2{
+    & img:first-child {
+        left: 23%;
+    }
+    & img:last-child {
+        right: 23%;
+    }
+}
+.d-f3{
+    & img:first-child {
+        left: 49%;
+    }
+    & img:last-child {
+        right: 53%;
+    }
+}
+
+
+
+// normal dice
+.d-n-2{
+    & span:first-child {
+        left: 30%;
+        bottom: 20%;
+    }
+    & span:last-child {
+        right: 30%;
+        top: 20%;
+    }
+}
+.d-n-3{
+    & span:first-child {
+        left: 40%;
+        bottom: 20%;
+    }
+    & span:last-child {
+        right: 40%;
+        top: 20%;
+    }
+}
+.d-n-4{
+    & span:nth-child(odd) {
+        left: 10%;
+        bottom: 20%;
+    }
+    & span:nth-child(even) {
+        right: 10%;
+        top: 20%;
+    }
+}
+.d-n-5{
+    & span:nth-child(odd) {
+        left: 20%;
+        bottom: 20%;
+    }
+    & span:nth-child(even) {
+        right: 0;
+        top: 20%;
+    }
+    & span:nth-child(5) {
+        left: -40%;
+        top: 0;
+    }
+}
+.d-n-6{
+    & span:nth-child(1) {
+        left: 30%;
+        bottom: 25%;
+    }
+    & span:nth-child(2) {
+        left: 10%;
+        bottom: 0;
+    }
+    & span:nth-child(3) {
+        left: -10%;
+        top: 24%;
+    }
+    & span:nth-child(4) {
+        left: 10%;
+        bottom: 25%;
+    }
+    & span:nth-child(5) {
+        left: -10%;
+        bottom: 0;
+    }
+    & span:nth-child(6) {
+        left: -30%;
+        top: 24%;
+    }
+}
