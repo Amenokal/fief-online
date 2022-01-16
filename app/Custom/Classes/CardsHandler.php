@@ -3,8 +3,6 @@
 namespace App\Custom\Classes;
 
 use Illuminate\Http\Request;
-use App\Custom\Helpers\LordDeck;
-use App\Custom\Helpers\EventDeck;
 use App\Custom\Helpers\CurrentPlayer;
 
 class CardsHandler {
