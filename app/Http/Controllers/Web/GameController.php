@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Models\Players;
 
@@ -8,8 +8,8 @@ use App\Custom\Helpers\EventDeck;
 use App\Custom\Classes\GameBooter;
 use App\Custom\Helpers\CurrentGame;
 use App\Custom\Helpers\CurrentUser;
+use App\Http\Controllers\Controller;
 use App\Custom\Helpers\CurrentPlayer;
-use App\Custom\Classes\TurnsHandler;
 
 class GameController extends Controller
 {
@@ -35,10 +35,4 @@ class GameController extends Controller
 
     }
 
-    public function nextTurn(){
-
-        $Turn = new TurnsHandler();
-        return $Turn->nextPhase();
-
-    }
 }
