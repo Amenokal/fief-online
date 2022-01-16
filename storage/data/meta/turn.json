@@ -1,40 +1,20 @@
 [
-    {
-        "name": "Oyez-Oyez!",
-        "phases": [
-            {"name": "Mariages"},
-            {"name": "Élection des Évêques"},
-            {"name": "Élection du Pape"},
-            {"name": "Élection du Roi"}
-        ]
-    },
-    {
-        "name": "Cartes",
-        "phases": [
-            {"name": "Défausse"},
-            {"name": "Pioche"},
-            {"name": "Calamités"},
-            {"name": "Pose"}
-        ]
-    },
-    {
-        "name": "Finances",
-        "phases": [
-            {"name": "Revenus"},
-            {"name": "Dépenses"}
+    {"phase": "Oyez-Oyez!", "name": "Mariages"},
+    {"phase": "Oyez-Oyez!", "name": "Élection des Évêques"},
+    {"phase": "Oyez-Oyez!", "name": "Élection du Pape"},
+    {"phase": "Oyez-Oyez!", "name": "Élection du Roi"},
+            
+    {"phase": "Cartes", "name": "Défausse"},
+    {"phase": "Cartes", "name": "Pioche"},
+    {"phase": "Cartes", "name": "Calamités"},
+    {"phase": "Cartes", "name": "Pose"},
 
-        ]
-    },
-    {
-        "name": "Campagne",
-        "phases": [
-            {"name": "Mouvements"},
-            {"name": "Batailles"},
-            {"name": "Pillages"}
+    {"phase": "Économie", "name": "Revenus"},
+    {"phase": "Économie", "name": "Dépenses"},
 
-        ]
-    },
-    {
-        "name": "Fin du Tour"
-    }
+    {"phase": "Campagne", "name": "Mouvements"},
+    {"phase": "Campagne", "name": "Batailles"},
+    {"phase": "Campagne", "name": "Pillages"},
+
+    {"phase": "Fin du tour", "name": "Décompte de points"}
 ]

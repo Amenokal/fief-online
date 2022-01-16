@@ -1,12 +1,11 @@
 <?php
 
-use App\Custom\Classes\CardsHandler;
-use App\Custom\Classes\TurnsHandler;
+use App\Http\Controllers\CardsController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GameController;
-use App\Http\Controllers\TestController;
-use App\Http\Controllers\LobbyController;
-use App\Http\Controllers\LogEventController;
+use App\Http\Controllers\Web\GameController;
+use App\Http\Controllers\Web\LobbyController;
+use App\Http\Controllers\Event\LogEventController;
+use App\Http\Controllers\Game\TurnController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +29,14 @@ Route::get('/lobby/connect', [LobbyController::class, 'connectToGame']);
 Route::get('/lobby/ready', [LobbyController::class, 'isReady']);
 Route::post('/lobby/msg', [LobbyController::class, 'newMsg']);
 
-Route::post('/draw/lord', [CardsHandler::class, 'drawLord']);
-Route::post('/draw/event', [CardsHandler::class, 'drawEvent']);
-Route::post('/discard', [CardsHandler::class, 'discard']);
+Route::post('/nextturn', [GameController::class, 'nextTurn']);
+
+Route::post('/draw/lord', [CardsController::class, 'drawLord']);
+Route::post('/draw/event', [CardsController::class, 'drawEvent']);
+Route::post('/discard', [CardsController::class, 'discard']);
 
 // TEST
-Route::get('/endTurn', [TurnsHandler::class, 'endTurn']);
+Route::get('/test', [TurnController::class, 'endTurn']);
 
 
 
