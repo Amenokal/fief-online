@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Game;
 
+use App\Models\Games;
 use App\Http\Controllers\Controller;
 use App\Custom\Services\TurnServices;
 

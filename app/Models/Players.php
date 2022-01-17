@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,5 +22,10 @@ class Players extends Model
         'gold',
         'married_to'
     ];
+
+    public static function auth()
+    {
+        return Players::where('user_id', Auth::user()->id)->first();
+    }
 
 }

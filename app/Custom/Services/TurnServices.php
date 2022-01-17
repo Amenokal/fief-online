@@ -7,11 +7,6 @@ use App\Custom\Helpers\CurrentGame;
 
 class TurnServices {
 
-    public static function init()
-    {
-        GameTurns::create([]);
-    }
-
     public static function passTurn()
     {        
         $turn = CurrentGame::turn();

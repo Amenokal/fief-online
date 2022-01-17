@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\CardsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\CardsController;
 use App\Http\Controllers\Web\GameController;
+use App\Http\Controllers\Game\TurnController;
 use App\Http\Controllers\Web\LobbyController;
 use App\Http\Controllers\Event\LogEventController;
-use App\Http\Controllers\Game\TurnController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,7 @@ Route::post('/draw/event', [CardsController::class, 'drawEvent']);
 Route::post('/discard', [CardsController::class, 'discard']);
 
 // TEST
-Route::get('/test', [TurnController::class, 'endTurn']);
+Route::get('/test', [TestController::class, 'test']);
 
 
 
