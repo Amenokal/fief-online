@@ -88,88 +88,76 @@
     opacity: 0;
   }
 }
-.red-background {
+.red-theme {
   background-color: var(--red);
+  color: var(--red-txt);
 }
 
-.red {
+.red-bordered {
   background-color: var(--red);
   color: var(--red-txt);
   box-sizing: border-box;
   border: 5px solid var(--red-strong);
 }
-.red > .player-name {
-  border-bottom: 1px solid var(--red-strong);
+
+.blue-theme {
+  background-color: var(--blue);
+  color: var(--blue-txt);
 }
 
-.left-border-red {
-  display: flex;
-  border-left: 10px solid var(--red);
-  border-right: 10px solid var(--red-strong);
-}
-.left-border-red .deco {
-  border-left: 10px solid var(--red-strong);
-  border-right: 7px solid var(--red-txt);
-}
-
-.right-border-red {
-  display: flex;
-  border-right: 10px solid var(--red);
-  border-left: 10px solid var(--red-strong);
-}
-.right-border-red .deco {
-  border-right: 10px solid var(--red-strong);
-  border-left: 7px solid var(--red-txt);
-}
-
-.green {
-  color: var(--green-txt);
-  box-sizing: border-box;
-  border: 5px solid var(--green-strong);
-  background-color: var(--green);
-}
-.green > .player-name {
-  border-bottom: 1px solid var(--green-strong);
-}
-
-.blue {
+.blue-bordeblue {
+  background-color: var(--blue);
   color: var(--blue-txt);
   box-sizing: border-box;
   border: 5px solid var(--blue-strong);
-  background-color: var(--blue);
-}
-.blue > .player-name {
-  border-bottom: 1px solid var(--blue-strong);
 }
 
-.white {
-  color: var(--white-txt);
+.green-theme {
+  background-color: var(--green);
+  color: var(--green-txt);
+}
+
+.green-bordered {
+  background-color: var(--green);
+  color: var(--green-txt);
   box-sizing: border-box;
-  border: 5px solid var(--white-strong);
-  background-color: var(--white);
-}
-.white > .player-name {
-  border-bottom: 1px solid var(--white-strong);
+  border: 5px solid var(--green-strong);
 }
 
-.black {
-  color: var(--black-txt);
-  box-sizing: border-box;
-  border: 5px solid var(--black-strong);
-  background-color: var(--black);
-}
-.black > .player-name {
-  border-bottom: 1px solid var(--black-strong);
+.yellow-theme {
+  background-color: var(--yellow);
+  color: var(--yellow-txt);
 }
 
-.yellow {
+.yellow-bordered {
+  background-color: var(--yellow);
   color: var(--yellow-txt);
   box-sizing: border-box;
   border: 5px solid var(--yellow-strong);
-  background-color: var(--yellow);
 }
-.yellow > .player-name {
-  border-bottom: 1px solid var(--yellow-strong);
+
+.white-theme {
+  background-color: var(--white);
+  color: var(--white-txt);
+}
+
+.white-bordered {
+  background-color: var(--white);
+  color: var(--white-txt);
+  box-sizing: border-box;
+  border: 5px solid var(--white-strong);
+}
+
+.black-theme {
+  background-color: var(--black);
+  color: var(--black-txt);
+}
+
+.black-bordered {
+  background-color: var(--black);
+  color: var(--black-txt);
+  box-sizing: border-box;
+  border: 5px solid var(--black-strong);
 }
 
 .token {

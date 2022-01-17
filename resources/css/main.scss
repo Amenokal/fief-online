@@ -1,7 +1,7 @@
-@use 'abstract/root.scss';
-@use 'abstract/keyframes.scss';
+@use 'meta/root.scss';
+@use 'meta/keyframes.scss';
+@use 'meta/themes.scss';
 
-@use 'components/themes/themes.scss';
 @use 'components/game/game.scss';
 @use 'components/pages/pages.scss';
 

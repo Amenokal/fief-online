@@ -13,7 +13,7 @@
 <div class='game-container'>
     
     <header>
-        <section class='current {{ $currentPlayer->color }}'>Mariages</section>
+        <section class='current {{ $currentPlayer->color }}-bordered'>Mariages</section>
         <section>Élection Évêques</section>
         <section>Élection du Pape</section>
         <section>Élection du Roi</section>
@@ -35,7 +35,7 @@
 
             <div>
             @foreach ($players as $player)
-                <div class='player-info-wrapper {{$player->color}}'>
+                <div class='player-info-wrapper {{$player->color}}-bordered'>
                     <div class='player-name'>{{$player->familyname}}</div>
                 </div>
             @endforeach
@@ -45,12 +45,7 @@
 
         </section>
         
-        
-        
-        {{-- <span class='left-border-{{ $currentPlayer->color }}'>
-            <span class='deco'></span>
-        </span> --}}
-        <section class='game-view {{ $currentPlayer->color }}-background'>
+        <section class='game-view {{ $currentPlayer->color }}-theme'>
                 <div class='game-board'>
 
                     <div class='locations'>        
@@ -89,7 +84,7 @@
 
                     </div>
 
-                    <div class='game-cards black' id='game-cards'>
+                    <div class='game-cards' id='game-cards'>
 
                         <div class='card-pile lord-discard-pile-wrapper'></div>
 
@@ -166,10 +161,6 @@
                     </div>
                 </div> --}}
             </section>
-            {{-- <span class='right-border-{{ $currentPlayer->color }}'>
-                <span class='deco'></span>
-            </span> --}}
-
 
         </div>
 

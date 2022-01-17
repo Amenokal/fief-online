@@ -1,7 +1,0 @@
-.yellow {
-    color: var(--yellow-txt);
-    box-sizing: border-box;
-    border: 5px solid var(--yellow-strong);
-    background-color: var(--yellow);
-    &>.player-name{border-bottom: 1px solid var(--yellow-strong)}
-}
