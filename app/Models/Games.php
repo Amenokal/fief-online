@@ -17,23 +17,23 @@ class Games extends Model
         return self::latest()->first();
     }
 
-    public function players()
-    {
-        return Players::where('game_id', $this->id)->get();
-    }
-
     public static function turn()
     {
         return GameTurns::where('id', self::current()->id)->first();
     }
 
-    public function eventCards()
+    public function player()
     {
-        return EventCards::where('game_id', $this->id)->get();
+        return Players::where(
+            ['game_id' => $this->id],
+            ['player_id' => $this->turn()->player]
+            )
+            ->first();
     }
-    public function lordCards()
+
+    public function players()
     {
-        return LordCards::where('game_id', $this->id)->get();
+        return Players::where('game_id', $this->id)->get();
     }
     
 }

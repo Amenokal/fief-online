@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Games;
 use App\Models\Players;
 use App\Http\Controllers\Controller;
-use App\Custom\Services\GameServices;
 use App\Custom\Services\BootServices;
 use App\Custom\Services\DeckServices;
 
@@ -26,9 +25,9 @@ class GameController extends Controller
             'handsize' => Players::auth()->cards()->count(),
             
             'players' => Games::current()->players(),
-            'currentPlayer' => GameServices::currentPlayer(),
-            'inc_disasters' => GameServices::inc_disasters()->count(),
-            'next_event_card' => DeckServices::nextCard('event')->first()->type,
+            'currentPlayer' => Games::current()->player(),
+            'inc_disasters' => Games::current()->turn()->inc_disasters()->count(),
+            'next_event_card' => DeckServices::nextCards('event')->first()->type,
         ]);
 
     }

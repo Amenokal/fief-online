@@ -3,6 +3,7 @@
 namespace App\Custom\Services;
 
 use App\Models\Games;
+use App\Models\Players;
 
 class TurnServices {
 

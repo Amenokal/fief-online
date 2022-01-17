@@ -31,22 +31,26 @@ class BootServices {
         self::$armies = collect(json_decode(file_get_contents(storage_path('data/'.self::$mod.'/armies.json')), true));
         
         self::createGame();
-        self::setUpDecks();
+        self::createDecks();
         self::createPlayers();
-        self::setUpVillages();
-        self::setUpBuildings();
-        self::setUpArmies();
+        self::createVillages();
+        self::createBuildings();
+        self::createArmies();
     }
 
     private static function createGame()
     {
         if(!Games::latest()->exists() || Games::latest()->first()->is_over){
-            Games::create(['mod'=>self::$mod]);
-            GameTurns::create(['game_id' => Games::current()->id]);
+            Games::create([
+                'mod'=>self::$mod
+            ]);
+            GameTurns::create([
+                'game_id' => Games::current()->id
+            ]);
         }
     }
     
-    private static function setUpDecks()
+    private static function createDecks()
     {
         if(!LordCards::where('game_id', Games::current()->id)->exists() && !EventCards::where('game_id', Games::current()->id)->exists() ){
             DeckServices::setUp(self::$mod);
@@ -57,7 +61,7 @@ class BootServices {
     {        
         $starting_gold = json_decode(file_get_contents(storage_path('data/'.self::$mod.'/gold.json')), true)[0]['gold'];
         
-        if(!Players::auth()){
+        if(!Players::auth()->where('game_id', Games::current()->id)){
             
             Players::create([
                 'game_id' => Games::current()->id,
@@ -69,22 +73,22 @@ class BootServices {
             
         }
     }
-    private static function setName()
-    {
-        foreach(Games::current()->players() as $player){
-            self::$family_names->flip()->forget($player->familyname);
+        private static function setName()
+        {
+            foreach(Games::current()->players() as $player){
+                self::$family_names->flip()->forget($player->familyname);
+            }
+            return self::$family_names->random();
         }
-        return self::$family_names->random();
-    }
-    private static function setColor()
-    {
-        foreach(Games::current()->players() as $player){
-            self::$colors->flip()->forget($player->color)->flip();
+        private static function setColor()
+        {
+            foreach(Games::current()->players() as $player){
+                self::$colors->flip()->forget($player->color);
+            }
+            return self::$colors->random();
         }
-        return self::$colors->random();
-    }
 
-    private static function setUpVillages()
+    private static function createVillages()
     {
         foreach(self::$villages as $v){
             Villages::create([
@@ -97,25 +101,28 @@ class BootServices {
         }
     }
 
-    private static function setUpBuildings()
+    private static function createBuildings()
     {
-        foreach(self::$buildings as $b){
+        if(!Buildings::where('game_id', Games::current()->id)->exists()){
 
-            for($i=0; $i<$b['nb']; $i++){
-            Buildings::create([
-                'name' => $b['name'],
-                'price' => $b['price'],
-                'income' => $b['income'],
-                'defense' => $b['defense'],
-                'game_id' => Games::current()->id
-            ]);
+            foreach(self::$buildings as $b){
+
+                for($i=0; $i<$b['nb']; $i++){
+                Buildings::create([
+                    'name' => $b['name'],
+                    'price' => $b['price'],
+                    'income' => $b['income'],
+                    'defense' => $b['defense'],
+                    'game_id' => Games::current()->id
+                ]);
+                }
             }
         }
     }
 
-    private static function setUpArmies(){
-
-        if(!Soldiers::where('player_id', Players::auth()->id)->exists()){
+    private static function createArmies()
+    {
+        if(!Soldiers::where('game_id', Games::current()->id)->exists()){
 
             foreach(self::$armies as $a){
                 

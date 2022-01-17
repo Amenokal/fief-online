@@ -53,7 +53,7 @@ class DeckServices {
 
     }
             
-    public static function nextCard(string $deck)
+    public static function nextCards(string $deck)
     {
         $deck = $deck === 'lord' ? LordCards::class : EventCards::class;
         $card = $deck::where([
@@ -62,8 +62,8 @@ class DeckServices {
             ['on_board', false]
             ])
             ->orderBy('order')
-            ->take(2)
             ->get();
             return $card;
     }
+    
 }

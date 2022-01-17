@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Custom\Services\BootServices;
-use App\Custom\Services\GoldServices;
 use App\Models\Games;
 use App\Models\Players;
-use Illuminate\Http\Request;
+use App\Models\Buildings;
 
 class TestController extends Controller
 {
     public function test()
     {
-            return BootServices::init('vanilla');
+        dd(Buildings::where('game_id', Games::current()->id)->exists());
     }
+
 }
