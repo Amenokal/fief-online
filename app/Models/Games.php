@@ -26,5 +26,14 @@ class Games extends Model
     {
         return GameTurns::where('id', self::current()->id)->first();
     }
+
+    public function eventCards()
+    {
+        return EventCards::where('game_id', $this->id)->get();
+    }
+    public function lordCards()
+    {
+        return LordCards::where('game_id', $this->id)->get();
+    }
     
 }

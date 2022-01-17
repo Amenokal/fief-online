@@ -1,33 +1,33 @@
 [
-    {"name": "BEAUJEU","lord_territory": "1","religious_territory": "5","capital": false},
-    {"name": "LA-SALLE","lord_territory": "1","religious_territory": "1","capital": false},
-    {"name": "BLAYE","lord_territory": "1","religious_territory": "1","capital": true},
-    {"name": "CHAROLLES","lord_territory": "1","religious_territory": "1","capital": false},
+    {"name": "beaujeu","lord_territory": "1","religious_territory": "5","capital": false},
+    {"name": "la-salle","lord_territory": "1","religious_territory": "1","capital": false},
+    {"name": "blaye","lord_territory": "1","religious_territory": "1","capital": true},
+    {"name": "charolles","lord_territory": "1","religious_territory": "1","capital": false},
 
-    {"name": "SENNECY","lord_territory": "2","religious_territory": "1","capital": false},
-    {"name": "L'EPERVIER'","lord_territory": "2","religious_territory": "1","capital": false},
-    {"name": "CHÂTEAU-NEUF","lord_territory": "2","religious_territory": "2","capital": false},
+    {"name": "sennecy","lord_territory": "2","religious_territory": "1","capital": false},
+    {"name": "l'épervier","lord_territory": "2","religious_territory": "1","capital": false},
+    {"name": "château-neuf","lord_territory": "2","religious_territory": "2","capital": false},
 
-    {"name": "MAZILLES","lord_territory": "3","religious_territory": "2","capital": false},
-    {"name": "ST-ANDROMY","lord_territory": "3","religious_territory": "2","capital": false},
+    {"name": "mazilles","lord_territory": "3","religious_territory": "2","capital": false},
+    {"name": "st-andromy","lord_territory": "3","religious_territory": "2","capital": false},
     
-    {"name": "TOURNUS","lord_territory": "4","religious_territory": "2","capital": true},
-    {"name": "BELLEVILLE","lord_territory": "4","religious_territory": "3","capital": false},
-    {"name": "PUGNAC","lord_territory": "4","religious_territory": "3","capital": false},
+    {"name": "tournus","lord_territory": "4","religious_territory": "2","capital": true},
+    {"name": "belleville","lord_territory": "4","religious_territory": "3","capital": false},
+    {"name": "pugnac","lord_territory": "4","religious_territory": "3","capital": false},
 
-    {"name": "ST-MÉDARD","lord_territory": "5","religious_territory": "1","capital": false},
-    {"name": "ST-GÉRÔME","lord_territory": "5","religious_territory": "3","capital": true},
-    {"name": "ST-ANDRÉ","lord_territory": "5","religious_territory": "3","capital": false},
+    {"name": "st-médard","lord_territory": "5","religious_territory": "1","capital": false},
+    {"name": "st-gérôme","lord_territory": "5","religious_territory": "3","capital": true},
+    {"name": "st-andré","lord_territory": "5","religious_territory": "3","capital": false},
     
-    {"name": "VILLENEUVE","lord_territory": "6","religious_territory": "1","capital": false},
-    {"name": "LA-BUISSIÈRE","lord_territory": "6","religious_territory": "3","capital": false},
-    {"name": "BOURG","lord_territory": "6","religious_territory": "4","capital": true},
-    {"name": "ST-VIVIEN","lord_territory": "6","religious_territory": "4","capital": false},
+    {"name": "villeneuve","lord_territory": "6","religious_territory": "1","capital": false},
+    {"name": "la-buissière","lord_territory": "6","religious_territory": "3","capital": false},
+    {"name": "bourg","lord_territory": "6","religious_territory": "4","capital": true},
+    {"name": "st-vivien","lord_territory": "6","religious_territory": "4","capital": false},
     
-    {"name": "LES-ESSARTS","lord_territory": "7","religious_territory": "4","capital": false},
-    {"name": "ST-PAUL","lord_territory": "7","religious_territory": "5","capital": false},
+    {"name": "les-essarts","lord_territory": "7","religious_territory": "4","capital": false},
+    {"name": "st-paul","lord_territory": "7","religious_territory": "5","capital": false},
     
-    {"name": "MARCAMPS","lord_territory": "8","religious_territory": "4","capital": false},
-    {"name": "SIGY","lord_territory": "8","religious_territory": "5","capital": true},
-    {"name": "ST-CIERS-D'ABZAC","lord_territory": "8","religious_territory": "5","capital": false}
+    {"name": "marcamps","lord_territory": "8","religious_territory": "4","capital": false},
+    {"name": "sigy","lord_territory": "8","religious_territory": "5","capital": true},
+    {"name": "st-ciers-d'abzac","lord_territory": "8","religious_territory": "5","capital": false}
 ]

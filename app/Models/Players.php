@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Custom\Services\PlayerServices;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -33,6 +34,11 @@ class Players extends Model
         $lord_cards = LordCards::where('player_id', $this->id)->get();
         $event_cards = EventCards::where('player_id', $this->id)->get();
         return $lord_cards->merge($event_cards);
+    }
+
+    public function draw(string $type)
+    {
+        return PlayerServices::drawCard($this, $type);
     }
 
 }

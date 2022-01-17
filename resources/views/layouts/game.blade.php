@@ -140,7 +140,7 @@
 
 
                 </div>
-                {{-- <div class='player-board {{ $color }}'>
+                {{-- <div class='player-board {{ $player->color }}'>
                     <div>
                         <button id='make-off'>Off</button>
                         <button id='make-moulin'>Moulins</button>

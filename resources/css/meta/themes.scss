@@ -1,9 +1,13 @@
 @mixin themed($base, $txt){
     background-color: $base;
     color: $txt;
+    background-image: url('/fief/storage/app/public/textures/grunge2.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-@mixin bordered($base, $txt, $strong){
+@mixin theme-bordered($base, $txt, $strong){
     @include themed($base, $txt);
     box-sizing: border-box;
     border: 5px solid $strong;
@@ -11,24 +15,24 @@
 
 // RED
 .red-theme {@include themed(var(--red), var(--red-txt))}
-.red-bordered {@include bordered(var(--red), var(--red-txt), var(--red-strong))}
+.red-bordered {@include theme-bordered(var(--red), var(--red-txt), var(--red-strong))}
 
 // BLUE
 .blue-theme {@include themed(var(--blue), var(--blue-txt))}
-.blue-bordeblue {@include bordered(var(--blue), var(--blue-txt), var(--blue-strong))}
+.blue-bordered {@include theme-bordered(var(--blue), var(--blue-txt), var(--blue-strong))}
 
 // GREEN
 .green-theme {@include themed(var(--green), var(--green-txt))}
-.green-bordered {@include bordered(var(--green), var(--green-txt), var(--green-strong))}
+.green-bordered {@include theme-bordered(var(--green), var(--green-txt), var(--green-strong))}
 
 // YELLOW
 .yellow-theme {@include themed(var(--yellow), var(--yellow-txt))}
-.yellow-bordered {@include bordered(var(--yellow), var(--yellow-txt), var(--yellow-strong))}
+.yellow-bordered {@include theme-bordered(var(--yellow), var(--yellow-txt), var(--yellow-strong))}
 
 // WHITE
 .white-theme {@include themed(var(--white), var(--white-txt))}
-.white-bordered {@include bordered(var(--white), var(--white-txt), var(--white-strong))}
+.white-bordered {@include theme-bordered(var(--white), var(--white-txt), var(--white-strong))}
 
 // BLACK
 .black-theme {@include themed(var(--black), var(--black-txt))}
-.black-bordered {@include bordered(var(--black), var(--black-txt), var(--black-strong))}
+.black-bordered {@include theme-bordered(var(--black), var(--black-txt), var(--black-strong))}

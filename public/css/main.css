@@ -91,11 +91,19 @@
 .red-theme {
   background-color: var(--red);
   color: var(--red-txt);
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .red-bordered {
   background-color: var(--red);
   color: var(--red-txt);
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   box-sizing: border-box;
   border: 5px solid var(--red-strong);
 }
@@ -103,11 +111,19 @@
 .blue-theme {
   background-color: var(--blue);
   color: var(--blue-txt);
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.blue-bordeblue {
+.blue-bordered {
   background-color: var(--blue);
   color: var(--blue-txt);
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   box-sizing: border-box;
   border: 5px solid var(--blue-strong);
 }
@@ -115,11 +131,19 @@
 .green-theme {
   background-color: var(--green);
   color: var(--green-txt);
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .green-bordered {
   background-color: var(--green);
   color: var(--green-txt);
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   box-sizing: border-box;
   border: 5px solid var(--green-strong);
 }
@@ -127,11 +151,19 @@
 .yellow-theme {
   background-color: var(--yellow);
   color: var(--yellow-txt);
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .yellow-bordered {
   background-color: var(--yellow);
   color: var(--yellow-txt);
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   box-sizing: border-box;
   border: 5px solid var(--yellow-strong);
 }
@@ -139,11 +171,19 @@
 .white-theme {
   background-color: var(--white);
   color: var(--white-txt);
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .white-bordered {
   background-color: var(--white);
   color: var(--white-txt);
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   box-sizing: border-box;
   border: 5px solid var(--white-strong);
 }
@@ -151,11 +191,19 @@
 .black-theme {
   background-color: var(--black);
   color: var(--black-txt);
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .black-bordered {
   background-color: var(--black);
   color: var(--black-txt);
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   box-sizing: border-box;
   border: 5px solid var(--black-strong);
 }
@@ -580,12 +628,12 @@
   height: 5%;
   box-sizing: border-box;
   border: 2px solid #3f3f3f;
-  background-color: #e4e4e4;
+  background-color: #c9c9c9;
   display: flex;
   justify-content: center;
 }
 .game-container header section:not(.current) {
-  background-image: url("/fief/storage/app/public/textures/grunge.png");
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -12,6 +12,6 @@ class TestController extends Controller
 {
     public function test()
     {
-        return GoldServices::transfer(Players::auth(), 3, Games::current()->players()->skip(1)->first());
+            return BootServices::init('vanilla');
     }
 }
