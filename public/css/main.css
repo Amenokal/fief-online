@@ -152,14 +152,19 @@
 }
 .game-container .players {
   width: 250px;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 .game-container .players .player-name {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.game-container .players button {
+  height: 110px;
+  border: 2px solid #8f7450;
+  background-color: burlywood;
 }
 .game-container .main-section {
   height: 100%;
@@ -171,26 +176,6 @@
   height: 550px;
   width: 100%;
   display: flex;
-}
-.game-container .main-section .game-board .locations {
-  height: 100%;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  position: relative;
-}
-.game-container .main-section .game-board .locations span {
-  position: absolute;
-  height: 8%;
-  width: 6%;
-  display: block;
-  opacity: 0.8;
-  border-radius: 0.3em;
-  transition: 0.3s ease;
-}
-.game-container .main-section .game-board .locations span:hover {
-  opacity: 1;
-  transform: scale(1.2);
 }
 .game-container .main-section .game-board .board-img {
   height: 100%;
@@ -495,6 +480,18 @@
   transform: scale(1.1);
 }
 
+.lord {
+  height: 60px !important;
+  width: 30px !important;
+  background-image: url("/fief/storage/app/public/images/charles.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  z-index: 3;
+  transition: 0.5s ease;
+}
+
 /**
   * DICES
   * -----
@@ -682,13 +679,31 @@
   transform: translateY(-1.8em);
 }
 
-#tournus {
+.locations {
+  height: 100%;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  position: relative;
+}
+.locations span {
+  position: absolute;
+  height: 8%;
+  width: 6%;
+  display: block;
+  border-radius: 0.3em;
+  transition: 0.3s ease;
+}
+.locations span:hover:not(.locations span > *) {
+  transform: scale(1.2);
+}
+.locations #tournus {
   left: 77%;
   top: 20%;
   opacity: 0;
   border: 2px solid forestgreen;
 }
-#tournus::after {
+.locations #tournus::after {
   content: "TOURNUS";
   position: absolute;
   top: -50%;
@@ -699,146 +714,155 @@
   padding: 0.3em;
   border-radius: 0.5em;
 }
-#tournus:hover {
+.locations #tournus:hover {
   opacity: 1;
 }
-
-#belleville {
+.locations #belleville {
   left: 87%;
   top: 5%;
   border: 2px solid forestgreen;
 }
-
-#pugnac {
+.locations #pugnac {
   left: 88%;
   top: 36%;
   border: 2px solid forestgreen;
 }
-
-#stgerome {
+.locations #stgerome {
   left: 85.5%;
   top: 58.5%;
   border: 2px solid #ffce51;
 }
-
-#stmedard {
+.locations #stmedard {
   left: 63.5%;
   top: 56%;
   border: 2px solid #ffce51;
 }
-
-#standre {
+.locations #standre {
   left: 88.5%;
   top: 79%;
   border: 2px solid #ffce51;
 }
-
-#bourg {
+.locations #bourg {
   left: 53%;
   top: 80%;
   border: 2px solid firebrick;
 }
-
-#villeneuve {
+.locations #villeneuve {
   left: 44%;
   top: 56%;
   border: 2px solid firebrick;
 }
-
-#stvivien {
+.locations #stvivien {
   left: 37%;
   top: 80%;
   border: 2px solid firebrick;
 }
-
-#labussiere {
+.locations #labussiere {
   left: 72%;
   top: 82.5%;
   border: 2px solid firebrick;
 }
-
-#lesessarts {
+.locations #lesessarts {
   left: 29%;
   top: 59%;
   border: 2px solid #00cc00;
 }
-
-#stpaul {
+.locations #stpaul {
   left: 14%;
   top: 81%;
   border: 2px solid #00cc00;
 }
-
-#sigy {
+.locations #sigy {
   left: 5%;
   top: 63%;
   border: 2px solid dodgerblue;
 }
-
-#marcamps {
+.locations #marcamps {
   left: 14.5%;
   top: 48.5%;
   border: 2px solid dodgerblue;
 }
-
-#stciers {
+.locations #stciers {
   left: 7%;
   top: 32%;
   border: 2px solid dodgerblue;
 }
-
-#blaye {
+.locations #blaye {
   left: 25%;
   top: 26%;
   border: 2px solid #ff8534;
 }
-
-#beaujeu {
+.locations #beaujeu {
   left: 6%;
   top: 11%;
   border: 2px solid #ff8534;
 }
-
-#lasalle {
+.locations #lasalle {
   left: 22%;
   top: 4%;
   border: 2px solid #ff8534;
 }
-
-#charolles {
+.locations #charolles {
   left: 36%;
   top: 37%;
   border: 2px solid #ff8534;
 }
-
-#sennecy {
+.locations #sennecy {
   left: 37%;
   top: 12%;
   border: 2px solid #e7caca;
 }
-
-#lepervier {
+.locations #lepervier {
   left: 50%;
   top: 28%;
   border: 2px solid #e7caca;
 }
-
-#chateauneuf {
+.locations #chateauneuf {
   left: 51%;
   top: 8%;
   border: 2px solid #e7caca;
 }
-
-#mazilles {
+.locations #mazilles {
   left: 63%;
   top: 13%;
   border: 2px solid #e7c0e9;
 }
-
-#standromy {
+.locations #standromy {
   left: 71.5%;
   top: 40%;
   border: 2px solid #e7c0e9;
+}
+
+.chateau {
+  background-image: url("/fief/storage/app/public/images/chateau.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100% !important;
+  width: 100% !important;
+  opacity: 1 !important;
+}
+
+.cite {
+  background-image: url("/fief/storage/app/public/images/cite.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100% !important;
+  width: 100% !important;
+  opacity: 1 !important;
+}
+
+.moulin {
+  background-image: url("/fief/storage/app/public/images/moulin.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100% !important;
+  width: 100% !important;
+  opacity: 1 !important;
+  transform: translateX(-20px) translateY(20px) scale(0.6);
+  z-index: 2;
 }
 
 * {

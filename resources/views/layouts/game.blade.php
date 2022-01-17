@@ -13,7 +13,7 @@
 <div class='game-container'>
     
     <header>
-        <section class='{{ $player->color }}'>Mariages</section>
+        <section class='{{ $currentPlayer->color }}'>Mariages</section>
         <section>Élection Évêques</section>
         <section>Élection du Pape</section>
         <section>Élection du Roi</section>
@@ -26,16 +26,21 @@
         <section>Mouvements</section>
         <section>Batailles</section>
         <section>Pillages</section>
-        <button class='end-turn-btn'>tour</button>
     </header>
     <main>
 
         <section class='players'>
+
+            <div>
             @foreach ($players as $player)
                 <div class='player-info-wrapper {{$player->color}}'>
                     <div class='player-name'>{{$player->familyname}}</div>
                 </div>
             @endforeach
+            </div>
+
+            <button class='end-turn-btn'>Fin du tour</button>
+
         </section>
         
         
@@ -138,7 +143,17 @@
 
                 </div>
 
-                <div class='player-board {{ $player->color }}'>
+                <div class='player-board {{ $color }}'>
+                    <div>
+                        <button id='make-off'>Off</button>
+                        <button id='make-moulin'>Moulins</button>
+                        <button id='make-chateau'>Chateau</button>
+                        <button id='make-cite'>Cité</button>
+                    </div>
+                    <div>
+                        <button id='moreGold'>+1 G</button>
+                        <button id='lessGold'>-1 G</button>
+                    </div>
                     <div class='player-hand hand-{{ $handsize }}'>
                         @forelse ($player_cards as $card)
                             <figure class='card'>

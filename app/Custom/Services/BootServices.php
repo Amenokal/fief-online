@@ -2,7 +2,6 @@
 
 namespace App\Custom\Services;
 
-use App\Models\User;
 use App\Models\Games;
 use App\Models\Players;
 use App\Models\Villages;
@@ -13,9 +12,8 @@ use App\Models\EventCards;
 use App\Custom\Helpers\LordDeck;
 use App\Custom\Helpers\EventDeck;
 use Illuminate\Support\Facades\Auth;
-use App\Custom\Helpers\CurrentPlayer;
 
-class GameBootServices {
+class BootServices {
 
     public static $mod;
     public static $family_names;
@@ -69,12 +67,12 @@ class GameBootServices {
             ]);
             
         }
-                CurrentPlayer::drawLord();
+                // Players::auth()->drawLord();
     }
     private static function setName()
     {
         foreach(Games::current()->players() as $player){
-            self::$family_names->flip()->forget($player->familyname)->flip();
+            self::$family_names->flip()->forget($player->familyname);
         }
         return self::$family_names->random();
     }
@@ -83,7 +81,7 @@ class GameBootServices {
         foreach(Games::current()->players() as $player){
             self::$colors->flip()->forget($player->color)->flip();
         }
-        return self::$colors->flip()->random();
+        return self::$colors->random();
     }
 
     private static function setUpVillages()

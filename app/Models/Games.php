@@ -21,4 +21,10 @@ class Games extends Model
     {
         return Players::where('game_id', $this->id)->get();
     }
+
+    public static function turn()
+    {
+        return GameTurns::where('id', self::current()->id)->first();
+    }
+    
 }

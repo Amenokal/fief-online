@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\Players;
+use App\Models\User;
 
+use App\Models\Games;
+use App\Models\Players;
 use App\Custom\Helpers\EventDeck;
-use App\Custom\Helpers\CurrentGame;
 use App\Custom\Helpers\CurrentUser;
 use App\Http\Controllers\Controller;
-use App\Custom\Helpers\CurrentPlayer;
-use App\Custom\Services\GameBootServices;
+use App\Custom\Services\GameServices;
+use App\Custom\Services\BootServices;
 
 class GameController extends Controller
 {
@@ -20,17 +21,17 @@ class GameController extends Controller
         
         // TODO: make middleware for this 2 ->
         CurrentUser::connect();
-        GameBootServices::init('vanilla');
-
-
+        BootServices::init('vanilla');
 
         return view('layouts.game', [
-            'players' => Players::where('game_id', CurrentGame::get()->id)->get(),
-            'handsize' => count(CurrentPlayer::cards()),
-            'player_cards' => CurrentPlayer::cards(),
+            'players' => Games::current()->players(),
+            'handsize' => Players::auth()->cards()->count(),
+            'player_cards' => Players::auth()->cards(),
             'next_event_card' => EventDeck::nextCard()->first()->type,
-            'player' => CurrentPlayer::get(),
-            'inc_disasters' => EventDeck::inc_disasters()->count()
+            'player' => Players::auth(),
+            'color' => Players::auth()->color,
+            'inc_disasters' => EventDeck::inc_disasters()->count(),
+            'currentPlayer' => GameServices::currentPlayer()
         ]);
 
     }

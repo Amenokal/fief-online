@@ -28,4 +28,11 @@ class Players extends Model
         return Players::where('user_id', Auth::user()->id)->first();
     }
 
+    public function cards()
+    {
+        $lord_cards = LordCards::where('player_id', $this->id)->get();
+        $event_cards = EventCards::where('player_id', $this->id)->get();
+        return $lord_cards->merge($event_cards);
+    }
+
 }

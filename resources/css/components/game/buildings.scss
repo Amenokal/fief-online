@@ -1,0 +1,24 @@
+@mixin building {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100% !important;
+    width: 100% !important;
+    opacity: 1 !important;
+}
+
+.chateau {
+    background-image: url('/fief/storage/app/public/images/chateau.png');
+    @include building;
+}
+.cite {
+    background-image: url('/fief/storage/app/public/images/cite.png');
+    @include building;
+
+}
+.moulin {
+    background-image: url('/fief/storage/app/public/images/moulin.png');
+    @include building;
+    transform: translateX(-20px) translateY(20px) scale(.6);
+    z-index: 2;
+}

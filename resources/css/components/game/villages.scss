@@ -1,4 +1,20 @@
+.locations {
+    height: 100%;
+    width: max-content;
+    position: relative;
 
+    span {
+        position: absolute;
+        height: 8%;
+        width: 6%;  
+        display: block;
+        border-radius: .3em;
+        transition: .3s ease;
+        
+        &:hover:not(&>*){
+            transform: scale(1.2);
+        }
+    }
 
     //COUNTY 1
     #tournus {
@@ -152,3 +168,4 @@
         top: 40%;
         border: 2px solid rgb(231, 192, 233);
     }
+}

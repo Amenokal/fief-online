@@ -6,11 +6,14 @@
 @use 'components/game/dice';
 @use 'components/game/card';
 @use 'components/game/villages';
+@use 'components/game/buildings';
 
 * {
+
     margin: 0;
     font-family: 'MedievalSharp', cursive;
     font-size: 1.1rem;
+    
 }
 
 body {

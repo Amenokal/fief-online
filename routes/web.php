@@ -30,7 +30,7 @@ Route::get('/lobby/connect', [LobbyController::class, 'connectToGame']);
 Route::get('/lobby/ready', [LobbyController::class, 'isReady']);
 Route::post('/lobby/msg', [LobbyController::class, 'newMsg']);
 
-Route::post('/nextturn', [GameController::class, 'nextTurn']);
+Route::post('/nextturn', [TurnController::class, 'endTurn']);
 
 Route::post('/draw/lord', [CardsController::class, 'drawLord']);
 Route::post('/draw/event', [CardsController::class, 'drawEvent']);

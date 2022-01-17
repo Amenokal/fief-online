@@ -2135,8 +2135,7 @@ if (document.getElementById('readyBtn')) {
 window.Echo.channel('ready-channel').listen('.ready-event', function (e) {
   document.getElementById(e.username).classList.toggle('ready');
 
-  if (document.querySelectorAll('.lobby-player').length == document.querySelectorAll('.ready').length) {
-    window.location.href = '/fief/public/game';
+  if (document.querySelectorAll('.lobby-player').length == document.querySelectorAll('.ready').length) {// window.location.href = '/fief/public/game'
   }
 });
 

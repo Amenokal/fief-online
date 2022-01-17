@@ -25761,12 +25761,11 @@ function endTurn() {
 }
 
 document.querySelector('.game-cards').addEventListener('click', function (e) {
-  var cardType = e.target.parentNode.className.split(' ')[1].split('-')[0];
   var pileType = e.target.parentNode.parentNode.className.includes('lord') ? 'lord' : 'event';
   sendDrawRequest(cardType, pileType);
 });
 
-function sendDrawRequest(cardType, pileType) {
+function sendDrawRequest(pileType) {
   axios.post('./draw/' + pileType, {
     discard: incDisasterNb() > 2
   }).then(function (res) {
@@ -25820,6 +25819,40 @@ document.querySelector('.player-hand').addEventListener('click', function (e) {
     }).then(function () {
       e.target.parentNode.remove();
     });
+  }
+}); // CASTLES !!!
+
+var draw = false;
+
+document.getElementById('make-off').onclick = function () {
+  draw = false;
+};
+
+document.getElementById('make-moulin').onclick = function () {
+  draw = 'moulin';
+};
+
+document.getElementById('make-chateau').onclick = function () {
+  draw = 'chateau';
+};
+
+document.getElementById('make-cite').onclick = function () {
+  draw = 'cite';
+};
+
+document.querySelector('.locations').addEventListener('click', function (e) {
+  if (document.getElementById('charles')) {
+    document.getElementById('charles').remove();
+  }
+
+  e.target.innerHTML += "<span class='lord' id='charles'></span>";
+
+  if ((e.target.className.includes('village') || e.target.className.includes('city') || e.target.parentNode.className.includes('village') || e.target.parentNode.className.includes('city')) && draw) {
+    e.target.innerHTML += "<span class='".concat(draw, "'></span>");
+  }
+
+  if (draw == 'moulin' && e.target.className.includes('moulin') || draw == 'chateau' && e.target.className.includes('chateau') || draw == 'cite' && e.target.className.includes('cite')) {
+    e.target.remove();
   }
 });
 })();

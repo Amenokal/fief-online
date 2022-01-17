@@ -87,3 +87,31 @@ document.querySelector('.player-hand').addEventListener('click', e => {
         })
     }
 })
+
+// CASTLES !!!
+
+var draw = false;
+document.getElementById('make-off').onclick = ()=>{draw = false};
+document.getElementById('make-moulin').onclick = ()=>{draw = 'moulin'};
+document.getElementById('make-chateau').onclick = ()=>{draw = 'chateau'};
+document.getElementById('make-cite').onclick = ()=>{draw = 'cite'};
+
+document.querySelector('.locations').addEventListener('click',e=>{
+
+    if(document.getElementById('charles')){
+        document.getElementById('charles').remove();
+    }
+    e.target.innerHTML += `<span class='lord' id='charles'></span>`;
+
+    if((e.target.className.includes('village') || e.target.className.includes('city') ||
+        e.target.parentNode.className.includes('village') || e.target.parentNode.className.includes('city'))
+        && draw ){
+        e.target.innerHTML += `<span class='${draw}'></span>`;
+
+    }
+    if((draw == 'moulin' && e.target.className.includes('moulin')) ||
+        (draw == 'chateau' && e.target.className.includes('chateau')) ||
+        (draw == 'cite' && e.target.className.includes('cite'))){
+        e.target.remove();
+    }
+})

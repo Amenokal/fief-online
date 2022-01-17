@@ -11,6 +11,7 @@ class TurnController extends Controller
     public static function endTurn()
     {
         TurnServices::passTurn();
+        dd(Games::current()->turn());
     }
 
 }

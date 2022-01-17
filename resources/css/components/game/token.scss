@@ -21,3 +21,14 @@
         transform: scale(1.1);
     }
 }
+.lord {
+    height: 60px !important;
+    width: 30px !important;
+    background-image: url('/fief/storage/app/public/images/charles.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    z-index: 3;
+    transition: .5s ease;
+}
