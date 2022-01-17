@@ -1,0 +1,7 @@
+.blue {
+    color: var(--blue-txt);
+    box-sizing: border-box;
+    border: 5px solid var(--blue-strong);
+    background-color: var(--blue);
+    &>.player-name{border-bottom: 1px solid var(--blue-strong)}
+}

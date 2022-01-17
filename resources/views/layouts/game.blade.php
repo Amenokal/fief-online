@@ -13,7 +13,7 @@
 <div class='game-container'>
     
     <header>
-        <section class='{{ $currentPlayer->color }}'>Mariages</section>
+        <section class='current {{ $currentPlayer->color }}'>Mariages</section>
         <section>Élection Évêques</section>
         <section>Élection du Pape</section>
         <section>Élection du Roi</section>
@@ -27,8 +27,10 @@
         <section>Batailles</section>
         <section>Pillages</section>
     </header>
+
     <main>
 
+        <div class='main-section'>
         <section class='players'>
 
             <div>
@@ -44,13 +46,14 @@
         </section>
         
         
-        <section class='main-section'>
+        
+        {{-- <span class='left-border-{{ $currentPlayer->color }}'>
+            <span class='deco'></span>
+        </span> --}}
+        <section class='game-view {{ $currentPlayer->color }}-background'>
                 <div class='game-board'>
 
-                    <div class='locations'>
-
-                        <img class='board-img' src='../storage/app/public/images/board.jpg' >
-        
+                    <div class='locations'>        
 
                             <span class='city' id='tournus'></span>
                             <span class='village' id='belleville'></span>
@@ -86,7 +89,7 @@
 
                     </div>
 
-                    <div class='game-cards' id='game-cards'>
+                    <div class='game-cards black' id='game-cards'>
 
                         <div class='card-pile lord-discard-pile-wrapper'></div>
 
@@ -142,8 +145,7 @@
 
 
                 </div>
-
-                <div class='player-board {{ $color }}'>
+                {{-- <div class='player-board {{ $color }}'>
                     <div>
                         <button id='make-off'>Off</button>
                         <button id='make-moulin'>Moulins</button>
@@ -162,23 +164,29 @@
                         @empty
                         @endforelse
                     </div>
-                </div>
-        </section>            
-        
-        {{-- <nav class='game-navbar'>
-            <button id='bootGame' class='game-nav-btn'>Boot Game</button>
-            <button id='drawLord' class='game-nav-btn'>Piocher Lord</button>
-            <button id='drawEvent' class='game-nav-btn'>Piocher Event</button>
-            <button class='game-nav-btn'>Plateau</button>
-            <button class='game-nav-btn'>Joueurs</button>
-            <button class='end-turn-btn'>Fin du tour</button>
-        </nav> --}}
+                </div> --}}
+            </section>
+            {{-- <span class='right-border-{{ $currentPlayer->color }}'>
+                <span class='deco'></span>
+            </span> --}}
+
+
+        </div>
+
+
+        <nav>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+        </nav>
+
 
     </main>
 
-    {{-- <footer>
-
-    </footer> --}}
 
     <aside class='modal-wrapper' id='info-modal'>
         <div class='modal'>

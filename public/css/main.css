@@ -1,8 +1,8 @@
 @charset "UTF-8";
 :root {
-  --red: firebrick;
-  --red-strong: rgb(122, 6, 6);
-  --red-txt: rgb(255, 217, 0);
+  --red: rgb(158, 29, 29);
+  --red-strong: rgb(102, 7, 7);
+  --red-txt: rgb(224, 172, 0);
   --green: rgb(19, 134, 19);
   --green-strong: rgb(16, 85, 16);
   --green-txt: rgb(255, 236, 62);
@@ -19,66 +19,6 @@
   --black-strong: rgb(19, 19, 19);
   --black-txt: rgb(236, 236, 236);
   --background-black: rgb(26, 26, 26);
-}
-
-.red {
-  color: var(--red-txt);
-  box-sizing: border-box;
-  border: 5px solid var(--red-strong);
-  background-color: var(--red);
-}
-.red > .player-name {
-  border-bottom: 1px solid var(--red-strong);
-}
-
-.green {
-  color: var(--green-txt);
-  box-sizing: border-box;
-  border: 5px solid var(--green-strong);
-  background-color: var(--green);
-}
-.green > .player-name {
-  border-bottom: 1px solid var(--green-strong);
-}
-
-.white {
-  color: var(--white-txt);
-  box-sizing: border-box;
-  border: 5px solid var(--white-strong);
-  background-color: var(--white);
-}
-.white > .player-name {
-  border-bottom: 1px solid var(--white-strong);
-}
-
-.blue {
-  color: var(--blue-txt);
-  box-sizing: border-box;
-  border: 5px solid var(--blue-strong);
-  background-color: var(--blue);
-}
-.blue > .player-name {
-  border-bottom: 1px solid var(--blue-strong);
-}
-
-.yellow {
-  color: var(--yellow-txt);
-  box-sizing: border-box;
-  border: 5px solid var(--yellow-strong);
-  background-color: var(--yellow);
-}
-.yellow > .player-name {
-  border-bottom: 1px solid var(--yellow-strong);
-}
-
-.black {
-  color: var(--black-txt);
-  box-sizing: border-box;
-  border: 5px solid var(--black-strong);
-  background-color: var(--black);
-}
-.black > .player-name {
-  border-bottom: 1px solid var(--black-strong);
 }
 
 @-webkit-keyframes draw {
@@ -120,125 +60,6 @@
     transform: translateY(-1.8em);
   }
 }
-.game-container {
-  background-color: var(--background-black);
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-}
-.game-container header {
-  height: 30px;
-  box-sizing: border-box;
-  border: 2px solid #8f7450;
-  background-color: burlywood;
-  display: flex;
-  justify-content: center;
-}
-.game-container header section {
-  box-sizing: border-box;
-  border-right: 1px solid #8f7450;
-  width: 10%;
-  font-size: 0.7rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.game-container header section:last-child {
-  border: none;
-}
-.game-container main {
-  width: 100%;
-  display: flex;
-}
-.game-container .players {
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.game-container .players .player-name {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.game-container .players button {
-  height: 110px;
-  border: 2px solid #8f7450;
-  background-color: burlywood;
-}
-.game-container .main-section {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.game-container .main-section .game-board {
-  height: 550px;
-  width: 100%;
-  display: flex;
-}
-.game-container .main-section .game-board .board-img {
-  height: 100%;
-  width: auto;
-}
-.game-container .main-section .game-board .game-cards {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition: 0.5s ease;
-}
-.game-container .main-section .game-board .game-cards .card-pile {
-  position: relative;
-  height: 70px;
-  width: 100px;
-  border: 1px solid white;
-  border-radius: 0.5em;
-}
-.game-container .main-section .game-board .game-cards .card-pile .card {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-}
-.game-container .main-section .game-board .game-cards .card-pile .card img {
-  transform: rotate(90deg);
-}
-.game-container .main-section .player-board {
-  height: 110px;
-  width: 100%;
-}
-.game-container .main-section .player-board .player-hand {
-  height: 100%;
-  width: 25%;
-  display: flex;
-  justify-content: space-around;
-  transition: 0.5s ease;
-  align-self: flex-end;
-}
-.game-container .main-section .player-board .in-hand-card {
-  -webkit-animation: "inHandCard" 1s ease forwards;
-          animation: "inHandCard" 1s ease forwards;
-}
-.game-container .modal-wrapper {
-  width: 100%;
-  position: absolute;
-  bottom: 15%;
-  opacity: 0;
-  z-index: -1;
-  transition: 0.5s ease;
-}
-.game-container .modal-wrapper .modal {
-  display: flex;
-  justify-content: center;
-}
-.game-container .modal-wrapper .modal p {
-  width: 40%;
-  text-align: center;
-  border: 5px solid gray;
-  background-color: lightgray;
-  box-sizing: border-box;
-  padding: 1em;
-}
 @-webkit-keyframes modalshow {
   from {
     opacity: 0;
@@ -267,194 +88,88 @@
     opacity: 0;
   }
 }
-.game-container .modal-show {
-  z-index: 2;
-  opacity: 0;
-  -webkit-animation: "modalshow" 2.5s forwards;
-          animation: "modalshow" 2.5s forwards;
+.red-background {
+  background-color: var(--red);
 }
 
-.login-container {
-  background-image: url("/fief/public/storage/images/castle.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden;
+.red {
+  background-color: var(--red);
+  color: var(--red-txt);
+  box-sizing: border-box;
+  border: 5px solid var(--red-strong);
 }
-.login-container main {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.login-container .parchm {
-  width: 400px;
-  height: 500px;
-  box-shadow: black;
-  background-image: url("/fief/public/storage/images/parchemin2.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.login-container .parchm form {
-  width: 50%;
-  height: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-.login-container .parchm form .input-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.login-container .parchm input {
-  outline: none;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid burlywood;
-  text-align: center;
-}
-.login-container .parchm button {
-  outline: none;
-  background-color: transparent;
-  border: none;
-}
-.login-container .parchm button:hover {
-  transition: 0.3s ease;
-  transform: scale(1.2);
-  cursor: pointer;
-}
-.login-container .parchm a {
-  text-decoration: none;
-}
-.login-container .parchm a:visited {
-  color: black;
-}
-.login-container .parchm a:hover {
-  transition: 0.3s ease;
-  transform: scale(1.2);
-  cursor: pointer;
+.red > .player-name {
+  border-bottom: 1px solid var(--red-strong);
 }
 
-.lobby-container {
-  height: 100vh;
-  width: 100vw;
+.left-border-red {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #04002c;
-  background-image: url("/fief/public/storage/images/castle.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  border-left: 10px solid var(--red);
+  border-right: 10px solid var(--red-strong);
 }
-.lobby-container main {
-  height: 80%;
-  width: 70%;
+.left-border-red .deco {
+  border-left: 10px solid var(--red-strong);
+  border-right: 7px solid var(--red-txt);
+}
+
+.right-border-red {
   display: flex;
-  background-color: blanchedalmond;
-  border: 5px solid white;
-  opacity: 0.8;
+  border-right: 10px solid var(--red);
+  border-left: 10px solid var(--red-strong);
 }
-.lobby-container button {
-  height: 100%;
-  background-color: burlywood;
-  border: 1px solid #503f29;
+.right-border-red .deco {
+  border-right: 10px solid var(--red-strong);
+  border-left: 7px solid var(--red-txt);
 }
-.lobby-container .game-room {
-  height: 100%;
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  border-right: 5px solid white;
-}
-.lobby-container .game-room .game-lobby {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.lobby-container .game-room .game-lobby > * {
-  width: 90%;
-}
-.lobby-container .game-room .game-lobby p {
-  border-bottom: 1px solid black;
+
+.green {
+  color: var(--green-txt);
   box-sizing: border-box;
-  padding: 0.5em;
-  font-size: 1.3rem;
-  font-weight: bolder;
-  letter-spacing: 0.1em;
-  text-align: center;
+  border: 5px solid var(--green-strong);
+  background-color: var(--green);
 }
-.lobby-container .game-room .game-lobby .lobby-player {
-  width: 90%;
-  padding: 0.5em;
-  display: flex;
-  justify-content: space-between;
+.green > .player-name {
+  border-bottom: 1px solid var(--green-strong);
 }
-.lobby-container .game-room .game-lobby .lobby-player::after {
-  content: "( ˘ -˘)";
-}
-.lobby-container .game-room .game-lobby .lobby-player.ready {
-  color: green;
-}
-.lobby-container .game-room .game-lobby .lobby-player.ready::after {
-  content: "(ง •̀_•́)ง";
-}
-.lobby-container .game-room .user-btns {
-  height: 50px;
-  display: flex;
-  border-top: 5px solid white;
-}
-.lobby-container .game-room .user-btns > * {
-  width: 50%;
-}
-.lobby-container .game-room .user-btns > * button {
-  width: 100%;
-}
-.lobby-container .chat {
-  height: 100%;
-  width: 650px;
-  display: flex;
-  flex-direction: column;
-}
-.lobby-container .chat .messages {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+
+.blue {
+  color: var(--blue-txt);
   box-sizing: border-box;
-  padding: 0.7em;
+  border: 5px solid var(--blue-strong);
+  background-color: var(--blue);
 }
-.lobby-container .chat .messages p {
-  line-height: 1em;
-  margin-top: 0.2em;
+.blue > .player-name {
+  border-bottom: 1px solid var(--blue-strong);
 }
-.lobby-container .chat .messages .init-game-msg {
-  color: firebrick;
-}
-.lobby-container .chat .write-message {
-  height: 200px;
-  border-top: 5px solid white;
-  display: flex;
-  justify-content: space-between;
-}
-.lobby-container .chat .write-message textarea {
-  height: 100%;
-  width: 100%;
-  border: none;
-  background-color: transparent;
-  resize: none;
-  outline: none;
+
+.white {
+  color: var(--white-txt);
   box-sizing: border-box;
-  padding: 0.7em;
+  border: 5px solid var(--white-strong);
+  background-color: var(--white);
+}
+.white > .player-name {
+  border-bottom: 1px solid var(--white-strong);
+}
+
+.black {
+  color: var(--black-txt);
+  box-sizing: border-box;
+  border: 5px solid var(--black-strong);
+  background-color: var(--black);
+}
+.black > .player-name {
+  border-bottom: 1px solid var(--black-strong);
+}
+
+.yellow {
+  color: var(--yellow-txt);
+  box-sizing: border-box;
+  border: 5px solid var(--yellow-strong);
+  background-color: var(--yellow);
+}
+.yellow > .player-name {
+  border-bottom: 1px solid var(--yellow-strong);
 }
 
 .token {
@@ -681,10 +396,12 @@
 
 .locations {
   height: 100%;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
+  width: 100%;
   position: relative;
+  background-image: url("/fief/storage/app/public/images/board.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 .locations span {
   position: absolute;
@@ -863,6 +580,353 @@
   opacity: 1 !important;
   transform: translateX(-20px) translateY(20px) scale(0.6);
   z-index: 2;
+}
+
+.game-container {
+  background-color: var(--background-black);
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+.game-container header {
+  height: 5%;
+  box-sizing: border-box;
+  border: 2px solid #3f3f3f;
+  background-color: #e4e4e4;
+  display: flex;
+  justify-content: center;
+}
+.game-container header section:not(.current) {
+  background-image: url("/fief/storage/app/public/textures/grunge.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.game-container header section {
+  height: 100%;
+  box-sizing: border-box;
+  border-right: 2px solid #3f3f3f;
+  width: 10%;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-container header section:last-child {
+  border: none;
+}
+.game-container main {
+  height: 95%;
+  width: 100%;
+  display: flex;
+}
+.game-container .players {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.game-container .players .player-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.game-container .players button {
+  height: 110px;
+  border: 2px solid #8f7450;
+  background-color: burlywood;
+}
+.game-container .main-section {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+.game-container .game-view {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding: 1em;
+  box-shadow: inset 5px 3px 15px -5px #000000;
+}
+.game-container .game-view .game-board {
+  height: 100%;
+  width: 95%;
+  display: flex;
+  justify-content: center;
+}
+.game-container .game-view .game-board .board-img {
+  height: 100%;
+  width: auto;
+}
+.game-container .game-view .game-board .game-cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.game-container .game-view .game-board .game-cards .card-pile {
+  position: relative;
+  height: 70px;
+  width: 100px;
+  border: 1px solid white;
+  border-radius: 0.5em;
+}
+.game-container .game-view .game-board .game-cards .card-pile .card {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.game-container .game-view .game-board .game-cards .card-pile .card img {
+  transform: rotate(90deg);
+}
+.game-container .game-view .player-board {
+  height: 110px;
+  width: 100%;
+}
+.game-container .game-view .player-board .player-hand {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  justify-content: space-around;
+  transition: 0.5s ease;
+  align-self: flex-end;
+}
+.game-container .game-view .player-board .in-hand-card {
+  -webkit-animation: "inHandCard" 1s ease forwards;
+          animation: "inHandCard" 1s ease forwards;
+}
+.game-container nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.game-container nav button {
+  margin: 0.5em 0;
+  height: 60px;
+  width: 60px;
+  background-color: goldenrod;
+  border: 3px solid #a17914;
+  border-radius: 100%;
+  transform: translateX(30%);
+  box-shadow: inset 0px 0px 10px 3px rgba(75, 43, 16, 0.8);
+  transition: 0.1s ease-out;
+}
+.game-container nav button:hover {
+  box-shadow: inset 0px 0px 15px 3px rgba(75, 43, 16, 0.8);
+}
+.game-container .modal-wrapper {
+  width: 100%;
+  position: absolute;
+  bottom: 15%;
+  opacity: 0;
+  z-index: -1;
+  transition: 0.5s ease;
+}
+.game-container .modal-wrapper .modal {
+  display: flex;
+  justify-content: center;
+}
+.game-container .modal-wrapper .modal p {
+  width: 40%;
+  text-align: center;
+  border: 5px solid gray;
+  background-color: lightgray;
+  box-sizing: border-box;
+  padding: 1em;
+}
+.game-container .modal-show {
+  z-index: 2;
+  opacity: 0;
+  -webkit-animation: "modalshow" 2.5s forwards;
+          animation: "modalshow" 2.5s forwards;
+}
+
+.login-container {
+  background-image: url("/fief/public/storage/images/castle.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+.login-container main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-container .parchm {
+  width: 400px;
+  height: 500px;
+  box-shadow: black;
+  background-image: url("/fief/public/storage/images/parchemin2.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-container .parchm form {
+  width: 50%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.login-container .parchm form .input-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-container .parchm input {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid burlywood;
+  text-align: center;
+}
+.login-container .parchm button {
+  outline: none;
+  background-color: transparent;
+  border: none;
+}
+.login-container .parchm button:hover {
+  transition: 0.3s ease;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+.login-container .parchm a {
+  text-decoration: none;
+}
+.login-container .parchm a:visited {
+  color: black;
+}
+.login-container .parchm a:hover {
+  transition: 0.3s ease;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.lobby-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #04002c;
+  background-image: url("/fief/public/storage/images/castle.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.lobby-container main {
+  height: 80%;
+  width: 70%;
+  display: flex;
+  background-color: blanchedalmond;
+  border: 5px solid white;
+  opacity: 0.8;
+}
+.lobby-container button {
+  height: 100%;
+  background-color: burlywood;
+  border: 1px solid #503f29;
+}
+.lobby-container .game-room {
+  height: 100%;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  border-right: 5px solid white;
+}
+.lobby-container .game-room .game-lobby {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lobby-container .game-room .game-lobby > * {
+  width: 90%;
+}
+.lobby-container .game-room .game-lobby p {
+  border-bottom: 1px solid black;
+  box-sizing: border-box;
+  padding: 0.5em;
+  font-size: 1.3rem;
+  font-weight: bolder;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+.lobby-container .game-room .game-lobby .lobby-player {
+  width: 90%;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+}
+.lobby-container .game-room .game-lobby .lobby-player::after {
+  content: "( ˘ -˘)";
+}
+.lobby-container .game-room .game-lobby .lobby-player.ready {
+  color: green;
+}
+.lobby-container .game-room .game-lobby .lobby-player.ready::after {
+  content: "(ง •̀_•́)ง";
+}
+.lobby-container .game-room .user-btns {
+  height: 50px;
+  display: flex;
+  border-top: 5px solid white;
+}
+.lobby-container .game-room .user-btns > * {
+  width: 50%;
+}
+.lobby-container .game-room .user-btns > * button {
+  width: 100%;
+}
+.lobby-container .chat {
+  height: 100%;
+  width: 650px;
+  display: flex;
+  flex-direction: column;
+}
+.lobby-container .chat .messages {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 0.7em;
+}
+.lobby-container .chat .messages p {
+  line-height: 1em;
+  margin-top: 0.2em;
+}
+.lobby-container .chat .messages .init-game-msg {
+  color: firebrick;
+}
+.lobby-container .chat .write-message {
+  height: 200px;
+  border-top: 5px solid white;
+  display: flex;
+  justify-content: space-between;
+}
+.lobby-container .chat .write-message textarea {
+  height: 100%;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+  padding: 0.7em;
 }
 
 * {

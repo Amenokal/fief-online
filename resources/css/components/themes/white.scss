@@ -1,0 +1,7 @@
+.white {
+    color: var(--white-txt);
+    box-sizing: border-box;
+    border: 5px solid var(--white-strong);
+    background-color: var(--white);
+    &>.player-name{border-bottom: 1px solid var(--white-strong)}
+}

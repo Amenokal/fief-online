@@ -1,0 +1,33 @@
+.red-background {
+    background-color: var(--red);
+    // border-left: 7px solid var(--red);
+    // border-right: 7px solid var(--red);
+
+}
+
+.red {
+    background-color: var(--red);
+    color: var(--red-txt);
+    box-sizing: border-box;
+    border: 5px solid var(--red-strong);
+    &>.player-name{border-bottom: 1px solid var(--red-strong)}
+}
+
+.left-border-red {
+    display: flex;
+    border-left: 10px solid var(--red);
+    border-right: 10px solid var(--red-strong);
+    .deco {
+        border-left: 10px solid var(--red-strong);
+        border-right: 7px solid var(--red-txt);
+    }
+}
+.right-border-red {
+    display: flex;
+    border-right: 10px solid var(--red);
+    border-left: 10px solid var(--red-strong);
+    .deco {
+        border-right: 10px solid var(--red-strong);
+        border-left: 7px solid var(--red-txt);
+    }
+}

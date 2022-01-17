@@ -1,7 +1,11 @@
 .locations {
     height: 100%;
-    width: max-content;
+    width: 100%;
     position: relative;
+    background-image: url('/fief/storage/app/public/images/board.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 
     span {
         position: absolute;

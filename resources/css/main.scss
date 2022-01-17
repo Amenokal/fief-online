@@ -1,12 +1,10 @@
-@use 'game';
-@use 'login';
-@use 'lobby';
+@use 'abstract/root.scss';
+@use 'abstract/keyframes.scss';
 
-@use 'components/game/token';
-@use 'components/game/dice';
-@use 'components/game/card';
-@use 'components/game/villages';
-@use 'components/game/buildings';
+@use 'components/themes/themes.scss';
+@use 'components/game/game.scss';
+@use 'components/pages/pages.scss';
+
 
 * {
 
