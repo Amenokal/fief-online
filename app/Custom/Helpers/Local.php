@@ -26,7 +26,7 @@ class Local {
 
     public static function cards()
     {
-        $conditions = ['game_id' => GameCurrent::id(), 'player_id' => self::player()];
+        $conditions = ['game_id' => GameCurrent::id(), 'player_id' => self::player()->id];
         $lord_cards = LordCards::where($conditions)->get();
         $event_cards = EventCards::where($conditions)->get();
         return $lord_cards->merge($event_cards);

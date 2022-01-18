@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/lobby.js', 'public/js')
     .js('resources/js/game.js', 'public/js')
+    .js('resources/js/army.js', 'public/js')
     .sass('resources/css/main.scss', 'public/css')
 
     // .postCss('resources/css/app.css', 'public/css', [

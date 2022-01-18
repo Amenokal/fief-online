@@ -115,24 +115,22 @@ main {
         }
     }
 
-    .player-board {
-        height: 110px;
-        width: 100%;
+    
+}
 
-        .player-hand {
-            height: 100%;
-            width: 25%;
-            display: flex;
-            justify-content: space-around;
-            transition: .5s ease;
-            align-self: flex-end;
-        }
+.player-hand {
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    transition: .5s ease;
+    align-self: flex-end;
 
-        .in-hand-card {
-            animation: 'inHandCard' 1s ease forwards;
-        }
-
-    }    
+    .in-hand-card {
+        animation: 'inHandCard' 1s ease forwards;
+    }
 }
 
 nav {

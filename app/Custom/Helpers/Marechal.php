@@ -8,12 +8,15 @@ use App\Models\LordCards;
 
 class Marechal {
 
-    // LORDS
+   /**  +----------------------------------------------------+
+    *   |                     LORDS                          |
+    *   +----------------------------------------------------+
+    */
+
     public static function moveLord(LordCards $lord, Villages $to)
     {
-        $lord->update([
-            'village_id' => $to->id
-        ]);
+        $update = !$lord->on_board  ?  ['village_id' => $to->id]  :  ['village_id' => $to->id, 'on_board' => true];
+        $lord->update($update);
     }
 
     public static function removeLord(LordCards $lord)
@@ -28,42 +31,57 @@ class Marechal {
 
 
     
-    // ARMIES
-    public function newArmy(int $amount, Villages $to)
+   /**  +----------------------------------------------------+
+    *   |                     ARMIES                         |
+    *   +----------------------------------------------------+
+    *   @param $army is an simple array following the pattern
+    *                [ 'type' , 'amount' , ... ]
+    *
+    *   available types registered in json file at :
+    *                storage / data / *gamemod* / armies.json
+    */
+
+
+    public static function newArmy(array $army, Villages $village)
     {
-        Soldiers::where([
-            'player_id' => Local::player(),
-            'game_id' => GameCurrent::id(),
-            'village_id' => null
-        ])
-        ->take($amount)
-        ->update([
-            'village_id' => $to->id,
-        ]);
+        for($i=0; $i<count($army); $i+=2){
+            Soldiers::where([
+                'type' => $army[$i],
+                'player_id' => Local::player()->id,
+                'game_id' => GameCurrent::id(),
+                'village_id' => null
+            ])
+            ->take($army[$i+1])
+            ->update(['village_id' => $village->id]);
+        }
     }
 
-    public static function moveArmy(int $amount, Villages $from, Villages $to)
+    public static function moveArmy(array $army, Villages $from, Villages $to)
     {
-        Soldiers::where([
-            'player_id' => Local::player(),
-            'game_id' => GameCurrent::id(),
-            'village_id' => $from->id,
-        ])
-        ->take($amount)
-        ->update(['village_id' => $to->id]);
+        for($i=0; $i<count($army); $i+=2){
+            Soldiers::where([
+                'type' => $army[$i],
+                'player_id' => Local::player(),
+                'game_id' => GameCurrent::id(),
+                'village_id' => $from->id,
+            ])
+            ->take($army[$i+1])
+            ->update(['village_id' => $to->id]);
+        }
     }
 
-    public static function removeArmy(int $amount, Villages $from)
+    public static function removeArmy(array $army, Villages $village)
     {
-        Soldiers::where([
-            'player_id' => Local::player(),
-            'game_id' => GameCurrent::id(),
-            'village_id' => $from->id,
-        ])
-        ->take($amount)
-        ->update([
-            'village_id' => null,
-        ]);
+        for($i=0; $i<count($army); $i+=2){
+            Soldiers::where([
+                'type' => $army[$i],
+                'player_id' => Local::player(),
+                'game_id' => GameCurrent::id(),
+                'village_id' => $village->id,
+            ])
+            ->take($army[$i+1])
+            ->update(['village_id' => null]);
+        }
     }
 
 }

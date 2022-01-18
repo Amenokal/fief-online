@@ -11,6 +11,10 @@
     @include themed($base, $txt);
     box-sizing: border-box;
     border: 5px solid $strong;
+    
+    &.token {
+        border: 2px solid $strong;
+    }
 }
 
 // RED

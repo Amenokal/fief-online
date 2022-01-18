@@ -1,4 +1,4 @@
 [
-    {"name": "Sergeant", "nb": 13, "price": 1, "power": 1, "pv": 1},
-    {"name": "Knight", "nb": 8, "price": 3, "power": 3, "pv": 3}
+    {"type": "sergeant", "nb": 13, "price": 1, "power": 1, "pv": 1},
+    {"type": "knight", "nb": 8, "price": 3, "power": 3, "pv": 3}
 ]

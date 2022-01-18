@@ -13,10 +13,14 @@ class Architect {
         $target = Buildings::where(['name' => $type, 'village_id' => $village_id]);
         
         if(!$target->exists()){
-            Buildings::where('name', $type)
+            Buildings::where([
+                'name' => $type,
+                'game_id' => GameCurrent::id(),
+                'village_id' => null
+            ])
+            ->first()
             ->update([
                 'village_id' => $village_id,
-                'on_board' => true
             ]);
         }
     }
@@ -29,7 +33,6 @@ class Architect {
         if($target->exists()){
             $target->update([
                 'village_id' => null,
-                'on_board' => false
             ]);
         }
     }

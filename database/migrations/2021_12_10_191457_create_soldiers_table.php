@@ -15,13 +15,13 @@ class CreateSoldiersTable extends Migration
     {
         Schema::create('soldiers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('type');
             $table->integer('price');
             $table->integer('power');
             $table->integer('pv');
             $table->foreignId('village_id')->nullable()->constrained()->default(null);
-            $table->foreignId('game_id')->constrained();
             $table->foreignId('player_id')->constrained();
+            $table->foreignId('game_id')->constrained();
         });
     }
 

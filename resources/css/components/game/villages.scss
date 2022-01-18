@@ -7,7 +7,8 @@
     background-repeat: no-repeat;
     background-size: contain;
 
-    span {
+    .village,
+    .city {
         position: absolute;
         height: 8%;
         width: 6%;  
@@ -15,7 +16,7 @@
         border-radius: .3em;
         transition: .3s ease;
         
-        &:hover:not(&>*){
+        &:hover{
             transform: scale(1.2);
         }
     }
@@ -55,17 +56,17 @@
     }
     
     // COUNTY 2
-    #stgerome{
+    #st-gérôme{
         left:85.5%;
         top:58.5%;
         border: 2px solid rgb(255, 206, 81);
     }
-    #stmedard{
+    #st-médard{
         left:63.5%;
         top:56%;
         border: 2px solid rgb(255, 206, 81);
     }
-    #standre{
+    #st-andré{
         left:88.5%;
         top:79%;
         border: 2px solid rgb(255, 206, 81);
@@ -82,24 +83,24 @@
         top:56%;
         border: 2px solid firebrick;
     }
-    #stvivien{
+    #st-vivien{
         left:37%;
         top:80%;
         border: 2px solid firebrick;
     }
-    #labussiere{
+    #la-buissière{
         left:72%;
         top:82.5%;
         border: 2px solid firebrick;
     }
     
     //BARONY 1
-    #lesessarts{
+    #les-essarts{
         left: 29%;
         top: 59%;
         border: 2px solid rgb(0, 204, 0)
     }
-    #stpaul{
+    #st-paul{
         left:14%;
         top:81%;
         border: 2px solid rgb(0, 204, 0)
@@ -116,7 +117,7 @@
         top:48.5%;
         border: 2px solid dodgerblue;
     }
-    #stciers{
+    #st-ciers-d-abzac{
         left: 7%;
         top:32%;
         border: 2px solid dodgerblue;
@@ -133,7 +134,7 @@
         top: 11%;
         border: 2px solid rgb(255, 133, 52);
     }
-    #lasalle{
+    #la-salle{
         left: 22%;
         top: 4%;
         border: 2px solid rgb(255, 133, 52);
@@ -150,12 +151,12 @@
         top: 12%;
         border: 2px solid rgb(231, 202, 202);
     }
-    #lepervier{
+    #l-épervier{
         left: 50%;
         top: 28%;
         border: 2px solid rgb(231, 202, 202);
     }
-    #chateauneuf{
+    #château-neuf{
         left: 51%;
         top: 8%;
         border: 2px solid rgb(231, 202, 202);
@@ -167,7 +168,7 @@
         top: 13%;
         border: 2px solid rgb(231, 192, 233);
     }
-    #standromy{
+    #st-andromy{
         left: 71.5%;
         top: 40%;
         border: 2px solid rgb(231, 192, 233);

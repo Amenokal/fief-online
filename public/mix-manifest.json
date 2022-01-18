@@ -1,5 +1,6 @@
 {
     "/js/lobby.js": "/js/lobby.js",
     "/js/game.js": "/js/game.js",
+    "/js/army.js": "/js/army.js",
     "/css/main.css": "/css/main.css"
 }

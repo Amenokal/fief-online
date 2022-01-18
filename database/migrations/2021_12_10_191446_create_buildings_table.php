@@ -19,7 +19,6 @@ class CreateBuildingsTable extends Migration
             $table->integer('price');
             $table->integer('income');
             $table->integer('defense');
-            $table->boolean('on_board')->default(false);
             $table->foreignId('game_id')->constrained();
             $table->foreignId('village_id')->nullable()->constrained('villages')->default(null);
         });

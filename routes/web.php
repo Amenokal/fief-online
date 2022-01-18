@@ -37,9 +37,11 @@ Route::post('/draw/event', [CardsController::class, 'drawEvent']);
 Route::post('/discard', [CardsController::class, 'discard']);
 
 // TEST
-Route::get('/test', [TestController::class, 'test']);
+Route::post('/step1', [TestController::class, 'test']);
+Route::post('/step2', [TestController::class, 'test2']);
+Route::post('/step3', [TestController::class, 'test3']);
 
-
+Route::get('/t', [TestController::class, 't']);
 
 
 

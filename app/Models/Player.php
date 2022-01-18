@@ -10,18 +10,44 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Players extends Model
+class Player extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
     protected $fillable = [
-        'user_id',
-        'game_id',
         'familyname',
         'color',
         'gold',
-        'married_to'
+        'married_to',
+        'user_id',
+        'game_id',
     ];
+
+    public function cards()
+    {
+        return $this->hasMany(Cards::class);
+    }
+
+    public function soldiers()
+    {
+        return $this->hasMany(Soldiers::class);
+    }
+
+
+
+    /////
+
+
+
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

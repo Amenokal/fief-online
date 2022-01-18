@@ -107,6 +107,9 @@
   box-sizing: border-box;
   border: 5px solid var(--red-strong);
 }
+.red-bordered.token {
+  border: 2px solid var(--red-strong);
+}
 
 .blue-theme {
   background-color: var(--blue);
@@ -126,6 +129,9 @@
   background-size: cover;
   box-sizing: border-box;
   border: 5px solid var(--blue-strong);
+}
+.blue-bordered.token {
+  border: 2px solid var(--blue-strong);
 }
 
 .green-theme {
@@ -147,6 +153,9 @@
   box-sizing: border-box;
   border: 5px solid var(--green-strong);
 }
+.green-bordered.token {
+  border: 2px solid var(--green-strong);
+}
 
 .yellow-theme {
   background-color: var(--yellow);
@@ -166,6 +175,9 @@
   background-size: cover;
   box-sizing: border-box;
   border: 5px solid var(--yellow-strong);
+}
+.yellow-bordered.token {
+  border: 2px solid var(--yellow-strong);
 }
 
 .white-theme {
@@ -187,6 +199,9 @@
   box-sizing: border-box;
   border: 5px solid var(--white-strong);
 }
+.white-bordered.token {
+  border: 2px solid var(--white-strong);
+}
 
 .black-theme {
   background-color: var(--black);
@@ -207,40 +222,32 @@
   box-sizing: border-box;
   border: 5px solid var(--black-strong);
 }
+.black-bordered.token {
+  border: 2px solid var(--black-strong);
+}
 
 .token {
   height: 27px;
   width: 27px;
-  top: 20%;
+  display: flex;
   padding: 0.1em;
   background-color: papayawhip;
-  border: 3px solid forestgreen;
   border-radius: 0.2em;
-}
-.token .soldier {
-  height: 100%;
-  width: auto;
-  position: relative;
-  left: 15%;
-}
-.token .knight {
-  height: 100%;
-  width: auto;
-  position: relative;
-  left: 15%;
-  transform: scale(1.1);
-}
-
-.lord {
-  height: 60px !important;
-  width: 30px !important;
-  background-image: url("/fief/storage/app/public/images/charles.png");
-  background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-position: center;
+  background-size: 60%;
   position: absolute;
-  z-index: 3;
-  transition: 0.5s ease;
+}
+.token.sergeant {
+  top: 0;
+  left: 0;
+  background-image: url("/fief/storage/app/public/images/soldier.png");
+}
+.token.knight {
+  top: 0;
+  right: 0;
+  background-image: url("/fief/storage/app/public/images/knight.png");
+  background-size: 70%;
 }
 
 /**
@@ -439,7 +446,8 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
-.locations span {
+.locations .village,
+.locations .city {
   position: absolute;
   height: 8%;
   width: 6%;
@@ -447,7 +455,8 @@
   border-radius: 0.3em;
   transition: 0.3s ease;
 }
-.locations span:hover:not(.locations span > *) {
+.locations .village:hover,
+.locations .city:hover {
   transform: scale(1.2);
 }
 .locations #tournus {
@@ -480,17 +489,17 @@
   top: 36%;
   border: 2px solid forestgreen;
 }
-.locations #stgerome {
+.locations #st-gérôme {
   left: 85.5%;
   top: 58.5%;
   border: 2px solid #ffce51;
 }
-.locations #stmedard {
+.locations #st-médard {
   left: 63.5%;
   top: 56%;
   border: 2px solid #ffce51;
 }
-.locations #standre {
+.locations #st-andré {
   left: 88.5%;
   top: 79%;
   border: 2px solid #ffce51;
@@ -505,22 +514,22 @@
   top: 56%;
   border: 2px solid firebrick;
 }
-.locations #stvivien {
+.locations #st-vivien {
   left: 37%;
   top: 80%;
   border: 2px solid firebrick;
 }
-.locations #labussiere {
+.locations #la-buissière {
   left: 72%;
   top: 82.5%;
   border: 2px solid firebrick;
 }
-.locations #lesessarts {
+.locations #les-essarts {
   left: 29%;
   top: 59%;
   border: 2px solid #00cc00;
 }
-.locations #stpaul {
+.locations #st-paul {
   left: 14%;
   top: 81%;
   border: 2px solid #00cc00;
@@ -535,7 +544,7 @@
   top: 48.5%;
   border: 2px solid dodgerblue;
 }
-.locations #stciers {
+.locations #st-ciers-d-abzac {
   left: 7%;
   top: 32%;
   border: 2px solid dodgerblue;
@@ -550,7 +559,7 @@
   top: 11%;
   border: 2px solid #ff8534;
 }
-.locations #lasalle {
+.locations #la-salle {
   left: 22%;
   top: 4%;
   border: 2px solid #ff8534;
@@ -565,12 +574,12 @@
   top: 12%;
   border: 2px solid #e7caca;
 }
-.locations #lepervier {
+.locations #l-épervier {
   left: 50%;
   top: 28%;
   border: 2px solid #e7caca;
 }
-.locations #chateauneuf {
+.locations #château-neuf {
   left: 51%;
   top: 8%;
   border: 2px solid #e7caca;
@@ -580,7 +589,7 @@
   top: 13%;
   border: 2px solid #e7c0e9;
 }
-.locations #standromy {
+.locations #st-andromy {
   left: 71.5%;
   top: 40%;
   border: 2px solid #e7c0e9;
@@ -588,6 +597,7 @@
 
 .chateau {
   background-image: url("/fief/storage/app/public/images/chateau.png");
+  display: flex;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -598,6 +608,7 @@
 
 .cite {
   background-image: url("/fief/storage/app/public/images/cite.png");
+  display: flex;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -608,6 +619,7 @@
 
 .moulin {
   background-image: url("/fief/storage/app/public/images/moulin.png");
+  display: flex;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -616,6 +628,26 @@
   opacity: 1 !important;
   transform: translateX(-20px) translateY(20px) scale(0.6);
   z-index: 2;
+}
+
+.army {
+  height: 48px !important;
+  width: 30px !important;
+}
+.army .lord {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  z-index: 3;
+  transition: 0.5s ease;
+  box-shadow: 0px 0px 15px -5px #000000;
+}
+.army .lord .lord-banner {
+  width: 90%;
+  height: 100%;
+  position: absolute;
+  z-index: 4;
 }
 
 .game-container {
@@ -715,19 +747,17 @@
 .game-container .game-view .game-board .game-cards .card-pile .card img {
   transform: rotate(90deg);
 }
-.game-container .game-view .player-board {
-  height: 110px;
+.game-container .player-hand {
+  height: 50px;
   width: 100%;
-}
-.game-container .game-view .player-board .player-hand {
-  height: 100%;
-  width: 25%;
+  position: absolute;
+  bottom: 0;
   display: flex;
   justify-content: space-around;
   transition: 0.5s ease;
   align-self: flex-end;
 }
-.game-container .game-view .player-board .in-hand-card {
+.game-container .player-hand .in-hand-card {
   -webkit-animation: "inHandCard" 1s ease forwards;
           animation: "inHandCard" 1s ease forwards;
 }

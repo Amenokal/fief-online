@@ -131,7 +131,7 @@ class BootServices {
                 
                 for($i=0; $i<$a['nb']; $i++){
                     Soldiers::create([
-                        'name' => $a['name'],
+                        'type' => $a['type'],
                         'price' => $a['price'],
                         'power' => $a['power'],
                         'pv' => $a['pv'],

@@ -2054,6 +2054,109 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/army.js":
+/*!******************************!*\
+  !*** ./resources/js/army.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "drawAll": () => (/* binding */ drawAll)
+/* harmony export */ });
+// CUSTOM CANVAS BANNERS !!!
+function drawAll(power) {
+  document.querySelectorAll('.lord-banner').forEach(function (el) {
+    draw(el, power);
+  });
+}
+
+function get(what) {
+  return window.getComputedStyle(document.documentElement, null).getPropertyValue('--' + what);
+}
+
+function draw(target) {
+  var power = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+  var elm = document.querySelector('.game-view').className.split(' ')[1].split('-')[0];
+  var baseColor = get(elm);
+  var strongColor = get(elm + '-strong');
+  var txtColor = get(elm + '-txt');
+  var cvs = target;
+  var ctx = cvs.getContext('2d'); // MANCHE
+
+  ctx.fillStyle = 'rgb(58, 28, 0)';
+  ctx.fillRect(cvs.width / 2 - 4, 0, 8, cvs.height);
+  ctx.fillRect(cvs.width / 15, cvs.height / 14.5, cvs.width * .87, cvs.height / 20); // ATTACHES
+
+  ctx.strokeStyle = 'black';
+  ctx.beginPath();
+  ctx.moveTo(cvs.width / 2, cvs.height / 40);
+  ctx.lineTo(cvs.height / 10, cvs.width / 9);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.strokeStyle = 'black';
+  ctx.beginPath();
+  ctx.moveTo(cvs.width / 2, cvs.height / 40);
+  ctx.lineTo(cvs.width * .85, cvs.width / 9);
+  ctx.closePath();
+  ctx.stroke(); // BORDER
+
+  ctx.fillStyle = strongColor;
+  ctx.beginPath();
+  ctx.moveTo(cvs.width / 10, cvs.width / 10);
+  ctx.lineTo(cvs.width / 10, cvs.height / 1.4);
+  ctx.lineTo(cvs.width / 2, cvs.height / 1.13);
+  ctx.lineTo(cvs.width * (9 / 10), cvs.height / 1.4);
+  ctx.lineTo(cvs.width * (9 / 10), cvs.width / 10);
+  ctx.closePath();
+  ctx.fill(); // BASE
+
+  ctx.fillStyle = baseColor;
+  ctx.beginPath();
+  ctx.moveTo(cvs.width / 5, cvs.width / 5);
+  ctx.lineTo(cvs.width / 5, cvs.height / 1.48);
+  ctx.lineTo(cvs.width / 2, cvs.height / 1.23);
+  ctx.lineTo(cvs.width * (4 / 5), cvs.height / 1.48);
+  ctx.lineTo(cvs.width * (4 / 5), cvs.width / 5);
+  ctx.closePath();
+  ctx.fill(); // 2ND COLOR
+
+  ctx.fillStyle = txtColor;
+  ctx.beginPath();
+  ctx.moveTo(cvs.width / 5, cvs.width / 5);
+  ctx.lineTo(cvs.width / 5, cvs.height / 1.48);
+  ctx.lineTo(cvs.width / 2, cvs.height / 1.23);
+  ctx.lineTo(cvs.width / 2, cvs.height / 1.48);
+  ctx.lineTo(cvs.width / 2, cvs.width / 5);
+  ctx.closePath();
+  ctx.fill(); // CHEVRONS
+
+  ctx.fillStyle = strongColor;
+
+  for (var i = 0; i < power; i++) {
+    ctx.beginPath();
+    ctx.moveTo(cvs.width / 5, cvs.height / 6 + 70 * i - 15);
+    ctx.lineTo(cvs.width / 5, cvs.height / 6 + 40 + 70 * i - 15);
+    ctx.lineTo(cvs.width / 2, cvs.height / 3.3 + 40 + 70 * i - 15);
+    ctx.lineTo(cvs.width * .8, cvs.height / 6 + 40 + 70 * i - 15);
+    ctx.lineTo(cvs.width * .8, cvs.height / 6 + 70 * i - 15);
+    ctx.lineTo(cvs.width / 2, cvs.height / 3.3 + 70 * i - 15);
+    ctx.closePath();
+    ctx.fill();
+  } // ARMOIRIES
+  // var img = new Image;
+  // img.src = "/fief/storage/app/public/banners/blue.png";
+  // img.width = '20%';
+  // img.height = '20%';
+  // img.onload = ()=>{
+  //     ctx.drawImage(img, 75, 75, 100, 100);
+  // }
+
+}
+
+/***/ }),
+
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -25741,11 +25844,16 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
 /*!******************************!*\
   !*** ./resources/js/game.js ***!
   \******************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _army_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./army.js */ "./resources/js/army.js");
+
+
 var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
     axios = _require["default"];
 
@@ -25754,6 +25862,7 @@ var _require2 = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+document.onload = (0,_army_js__WEBPACK_IMPORTED_MODULE_0__.drawAll)(3);
 document.querySelector('.end-turn-btn').addEventListener('click', endTurn);
 
 function endTurn() {
@@ -25820,41 +25929,58 @@ document.querySelector('.player-hand').addEventListener('click', function (e) {
       e.target.parentNode.remove();
     });
   }
-}); // CASTLES !!!
-
-var draw = false;
-
-document.getElementById('make-off').onclick = function () {
-  draw = false;
-};
-
-document.getElementById('make-moulin').onclick = function () {
-  draw = 'moulin';
-};
-
-document.getElementById('make-chateau').onclick = function () {
-  draw = 'chateau';
-};
-
-document.getElementById('make-cite').onclick = function () {
-  draw = 'cite';
-};
-
-document.querySelector('.locations').addEventListener('click', function (e) {
-  if (document.getElementById('charles')) {
-    document.getElementById('charles').remove();
-  }
-
-  e.target.innerHTML += "<span class='lord' id='charles'></span>";
-
-  if ((e.target.className.includes('village') || e.target.className.includes('city') || e.target.parentNode.className.includes('village') || e.target.parentNode.className.includes('city')) && draw) {
-    e.target.innerHTML += "<span class='".concat(draw, "'></span>");
-  }
-
-  if (draw == 'moulin' && e.target.className.includes('moulin') || draw == 'chateau' && e.target.className.includes('chateau') || draw == 'cite' && e.target.className.includes('cite')) {
-    e.target.remove();
-  }
 });
+document.getElementById('step1').addEventListener('click', function (e) {
+  axios.post('./step1').then(function (res) {
+    return console.log(res);
+  });
+});
+document.getElementById('step2').addEventListener('click', function (e) {
+  e.target.classList.toggle('choose-village');
+});
+document.getElementById('step3').addEventListener('click', function (e) {
+  e.target.classList.toggle('make-army');
+});
+document.querySelector('.locations').addEventListener('click', function (e) {
+  if (document.querySelector('.choose-village')) {
+    axios.post('./step2', {
+      village: e.target.id
+    }).then(function (res) {
+      var id = document.querySelectorAll('.lord-banner').length + 1;
+      document.getElementById(res.data).innerHTML += "<span class=chateau></span>\n            <x-army :id=\"".concat(id, "\"/>\n            ");
+      (0,_army_js__WEBPACK_IMPORTED_MODULE_0__.drawAll)();
+    });
+  } else if (document.querySelector('.make-army')) {
+    axios.post('./step3', {
+      village: e.target.id,
+      army: ['sergeant', 3, 'knight', 1]
+    }).then(function (res) {
+      var color = document.querySelector('.game-view').className.split(' ')[1].split('-')[0];
+      e.target.innerHTML += "<span class='token soldier ".concat(color, "-bordered'></span>");
+    });
+  }
+}); // CASTLES !!!
+// var draw = false;
+// document.getElementById('make-off').onclick = ()=>{draw = false};
+// document.getElementById('make-moulin').onclick = ()=>{draw = 'moulin'};
+// document.getElementById('make-chateau').onclick = ()=>{draw = 'chateau'};
+// document.getElementById('make-cite').onclick = ()=>{draw = 'cite'};
+// document.querySelector('.locations').addEventListener('click',e=>{
+//     if(document.getElementById('charles')){
+//         document.getElementById('charles').remove();
+//     }
+//     e.target.innerHTML += `<span class='lord' id='charles'></span>`;
+//     if((e.target.className.includes('village') || e.target.className.includes('city') ||
+//         e.target.parentNode.className.includes('village') || e.target.parentNode.className.includes('city'))
+//         && draw ){
+//         e.target.innerHTML += `<span class='${draw}'></span>`;
+//     }
+//     if((draw == 'moulin' && e.target.className.includes('moulin')) ||
+//         (draw == 'chateau' && e.target.className.includes('chateau')) ||
+//         (draw == 'cite' && e.target.className.includes('cite'))){
+//         e.target.remove();
+//     }
+// })
 })();
 
 /******/ })()

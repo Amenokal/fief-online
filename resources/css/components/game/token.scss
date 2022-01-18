@@ -1,34 +1,24 @@
 .token{
     height: 27px;
     width: 27px;
-    // position: absolute;
-    top: 20%;
+    display: flex;
     padding: .1em;
     background-color: papayawhip;
-    border: 3px solid forestgreen;
     border-radius: .2em;
-    .soldier {
-        height: 100%;
-        width: auto;
-        position: relative;
-        left: 15%;
-    }
-    .knight {
-        height: 100%;
-        width: auto;
-        position: relative;
-        left: 15%;
-        transform: scale(1.1);
-    }
-}
-.lord {
-    height: 60px !important;
-    width: 30px !important;
-    background-image: url('/fief/storage/app/public/images/charles.png');
-    background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-position: center;
+    background-size: 60%;
     position: absolute;
-    z-index: 3;
-    transition: .5s ease;
+    
+    &.sergeant {
+        top: 0;
+        left: 0;
+        background-image: url('/fief/storage/app/public/images/soldier.png');
+    }
+    &.knight {
+        top: 0;
+        right: 0;
+        background-image: url('/fief/storage/app/public/images/knight.png');
+        background-size: 70%;
+    }
 }

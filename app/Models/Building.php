@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Buildings extends Model
+class Building extends Model
 {
     use HasFactory;
 
@@ -15,8 +15,23 @@ class Buildings extends Model
         'price',
         'income',
         'defense',
-        'on_board',
         'game_id',
         'village_id'
     ];
+
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
+
+    public function player()
+    {
+        return $this->belongsTo(Player::class);
+    }
+
+    public function village()
+    {
+        return $this->belongsTo(Village::class);
+    }
+    
 }

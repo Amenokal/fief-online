@@ -5,7 +5,7 @@
     {"name": "charolles","lord_territory": "1","religious_territory": "1","capital": false},
 
     {"name": "sennecy","lord_territory": "2","religious_territory": "1","capital": false},
-    {"name": "l'épervier","lord_territory": "2","religious_territory": "1","capital": false},
+    {"name": "l-épervier","lord_territory": "2","religious_territory": "1","capital": false},
     {"name": "château-neuf","lord_territory": "2","religious_territory": "2","capital": false},
 
     {"name": "mazilles","lord_territory": "3","religious_territory": "2","capital": false},
@@ -29,5 +29,5 @@
     
     {"name": "marcamps","lord_territory": "8","religious_territory": "4","capital": false},
     {"name": "sigy","lord_territory": "8","religious_territory": "5","capital": true},
-    {"name": "st-ciers-d'abzac","lord_territory": "8","religious_territory": "5","capital": false}
+    {"name": "st-ciers-d-abzac","lord_territory": "8","religious_territory": "5","capital": false}
 ]
