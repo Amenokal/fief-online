@@ -16,7 +16,8 @@ class Villages extends Model
         'religious_territory',
         'capital',
         'player_id',
-        'game_id'
+        'game_id',
+        'player_id'
     ];
 
 }

@@ -12,8 +12,4 @@ class GameTurns extends Model
     public $timestamps = false;
     public $fillable = ['turn', 'phase', 'player', 'game_id'];
 
-    public function inc_disasters()
-    {
-        return EventCards::where(['on_board' => true, 'type' => 'disaster'])->get();
-    }
 }

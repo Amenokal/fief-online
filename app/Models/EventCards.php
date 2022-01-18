@@ -21,7 +21,9 @@ class EventCards extends Model
         'img_src',
         'type',
         'order',
-        'on_board'
+        'on_board',
+        'lord_title_id',
+        'religious_title_id',
     ];
     
 }

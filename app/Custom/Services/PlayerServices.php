@@ -4,16 +4,24 @@ namespace App\Custom\Services;
 
 use App\Models\Games;
 use App\Models\Players;
+use App\Custom\Helpers\Local;
+use App\Custom\Helpers\GameCurrent;
 
 class PlayerServices {
 
     // CARDS
     public static function drawCard(string $type)
     {
-        $card =  DeckServices::nextCards($type)->first();
-        $card->update(['player_id' => Games::current()->player()->id]);
+        $card = DeckServices::nextCards($type)->first();
+        $card->update(['player_id' => Local::player()->id]);
+        return $card;
     }
 
+    public static function play($card)
+    {
+        $card->update(['on_board' => true]);
+    }
+    
     public static function discard(string $name)
     {
         $discarded = Players::auth()->cards()->where('name', $name)->first();
@@ -27,9 +35,9 @@ class PlayerServices {
     {
         for($i=0; $i<$amount; $i++){
             if($amount>0){
-                Games::current()->player()->increment('gold');
+                Local::player()->increment('gold');
             }else{
-                Games::current()->player()->decrement('gold');
+                Local::player()->decrement('gold');
             }
         }
     }
@@ -37,7 +45,7 @@ class PlayerServices {
     public static function giveGold(int $amount, Players $to)
     {
         for($i=0; $i<$amount; $i++){
-            Games::current()->player()->decrement('gold');
+            Local::player()->decrement('gold');
             $to->increment('gold');
         }
     }

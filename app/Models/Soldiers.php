@@ -17,6 +17,7 @@ class Soldiers extends Model
         'pv',
         'on_board',
         'game_id',
+        'village_id',
         'player_id'
     ];
     

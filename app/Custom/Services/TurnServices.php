@@ -2,17 +2,16 @@
 
 namespace App\Custom\Services;
 
-use App\Models\Games;
-use App\Models\Players;
+use App\Custom\Helpers\GameCurrent;
 
 class TurnServices {
 
     public static function passTurn()
     {        
-        $turn = Games::current()->turn();
+        $turn = GameCurrent::turn();
         $phases = json_decode(file_get_contents(storage_path('data/meta/turn.json')), true);
 
-        if($turn->player < Games::current()->players()->count()){
+        if($turn->player < GameCurrent::players()->count()){
             $turn::increment('player');
         }else{
             $turn->update(['player'=>1]);
@@ -28,7 +27,7 @@ class TurnServices {
             $turn::increment('turn');
         }
         
-        $message = $phases[$turn->phase];
+        $message = $phases[$turn->phase]; // message = ? displayed with axios response;
         return response()->json($message);
     }
 

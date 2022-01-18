@@ -2,10 +2,9 @@
 
 namespace App\Custom\Services;
 
-use App\Models\Games;
-use App\Models\Players;
 use App\Models\LordCards;
 use App\Models\EventCards;
+use App\Custom\Helpers\GameCurrent;
 
 class DeckServices {
 
@@ -19,7 +18,7 @@ class DeckServices {
                         'name' => $card['name'],
                         'gender' => $card['gender'],
                         'img_src' => $card['img_src'],
-                        'game_id' => Games::current()->id,
+                        'game_id' => GameCurrent::id(),
                     ]);
                 elseif($card['type'] === 'event' || $card['type'] === 'disaster'){
                     EventCards::create([
@@ -27,7 +26,7 @@ class DeckServices {
                         'instant' => $card['instant'],
                         'type' => $card['type'],
                         'img_src' => $card['img_src'],
-                        'game_id' => Games::current()->id,
+                        'game_id' => GameCurrent::id(),
                     ]);
                 }
             }
@@ -39,25 +38,24 @@ class DeckServices {
     public static function shuffle(string $deck)
     {
         $deck = $deck === 'lord' ? LordCards::class : EventCards::class;
-        $cards = $deck::where([
-            ['game_id', Games::current()->id],
-            ['player_id', null]
+        $cards = $deck::
+        where([
+            'game_id' => GameCurrent::id(),
+            'player_id' => null
         ])
         ->inRandomOrder()
         ->get();
-            
-        $order = 0;
-        foreach($cards as $card){
-            $card->update(['order'=>++$order]);
-        }
 
+        for($i=0; $i<$cards->count(); $i++){
+            $cards[$i]->update(['order'=>$i]);
+        }
     }
             
     public static function nextCards(string $deck)
     {
         $deck = $deck === 'lord' ? LordCards::class : EventCards::class;
         $card = $deck::where([
-            ['game_id', Games::current()->id],
+            ['game_id', GameCurrent::id()],
             ['player_id', null],
             ['on_board', false]
             ])

@@ -12,28 +12,4 @@ class Games extends Model
     public $timestamps = false;
     public $fillable = ['mod', 'is_over'];
 
-    public static function current()
-    {
-        return self::latest()->first();
-    }
-
-    public static function turn()
-    {
-        return GameTurns::where('id', self::current()->id)->first();
-    }
-
-    public function player()
-    {
-        return Players::where(
-            ['game_id' => $this->id],
-            ['player_id' => $this->turn()->player]
-            )
-            ->first();
-    }
-
-    public function players()
-    {
-        return Players::where('game_id', $this->id)->get();
-    }
-    
 }

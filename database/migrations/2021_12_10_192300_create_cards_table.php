@@ -23,6 +23,7 @@ class CreateCardsTable extends Migration
             $table->string('img_src');
             $table->foreignId('game_id')->constrained();
             $table->foreignId('player_id')->nullable()->constrained()->default(null);
+            $table->foreignId('village_id')->nullable()->constrained()->default(null);
             $table->softDeletes();        
         });
 
@@ -36,6 +37,8 @@ class CreateCardsTable extends Migration
             $table->string('img_src');
             $table->foreignId('game_id')->constrained();
             $table->foreignId('player_id')->nullable()->constrained()->default(null);
+            $table->foreignId('lord_title_id')->nullable()->constrained()->default(null);
+            $table->foreignId('religious_title_id')->nullable()->constrained()->default(null);
             $table->softDeletes();        
         });
     }

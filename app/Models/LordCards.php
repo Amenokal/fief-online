@@ -21,7 +21,8 @@ class LordCards extends Model
         'img_src',
         'type',
         'order',
-        'on_board'
+        'on_board',
+        'village_id'
     ];
     
 }

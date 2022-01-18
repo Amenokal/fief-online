@@ -10,7 +10,8 @@ use App\Models\Buildings;
 use App\Models\GameTurns;
 use App\Models\LordCards;
 use App\Models\EventCards;
-use Illuminate\Support\Facades\Auth;
+use App\Custom\Helpers\Local;
+use App\Custom\Helpers\GameCurrent;
 
 class BootServices {
 
@@ -45,44 +46,42 @@ class BootServices {
                 'mod'=>self::$mod
             ]);
             GameTurns::create([
-                'game_id' => Games::current()->id
+                'game_id' => GameCurrent::id()
             ]);
         }
     }
     
     private static function createDecks()
     {
-        if(!LordCards::where('game_id', Games::current()->id)->exists() && !EventCards::where('game_id', Games::current()->id)->exists() ){
+        if(!LordCards::where('game_id', GameCurrent::id())->exists() && !EventCards::where('game_id', GameCurrent::id())->exists() ){
             DeckServices::setUp(self::$mod);
         }
     }
     
     private static function createPlayers()
-    {        
-        $starting_gold = json_decode(file_get_contents(storage_path('data/'.self::$mod.'/gold.json')), true)[0]['gold'];
-        
-        if(!Players::auth()->where('game_id', Games::current()->id)){
+    {   
+        if(!Local::player()){
             
             Players::create([
-                'game_id' => Games::current()->id,
-                'user_id' => Auth::user()->id,
+                'game_id' => GameCurrent::id(),
+                'user_id' => Local::user()->id,
                 'familyname' => self::setName(),
                 'color' => self::setColor(),
-                'gold' => $starting_gold
+                'gold' => 5
             ]);
             
         }
     }
         private static function setName()
         {
-            foreach(Games::current()->players() as $player){
+            foreach(GameCurrent::players() as $player){
                 self::$family_names->flip()->forget($player->familyname);
             }
             return self::$family_names->random();
         }
         private static function setColor()
         {
-            foreach(Games::current()->players() as $player){
+            foreach(GameCurrent::players() as $player){
                 self::$colors->flip()->forget($player->color);
             }
             return self::$colors->random();
@@ -90,20 +89,24 @@ class BootServices {
 
     private static function createVillages()
     {
-        foreach(self::$villages as $v){
-            Villages::create([
-                'name' => $v['name'],
-                'lord_territory' => $v['lord_territory'],
-                'religious_territory' => $v['religious_territory'],
-                'capital' => $v['capital'],
-                'game_id' => Games::current()->id
-            ]);
+        if(!Villages::where('game_id', GameCurrent::id())->exists()){
+
+            foreach(self::$villages as $v){
+                Villages::create([
+                    'name' => $v['name'],
+                    'lord_territory' => $v['lord_territory'],
+                    'religious_territory' => $v['religious_territory'],
+                    'capital' => $v['capital'],
+                    'game_id' => GameCurrent::id()
+                ]);
+            }
         }
+
     }
 
     private static function createBuildings()
     {
-        if(!Buildings::where('game_id', Games::current()->id)->exists()){
+        if(!Buildings::where('game_id', GameCurrent::id())->exists()){
 
             foreach(self::$buildings as $b){
 
@@ -113,7 +116,7 @@ class BootServices {
                     'price' => $b['price'],
                     'income' => $b['income'],
                     'defense' => $b['defense'],
-                    'game_id' => Games::current()->id
+                    'game_id' => GameCurrent::id()
                 ]);
                 }
             }
@@ -122,7 +125,7 @@ class BootServices {
 
     private static function createArmies()
     {
-        if(!Soldiers::where('game_id', Games::current()->id)->exists()){
+        if(!Soldiers::where('game_id', GameCurrent::id())->exists()){
 
             foreach(self::$armies as $a){
                 
@@ -132,8 +135,8 @@ class BootServices {
                         'price' => $a['price'],
                         'power' => $a['power'],
                         'pv' => $a['pv'],
-                        'game_id' => Games::current()->id,
-                        'player_id' => Players::auth()->id,
+                        'game_id' => GameCurrent::id(),
+                        'player_id' => Local::player()->id,
                     ]);
                 }
             }
