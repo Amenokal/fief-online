@@ -22,7 +22,7 @@ class CreateGameSetUpTable extends Migration
         
         Schema::create('game_turns', function (Blueprint $table) {
             $table->id();
-            $table->integer('player')->default(1);
+            $table->integer('player_id')->constrained()->default(1);
             $table->integer('phase')->default(1);
             $table->integer('turn')->default(1);
             $table->foreignId('game_id')->constrained();

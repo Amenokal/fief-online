@@ -62,6 +62,10 @@
     .card {
         height: 250px;
         width: 230px;
-        transform: translateY(-1.8em);
+        animation: 'drawn' .5s forwards;
     }
+}
+
+.draw-animation {
+    animation: 'draw' 1.5s forwards;
 }

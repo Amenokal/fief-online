@@ -2,66 +2,52 @@
 
 namespace App\Custom\Services;
 
-use App\Models\LordCards;
-use App\Models\EventCards;
-use App\Custom\Helpers\GameCurrent;
+use App\Models\Card;
+use App\Models\Game;
+use App\Custom\Helpers\Librarian;
 
 class DeckServices {
 
-    public static function setUp(string $mod)
+    public static function setUpDecks(string $mod)
     {
-        $cards = collect(json_decode(file_get_contents(storage_path('data/'.$mod.'/cards.json')), true));
+        $cards = Librarian::decipherJson($mod.'/cards.json');
         foreach($cards as $card){
             for($i=0; $i<$card['nb']; $i++){
-                if($card['type'] === 'lord')
-                    LordCards::create([
-                        'name' => $card['name'],
-                        'gender' => $card['gender'],
-                        'img_src' => $card['img_src'],
-                        'game_id' => GameCurrent::id(),
-                    ]);
-                elseif($card['type'] === 'event' || $card['type'] === 'disaster'){
-                    EventCards::create([
-                        'name' => $card['name'],
-                        'instant' => $card['instant'],
-                        'type' => $card['type'],
-                        'img_src' => $card['img_src'],
-                        'game_id' => GameCurrent::id(),
-                    ]);
-                }
+                Card::create([
+                    'name' => $card['name'],
+                    'type' => $card['type'],
+                    'gender' => $card['gender'] ?? null,
+                    'img_src' => $card['img_src'],
+                    'game_id' => Game::current()->id,
+                ]);
             }
         }    
-        self::shuffle('lord');
-        self::shuffle('event');
+        self::shuffleDeck('lord');
+        self::shuffleDeck('event');
     }
         
-    public static function shuffle(string $deck)
+    public static function shuffleDeck(string $type)
     {
-        $deck = $deck === 'lord' ? LordCards::class : EventCards::class;
-        $cards = $deck::
-        where([
-            'game_id' => GameCurrent::id(),
-            'player_id' => null
-        ])
+        $deck = $type === 'lord' ? Game::current()->lordCards : Game::current()->eventCards ;
+        $cards = $deck::withTrashed()
+        ->whereNull('player_id')
         ->inRandomOrder()
         ->get();
 
-        for($i=0; $i<$cards->count(); $i++){
-            $cards[$i]->update(['order'=>$i]);
+        foreach($cards as $card){
+            $i=0;
+            $card->update(['order'=>$i++]);
+            $card->restore();
         }
     }
-            
-    public static function nextCards(string $deck)
+
+    public static function nextCards(string $type)
     {
-        $deck = $deck === 'lord' ? LordCards::class : EventCards::class;
-        $card = $deck::where([
-            ['game_id', GameCurrent::id()],
-            ['player_id', null],
-            ['on_board', false]
-            ])
-            ->orderBy('order')
-            ->get();
-            return $card;
+        $deck = $type === 'lord' ? Game::current()->lordDeck() : Game::current()->eventDeck() ;
+        $next = $deck->whereNull('player_id')
+        ->sortBy('order')
+        ->all();
+        return collect($next);
     }
     
 }

@@ -2,16 +2,14 @@
 
 namespace App\Custom\Services;
 
-use App\Models\Games;
-use App\Models\Players;
-use App\Models\Soldiers;
-use App\Models\Villages;
-use App\Models\Buildings;
-use App\Models\GameTurns;
-use App\Models\LordCards;
-use App\Models\EventCards;
+use App\Models\Game;
+use App\Models\Player;
+use App\Models\Soldier;
+use App\Models\Village;
+use App\Models\Building;
+use App\Models\GameTurn;
 use App\Custom\Helpers\Local;
-use App\Custom\Helpers\GameCurrent;
+use App\Custom\Helpers\Librarian;
 
 class BootServices {
 
@@ -25,11 +23,11 @@ class BootServices {
     public static function init(string $mod)
     {
         self::$mod = $mod;
-        self::$family_names = collect(json_decode(file_get_contents(storage_path('data/meta/family_names.json')), true))->flatten();
-        self::$colors = collect(json_decode(file_get_contents(storage_path('data/meta/colors.json')), true))->flatten();
-        self::$villages = collect(json_decode(file_get_contents(storage_path('data/'.self::$mod.'/villages.json')), true));
-        self::$buildings = collect(json_decode(file_get_contents(storage_path('data/'.self::$mod.'/buildings.json')), true));
-        self::$armies = collect(json_decode(file_get_contents(storage_path('data/'.self::$mod.'/armies.json')), true));
+        self::$family_names = Librarian::decipherJson('meta/family_names.json')->flatten();
+        self::$colors = Librarian::decipherJson('meta/colors.json')->flatten();
+        self::$villages = Librarian::decipherJson(self::$mod.'/villages.json');
+        self::$buildings = Librarian::decipherJson(self::$mod.'/buildings.json');
+        self::$armies = Librarian::decipherJson(self::$mod.'/armies.json');
         
         self::createGame();
         self::createDecks();
@@ -41,20 +39,16 @@ class BootServices {
 
     private static function createGame()
     {
-        if(!Games::latest()->exists() || Games::latest()->first()->is_over){
-            Games::create([
-                'mod'=>self::$mod
-            ]);
-            GameTurns::create([
-                'game_id' => GameCurrent::id()
-            ]);
+        if(!Game::current() || Game::current()->is_over){
+            Game::create(['mod'=>self::$mod]);
+            GameTurn::create(['game_id' => Game::current()->id]);
         }
     }
     
     private static function createDecks()
     {
-        if(!LordCards::where('game_id', GameCurrent::id())->exists() && !EventCards::where('game_id', GameCurrent::id())->exists() ){
-            DeckServices::setUp(self::$mod);
+        if(Game::current()->cards->isEmpty()){
+            DeckServices::setUpDecks(self::$mod);
         }
     }
     
@@ -62,8 +56,8 @@ class BootServices {
     {   
         if(!Local::player()){
             
-            Players::create([
-                'game_id' => GameCurrent::id(),
+            Player::create([
+                'game_id' => Game::current()->id,
                 'user_id' => Local::user()->id,
                 'familyname' => self::setName(),
                 'color' => self::setColor(),
@@ -74,14 +68,14 @@ class BootServices {
     }
         private static function setName()
         {
-            foreach(GameCurrent::players() as $player){
+            foreach(Game::current()->players as $player){
                 self::$family_names->flip()->forget($player->familyname);
             }
             return self::$family_names->random();
         }
         private static function setColor()
         {
-            foreach(GameCurrent::players() as $player){
+            foreach(Game::current()->players as $player){
                 self::$colors->flip()->forget($player->color);
             }
             return self::$colors->random();
@@ -89,15 +83,15 @@ class BootServices {
 
     private static function createVillages()
     {
-        if(!Villages::where('game_id', GameCurrent::id())->exists()){
+        if(Game::current()->villages->isEmpty()){
 
             foreach(self::$villages as $v){
-                Villages::create([
+                Village::create([
                     'name' => $v['name'],
                     'lord_territory' => $v['lord_territory'],
                     'religious_territory' => $v['religious_territory'],
                     'capital' => $v['capital'],
-                    'game_id' => GameCurrent::id()
+                    'game_id' => Game::current()->id
                 ]);
             }
         }
@@ -106,17 +100,17 @@ class BootServices {
 
     private static function createBuildings()
     {
-        if(!Buildings::where('game_id', GameCurrent::id())->exists()){
+        if(Game::current()->buildings->isEmpty()){
 
             foreach(self::$buildings as $b){
 
                 for($i=0; $i<$b['nb']; $i++){
-                Buildings::create([
+                Building::create([
                     'name' => $b['name'],
                     'price' => $b['price'],
                     'income' => $b['income'],
                     'defense' => $b['defense'],
-                    'game_id' => GameCurrent::id()
+                    'game_id' => Game::current()->id
                 ]);
                 }
             }
@@ -125,17 +119,17 @@ class BootServices {
 
     private static function createArmies()
     {
-        if(!Soldiers::where('game_id', GameCurrent::id())->exists()){
+        if(Game::current()->soldiers->isEmpty()){
 
             foreach(self::$armies as $a){
                 
                 for($i=0; $i<$a['nb']; $i++){
-                    Soldiers::create([
+                    Soldier::create([
                         'type' => $a['type'],
                         'price' => $a['price'],
                         'power' => $a['power'],
                         'pv' => $a['pv'],
-                        'game_id' => GameCurrent::id(),
+                        'game_id' => Game::current()->id,
                         'player_id' => Local::player()->id,
                     ]);
                 }

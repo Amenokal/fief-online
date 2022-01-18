@@ -48,7 +48,12 @@
         <section class='game-view {{ $currentPlayer->color }}-theme'>
                 <div class='game-board'>
 
-                    <x-villages :villages="$villages" :army="$army" :player="$player"/>
+                    <x-villages :villages="$villages"
+                        :army="$army"
+                        :player="$player"
+                        :lords="$lords"
+                        :buildings="$buildings"
+                    />
 
 
                     <div class='game-cards' id='game-cards'>

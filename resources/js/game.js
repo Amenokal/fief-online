@@ -7,35 +7,26 @@ require('./bootstrap');
 
 document.onload = drawAll(3);
 
+// document.querySelector('.end-turn-btn').addEventListener('click',endTurn);
+// function endTurn(){
+//     axios.post('./nextturn')
+// }
+
+// document.querySelector('.game-cards').addEventListener('click', e=>{
+//     let pileType = e.target.parentNode.parentNode.className.includes('lord') ? 'lord' : 'event';
+//     sendDrawRequest(cardType, pileType);
+// })
 
 
-document.querySelector('.end-turn-btn').addEventListener('click',endTurn);
-function endTurn(){
-    axios.post('./nextturn')
-}
 
-document.querySelector('.game-cards').addEventListener('click', e=>{
-    let pileType = e.target.parentNode.parentNode.className.includes('lord') ? 'lord' : 'event';
-    sendDrawRequest(cardType, pileType);
-})
 
-function sendDrawRequest(pileType){
-    axios.post('./draw/'+pileType, {
-        discard: incDisasterNb()>2
-    })
+document.getElementById('step1').addEventListener('click', e => {
+    axios.post('./gamestart/1')
     .then(res => {
-        let drawnCard = res.data[0];
-        let nextCard = res.data[1];
-
-        createNextCard(nextCard);
-
-        if(drawnCard.type !== 'disaster'){
-            drawAnimation(drawnCard)
-        }else if(drawnCard.type === 'disaster'){
-            disasterAnimation()
-        }
-    })
-}
+        createNextCard(res);
+        drawAnimation(res)
+    });
+})
 
 function createNextCard(nextCard){
     let pile = document.querySelector(`.${nextCard.type}-pile-wrapper`);
@@ -49,12 +40,16 @@ function createNextCard(nextCard){
 
 function drawAnimation(drawnCard){
     let card = document.querySelector(`.${drawnCard.type}-card`);
-    card.remove();
+    card.classList.add('draw-animation');
 
-    document.querySelector('.player-hand').innerHTML +=
-    `<figure class='card in-hand-card'>
-        <img src='${drawnCard.img_src}' id='${drawnCard.name}'>
-    </figure>`
+    setTimeout(() => {
+        card.remove();
+        document.querySelector('.player-hand').innerHTML +=
+        `<figure class='card in-hand-card'>
+            <img src='${drawnCard.img_src}' id='${drawnCard.name}'>
+        </figure>`
+    }, 1000);
+
 }
 
 function disasterAnimation(){
@@ -74,26 +69,19 @@ function disasterAnimation(){
 
 }
 
-function incDisasterNb(){
-    return document.querySelectorAll('.incomming-disaster').length;
-}
-
 // DISCARD
-document.querySelector('.player-hand').addEventListener('click', e => {
-    if(e.target.parentNode.className.includes('card')){
-        axios.post('./discard', {
-            name: e.target.id.split('-')[1]
-        })
-        .then(() => {
-            e.target.parentNode.remove();
-        })
-    }
-})
+// document.querySelector('.player-hand').addEventListener('click', e => {
+//     if(e.target.parentNode.className.includes('card')){
+//         axios.post('./discard', {
+//             name: e.target.id.split('-')[1]
+//         })
+//         .then(() => {
+//             e.target.parentNode.remove();
+//         })
+//     }
+// })
 
-document.getElementById('step1').addEventListener('click', e=>{
-    axios.post('./step1')
-    .then(res => console.log(res));
-})
+
 document.getElementById('step2').addEventListener('click', e=>{
     e.target.classList.toggle('choose-village');
 })
@@ -103,14 +91,18 @@ document.getElementById('step3').addEventListener('click', e=>{
 
 document.querySelector('.locations').addEventListener('click', e=>{
     if(document.querySelector('.choose-village')){
-        axios.post('./step2', {
+        axios.post('./gamestart/2', {
             village: e.target.id
         })
         .then(res => {
-            let id = document.querySelectorAll('.lord-banner').length+1;
             document.getElementById(res.data).innerHTML += 
             `<span class=chateau></span>
-            <x-army :id="${id}"/>
+
+            <div class='army'>
+                <span class='lord'>
+                    <canvas height="400px" width="250px" class='lord-banner' id="banner${document.querySelectorAll('.lord-banner').length+1}"></canvas>
+                </span>
+            </div>
             `;
             drawAll();
         });

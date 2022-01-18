@@ -2,39 +2,37 @@
 
 namespace App\Custom\Helpers;
 
+use App\Models\Village;
+use App\Models\Building;
 use App\Models\Villages;
 use App\Models\Buildings;
 
 class Architect {
 
-    public static function build(string $type, string $village_name)
-    {
-        $village_id = Villages::where('name', $village_name)->first()->id;
-        $target = Buildings::where(['name' => $type, 'village_id' => $village_id]);
-        
-        if(!$target->exists()){
-            Buildings::where([
-                'name' => $type,
-                'game_id' => GameCurrent::id(),
-                'village_id' => null
-            ])
+    public static function build(string $type, Village $village)
+    {   
+        if(!$village->hasBuilding($type)){
+            Building::where('name', $type)
+            ->whereNull('village_id')
             ->first()
-            ->update([
-                'village_id' => $village_id,
-            ]);
+            ->update(['village_id' => $village->id]);
+            return $village;
         }
+        return false;
     }
 
-    public static function destroy(string $type, string $village_name)
+    public static function destroy(string $type, Village $village)
     {
-        $village_id = Villages::where('name', $village_name)->first()->id;
-        $target = Buildings::where(['name' => $type, 'village_id' => $village_id]);
-
-        if($target->exists()){
-            $target->update([
-                'village_id' => null,
-            ]);
+        if($village->hasBuilding($type)){
+            $village->update(['village_id' => null]);
+            return $village;
         }
+        return false;
     }
+
+    // public static function inspect($type, Village $village)
+    // {
+    //     return; //
+    // }
 
 }

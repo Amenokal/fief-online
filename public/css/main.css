@@ -25,8 +25,8 @@
   from {
     transform: translateX(0px) translateY(0px) rotate(0deg);
   }
-  50% {
-    transform: translateX(-300px) translateY(200px) rotate(-45deg);
+  40% {
+    transform: translateX(-200px) translateY(200px) rotate(-35deg);
   }
   to {
     transform: translateX(-300px) translateY(700px) rotate(-90deg);
@@ -37,27 +37,27 @@
   from {
     transform: translateX(0px) translateY(0px) rotate(0deg);
   }
-  50% {
-    transform: translateX(-300px) translateY(200px) rotate(-45deg);
+  40% {
+    transform: translateX(-200px) translateY(200px) rotate(-35deg);
   }
   to {
     transform: translateX(-300px) translateY(700px) rotate(-90deg);
   }
 }
-@-webkit-keyframes inHandCard {
+@-webkit-keyframes drawn {
   from {
-    transform: translateY(100px);
+    transform: translateY(1em);
   }
   to {
-    transform: translateY(-1.8em);
+    transform: translateY(-5em);
   }
 }
-@keyframes inHandCard {
+@keyframes drawn {
   from {
-    transform: translateY(100px);
+    transform: translateY(1em);
   }
   to {
-    transform: translateY(-1.8em);
+    transform: translateY(-5em);
   }
 }
 @-webkit-keyframes modalshow {
@@ -434,7 +434,13 @@
 .player-hand .card {
   height: 250px;
   width: 230px;
-  transform: translateY(-1.8em);
+  -webkit-animation: "drawn" 0.5s forwards;
+          animation: "drawn" 0.5s forwards;
+}
+
+.draw-animation {
+  -webkit-animation: "draw" 1.5s forwards;
+          animation: "draw" 1.5s forwards;
 }
 
 .locations {
@@ -631,10 +637,12 @@
 }
 
 .army {
-  height: 48px !important;
-  width: 30px !important;
+  height: 48px;
+  width: 25px;
 }
 .army .lord {
+  height: 100%;
+  width: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -644,7 +652,7 @@
   box-shadow: 0px 0px 15px -5px #000000;
 }
 .army .lord .lord-banner {
-  width: 90%;
+  width: 60%;
   height: 100%;
   position: absolute;
   z-index: 4;

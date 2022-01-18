@@ -17,8 +17,8 @@ class CreateCardsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
-            $table->string('gender');
-            $table->boolean('instant');
+            $table->string('gender')->nullable()->default(null);
+            $table->boolean('instant')->default(false);
             $table->boolean('on_board')->default(false);
             $table->integer('order')->nullable();
             $table->string('img_src');

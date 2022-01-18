@@ -8,21 +8,18 @@ use App\Models\LordCards;
 
 class Mayor {
 
-    public static function craft(string $village_name)
+    public static function find(string $village_name)
     {
-        return Villages::where([
-            'game_id' => GameCurrent::id(),
-            'name' => $village_name
-        ])->first();
+        return Realm::villages()->where('name', $village_name)->first();
     }
 
-    public static function inspect(string $village_name)
-    {
-        $conditions = ['game_id' => GameCurrent::id(),'village_id' => self::craft($village_name)->id];
-        $lords = collect(LordCards::where($conditions)->get());
-        $armies = collect(Soldiers::where($conditions)->get());
-        return $lords->merge($armies);
-    }
+    // public static function inspect(string $village_name)
+    // {
+    //     $conditions = ['game_id' => GameCurrent::id(),'village_id' => self::craft($village_name)->id];
+    //     $lords = collect(LordCards::where($conditions)->get());
+    //     $armies = collect(Soldiers::where($conditions)->get());
+    //     return $lords->merge($armies);
+    // }
 
 
 

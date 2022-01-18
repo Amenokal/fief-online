@@ -26,14 +26,19 @@ class Player extends Model
 
     public function cards()
     {
-        return $this->hasMany(Cards::class);
+        return $this->hasMany(Card::class);
     }
 
     public function soldiers()
     {
-        return $this->hasMany(Soldiers::class);
+        return $this->hasMany(Soldier::class);
     }
 
+    public function turn()
+    {
+        return $this->hasOne(GameTurn::class);
+    }
+    
 
 
     /////

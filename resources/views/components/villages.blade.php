@@ -6,20 +6,21 @@
             'village' => !$vil->capital,
             'city' => $vil->capital,
         ])>
-        
-        {{-- <x-army/> --}}
-        
-        @foreach($army as $soldier)
-        
-        {{-- <soldiers> --}}
-            {{-- @if($soldier->village_id === $vil->id)
-                <span @class([
-                    "token",
-                    "$player->color-bordered",
-                    "$soldier->type"
-                ])></span>
-            @endif --}}
+                
+        @foreach($lords as $lord)
+            @if($lord->village_id === $vil->id)
+                <div class='army'>
+                    <span class='lord'>
+                        <canvas height="400px" width="250px" class='lord-banner'></canvas>
+                    </span>
+                </div>
+            @endif
+        @endforeach
 
+        @foreach($buildings as $b)
+            @if($b->village_id === $vil->id)
+                <span class="{{$b->name}}"></span>
+            @endif
         @endforeach
 
         </span>

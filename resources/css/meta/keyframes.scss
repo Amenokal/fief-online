@@ -2,19 +2,19 @@
     from {
         transform: translateX(0px) translateY(0px) rotate(0deg),
     }
-    50% {
-        transform: translateX(-300px) translateY(200px) rotate(-45deg)
+    40% {
+        transform: translateX(-200px) translateY(200px) rotate(-35deg)
     }
     to {
         transform: translateX(-300px) translateY(700px) rotate(-90deg)
     }
 }
-@keyframes inHandCard {
+@keyframes drawn {
     from {
-        transform: translateY(100px)
+        transform: translateY(1em)
     }
     to {
-        transform: translateY(-1.8em);
+        transform: translateY(-5em);
     }
 }
 

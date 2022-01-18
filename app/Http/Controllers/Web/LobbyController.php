@@ -13,7 +13,7 @@ use App\Providers\RouteServiceProvider;
 class LobbyController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
         // TODO : make a middleware for this 2 ->
         // log user in
@@ -39,6 +39,6 @@ class LobbyController extends Controller
         $user = Auth::user();
         $user->is_ready = !$user->is_ready;
         event(new ReadyEvent($user->username));
-        return redirect()->intended(RouteServiceProvider::GAME);
+        return redirect()->action([GameController::class, 'index']);
     }
 }

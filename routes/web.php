@@ -6,6 +6,7 @@ use App\Http\Controllers\CardsController;
 use App\Http\Controllers\Web\GameController;
 use App\Http\Controllers\Game\TurnController;
 use App\Http\Controllers\Web\LobbyController;
+use App\Custom\Services\GameStartServices;
 use App\Http\Controllers\Event\LogEventController;
 
 /*
@@ -36,11 +37,11 @@ Route::post('/draw/lord', [CardsController::class, 'drawLord']);
 Route::post('/draw/event', [CardsController::class, 'drawEvent']);
 Route::post('/discard', [CardsController::class, 'discard']);
 
-// TEST
-Route::post('/step1', [TestController::class, 'test']);
-Route::post('/step2', [TestController::class, 'test2']);
-Route::post('/step3', [TestController::class, 'test3']);
+Route::post('/gamestart/1', [GameStartServices::class, 'drawFirstLord']);
+Route::post('/gamestart/2', [GameStartServices::class, 'chooseVillage']);
 
+// TEST
+Route::post('/step3', [TestController::class, 'test3']);
 Route::get('/t', [TestController::class, 't']);
 
 

@@ -1,7 +1,7 @@
 [
-    {"name": "Bonne Récolte","type": "event","img_src": "storage/cards/events/bonnerecolte.png","nb": 4,"instant": 0},
-    {"name": "Beau Temps","type": "event","img_src": "storage/cards/events/beautemps.png","nb": 4,"instant": 0},
-    {"name": "Impôts","type": "event","img_src": "storage/cards/events/impots.png","nb": 5,"instant": 0},
+    {"name": "Bonne Récolte","type": "event","img_src": "storage/cards/events/bonnerecolte.png","nb": 4},
+    {"name": "Beau Temps","type": "event","img_src": "storage/cards/events/beautemps.png","nb": 4},
+    {"name": "Impôts","type": "event","img_src": "storage/cards/events/impots.png","nb": 5},
 
     {"name": "Souterrain","type": "event","img_src": "storage/cards/events/souterrain.png","nb": 3,"instant": 1},
     {"name": "Revolte","type": "event","img_src": "storage/cards/events/revolte.png","nb": 4,"instant": 1},
@@ -9,9 +9,9 @@
     {"name": "Justice","type": "event","img_src": "storage/cards/events/justice.png","nb": 1,"instant": 1},
     {"name": "Assassinat","type": "event","img_src": "storage/cards/events/assassinat.png","nb": 1,"instant": 1},
 
-    {"name": "Famine","type": "disaster","img_src": "storage/cards/disasters/famine.png","nb": 4,"instant": 0},
-    {"name": "Mauvais Temps","type": "disaster","img_src": "storage/cards/disasters/mauvaistemps.png","nb": 4,"instant": 0},
-    {"name": "Peste","type": "disaster","img_src": "storage/cards/disasters/peste.png","nb": 2,"instant": 0},
+    {"name": "Famine","type": "disaster","img_src": "storage/cards/disasters/famine.png","nb": 4},
+    {"name": "Mauvais Temps","type": "disaster","img_src": "storage/cards/disasters/mauvaistemps.png","nb": 4},
+    {"name": "Peste","type": "disaster","img_src": "storage/cards/disasters/peste.png","nb": 2},
 
 
     

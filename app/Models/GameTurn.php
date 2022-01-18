@@ -10,11 +10,16 @@ class GameTurn extends Model
     use HasFactory;
 
     public $fillable = [
-        'player', 
+        'player_id', 
         'phase', 
         'turn', 
         'game_id'
     ];
+
+    public function player()
+    {
+        return $this->belongsTo(Player::class);
+    }
 
     public function game()
     {

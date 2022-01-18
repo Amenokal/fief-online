@@ -2,48 +2,41 @@
 
 namespace App\Custom\Helpers;
 
-use App\Models\Games;
-use App\Models\Players;
-use App\Models\GameTurns;
-use App\Models\EventCards;
-
+use App\Models\Game;
 class Realm {
 
-    public static function get()
+    public static function self()
     {
-        return Games::current();
+        return Game::current();
     }
 
-    // public static function id()
-    // {
-    //     return self::get()->id;
-    // }
+    public static function lords()
+    {
+        return self::self()->lordDeck()->where('on_board', true)->all();
+    }
 
-    // public static function turn()
-    // {
-    //     return GameTurns::find(self::id());
-    // }
+    public static function armies()
+    {
+        return Game::current()->soldiers->where('on_board', true)->all();
+    }
 
-    // public static function player()
-    // {
-    //     return Players::where(
-    //         ['game_id' => self::id()],
-    //         ['player_id' => self::turn()->player]
-    //     )
-    //     ->first();
-    // }
+    public static function villages()
+    {
+        return Game::current()->villages;
+    }
 
-    // public static function players()
-    // {
-    //     return Players::where('game_id', self::id())->get();
-    // }
+    public static function buildings()
+    {
+        return Game::current()->buildings;
+    }
 
-    // public static function inc_disasters()
-    // {
-    //     return EventCards::where([
-    //         'game_id' => Games::current()->id,
-    //         'type' => 'disaster',
-    //         'on_board' => true
-    //     ]);
-    // }
+
+    public static function incommingDisasters()
+    {
+        return self::self()->cards()
+        ->where([
+            'type'=>'disaster',
+            'on_board'=>true
+        ]);
+    }
 }

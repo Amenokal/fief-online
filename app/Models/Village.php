@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Building;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Village extends Model
 {
@@ -19,6 +20,13 @@ class Village extends Model
         'player_id',
     ];
 
+    public function hasBuilding(string $type)
+    {
+        return $this->buildings()->where('name', $type)->get()->isNotEmpty();
+    }
+
+
+
     public function cards()
     {
         return $this->hasMany(Card::class);
@@ -31,7 +39,7 @@ class Village extends Model
 
     public function buildings()
     {
-        return $this->hasMany(Buildings::class);
+        return $this->hasMany(Building::class);
     }
 
 
