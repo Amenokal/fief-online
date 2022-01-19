@@ -2054,6 +2054,76 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/animations/armies.js":
+/*!*******************************************!*\
+  !*** ./resources/js/animations/armies.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/***/ }),
+
+/***/ "./resources/js/animations/cards.js":
+/*!******************************************!*\
+  !*** ./resources/js/animations/cards.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createNextCard": () => (/* binding */ createNextCard),
+/* harmony export */   "drawAnimation": () => (/* binding */ drawAnimation)
+/* harmony export */ });
+// \\\
+// --------------------------------
+// ANIMATIONS ::::: CARD ANIMATIONS
+// --------------------------------
+// ///
+function createNextCard(data) {
+  var pile = document.querySelector(".".concat(data.deck, "-pile-wrapper"));
+  pile.children[0].id = 'to-draw';
+  pile.children[0].style.zIndex = 2;
+  var type;
+
+  if (data.deck === 'lord') {
+    type = 'lord';
+  } else if (data.deck === 'event') {
+    type = data.nextType ? 'disaster' : 'event';
+  }
+
+  pile.innerHTML += "<figure class='card ".concat(type, "-card'>\n        <span class='overline'></span>\n    </figure>");
+}
+function drawAnimation(data) {
+  var card = document.getElementById('to-draw');
+  card.classList.add('draw-animation');
+  var anim = setTimeout(function () {
+    card.remove();
+    document.querySelector('.player-hand').innerHTML += "<figure class='card'>\n            <img src='".concat(data.img_src, "' id='").concat(data.name, "'>\n        </figure>");
+  }, 1000);
+}
+
+function disasterAnimation() {
+  var card = document.querySelector('.disaster-card');
+  card.remove();
+  var pile;
+
+  if (incDisasterNb() < 3) {
+    pile = document.querySelectorAll('.incomming-disaster-card-wrapper')[incDisasterNb()];
+  } else {
+    pile = document.querySelector('.event-discard-pile-wrapper');
+  }
+
+  pile.innerHTML += "<figure class='card incomming-disaster'>\n        <span class='overline'></span>\n    </figure>";
+}
+
+/***/ }),
+
 /***/ "./resources/js/army.js":
 /*!******************************!*\
   !*** ./resources/js/army.js ***!
@@ -2067,7 +2137,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 // CUSTOM CANVAS BANNERS !!!
 function drawAll(power) {
-  document.querySelectorAll('.lord-banner').forEach(function (el) {
+  document.querySelectorAll('.banner').forEach(function (el) {
     draw(el, power);
   });
 }
@@ -25793,6 +25863,18 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -25852,11 +25934,14 @@ var __webpack_exports__ = {};
   \******************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _army_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./army.js */ "./resources/js/army.js");
+/* harmony import */ var _animations_cards_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animations/cards.js */ "./resources/js/animations/cards.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
 
 
 
@@ -25866,7 +25951,11 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 var _require2 = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
     remove = _require2.remove;
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // \\\
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./animations/cards */ "./resources/js/animations/cards.js");
+
+__webpack_require__(/*! ./animations/armies */ "./resources/js/animations/armies.js"); // \\\
 // -----------------------
 // ::::: ONLOAD INIT :::::
 // -----------------------
@@ -25876,6 +25965,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // \\\
 document.onload = init();
 
 function init() {
+  document.querySelector('.locations').addEventListener('click', function (e) {
+    chooseVillage(e);
+  });
   (0,_army_js__WEBPACK_IMPORTED_MODULE_0__.drawAll)(3);
 } // \\\
 // -----------------------------------
@@ -25887,8 +25979,8 @@ function init() {
 document.getElementById('step1').addEventListener('click', function (e) {
   axios.post('./gamestart/1').then(function (res) {
     if (res.data) {
-      createNextCard(res.data);
-      drawAnimation(res.data);
+      (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_1__.createNextCard)(res.data);
+      (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_1__.drawAnimation)(res.data);
     }
   });
 }); // \\\
@@ -25900,91 +25992,21 @@ document.getElementById('step1').addEventListener('click', function (e) {
 document.getElementById('step2').addEventListener('click', function (e) {
   e.target.classList.toggle('choose-village');
 });
-document.querySelector('.locations').addEventListener('click', function (e) {
+
+function chooseVillage(e) {
   if (document.querySelector('.choose-village')) {
     axios.post('./gamestart/2', {
       village: e.target.id
     }).then(function (res) {
+      console.log(res.data);
+
       if (res.data) {
-        document.getElementById(res.data).innerHTML += "<span class=chateau></span>\n\n                <div class='army'>\n                    <span class='lord'>\n                        <canvas height=\"400px\" width=\"250px\" class='lord-banner' id=\"banner".concat(document.querySelectorAll('.lord-banner').length + 1, "\"></canvas>\n                    </span>\n                </div>\n                ");
+        e.target.innerHTML += "<span class=chateau></span>\n    \n                <div class='army'>\n                    <span id='".concat(res.data.name, "' class='lord'>\n                        <canvas height=\"400px\" width=\"250px\" class='banner' id=\"banner").concat(document.querySelectorAll('.lord-banner').length + 1, "\"></canvas>\n                    </span>\n                </div>\n                ");
         (0,_army_js__WEBPACK_IMPORTED_MODULE_0__.drawAll)();
       }
     });
-  } // else if(document.querySelector('.make-army')){
-  //     axios.post('./step3', {
-  //         village: e.target.id,
-  //         army: ['sergeant',3,'knight',1]
-  //     })
-  //     .then(res => {
-  //         let color = document.querySelector('.game-view').className.split(' ')[1].split('-')[0];
-  //         e.target.innerHTML += `<span class='token soldier ${color}-bordered'></span>`;
-  //     });
-  // }
-
-}); // \\\
-// --------------------------------
-// ANIMATIONS ::::: CARD ANIMATIONS
-// --------------------------------
-// ///
-
-function createNextCard(data) {
-  var pile = document.querySelector(".".concat(data.deck, "-pile-wrapper"));
-  pile.children[0].id = 'to-draw';
-  pile.children[0].style.zIndex = 2;
-  var type;
-
-  if (data.deck === 'lord') {
-    type = 'lord';
-  } else if (data.deck === 'event') {
-    type = data.nextType ? 'disaster' : 'event';
   }
-
-  pile.innerHTML += "<figure class='card ".concat(type, "-card'>\n        <span class='overline'></span>\n    </figure>");
-}
-
-function drawAnimation(data) {
-  var card = document.getElementById('to-draw');
-  card.classList.add('draw-animation');
-  var anim = setTimeout(function () {
-    card.remove();
-    document.querySelector('.player-hand').innerHTML += "<figure class='card'>\n            <img src='".concat(data.img_src, "' id='").concat(data.name, "'>\n        </figure>");
-  }, 1000);
-}
-
-function disasterAnimation() {
-  var card = document.querySelector('.disaster-card');
-  card.remove();
-  var pile;
-
-  if (incDisasterNb() < 3) {
-    pile = document.querySelectorAll('.incomming-disaster-card-wrapper')[incDisasterNb()];
-  } else {
-    pile = document.querySelector('.event-discard-pile-wrapper');
-  }
-
-  pile.innerHTML += "<figure class='card incomming-disaster'>\n        <span class='overline'></span>\n    </figure>";
-}
-
-document.getElementById('resetDeck').addEventListener('click', function (e) {
-  axios.post('./reset/deck').then(function () {
-    var _iterator = _createForOfIteratorHelper(document.querySelector('.player-hand').children),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var card = _step.value;
-
-        if (card) {
-          card.remove();
-        }
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-  });
-}); // \\\
+} // \\\
 // ------------------------
 // CARDS ::::: DRAW & RESET
 // ------------------------
@@ -26037,6 +26059,7 @@ document.getElementById('resetDeck').addEventListener('click', function (e) {
 // -------------------------------------------
 // ///
 
+
 document.getElementById('turn-indicator').addEventListener('click', function (e) {
   if (e.target.id.includes('phase') && !e.target.className) {
     axios.post('./changeturn', {
@@ -26068,6 +26091,98 @@ function endTurn() {
     }
   });
 }
+
+document.querySelector('.locations').addEventListener('click', function (e) {
+  if (e.target.className.includes('lord')) {
+    showArmy(e);
+  }
+});
+
+function showArmy(e) {
+  console.log(e.target); // axios.post('./show/army', {
+  //     lord: e.target.id
+  // })
+  // .then(res=>{
+  //     console.log(res);
+  // })
+} //////// RESETS ////////
+
+
+document.getElementById('resetDeck').addEventListener('click', function (e) {
+  axios.post('./reset/deck').then(function () {
+    var _iterator = _createForOfIteratorHelper(document.querySelector('.player-hand').children),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var card = _step.value;
+
+        if (card) {
+          card.remove();
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  });
+});
+document.getElementById('resetBoard').addEventListener('click', function (e) {
+  axios.post('./reset/board').then(function (res) {
+    var castles = document.querySelectorAll('.chateau');
+    var lords = document.querySelectorAll('.lord');
+    var banners = document.querySelectorAll('.banner');
+
+    if (castles) {
+      var _iterator2 = _createForOfIteratorHelper(castles),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var c = _step2.value;
+          c.remove();
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+    }
+
+    if (lords) {
+      var _iterator3 = _createForOfIteratorHelper(lords),
+          _step3;
+
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var l = _step3.value;
+          l.remove();
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
+    }
+
+    if (banners) {
+      var _iterator4 = _createForOfIteratorHelper(banners),
+          _step4;
+
+      try {
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          var b = _step4.value;
+          b.remove();
+        }
+      } catch (err) {
+        _iterator4.e(err);
+      } finally {
+        _iterator4.f();
+      }
+    }
+  });
+});
 })();
 
 /******/ })()

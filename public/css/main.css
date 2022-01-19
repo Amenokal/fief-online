@@ -652,7 +652,7 @@
   transition: 0.5s ease;
   box-shadow: 0px 0px 15px -5px #000000;
 }
-.army .lord .lord-banner {
+.army .lord .banner {
   width: 60%;
   height: 100%;
   position: absolute;
@@ -790,7 +790,7 @@
   border: 3px solid #a17914;
   border-radius: 100%;
   transform: translateX(30%);
-  box-shadow: inset 0px 0px 10px 3px rgba(75, 43, 16, 0.8);
+  box-shadow: inset 0px 0px 10px 3px rgba(75, 43, 16, 0.8), 0px 0px 4px 1px rgba(75, 43, 16, 0.8);
   transition: 0.1s ease-out;
 }
 .game-container nav button:hover {
@@ -821,6 +821,10 @@
   opacity: 0;
   -webkit-animation: "modalshow" 2.5s forwards;
           animation: "modalshow" 2.5s forwards;
+}
+
+.choose-village {
+  color: var(--red);
 }
 
 .login-container {

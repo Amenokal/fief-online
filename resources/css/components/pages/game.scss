@@ -152,7 +152,7 @@ nav {
         border: 3px solid rgb(161, 121, 20);
         border-radius: 100%;
         transform: translateX(30%);
-        box-shadow: inset 0px 0px 10px 3px rgb(75, 43, 16, .8);
+        box-shadow: inset 0px 0px 10px 3px rgb(75, 43, 16, .8), 0px 0px 4px 1px rgb(75, 43, 16, .8);
         transition: .1s ease-out;
         
         &:hover {
@@ -194,4 +194,8 @@ nav {
     animation: 'modalshow' 2.5s forwards;
 }
 
+}
+
+.choose-village {
+    color: var(--red);
 }

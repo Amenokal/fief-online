@@ -1,7 +1,7 @@
 // CUSTOM CANVAS BANNERS !!!
 
 export function drawAll(power){
-    document.querySelectorAll('.lord-banner').forEach(el=>{
+    document.querySelectorAll('.banner').forEach(el=>{
         draw(el, power);
     })
 }

@@ -1,7 +1,12 @@
 import { drawAll } from './army.js';
+import { createNextCard } from './animations/cards.js';
+import { drawAnimation } from './animations/cards.js';
+
 const { default: axios } = require('axios');
 const { remove } = require('lodash');
 require('./bootstrap');
+require('./animations/cards')
+require('./animations/armies')
 
 
 // \\\
@@ -13,6 +18,9 @@ require('./bootstrap');
 document.onload = init();
 
 function init(){
+    document.querySelector('.locations').addEventListener('click', e=>{
+        chooseVillage(e);
+    })
     drawAll(3);
 }
 
@@ -47,19 +55,20 @@ document.getElementById('step2').addEventListener('click', e=>{
     e.target.classList.toggle('choose-village');
 })
 
-document.querySelector('.locations').addEventListener('click', e=>{
+function chooseVillage(e){
     if(document.querySelector('.choose-village')){
         axios.post('./gamestart/2', {
             village: e.target.id
         })
         .then(res => {
+            console.log(res.data);
             if(res.data){
-                document.getElementById(res.data).innerHTML += 
+                e.target.innerHTML += 
                 `<span class=chateau></span>
-
+    
                 <div class='army'>
-                    <span class='lord'>
-                        <canvas height="400px" width="250px" class='lord-banner' id="banner${document.querySelectorAll('.lord-banner').length+1}"></canvas>
+                    <span id='${res.data.name}' class='lord'>
+                        <canvas height="400px" width="250px" class='banner' id="banner${document.querySelectorAll('.lord-banner').length+1}"></canvas>
                     </span>
                 </div>
                 `;
@@ -67,84 +76,7 @@ document.querySelector('.locations').addEventListener('click', e=>{
             }
         });
     }
-    // else if(document.querySelector('.make-army')){
-    //     axios.post('./step3', {
-    //         village: e.target.id,
-    //         army: ['sergeant',3,'knight',1]
-    //     })
-    //     .then(res => {
-    //         let color = document.querySelector('.game-view').className.split(' ')[1].split('-')[0];
-    //         e.target.innerHTML += `<span class='token soldier ${color}-bordered'></span>`;
-    //     });
-    // }
-})
-
-
-
-// \\\
-// --------------------------------
-// ANIMATIONS ::::: CARD ANIMATIONS
-// --------------------------------
-// ///
-
-function createNextCard(data){
-    let pile = document.querySelector(`.${data.deck}-pile-wrapper`);
-    pile.children[0].id = 'to-draw';
-    pile.children[0].style.zIndex = 2;
-
-    let type;
-    if(data.deck === 'lord'){
-        type = 'lord'
-    }else if(data.deck === 'event'){
-        type = data.nextType ? 'disaster' : 'event'
-    }
-    pile.innerHTML +=
-    `<figure class='card ${type}-card'>
-        <span class='overline'></span>
-    </figure>`
 }
-
-function drawAnimation(data){
-    let card = document.getElementById('to-draw');
-    card.classList.add('draw-animation');
-
-    let anim = setTimeout(() => {
-        card.remove();
-        document.querySelector('.player-hand').innerHTML +=
-        `<figure class='card'>
-            <img src='${data.img_src}' id='${data.name}'>
-        </figure>`
-    }, 1000);
-
-}
-
-function disasterAnimation(){
-    let card = document.querySelector('.disaster-card');
-    card.remove();
-
-    let pile;
-    if(incDisasterNb()<3){
-        pile = document.querySelectorAll('.incomming-disaster-card-wrapper')[incDisasterNb()];
-    } else {
-        pile = document.querySelector('.event-discard-pile-wrapper');
-    }
-    pile.innerHTML +=
-    `<figure class='card incomming-disaster'>
-        <span class='overline'></span>
-    </figure>`
-
-}
-document.getElementById('resetDeck').addEventListener('click', e=>{
-    axios.post('./reset/deck')
-    .then(()=>{
-        for(let card of document.querySelector('.player-hand').children){
-            if(card){
-                card.remove()
-            }
-        }
-    })
-})
-
 
 
 // \\\
@@ -250,3 +182,56 @@ function endTurn(){
         }
     })
 }
+
+document.querySelector('.locations').addEventListener('click',e=>{
+    if(e.target.className.includes('lord')){
+        showArmy(e);
+    }
+})
+
+function showArmy(e){
+    console.log(e.target);
+    // axios.post('./show/army', {
+    //     lord: e.target.id
+    // })
+    // .then(res=>{
+    //     console.log(res);
+    // })
+}
+
+//////// RESETS ////////
+
+document.getElementById('resetDeck').addEventListener('click', e=>{
+    axios.post('./reset/deck')
+    .then(()=>{
+        for(let card of document.querySelector('.player-hand').children){
+            if(card){
+                card.remove()
+            }
+        }
+    })
+})
+
+document.getElementById('resetBoard').addEventListener('click', e=>{
+    axios.post('./reset/board')
+    .then(res=>{
+        let castles = document.querySelectorAll('.chateau');
+        let lords = document.querySelectorAll('.lord');
+        let banners = document.querySelectorAll('.banner');
+        if(castles){
+            for(let c of castles){
+                c.remove()
+            }
+        }
+        if(lords){
+            for(let l of lords){
+                l.remove()
+            }  
+        }
+        if(banners){
+            for(let b of banners){
+                b.remove()
+            }  
+        }
+    })
+})

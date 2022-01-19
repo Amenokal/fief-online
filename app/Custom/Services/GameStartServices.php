@@ -38,7 +38,7 @@ class GameStartServices {
             Marechal::moveLord($lord, $village);
             Marechal::recruit(['sergeant',5,'knight',1], $village);
             Mayor::takeControl(Local::player(), $village_name);
-            return $village_name;
+            return $lord;
         }
     }
 

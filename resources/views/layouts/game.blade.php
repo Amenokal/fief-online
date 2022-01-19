@@ -52,13 +52,11 @@
         </div>
         
         <nav>
-            <button id='step1'>1</button>
-            <button id='step2'>2</button>
-            <button id='step3'>3</button>
-            <button></button>
-            <button></button>
+            <button id='step1'>step 1</button>
+            <button id='step2'>step 2</button>
             <button id='end-turn'>fin du tour</button>
             <button id='resetDeck'>Reset deck</button>
+            <button id='resetBoard'>Reset board</button>
         </nav>
 
 

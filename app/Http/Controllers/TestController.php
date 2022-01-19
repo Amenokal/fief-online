@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Card;
+use App\Models\Game;
 use App\Models\Games;
 use App\Models\Players;
+use App\Models\Village;
+use App\Models\Building;
 use App\Models\Villages;
 use App\Models\Buildings;
 use Illuminate\Http\Request;
@@ -20,9 +24,39 @@ use App\Custom\Services\StartGameServices;
 
 class TestController extends Controller
 {
-    public function t(Request $request)
+    // public function t(Request $request)
+    // {
+    //     return DeckServices::nextCards('lord')->skip(1)->first()->disaster;
+    // }
+
+    public function resetCards()
     {
-        return DeckServices::nextCards('lord')->skip(1)->first()->disaster;
+        Card::where('game_id', Game::current()->id)
+        ->update([
+            'on_board'=>false,
+            'player_id'=>null,
+            'village_id'=>null
+        ]);
+        DeckServices::shuffleDeck('lord');
+        DeckServices::shuffleDeck('event');
+    }
+
+    public function resetBoard()
+    {
+        Building::where('game_id',Game::current()->id)
+        ->update(['village_id'=>null,]);
+
+        Village::where('game_id',Game::current()->id)
+        ->update(['player_id'=>null]);
+
+        Card::where([
+            'game_id' => Game::current()->id,
+            'on_board' => true,
+        ])
+        ->update([
+            'on_board'=>false,
+            'village_id'=>null
+        ]);
     }
 
 }

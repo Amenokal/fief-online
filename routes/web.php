@@ -22,29 +22,71 @@ use App\Http\Controllers\Event\LogEventController;
 |
 */
 
+// ::: WEB :::
+// ===========
+
 Route::get('/', function () { return view('auth.login'); })->name('home');
 Route::get('/lobby', [LobbyController::class, 'index'])->middleware(['auth'])->name('menu');
 Route::get('/game', [GameController::class, 'index'])->middleware(['auth'])->name('game');
 
+
+
+
+// ::: EVENTS :::
+// ==============
+
+    // LOG EVENTS
+    // ----------
+
 Route::get('/log/in', [LogEventController::class, 'login']);
 Route::get('/log/out', [LogEventController::class, 'logout']);
+
+    // LOBBY EVENTS
+    // ------------
 
 Route::get('/lobby/connect', [LobbyController::class, 'connectToGame']);
 Route::get('/lobby/ready', [LobbyController::class, 'isReady']);
 Route::post('/lobby/msg', [LobbyController::class, 'newMsg']);
 
+
+
+
+// ::: GAME :::
+// ============
+
+// META 
+// ====
+
+Route::post('/reset/deck', [TestController::class, 'resetCards']);
+Route::post('/reset/board', [TestController::class, 'resetBoard']);
+
+    // DRAW
+    // ----
+
 Route::post('/draw/lord', [CardsController::class, 'drawLord']);
 Route::post('/draw/event', [CardsController::class, 'drawEvent']);
 Route::post('/discard', [CardsController::class, 'discard']);
 
-Route::post('/gamestart/1', [GameStartServices::class, 'drawFirstLord']);
-Route::post('/gamestart/2', [GameStartServices::class, 'chooseVillage']);
-Route::post('/reset/deck', [DeckServices::class, 'reset']);
+    // TURNS
+    // -----
 
-// TEST
 Route::post('/changeturn', [TurnController::class, 'changeTurn']);
 Route::post('/endturn', [TurnController::class, 'endTurn']);
 
+    // ARMIES
+    // ------
+
+Route::post('/show/armies', [ArmyController::class, 'test']);
+
+
+// PHASES
+// ======
+
+    // PHASE 0 ::::: GAME START
+    // ------------------------
+
+Route::post('/gamestart/1', [GameStartServices::class, 'drawFirstLord']);
+Route::post('/gamestart/2', [GameStartServices::class, 'chooseVillage']);
 
 
 

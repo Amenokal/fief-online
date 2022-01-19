@@ -16,8 +16,8 @@
             @foreach($lords as $lord)
                 @if($lord->village_id === $vil->id)
                     <div class='army'>
-                        <span class='lord'>
-                            <canvas height="400px" width="250px" class='lord-banner'></canvas>
+                        <span id="{{$lord->name}}" class='lord'>
+                            <canvas height="400px" width="250px" class='banner'></canvas>
                         </span>
                     </div>
                 @endif

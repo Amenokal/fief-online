@@ -59,15 +59,5 @@ class DeckServices {
     {
         return DeckServices::nextCards('lord')->skip(1)->first()->disaster;
     }
-
-    public static function reset()
-    {
-        Card::where('game_id', Game::current()->id)
-        ->update([
-            'on_board'=>false,
-            'player_id'=>null,
-            'village_id'=>null
-        ]);
-    }
     
 }

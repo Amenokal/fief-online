@@ -43,7 +43,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 // CUSTOM CANVAS BANNERS !!!
 function drawAll(power) {
-  document.querySelectorAll('.lord-banner').forEach(function (el) {
+  document.querySelectorAll('.banner').forEach(function (el) {
     draw(el, power);
   });
 }
