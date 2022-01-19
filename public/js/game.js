@@ -25852,6 +25852,12 @@ var __webpack_exports__ = {};
   \******************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _army_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./army.js */ "./resources/js/army.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
@@ -25860,36 +25866,89 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 var _require2 = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
     remove = _require2.remove;
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // \\\
+// -----------------------
+// ::::: ONLOAD INIT :::::
+// -----------------------
+// ///
 
-document.onload = (0,_army_js__WEBPACK_IMPORTED_MODULE_0__.drawAll)(3); // document.querySelector('.end-turn-btn').addEventListener('click',endTurn);
-// function endTurn(){
-//     axios.post('./nextturn')
-// }
-// document.querySelector('.game-cards').addEventListener('click', e=>{
-//     let pileType = e.target.parentNode.parentNode.className.includes('lord') ? 'lord' : 'event';
-//     sendDrawRequest(cardType, pileType);
-// })
+
+document.onload = init();
+
+function init() {
+  (0,_army_js__WEBPACK_IMPORTED_MODULE_0__.drawAll)(3);
+} // \\\
+// -----------------------------------
+// GAME START ::::: STEP 1 = DRAW LORD
+// -----------------------------------
+// ///
+
 
 document.getElementById('step1').addEventListener('click', function (e) {
   axios.post('./gamestart/1').then(function (res) {
-    createNextCard(res);
-    drawAnimation(res);
+    if (res.data) {
+      createNextCard(res.data);
+      drawAnimation(res.data);
+    }
   });
 });
 
-function createNextCard(nextCard) {
-  var pile = document.querySelector(".".concat(nextCard.type, "-pile-wrapper"));
+function createNextCard(data) {
+  var pile = document.querySelector(".".concat(data.deck, "-pile-wrapper"));
+  pile.children[0].id = 'to-draw';
   pile.children[0].style.zIndex = 2;
-  pile.innerHTML += "<figure class='card ".concat(nextCard.type, "-card'>\n        <p>next card</p>\n        <span class='overline'></span>\n    </figure>");
-}
+  var card;
 
-function drawAnimation(drawnCard) {
-  var card = document.querySelector(".".concat(drawnCard.type, "-card"));
+  if (data.deck === 'lord') {
+    card = 'lord';
+  } else if (data.deck === 'event') {
+    card = data.nextType ? 'disaster' : 'event';
+  }
+
+  pile.innerHTML += "<figure class='card ".concat(data.nextType, "-card'>\n        <span class='overline'></span>\n    </figure>");
+} // \\\
+// ----------------------------------------
+// GAME START ::::: STEP 2 = CHOOSE VILLAGE
+// ----------------------------------------
+// ///
+
+
+document.getElementById('step2').addEventListener('click', function (e) {
+  e.target.classList.toggle('choose-village');
+});
+document.querySelector('.locations').addEventListener('click', function (e) {
+  if (document.querySelector('.choose-village')) {
+    axios.post('./gamestart/2', {
+      village: e.target.id
+    }).then(function (res) {
+      if (res.data) {
+        document.getElementById(res.data).innerHTML += "<span class=chateau></span>\n\n                <div class='army'>\n                    <span class='lord'>\n                        <canvas height=\"400px\" width=\"250px\" class='lord-banner' id=\"banner".concat(document.querySelectorAll('.lord-banner').length + 1, "\"></canvas>\n                    </span>\n                </div>\n                ");
+        (0,_army_js__WEBPACK_IMPORTED_MODULE_0__.drawAll)();
+      }
+    });
+  } // else if(document.querySelector('.make-army')){
+  //     axios.post('./step3', {
+  //         village: e.target.id,
+  //         army: ['sergeant',3,'knight',1]
+  //     })
+  //     .then(res => {
+  //         let color = document.querySelector('.game-view').className.split(' ')[1].split('-')[0];
+  //         e.target.innerHTML += `<span class='token soldier ${color}-bordered'></span>`;
+  //     });
+  // }
+
+}); // \\\
+// --------------------------------
+// ANIMATIONS ::::: CARD ANIMATIONS
+// --------------------------------
+// ///
+
+function drawAnimation(data) {
+  var card = document.getElementById('to-draw');
   card.classList.add('draw-animation');
-  setTimeout(function () {
+  var anim = setTimeout(function () {
     card.remove();
-    document.querySelector('.player-hand').innerHTML += "<figure class='card in-hand-card'>\n            <img src='".concat(drawnCard.img_src, "' id='").concat(drawnCard.name, "'>\n        </figure>");
+    document.querySelector('.player-hand').innerHTML += "<figure class='card'>\n            <img src='".concat(data.img_src, "' id='").concat(data.name, "'>\n        </figure>");
   }, 1000);
 }
 
@@ -25905,7 +25964,37 @@ function disasterAnimation() {
   }
 
   pile.innerHTML += "<figure class='card incomming-disaster'>\n        <span class='overline'></span>\n    </figure>";
-} // DISCARD
+}
+
+document.getElementById('resetDeck').addEventListener('click', function (e) {
+  axios.post('./reset/deck').then(function () {
+    var _iterator = _createForOfIteratorHelper(document.querySelector('.player-hand').children),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var card = _step.value;
+
+        if (card) {
+          card.remove();
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  });
+}); // \\\
+// ------------------------
+// CARDS ::::: DRAW & RESET
+// ------------------------
+// ///
+// document.querySelector('.game-cards').addEventListener('click', e=>{
+//     let pileType = e.target.parentNode.parentNode.className.includes('lord') ? 'lord' : 'event';
+//     sendDrawRequest(cardType, pileType);
+// })
+// DISCARD
 // document.querySelector('.player-hand').addEventListener('click', e => {
 //     if(e.target.parentNode.className.includes('card')){
 //         axios.post('./discard', {
@@ -25916,32 +26005,12 @@ function disasterAnimation() {
 //         })
 //     }
 // })
-
-
-document.getElementById('step2').addEventListener('click', function (e) {
-  e.target.classList.toggle('choose-village');
-});
-document.getElementById('step3').addEventListener('click', function (e) {
-  e.target.classList.toggle('make-army');
-});
-document.querySelector('.locations').addEventListener('click', function (e) {
-  if (document.querySelector('.choose-village')) {
-    axios.post('./gamestart/2', {
-      village: e.target.id
-    }).then(function (res) {
-      document.getElementById(res.data).innerHTML += "<span class=chateau></span>\n\n            <div class='army'>\n                <span class='lord'>\n                    <canvas height=\"400px\" width=\"250px\" class='lord-banner' id=\"banner".concat(document.querySelectorAll('.lord-banner').length + 1, "\"></canvas>\n                </span>\n            </div>\n            ");
-      (0,_army_js__WEBPACK_IMPORTED_MODULE_0__.drawAll)();
-    });
-  } else if (document.querySelector('.make-army')) {
-    axios.post('./step3', {
-      village: e.target.id,
-      army: ['sergeant', 3, 'knight', 1]
-    }).then(function (res) {
-      var color = document.querySelector('.game-view').className.split(' ')[1].split('-')[0];
-      e.target.innerHTML += "<span class='token soldier ".concat(color, "-bordered'></span>");
-    });
-  }
-}); // CASTLES !!!
+// \\\
+// ------------------------
+// CARDS ::::: DRAW & RESET
+// ------------------------
+// ///
+// CASTLES !!!
 // var draw = false;
 // document.getElementById('make-off').onclick = ()=>{draw = false};
 // document.getElementById('make-moulin').onclick = ()=>{draw = 'moulin'};
@@ -25963,6 +26032,15 @@ document.querySelector('.locations').addEventListener('click', function (e) {
 //         e.target.remove();
 //     }
 // })
+// \\\
+// -------------------------------------------
+// TURNS ::::: PASS TURNS BTN & PHASE SELECTOR
+// -------------------------------------------
+// ///
+// document.querySelector('.end-turn-btn').addEventListener('click',endTurn);
+// function endTurn(){
+//     axios.post('./nextturn')
+// }
 })();
 
 /******/ })()

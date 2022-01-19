@@ -22,7 +22,7 @@ class TestController extends Controller
 {
     public function t(Request $request)
     {
-        Architect::build('chateau', Mayor::find('bourg'));
+        return DeckServices::nextCards('lord')->skip(1)->first()->disaster;
     }
 
 }

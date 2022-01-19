@@ -29,6 +29,8 @@ class Local {
         return Local::player()->cards;
     }
 
+
+
     /////
 
     // GOLD

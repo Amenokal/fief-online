@@ -643,6 +643,7 @@
 .army .lord {
   height: 100%;
   width: 100%;
+  background-image: url("/fief/storage/app/public/images/charles.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -656,6 +657,7 @@
   height: 100%;
   position: absolute;
   z-index: 4;
+  right: -17%;
 }
 
 .game-container {

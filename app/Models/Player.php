@@ -34,6 +34,11 @@ class Player extends Model
         return $this->hasMany(Soldier::class);
     }
 
+    public function villages()
+    {
+        return $this->hasMany(Village::class);
+    }
+
     public function turn()
     {
         return $this->hasOne(GameTurn::class);

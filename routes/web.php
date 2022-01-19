@@ -1,12 +1,14 @@
 <?php
 
+use App\Custom\Helpers\Realm;
+use App\Custom\Services\DeckServices;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\CardsController;
+use App\Custom\Services\GameStartServices;
 use App\Http\Controllers\Web\GameController;
 use App\Http\Controllers\Game\TurnController;
 use App\Http\Controllers\Web\LobbyController;
-use App\Custom\Services\GameStartServices;
 use App\Http\Controllers\Event\LogEventController;
 
 /*
@@ -39,6 +41,7 @@ Route::post('/discard', [CardsController::class, 'discard']);
 
 Route::post('/gamestart/1', [GameStartServices::class, 'drawFirstLord']);
 Route::post('/gamestart/2', [GameStartServices::class, 'chooseVillage']);
+Route::post('/reset/deck', [DeckServices::class, 'reset']);
 
 // TEST
 Route::post('/step3', [TestController::class, 'test3']);

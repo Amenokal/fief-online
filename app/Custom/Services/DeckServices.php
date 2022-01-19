@@ -15,8 +15,9 @@ class DeckServices {
             for($i=0; $i<$card['nb']; $i++){
                 Card::create([
                     'name' => $card['name'],
-                    'type' => $card['type'],
+                    'deck' => $card['deck'],
                     'gender' => $card['gender'] ?? null,
+                    'disaster' => $card['disaster'] ?? false,
                     'img_src' => $card['img_src'],
                     'game_id' => Game::current()->id,
                 ]);
@@ -28,8 +29,12 @@ class DeckServices {
         
     public static function shuffleDeck(string $type)
     {
-        $deck = $type === 'lord' ? Game::current()->lordCards : Game::current()->eventCards ;
-        $cards = $deck::withTrashed()
+        $deck = $type === 'lord' ? 'lord' : 'event';
+        $cards = Card::withTrashed()
+        ->where([
+            'game_id' => Game::current()->id,
+            'deck' => $deck
+        ])
         ->whereNull('player_id')
         ->inRandomOrder()
         ->get();
@@ -48,6 +53,21 @@ class DeckServices {
         ->sortBy('order')
         ->all();
         return collect($next);
+    }
+
+    public static function isNextDisaster()
+    {
+        return DeckServices::nextCards('lord')->skip(1)->first()->disaster;
+    }
+
+    public static function reset()
+    {
+        Card::where('game_id', Game::current()->id)
+        ->update([
+            'on_board'=>false,
+            'player_id'=>null,
+            'village_id'=>null
+        ]);
     }
     
 }

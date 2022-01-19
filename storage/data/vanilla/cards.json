@@ -1,37 +1,214 @@
 [
-    {"name": "Bonne Récolte","type": "event","img_src": "storage/cards/events/bonnerecolte.png","nb": 4},
-    {"name": "Beau Temps","type": "event","img_src": "storage/cards/events/beautemps.png","nb": 4},
-    {"name": "Impôts","type": "event","img_src": "storage/cards/events/impots.png","nb": 5},
+    {
+        "name": "Bonne Récolte",
+        "deck": "event",
+        "img_src": "storage/cards/events/bonnerecolte.png",
+        "nb": 4
+    },
+    {
+        "name": "Beau Temps",
+        "deck": "event",
+        "img_src": "storage/cards/events/beautemps.png",
+        "nb": 4
+    },
+    {
+        "name": "Impôts",
+        "deck": "event",
+        "img_src": "storage/cards/events/impots.png",
+        "nb": 5
+    },
 
-    {"name": "Souterrain","type": "event","img_src": "storage/cards/events/souterrain.png","nb": 3,"instant": 1},
-    {"name": "Revolte","type": "event","img_src": "storage/cards/events/revolte.png","nb": 4,"instant": 1},
-    {"name": "Embuscade","type": "event","img_src": "storage/cards/events/embuscade.png","nb": 1,"instant": 1},
-    {"name": "Justice","type": "event","img_src": "storage/cards/events/justice.png","nb": 1,"instant": 1},
-    {"name": "Assassinat","type": "event","img_src": "storage/cards/events/assassinat.png","nb": 1,"instant": 1},
+    {
+        "name": "Souterrain",
+        "deck": "event",
+        "img_src": "storage/cards/events/souterrain.png",
+        "instant": 1,
+        "nb": 3
+    },
+    {
+        "name": "Revolte",
+        "deck": "event",
+        "img_src": "storage/cards/events/revolte.png",
+        "instant": 1,
+        "nb": 4
+    },
+    {
+        "name": "Embuscade",
+        "deck": "event",
+        "img_src": "storage/cards/events/embuscade.png",
+        "instant": 1,
+        "nb": 1
+    },
+    {
+        "name": "Justice",
+        "deck": "event",
+        "img_src": "storage/cards/events/justice.png",
+        "instant": 1,
+        "nb": 1
+    },
+    {
+        "name": "Assassinat",
+        "deck": "event",
+        "img_src": "storage/cards/events/assassinat.png",
+        "instant": 1,
+        "nb": 1
+    },
 
-    {"name": "Famine","type": "disaster","img_src": "storage/cards/disasters/famine.png","nb": 4},
-    {"name": "Mauvais Temps","type": "disaster","img_src": "storage/cards/disasters/mauvaistemps.png","nb": 4},
-    {"name": "Peste","type": "disaster","img_src": "storage/cards/disasters/peste.png","nb": 2},
+    {
+        "name": "Famine",
+        "deck": "disaster",
+        "img_src": "storage/cards/disasters/famine.png",
+        "disaster": true,
+        "nb": 4
+    },
+    {
+        "name": "Mauvais Temps",
+        "deck": "disaster",
+        "img_src": "storage/cards/disasters/mauvaistemps.png",
+        "disaster": true,
+        "nb": 4
+    },
+    {
+        "name": "Peste",
+        "deck": "disaster",
+        "img_src": "storage/cards/disasters/peste.png",
+        "disaster": true,
+        "nb": 2
+    },
 
 
     
-    {"name": "Henri","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "Baudoin","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "Blanche","type": "lord","gender": "F","img_src": "storage/cards/lords/Mireille.png","nb": 1},
-    {"name": "Jeanne","type": "lord","gender": "F","img_src": "storage/cards/lords/Mireille.png","nb": 1},
-    {"name": "Henri","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "Philippe","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "Lambert","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "Mireille","type": "lord","gender": "F","img_src": "storage/cards/lords/Mireille.png","nb": 1},
-    {"name": "Aliénor","type": "lord","gender": "F","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "Charles","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "Guenièvre","type": "lord","gender": "F","img_src": "storage/cards/lords/Mireille.png","nb": 1},
-    {"name": "Gauvin","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "François","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "Thierry","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "Othon","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "Quentin","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "Eric","type": "lord","gender": "M","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "d'Arc","type": "lord","gender": "O","img_src": "storage/cards/lords/Eric.png","nb": 1},
-    {"name": "Cardinal","type": "lord","gender": "O","img_src": "storage/cards/lords/Eric.png","nb": 3}
+    {
+        "name": "Henri",
+        "deck": "lord",
+        "gender": "M",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "Baudoin",
+        "deck": "lord",
+        "gender": "M",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "Blanche",
+        "deck": "lord",
+        "gender": "F",
+        "img_src": "storage/cards/lords/Mireille.png",
+        "nb": 1
+    },
+    {
+        "name": "Jeanne",
+        "deck": "lord",
+        "gender": "F",
+        "img_src": "storage/cards/lords/Mireille.png",
+        "nb": 1
+    },
+    {
+        "name": "Henri",
+        "deck": "lord",
+        "gender": "M",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "Philippe",
+        "deck": "lord",
+        "gender": "M",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "Lambert",
+        "deck": "lord",
+        "gender": "M",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "Mireille",
+        "deck": "lord",
+        "gender": "F",
+        "img_src": "storage/cards/lords/Mireille.png",
+        "nb": 1
+    },
+    {
+        "name": "Aliénor",
+        "deck": "lord",
+        "gender": "F",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "Charles",
+        "deck": "lord",
+        "gender": "M",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "Guenièvre",
+        "deck": "lord",
+        "gender": "F",
+        "img_src": "storage/cards/lords/Mireille.png",
+        "nb": 1
+    },
+    {
+        "name": "Gauvin",
+        "deck": "lord",
+        "gender": "M",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "François",
+        "deck": "lord",
+        "gender": "M",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": 
+        "Thierry",
+        "deck": "lord",
+        "gender": "M",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "Othon",
+        "deck": "lord",
+        "gender": "M",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "Quentin",
+        "deck": "lord",
+        "gender": "M",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "Eric",
+        "deck": "lord",
+        "gender": "M",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "d'Arc",
+        "deck": "lord",
+        "gender": "O",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 1
+    },
+    {
+        "name": "Cardinal",
+        "deck": "lord",
+        "gender": "O",
+        "img_src": "storage/cards/lords/Eric.png",
+        "nb": 3}
 ]

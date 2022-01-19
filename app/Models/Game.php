@@ -46,11 +46,11 @@ class Game extends Model
 
         public function lordDeck()
         {
-            return $this->cards()->where('type','lord')->get();
+            return $this->cards()->where('deck', 'lord')->get();
         }
         public function eventDeck()
         {
-            return $this->cards()->where('type', 'event')->orWhere('type','disaster')->get();
+            return $this->cards()->where('deck', 'event')->get();
         }
 
 

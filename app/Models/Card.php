@@ -16,9 +16,10 @@ class Card extends Model
     public $timestamps = false;
     public $fillable = [
         'name',
-        'type',
+        'deck',
         'gender',
         'instant',
+        'disaster',
         'on_board',
         'order',
         'img_src',

@@ -1,52 +1,119 @@
 import {drawAll} from './army.js';
-
 const { default: axios } = require('axios');
 const { remove } = require('lodash');
-
 require('./bootstrap');
 
-document.onload = drawAll(3);
 
-// document.querySelector('.end-turn-btn').addEventListener('click',endTurn);
-// function endTurn(){
-//     axios.post('./nextturn')
-// }
+// \\\
+// -----------------------
+// ::::: ONLOAD INIT :::::
+// -----------------------
+// ///
 
-// document.querySelector('.game-cards').addEventListener('click', e=>{
-//     let pileType = e.target.parentNode.parentNode.className.includes('lord') ? 'lord' : 'event';
-//     sendDrawRequest(cardType, pileType);
-// })
+document.onload = init();
+
+function init(){
+    drawAll(3);
+}
 
 
+// \\\
+// -----------------------------------
+// GAME START ::::: STEP 1 = DRAW LORD
+// -----------------------------------
+// ///
 
 
 document.getElementById('step1').addEventListener('click', e => {
     axios.post('./gamestart/1')
     .then(res => {
-        createNextCard(res);
-        drawAnimation(res)
+        if(res.data){
+            createNextCard(res.data);
+            drawAnimation(res.data)
+        }
     });
 })
 
-function createNextCard(nextCard){
-    let pile = document.querySelector(`.${nextCard.type}-pile-wrapper`);
+function createNextCard(data){
+    let pile = document.querySelector(`.${data.deck}-pile-wrapper`);
+    pile.children[0].id = 'to-draw';
     pile.children[0].style.zIndex = 2;
+
+    let card;
+    if(data.deck === 'lord'){
+        card = 'lord'
+    }else if(data.deck === 'event'){
+        card = data.nextType ? 'disaster' : 'event'
+    }
     pile.innerHTML +=
-    `<figure class='card ${nextCard.type}-card'>
-        <p>next card</p>
+    `<figure class='card ${data.nextType}-card'>
         <span class='overline'></span>
     </figure>`
 }
 
-function drawAnimation(drawnCard){
-    let card = document.querySelector(`.${drawnCard.type}-card`);
+
+// \\\
+// ----------------------------------------
+// GAME START ::::: STEP 2 = CHOOSE VILLAGE
+// ----------------------------------------
+// ///
+
+
+
+document.getElementById('step2').addEventListener('click', e=>{
+    e.target.classList.toggle('choose-village');
+})
+
+document.querySelector('.locations').addEventListener('click', e=>{
+    if(document.querySelector('.choose-village')){
+        axios.post('./gamestart/2', {
+            village: e.target.id
+        })
+        .then(res => {
+            if(res.data){
+                document.getElementById(res.data).innerHTML += 
+                `<span class=chateau></span>
+
+                <div class='army'>
+                    <span class='lord'>
+                        <canvas height="400px" width="250px" class='lord-banner' id="banner${document.querySelectorAll('.lord-banner').length+1}"></canvas>
+                    </span>
+                </div>
+                `;
+                drawAll();
+            }
+        });
+    }
+    // else if(document.querySelector('.make-army')){
+    //     axios.post('./step3', {
+    //         village: e.target.id,
+    //         army: ['sergeant',3,'knight',1]
+    //     })
+    //     .then(res => {
+    //         let color = document.querySelector('.game-view').className.split(' ')[1].split('-')[0];
+    //         e.target.innerHTML += `<span class='token soldier ${color}-bordered'></span>`;
+    //     });
+    // }
+})
+
+
+
+// \\\
+// --------------------------------
+// ANIMATIONS ::::: CARD ANIMATIONS
+// --------------------------------
+// ///
+
+
+function drawAnimation(data){
+    let card = document.getElementById('to-draw');
     card.classList.add('draw-animation');
 
-    setTimeout(() => {
+    let anim = setTimeout(() => {
         card.remove();
         document.querySelector('.player-hand').innerHTML +=
-        `<figure class='card in-hand-card'>
-            <img src='${drawnCard.img_src}' id='${drawnCard.name}'>
+        `<figure class='card'>
+            <img src='${data.img_src}' id='${data.name}'>
         </figure>`
     }, 1000);
 
@@ -68,6 +135,31 @@ function disasterAnimation(){
     </figure>`
 
 }
+document.getElementById('resetDeck').addEventListener('click', e=>{
+    axios.post('./reset/deck')
+    .then(()=>{
+        for(let card of document.querySelector('.player-hand').children){
+            if(card){
+                card.remove()
+            }
+        }
+    })
+})
+
+
+
+// \\\
+// ------------------------
+// CARDS ::::: DRAW & RESET
+// ------------------------
+// ///
+
+
+
+// document.querySelector('.game-cards').addEventListener('click', e=>{
+//     let pileType = e.target.parentNode.parentNode.className.includes('lord') ? 'lord' : 'event';
+//     sendDrawRequest(cardType, pileType);
+// })
 
 // DISCARD
 // document.querySelector('.player-hand').addEventListener('click', e => {
@@ -82,45 +174,11 @@ function disasterAnimation(){
 // })
 
 
-document.getElementById('step2').addEventListener('click', e=>{
-    e.target.classList.toggle('choose-village');
-})
-document.getElementById('step3').addEventListener('click', e=>{
-    e.target.classList.toggle('make-army');
-})
-
-document.querySelector('.locations').addEventListener('click', e=>{
-    if(document.querySelector('.choose-village')){
-        axios.post('./gamestart/2', {
-            village: e.target.id
-        })
-        .then(res => {
-            document.getElementById(res.data).innerHTML += 
-            `<span class=chateau></span>
-
-            <div class='army'>
-                <span class='lord'>
-                    <canvas height="400px" width="250px" class='lord-banner' id="banner${document.querySelectorAll('.lord-banner').length+1}"></canvas>
-                </span>
-            </div>
-            `;
-            drawAll();
-        });
-    }
-    else if(document.querySelector('.make-army')){
-        axios.post('./step3', {
-            village: e.target.id,
-            army: ['sergeant',3,'knight',1]
-        })
-        .then(res => {
-            let color = document.querySelector('.game-view').className.split(' ')[1].split('-')[0];
-            e.target.innerHTML += `<span class='token soldier ${color}-bordered'></span>`;
-        });
-    }
-})
-
-
-
+// \\\
+// ------------------------
+// CARDS ::::: DRAW & RESET
+// ------------------------
+// ///
 
 
 // CASTLES !!!
@@ -150,3 +208,17 @@ document.querySelector('.locations').addEventListener('click', e=>{
 //         e.target.remove();
 //     }
 // })
+
+
+
+// \\\
+// -------------------------------------------
+// TURNS ::::: PASS TURNS BTN & PHASE SELECTOR
+// -------------------------------------------
+// ///
+
+
+// document.querySelector('.end-turn-btn').addEventListener('click',endTurn);
+// function endTurn(){
+//     axios.post('./nextturn')
+// }

@@ -6,7 +6,7 @@ class Librarian {
 
     public static function decipherJson(string $path)
     {
-        return collect(json_decode(file_get_contents(storage_path('/data/'.$path)), true));
+        return collect(json_decode(file_get_contents(storage_path('data/'.$path)), true));
     }
 
 }

@@ -2,16 +2,24 @@
 
 namespace App\Custom\Services;
 
+use App\Custom\Helpers\Realm;
+use App\Custom\Helpers\Librarian;
 use App\Custom\Helpers\GameCurrent;
 
 class TurnServices {
 
+    public static function phaseNames()
+    {
+        $phases = Librarian::decipherJson('meta/turn.json');
+        dd($phases);
+    }
+
     public static function passTurn()
     {        
-        $turn = GameCurrent::turn();
+        $turn = Realm::year();
         $phases = json_decode(file_get_contents(storage_path('data/meta/turn.json')), true);
 
-        if($turn->player < GameCurrent::players()->count()){
+        if($turn->player < Realm::families()->count()){
             $turn::increment('player');
         }else{
             $turn->update(['player'=>1]);

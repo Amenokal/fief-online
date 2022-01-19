@@ -16,9 +16,10 @@ class CreateCardsTable extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('type');
+            $table->string('deck');
             $table->string('gender')->nullable()->default(null);
             $table->boolean('instant')->default(false);
+            $table->boolean('disaster')->default(false);
             $table->boolean('on_board')->default(false);
             $table->integer('order')->nullable();
             $table->string('img_src');

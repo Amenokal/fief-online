@@ -54,7 +54,7 @@ class Marechal {
                 'player_id' => Local::player()->id,
                 'game_id' => Game::current()->id
             ])
-            ->whereNull('player_id')
+            ->whereNull('village_id')
             ->take($army[$i+1])
             ->update(['village_id' => $village->id]);
         }
