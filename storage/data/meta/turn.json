@@ -1,20 +1,84 @@
 [
-    {"phase": "Oyez-Oyez!", "name": "Mariages"},
-    {"phase": "Oyez-Oyez!", "name": "Élection des Évêques"},
-    {"phase": "Oyez-Oyez!", "name": "Élection du Pape"},
-    {"phase": "Oyez-Oyez!", "name": "Élection du Roi"},
-            
-    {"phase": "Cartes", "name": "Défausse"},
-    {"phase": "Cartes", "name": "Pioche"},
-    {"phase": "Cartes", "name": "Calamités"},
-    {"phase": "Cartes", "name": "Pose"},
+    {
+        "phase": "Oyez-Oyez!",
+        "name": "Mariages",
+        "id": 1
+    },
+    {
+        "phase": "Oyez-Oyez!",
+        "name": "Élection des Évêques",
+        "id": 2
+    },
+    {
+        "phase": "Oyez-Oyez!",
+        "name": "Élection du Pape",
+        "id": 3
+    },
+    {
+        "phase": "Oyez-Oyez!",
+        "name": "Élection du Roi",
+        "id": 4
+    },
+         
+    
+    
+    {
+        "phase": "Cartes",
+        "name": "Défausse",
+        "id": 5
+    },
+    {
+        "phase": "Cartes",
+        "name": "Pioche",
+        "id": 6
+    },
+    {
+        "phase": "Cartes",
+        "name": "Calamités",
+        "id": 7
+    },
+    {
+        "phase": "Cartes",
+        "name": "Pose",
+        "id": 8
+    },
 
-    {"phase": "Économie", "name": "Revenus"},
-    {"phase": "Économie", "name": "Dépenses"},
 
-    {"phase": "Campagne", "name": "Mouvements"},
-    {"phase": "Campagne", "name": "Batailles"},
-    {"phase": "Campagne", "name": "Pillages"},
 
-    {"phase": "Fin du tour", "name": "Décompte de points"}
+    {
+        "phase": "Économie",
+        "name": "Revenus",
+        "id": 9
+    },
+    {
+        "phase": "Économie",
+        "name": "Dépenses",
+        "id": 10
+    },
+
+
+
+    {
+        "phase": "Campagne",
+        "name": "Mouvements",
+        "id": 11
+    },
+    {
+        "phase": "Campagne",
+        "name": "Batailles",
+        "id": 12
+    },
+    {
+        "phase": "Campagne",
+        "name": "Pillages",
+        "id": 13
+    },
+
+
+
+    {
+        "phase": "Fin du tour",
+        "name": "Décompte de points",
+        "id": 14
+    }
 ]

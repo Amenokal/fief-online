@@ -20,7 +20,7 @@ class GameController extends Controller
 {
     public function index(){
         
-        dd(TurnServices::phaseNames());
+        // dd(Realm::year(), TurnServices::phaseNames());
         // TODO: make middleware for game booting
         BootServices::init('vanilla');
 
@@ -30,6 +30,7 @@ class GameController extends Controller
             
             'players' => Realm::families(),
             'turn' => Realm::year(),
+            'currentPlayer' => Realm::currentPlayer(),
 
             'phases' => TurnServices::phaseNames(),
             'inc_disasters' => Realm::incommingDisasters()->count(),

@@ -12,8 +12,8 @@
     <div class='card-pile event-pile-wrapper disaster-pile-wrapper'>
             <figure @class([
                 "card",
-                "event-card" => $next_event_card->disaster,
-                "disaster-card" => !$next_event_card->disaster,
+                "event-card" => $nextcard->disaster,
+                "disaster-card" => !$nextcard->disaster,
             ])>
                 <img src='./storage/images/f.png'>
                 <span class='overline'>

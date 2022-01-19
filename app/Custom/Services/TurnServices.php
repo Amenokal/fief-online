@@ -2,41 +2,50 @@
 
 namespace App\Custom\Services;
 
+use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
 use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Librarian;
-use App\Custom\Helpers\GameCurrent;
 
 class TurnServices {
 
     public static function phaseNames()
     {
-        $phases = Librarian::decipherJson('meta/turn.json');
-        dd($phases);
+        return Librarian::decipherJson('meta/turn.json');
     }
 
     public static function passTurn()
     {        
         $turn = Realm::year();
-        $phases = json_decode(file_get_contents(storage_path('data/meta/turn.json')), true);
+        $phases = Librarian::decipherJson('meta/turn.json');
 
-        if($turn->player < Realm::families()->count()){
-            $turn::increment('player');
+        if($turn->player_id < Realm::families()->count()){
+            $turn::increment('player_id');
+            $data = ['player' => true];
         }else{
-            $turn->update(['player'=>1]);
+            $turn->update(['player_id'=>1]);
+            $data = ['player' => true];
         }
 
         if($turn->phase < count($phases)){
             $turn::increment('phase');
+            $data = ['phase' => true];
         }else{
             $turn->update(['phase'=>1]);
+            $data = ['turn' => true];
         }
         
         if($turn->phase === count($phases)-1){
             $turn::increment('turn');
+            ['turn' => true];
         }
         
-        $message = $phases[$turn->phase]; // message = ? displayed with axios response;
-        return response()->json($message);
+        return Arr::add($data, 'color', Realm::currentPlayer()->color);
+    }
+
+    public static function changeTurn(int $phase_index)
+    {
+        Realm::year()->update(["phase" => $phase_index]);
     }
 
 }

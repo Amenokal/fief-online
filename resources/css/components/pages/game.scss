@@ -12,14 +12,11 @@ header {
     display: flex;
     justify-content: center;
     
-    section:not(.current) {
+    section {
         background-image: url('/fief/storage/app/public/textures/grunge2.png');
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-    }
-
-    section {
         height: 100%;
         box-sizing: border-box;
         border-right: 2px solid rgb(63, 63, 63);
@@ -31,6 +28,10 @@ header {
 
         &:last-child {
             border: none;
+        }
+
+        &:hover {
+            cursor: pointer;
         }
     }
 }

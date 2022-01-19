@@ -12,33 +12,32 @@
 <body>    
 <div class='game-container'>
     
-    <x-header :phases="$phases" :currentplayer="$currentPlayer"/>
+    <x-header :phases="$phases" :turn="$turn" :currentplayer="$currentPlayer"/>
 
     <main>
 
         <div class='main-section'>
 
             <section class='players'>
-                <div>
-                    @foreach ($players as $player)
-                        <div class='player-info-wrapper {{$player->color}}-bordered'>
-                            <div class='player-name'>{{$player->familyname}}</div>
-                        </div>
-                    @endforeach
-                </div>
-
-                <button class='end-turn-btn'>Fin du tour</button>
+                @foreach ($players as $player)
+                    <div class='player-info-wrapper {{$player->color}}-bordered'>
+                        <div class='player-name'>{{$player->familyname}}</div>
+                    </div>
+                @endforeach
             </section>
             
             <section class='game-view {{ $currentPlayer->color }}-theme'>
                 <div class='game-board'>
+
                     <x-villages :villages="$villages"
                         :army="$army"
                         :player="$player"
                         :lords="$lords"
                         :buildings="$buildings"
                     />
-                    <x-board-cards :disaster="$inc_disasters" />
+
+                    <x-board-cards :disasters="$inc_disasters" :nextcard="$next_event_card"/>
+                    
                 </div>
             </section>
             
@@ -58,7 +57,7 @@
             <button id='step3'>3</button>
             <button></button>
             <button></button>
-            <button></button>
+            <button id='end-turn'>fin du tour</button>
             <button id='resetDeck'>Reset deck</button>
         </nav>
 

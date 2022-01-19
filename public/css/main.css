@@ -674,13 +674,11 @@
   display: flex;
   justify-content: center;
 }
-.game-container header section:not(.current) {
+.game-container header section {
   background-image: url("/fief/storage/app/public/textures/grunge2.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-.game-container header section {
   height: 100%;
   box-sizing: border-box;
   border-right: 2px solid #3f3f3f;
@@ -692,6 +690,9 @@
 }
 .game-container header section:last-child {
   border: none;
+}
+.game-container header section:hover {
+  cursor: pointer;
 }
 .game-container main {
   height: 95%;

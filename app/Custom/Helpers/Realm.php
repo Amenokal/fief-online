@@ -3,6 +3,8 @@
 namespace App\Custom\Helpers;
 
 use App\Models\Game;
+use App\Models\Player;
+
 class Realm {
 
     public static function self()
@@ -13,6 +15,14 @@ class Realm {
     public static function year()
     {
         return Game::current()->turn;
+
+    }
+    public static function currentPlayer()
+    {
+        return Player::where([
+            'game_id'=>Game::current()->id,
+            'id'=>Game::current()->turn->player_id
+        ])->first();
     }
 
     public static function families()

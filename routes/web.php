@@ -33,8 +33,6 @@ Route::get('/lobby/connect', [LobbyController::class, 'connectToGame']);
 Route::get('/lobby/ready', [LobbyController::class, 'isReady']);
 Route::post('/lobby/msg', [LobbyController::class, 'newMsg']);
 
-Route::post('/nextturn', [TurnController::class, 'endTurn']);
-
 Route::post('/draw/lord', [CardsController::class, 'drawLord']);
 Route::post('/draw/event', [CardsController::class, 'drawEvent']);
 Route::post('/discard', [CardsController::class, 'discard']);
@@ -44,8 +42,8 @@ Route::post('/gamestart/2', [GameStartServices::class, 'chooseVillage']);
 Route::post('/reset/deck', [DeckServices::class, 'reset']);
 
 // TEST
-Route::post('/step3', [TestController::class, 'test3']);
-Route::get('/t', [TestController::class, 't']);
+Route::post('/changeturn', [TurnController::class, 'changeTurn']);
+Route::post('/endturn', [TurnController::class, 'endTurn']);
 
 
 

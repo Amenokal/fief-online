@@ -25891,27 +25891,11 @@ document.getElementById('step1').addEventListener('click', function (e) {
       drawAnimation(res.data);
     }
   });
-});
-
-function createNextCard(data) {
-  var pile = document.querySelector(".".concat(data.deck, "-pile-wrapper"));
-  pile.children[0].id = 'to-draw';
-  pile.children[0].style.zIndex = 2;
-  var card;
-
-  if (data.deck === 'lord') {
-    card = 'lord';
-  } else if (data.deck === 'event') {
-    card = data.nextType ? 'disaster' : 'event';
-  }
-
-  pile.innerHTML += "<figure class='card ".concat(data.nextType, "-card'>\n        <span class='overline'></span>\n    </figure>");
-} // \\\
+}); // \\\
 // ----------------------------------------
 // GAME START ::::: STEP 2 = CHOOSE VILLAGE
 // ----------------------------------------
 // ///
-
 
 document.getElementById('step2').addEventListener('click', function (e) {
   e.target.classList.toggle('choose-village');
@@ -25942,6 +25926,21 @@ document.querySelector('.locations').addEventListener('click', function (e) {
 // ANIMATIONS ::::: CARD ANIMATIONS
 // --------------------------------
 // ///
+
+function createNextCard(data) {
+  var pile = document.querySelector(".".concat(data.deck, "-pile-wrapper"));
+  pile.children[0].id = 'to-draw';
+  pile.children[0].style.zIndex = 2;
+  var type;
+
+  if (data.deck === 'lord') {
+    type = 'lord';
+  } else if (data.deck === 'event') {
+    type = data.nextType ? 'disaster' : 'event';
+  }
+
+  pile.innerHTML += "<figure class='card ".concat(type, "-card'>\n        <span class='overline'></span>\n    </figure>");
+}
 
 function drawAnimation(data) {
   var card = document.getElementById('to-draw');
@@ -26037,10 +26036,38 @@ document.getElementById('resetDeck').addEventListener('click', function (e) {
 // TURNS ::::: PASS TURNS BTN & PHASE SELECTOR
 // -------------------------------------------
 // ///
-// document.querySelector('.end-turn-btn').addEventListener('click',endTurn);
-// function endTurn(){
-//     axios.post('./nextturn')
-// }
+
+document.getElementById('turn-indicator').addEventListener('click', function (e) {
+  if (e.target.id.includes('phase') && !e.target.className) {
+    axios.post('./changeturn', {
+      phase: e.target.id.split('-')[1]
+    }).then(function (res) {
+      var oldPhase = document.querySelector('.current-phase');
+      e.target.className = oldPhase.className;
+      oldPhase.className = "";
+    });
+  }
+});
+document.getElementById('end-turn').addEventListener('click', endTurn);
+
+function endTurn() {
+  axios.post('./endturn').then(function (res) {
+    var firstPhase = document.getElementById('turn-indicator').children[0];
+    var currentPhase = document.querySelector('.current-phase');
+    var nextPhase = document.querySelector('.current-phase').nextElementSibling;
+    var color = res.data.color;
+
+    if (res.data.player) {
+      currentPhase.className = "current-phase ".concat(color, "-bordered");
+    } else if (res.data.phase) {
+      nextPhase.className = "current-phase ".concat(color, "-bordered");
+      currentPhase.className = "";
+    } else if (res.data.turn) {
+      firstPhase.className = "current-phase ".concat(color, "-bordered");
+      currentPhase.className = "";
+    }
+  });
+}
 })();
 
 /******/ })()

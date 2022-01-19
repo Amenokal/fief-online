@@ -1,4 +1,4 @@
-import {drawAll} from './army.js';
+import { drawAll } from './army.js';
 const { default: axios } = require('axios');
 const { remove } = require('lodash');
 require('./bootstrap');
@@ -33,23 +33,6 @@ document.getElementById('step1').addEventListener('click', e => {
         }
     });
 })
-
-function createNextCard(data){
-    let pile = document.querySelector(`.${data.deck}-pile-wrapper`);
-    pile.children[0].id = 'to-draw';
-    pile.children[0].style.zIndex = 2;
-
-    let card;
-    if(data.deck === 'lord'){
-        card = 'lord'
-    }else if(data.deck === 'event'){
-        card = data.nextType ? 'disaster' : 'event'
-    }
-    pile.innerHTML +=
-    `<figure class='card ${data.nextType}-card'>
-        <span class='overline'></span>
-    </figure>`
-}
 
 
 // \\\
@@ -104,6 +87,22 @@ document.querySelector('.locations').addEventListener('click', e=>{
 // --------------------------------
 // ///
 
+function createNextCard(data){
+    let pile = document.querySelector(`.${data.deck}-pile-wrapper`);
+    pile.children[0].id = 'to-draw';
+    pile.children[0].style.zIndex = 2;
+
+    let type;
+    if(data.deck === 'lord'){
+        type = 'lord'
+    }else if(data.deck === 'event'){
+        type = data.nextType ? 'disaster' : 'event'
+    }
+    pile.innerHTML +=
+    `<figure class='card ${type}-card'>
+        <span class='overline'></span>
+    </figure>`
+}
 
 function drawAnimation(data){
     let card = document.getElementById('to-draw');
@@ -218,7 +217,36 @@ document.getElementById('resetDeck').addEventListener('click', e=>{
 // ///
 
 
-// document.querySelector('.end-turn-btn').addEventListener('click',endTurn);
-// function endTurn(){
-//     axios.post('./nextturn')
-// }
+document.getElementById('turn-indicator').addEventListener('click', e=>{
+    if(e.target.id.includes('phase') && !e.target.className){
+        axios.post('./changeturn', {
+            phase: e.target.id.split('-')[1]
+        })
+        .then(res => {
+            let oldPhase = document.querySelector('.current-phase');
+            e.target.className = oldPhase.className;
+            oldPhase.className = "";
+        })
+    }
+})
+
+document.getElementById('end-turn').addEventListener('click',endTurn);
+function endTurn(){
+    axios.post('./endturn')
+    .then(res => {
+        let firstPhase = document.getElementById('turn-indicator').children[0];
+        let currentPhase = document.querySelector('.current-phase');
+        let nextPhase = document.querySelector('.current-phase').nextElementSibling;
+        let color = res.data.color;
+
+        if(res.data.player){
+            currentPhase.className = `current-phase ${color}-bordered`;
+        }else if(res.data.phase){
+            nextPhase.className = `current-phase ${color}-bordered`;
+            currentPhase.className = "";
+        }else if(res.data.turn){
+            firstPhase.className = `current-phase ${color}-bordered`;
+            currentPhase.className = "";
+        }
+    })
+}
