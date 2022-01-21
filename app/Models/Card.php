@@ -30,8 +30,6 @@ class Card extends Model
         // 'religious_title_id',
     ];
 
-
-
     public static function draw(Card $card)
     {
         return $card->update(['player_id' => Local::player()->id]);
@@ -39,7 +37,8 @@ class Card extends Model
 
     public function play()
     {
-        return $this->update(['on_board' => true]);
+        $this->update(['on_board' => true]);
+        return $this;
     }
 
     public static function discard(Card $card)

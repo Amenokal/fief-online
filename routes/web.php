@@ -7,8 +7,10 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\CardsController;
 use App\Custom\Services\GameStartServices;
 use App\Http\Controllers\Web\GameController;
+use App\Http\Controllers\Game\ArmyController;
 use App\Http\Controllers\Game\TurnController;
 use App\Http\Controllers\Web\LobbyController;
+use App\Http\Controllers\Game\PhaseController;
 use App\Http\Controllers\Event\LogEventController;
 
 /*
@@ -76,7 +78,7 @@ Route::post('/endturn', [TurnController::class, 'endTurn']);
     // ARMIES
     // ------
 
-Route::post('/show/armies', [ArmyController::class, 'test']);
+Route::post('/show/army', [ArmyController::class, 'showArmy']);
 
 
 // PHASES
@@ -85,9 +87,12 @@ Route::post('/show/armies', [ArmyController::class, 'test']);
     // PHASE 0 ::::: GAME START
     // ------------------------
 
-Route::post('/gamestart/1', [GameStartServices::class, 'drawFirstLord']);
-Route::post('/gamestart/2', [GameStartServices::class, 'chooseVillage']);
+Route::post('/gamestart/1', [PhaseController::class, 'drawFirstLord']);
+Route::post('/gamestart/2', [PhaseController::class, 'chooseVillage']);
 
+    // PHASE 11 ::::: MOVE
+    // -------------------
 
+Route::post('/move/all', [PhaseController::class, 'moveAll']);
 
 require __DIR__.'/auth.php';

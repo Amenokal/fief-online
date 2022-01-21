@@ -39,7 +39,8 @@ var __webpack_exports__ = {};
   \******************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "drawAll": () => (/* binding */ drawAll)
+/* harmony export */   "drawAll": () => (/* binding */ drawAll),
+/* harmony export */   "draw": () => (/* binding */ draw)
 /* harmony export */ });
 // CUSTOM CANVAS BANNERS !!!
 function drawAll(power) {
@@ -48,16 +49,16 @@ function drawAll(power) {
   });
 }
 
-function get(what) {
+function getProp(what) {
   return window.getComputedStyle(document.documentElement, null).getPropertyValue('--' + what);
 }
 
 function draw(target) {
   var power = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
   var elm = document.querySelector('.game-view').className.split(' ')[1].split('-')[0];
-  var baseColor = get(elm);
-  var strongColor = get(elm + '-strong');
-  var txtColor = get(elm + '-txt');
+  var baseColor = getProp(elm);
+  var strongColor = getProp(elm + '-strong');
+  var txtColor = getProp(elm + '-txt');
   var cvs = target;
   var ctx = cvs.getContext('2d'); // MANCHE
 

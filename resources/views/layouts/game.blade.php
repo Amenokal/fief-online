@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fief Online - {{ Auth::user()->username }}</title>
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>    
@@ -34,6 +35,7 @@
                         :player="$player"
                         :lords="$lords"
                         :buildings="$buildings"
+                        :occupied="$occupied"
                     />
 
                     <x-board-cards :disasters="$inc_disasters" :nextcard="$next_event_card"/>
@@ -54,6 +56,7 @@
         <nav>
             <button id='step1'>step 1</button>
             <button id='step2'>step 2</button>
+            <button id='moveBtn'>MOVE</button>
             <button id='end-turn'>fin du tour</button>
             <button id='resetDeck'>Reset deck</button>
             <button id='resetBoard'>Reset board</button>
@@ -65,8 +68,10 @@
 
 
     <aside class='modal-wrapper' id='info-modal'>
-        <div class='modal'>
-            <p id='modal-message'></p>
+        <span>RAPPORT DE FORCES</span>
+        <div>
+            <div class='info-lord'></div>
+            <div class='info-soldiers'></div>
         </div>
     </aside>
 

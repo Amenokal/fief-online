@@ -1,23 +1,19 @@
 .token{
     height: 27px;
     width: 27px;
-    display: flex;
+    // display: flex;
     padding: .1em;
     background-color: papayawhip;
     border-radius: .2em;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 60%;
-    position: absolute;
+    // position: absolute;
     
     &.sergeant {
-        top: 0;
-        left: 0;
         background-image: url('/fief/storage/app/public/images/soldier.png');
     }
     &.knight {
-        top: 0;
-        right: 0;
         background-image: url('/fief/storage/app/public/images/knight.png');
         background-size: 70%;
     }

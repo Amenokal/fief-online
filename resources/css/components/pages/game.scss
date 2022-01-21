@@ -1,201 +1,235 @@
+@mixin textured {
+    background-image: url('/fief/storage/app/public/textures/grunge2.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+    border: 5px solid black;
+    box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.7);
+}
+
 .game-container {
     background-color: var(--background-black);
     overflow: hidden;
     height: 100%;
     width: 100%;
 
-header {
-    height: 5%;
-    box-sizing: border-box;
-    border: 2px solid rgb(63, 63, 63);
-    background-color: rgb(201, 201, 201);
-    display: flex;
-    justify-content: center;
-    
-    section {
-        background-image: url('/fief/storage/app/public/textures/grunge2.png');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 100%;
+    header {
+        height: 5%;
         box-sizing: border-box;
-        border-right: 2px solid rgb(63, 63, 63);
-        width: 10%;
-        font-size: .7rem;
+        border: 2px solid rgb(63, 63, 63);
+        background-color: rgb(201, 201, 201);
         display: flex;
         justify-content: center;
-        align-items: center;
-
-        &:last-child {
-            border: none;
-        }
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-}
-
-main {
-    height: 95%;
-    width: 100%;
-    display: flex;
-}
-
-.players {
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
         
-    .player-name {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    button {
-        height: 110px;
-        border: 2px solid rgb(143, 116, 80);
-        background-color: burlywood;
-    }
-}
-
-
-
-.main-section {
-    width: 100%;
-    display: flex;
-    position: relative;
-}
-
-
-
-.game-view {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    box-sizing: border-box;
-    padding: 1em;
-    box-shadow: inset 5px 3px 15px -5px #000000;
-
-    .game-board {
-        height: 100%;
-        width: 95%;
-        display: flex;
-        justify-content: center;
-
-        .board-img {
+        section {
+            background-image: url('/fief/storage/app/public/textures/grunge2.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
             height: 100%;
-            width: auto;
-
-        }
-
-        .game-cards {
+            box-sizing: border-box;
+            border-right: 2px solid rgb(63, 63, 63);
+            width: 10%;
+            font-size: .7rem;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-
-            .card-pile {
-                position: relative;
-                height: 70px;
-                width: 100px;
-                border: 1px solid white;
-                border-radius: .5em;
-
-                .card {
-                    height: 100%;
-                    width: 100%;
-                    position: absolute;
+            align-items: center;
     
-                    img {
-                        transform: rotate(90deg);
-                    }
-                }
+            &:last-child {
+                border: none;
+            }
+    
+            &:hover {
+                cursor: pointer;
             }
         }
     }
 
-    
-}
-
-.player-hand {
-    height: 50px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    justify-content: space-around;
-    transition: .5s ease;
-    align-self: flex-end;
-
-    .in-hand-card {
-        animation: 'inHandCard' 1s ease forwards;
-    }
-}
-
-nav {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 5%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    button {
-        margin: .5em 0;
-        height: 60px;
-        width: 60px;
-        background-color: goldenrod;
-        border: 3px solid rgb(161, 121, 20);
-        border-radius: 100%;
-        transform: translateX(30%);
-        box-shadow: inset 0px 0px 10px 3px rgb(75, 43, 16, .8), 0px 0px 4px 1px rgb(75, 43, 16, .8);
-        transition: .1s ease-out;
-        
-        &:hover {
-            box-shadow: inset 0px 0px 15px 3px rgb(75, 43, 16, .8);
-        }
-    }
-}
-
-// MODAL
-.modal-wrapper {
-    width: 100%;
-    position: absolute;
-    bottom: 15%;
-    opacity: 0;
-    z-index: -1;
-    transition: .5s ease;
-
-    .modal {
+    main {
+        height: 95%;
+        width: 100%;
         display: flex;
-        justify-content: center;
-        
-        p {
-            width: 40%;
-            text-align: center;
-            border: 5px solid gray;
-            background-color: lightgray;
-            box-sizing: border-box;
-            padding: 1em;
+    }
+
+    .players {
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        @include textured;
+            
+        .player-name {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.4);
+        }
+
+        button {
+            height: 110px;
+            border: 2px solid rgb(143, 116, 80);
+            background-color: burlywood;
         }
     }
 
-}
+
+
+    .main-section {
+        width: 100%;
+        display: flex;
+        position: relative;
+    }
 
 
 
-.modal-show {
-    z-index: 2;
-    opacity: 0;
-    animation: 'modalshow' 2.5s forwards;
-}
+    .game-view {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        box-sizing: border-box;
+        padding: 1em;
+        box-shadow: inset 5px 3px 15px -5px #000000;
 
-}
+        .game-board {
+            height: 100%;
+            width: 95%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-.choose-village {
-    color: var(--red);
+            .locations {
+                height: 96%;
+                width: 80%;
+                position: relative;
+                background-image: url('/fief/storage/app/public/images/board.jpg');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                box-shadow: 0px 0px 7px 4px rgba(29, 29, 29, 0.877);
+            }
+
+            .board-img {
+                height: 100%;
+                width: auto;
+
+            }
+
+            .game-cards {
+                height: 96%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                background-color: var(--background-black);
+                @include textured;
+                box-shadow: 0px 0px 7px 4px rgba(29, 29, 29, 0.877);
+
+
+                .card-pile {
+                    position: relative;
+                    height: 70px;
+                    width: 100px;
+                    border: 1px solid white;
+                    border-radius: .5em;
+
+                    .card {
+                        height: 100%;
+                        width: 100%;
+                        position: absolute;
+        
+                        img {
+                            transform: rotate(90deg);
+                        }
+                    }
+
+                    &:first-child{
+                        margin: 1em 0;
+                    }
+                    &:nth-child(4){
+                        margin-top: 1em;
+                    }
+                    &:last-child{
+                        margin: 1em 0;
+                    }
+                }
+            }
+        }
+
+        
+    }
+
+    .player-hand {
+        height: 50px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: space-around;
+        transition: .5s ease;
+        align-self: flex-end;
+
+        .in-hand-card {
+            animation: 'inHandCard' 1s ease forwards;
+        }
+    }
+
+    nav {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 5%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        button {
+            margin: .5em 0;
+            height: 60px;
+            width: 60px;
+            background-color: goldenrod;
+            border: 3px solid rgb(161, 121, 20);
+            border-radius: 100%;
+            // transform: translateX(30%);
+            box-shadow: inset 0px 0px 10px 3px rgb(75, 43, 16, .8), 0px 0px 4px 1px rgb(75, 43, 16, .8);
+            transition: .1s ease-out;
+            
+            &:hover {
+                box-shadow: inset 0px 0px 15px 3px rgb(75, 43, 16, .8);
+            }
+        }
+    }
+
+    // MODAL
+    .modal-wrapper {
+        height: 70%;
+        width: 50%;
+        position: absolute;
+        bottom: 20%;
+        left: 25%;
+        opacity: 0;
+        z-index: -1;
+        // background-image: url('/fief/storage/app/public/images/parchemin2.png');
+        // background-position: center;
+        // background-repeat: no-repeat;
+        // background-size: contain;
+        // transition: .5s ease;
+
+        &.show {
+            z-index: 5;
+            opacity: 0;
+            animation: 'modalshow' .5s forwards;
+        }
+    }
+
+
+    ///// BTNZ
+
+    
+    .choose-village,
+    .move-active {
+        color: var(--red);
+    }
+
+
 }

@@ -6,17 +6,17 @@ export function drawAll(power){
     })
 }
 
-function get(what){
+function getProp(what){
     return window.getComputedStyle(document.documentElement,null).getPropertyValue('--'+what);
 }
 
 
-function draw(target, power = 1){
+export function draw(target, power = 1){
 
     let elm = document.querySelector('.game-view').className.split(' ')[1].split('-')[0];
-    let baseColor = get(elm);
-    let strongColor = get(elm+'-strong');
-    let txtColor = get(elm+'-txt');
+    let baseColor = getProp(elm);
+    let strongColor = getProp(elm+'-strong');
+    let txtColor = getProp(elm+'-txt');
 
     let cvs = target;
     let ctx = cvs.getContext('2d');

@@ -1,12 +1,5 @@
 .locations {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    background-image: url('/fief/storage/app/public/images/board.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-
+    
     .village,
     .city {
         position: absolute;

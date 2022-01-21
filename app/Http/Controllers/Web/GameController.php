@@ -10,6 +10,7 @@ use App\Models\Villages;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
+use App\Custom\Helpers\Marechal;
 use App\Custom\Helpers\GameCurrent;
 use App\Http\Controllers\Controller;
 use App\Custom\Services\BootServices;
@@ -20,7 +21,11 @@ class GameController extends Controller
 {
     public function index(){
         
-        // dd(Realm::year(), TurnServices::phaseNames());
+        // dd(Mayor::administrate());
+
+        // dd(Marechal::evaluate('Henri'));
+        // dd(Realm::lords());
+        
         // TODO: make middleware for game booting
         BootServices::init('vanilla');
 
@@ -37,8 +42,8 @@ class GameController extends Controller
             'next_event_card' => DeckServices::nextCards('event')->first(),
 
             'villages' => Realm::villages(),
-            'occupied' => Realm::villages()->whereNull('player_id')->all(),
-            'army' => Realm::armies(),
+            'occupied' => Realm::villages()->whereNotNull('player_id')->all(),
+            'army' => Realm::activeArmies(),
             'lords' => Realm::lords(),
             'buildings' => Realm::buildings()
         ]);

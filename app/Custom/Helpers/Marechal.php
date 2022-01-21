@@ -12,100 +12,56 @@ use App\Models\Villages;
 
 class Marechal {
 
-/**  +----------------------------------------------------+
- *   |                     LORDS                          |
- *   +----------------------------------------------------+
- */
+    public static $power = 0;
+    public static $power_counter = 0;
 
-    public static function moveLord(Card $lord, Village $to)
+    public static function armyOf(Card $lord)
     {
-        $lord->update(['village_id' => $to->id, 'on_board' => true]);
-        return $lord;
+        $lords = Card::where([
+            'game_id' => Game::current()->id,
+            'deck' => 'lord',
+            'village_id' => $lord->village_id
+        ])->get();
+
+        $soldiers = Soldier::where([
+            'game_id' => Game::current()->id,
+            'village_id' => $lord->village_id
+        ])->get();
+
+        return collect($lords)->merge(collect($soldiers));
     }
 
-    // public static function removeLord(Card $lord)
-    // {
-    //     $lord->update([
-    //         'player_id' => null,
-    //         'village_id' => null,
-    //         'on_board' => false
-    //     ]);
-    //     $lord->delete();
-    // }
-
-
-    
-/**  +----------------------------------------------------+
- *   |                     ARMIES                         |
- *   +----------------------------------------------------+
- *   @param $army is an simple array following the pattern
- *                [ 'type' , 'amount' , ... ]
- *
- *   available types registered in json file at :
- *                storage / data / *gamemod* / armies.json
- */
-
-
-    public static function recruit(array $army, Village $village)
+    public static function evaluate(Card $lord)
     {
-        for($i=0; $i<count($army); $i+=2){
-            Soldier::where([
-                'type' => $army[$i],
-                'player_id' => Local::player()->id,
-                'game_id' => Game::current()->id
-            ])
-            ->whereNull('village_id')
-            ->take($army[$i+1])
-            ->update(['village_id' => $village->id]);
-        }
-    }
+        $army = self::armyOf($lord);
 
-    // public static function march(array $army, Villages $from, Villages $to)
-    // {
-    //     for($i=0; $i<count($army); $i+=2){
-    //         Soldiers::where([
-    //             'type' => $army[$i],
-    //             'player_id' => Local::player(),
-    //             'game_id' => GameCurrent::id(),
-    //             'village_id' => $from->id,
-    //         ])
-    //         ->take($army[$i+1])
-    //         ->update(['village_id' => $to->id]);
-    //     }
-    // }
+        foreach($army as $men){
+            if($men->gender === 'M'){
+                self::$power += 1;
+            }
+            // titled women and d'Arc conditions here later ...
+            // d'Arc will be a title btw
 
-    // public static function retreat(array $army, Villages $village)
-    // {
-    //     for($i=0; $i<count($army); $i+=2){
-    //         Soldiers::where([
-    //             'type' => $army[$i],
-    //             'player_id' => Local::player(),
-    //             'game_id' => GameCurrent::id(),
-    //             'village_id' => $village->id,
-    //         ])
-    //         ->take($army[$i+1])
-    //         ->update(['village_id' => null]);
-    //     }
-    // }
-
-
-    public function estimate(Player $player, Village $village)
-    {
-        $army = $village->soldiers()
-        ->where('player_id', $player->id)
-        ->get();
-
-        $power = 0;
-        foreach($army as $soldier){
-            $power += $soldier->power;
+            elseif($men->power){
+                self::$power += $men->power;
+            }
         }
 
-        if($power<7){
-            return 1;
-        }elseif($power<13){
-            return 2;
+        if(self::$power<7){
+            self::$power_counter = 1;
+        }elseif(self::$power<13){
+            self::$power_counter = 2;
         }else{
-            return 3;
+            self::$power_counter = 3;
         }
+
+        $sergeants = count($army->where('type', 'sergeant')->all());
+        $knights = count($army->where('type', 'knight')->all());
+        $response = [
+            'power' => self::$power_counter,
+            'sergeants' => $sergeants,
+            'knights' => $knights,
+        ];
+        return $response;
     }
 }

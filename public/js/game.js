@@ -2058,13 +2058,87 @@ module.exports = {
 /*!*******************************************!*\
   !*** ./resources/js/animations/armies.js ***!
   \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
 
+document.querySelector('.game-view').addEventListener('click', function (e) {
+  // ONCLICK LORD
+  if (e.target.className.includes('lord')) {
+    var phase = document.querySelector('.current-phase');
+    e.target.classList.add('moving'); // OPEN MOVE OPTIONS ONLY IN MOVEMENT PHASE
+
+    if (phase.id === 'phase-11' && document.querySelector('.move-active')) {
+      e.target.parentNode.nextElementSibling.nextElementSibling.classList.add('show');
+    } // SHOW ARMY FORCES OTHERWISE
+    else {
+      e.target.parentNode.nextElementSibling.classList.toggle('show');
+    }
+  } // CLOSE MOVE OPTIONS
+
+
+  if (document.querySelector('.move-options.show') && e.target.id === 'move-option-close') {
+    document.querySelector('.move-options.show').classList.remove('show');
+    document.querySelector('.moving').classList.remove('moving');
+
+    if (document.querySelector('.active')) {
+      document.querySelector('.active').classList.remove('active');
+    }
+  } // ::::: OPTION SELECT :::::
+  // -------------------------
+  // ACTIVE MOVE ALL OPTION
+
+
+  if (document.querySelector('.move-options.show') && e.target.id === 'move-option-move-all') {
+    e.target.classList.toggle('active');
+  } // ACTIVE MOVE ALL BUT 1 OPTION
+
+
+  if (document.querySelector('.move-options.show') && e.target.id === 'move-option-let-one') {
+    e.target.classList.toggle('active');
+  } // ::::: OPTION REQUESTS :::::
+  // ---------------------------
+  // MOVE ALL // 1 BEHIND
+
+
+  if (document.querySelector('.move-options.show') && (e.target.className.includes('village') || e.target.parentNode.className.includes('village'))) {
+    var moveAll = document.getElementById('move-option-move-all').className.includes('active');
+    var letOne = document.getElementById('move-option-let-one').className.includes('active');
+
+    if (e.target.className.includes('village')) {
+      e.target.classList.add('to');
+    } else if (e.target.parentNode.className.includes('village')) {
+      e.target.parentNode.classList.add('to');
+    }
+
+    var path;
+
+    if (moveAll) {
+      path = './move/all';
+    } else if (letOne) {
+      path = './move/let/one';
+    }
+
+    axios.post(path, {
+      lord: document.querySelector('.moving').id,
+      village: document.querySelector('.to').id
+    }).then(function (res) {
+      document.querySelector('.moving').parentNode.parentNode.remove();
+      document.querySelector('.to').innerHTML += res.data;
+    }).then(function () {
+      if (document.querySelector('.move-options.show')) {
+        document.querySelector('.move-options.show').classList.remove('show');
+      }
+
+      if (document.querySelector('.active')) {
+        document.querySelector('.active').classList.remove('active');
+      }
+
+      document.querySelector('.to').classList.remove('to');
+    });
+  }
+});
 
 /***/ }),
 
@@ -2120,109 +2194,6 @@ function disasterAnimation() {
   }
 
   pile.innerHTML += "<figure class='card incomming-disaster'>\n        <span class='overline'></span>\n    </figure>";
-}
-
-/***/ }),
-
-/***/ "./resources/js/army.js":
-/*!******************************!*\
-  !*** ./resources/js/army.js ***!
-  \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "drawAll": () => (/* binding */ drawAll)
-/* harmony export */ });
-// CUSTOM CANVAS BANNERS !!!
-function drawAll(power) {
-  document.querySelectorAll('.banner').forEach(function (el) {
-    draw(el, power);
-  });
-}
-
-function get(what) {
-  return window.getComputedStyle(document.documentElement, null).getPropertyValue('--' + what);
-}
-
-function draw(target) {
-  var power = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-  var elm = document.querySelector('.game-view').className.split(' ')[1].split('-')[0];
-  var baseColor = get(elm);
-  var strongColor = get(elm + '-strong');
-  var txtColor = get(elm + '-txt');
-  var cvs = target;
-  var ctx = cvs.getContext('2d'); // MANCHE
-
-  ctx.fillStyle = 'rgb(58, 28, 0)';
-  ctx.fillRect(cvs.width / 2 - 4, 0, 8, cvs.height);
-  ctx.fillRect(cvs.width / 15, cvs.height / 14.5, cvs.width * .87, cvs.height / 20); // ATTACHES
-
-  ctx.strokeStyle = 'black';
-  ctx.beginPath();
-  ctx.moveTo(cvs.width / 2, cvs.height / 40);
-  ctx.lineTo(cvs.height / 10, cvs.width / 9);
-  ctx.closePath();
-  ctx.stroke();
-  ctx.strokeStyle = 'black';
-  ctx.beginPath();
-  ctx.moveTo(cvs.width / 2, cvs.height / 40);
-  ctx.lineTo(cvs.width * .85, cvs.width / 9);
-  ctx.closePath();
-  ctx.stroke(); // BORDER
-
-  ctx.fillStyle = strongColor;
-  ctx.beginPath();
-  ctx.moveTo(cvs.width / 10, cvs.width / 10);
-  ctx.lineTo(cvs.width / 10, cvs.height / 1.4);
-  ctx.lineTo(cvs.width / 2, cvs.height / 1.13);
-  ctx.lineTo(cvs.width * (9 / 10), cvs.height / 1.4);
-  ctx.lineTo(cvs.width * (9 / 10), cvs.width / 10);
-  ctx.closePath();
-  ctx.fill(); // BASE
-
-  ctx.fillStyle = baseColor;
-  ctx.beginPath();
-  ctx.moveTo(cvs.width / 5, cvs.width / 5);
-  ctx.lineTo(cvs.width / 5, cvs.height / 1.48);
-  ctx.lineTo(cvs.width / 2, cvs.height / 1.23);
-  ctx.lineTo(cvs.width * (4 / 5), cvs.height / 1.48);
-  ctx.lineTo(cvs.width * (4 / 5), cvs.width / 5);
-  ctx.closePath();
-  ctx.fill(); // 2ND COLOR
-
-  ctx.fillStyle = txtColor;
-  ctx.beginPath();
-  ctx.moveTo(cvs.width / 5, cvs.width / 5);
-  ctx.lineTo(cvs.width / 5, cvs.height / 1.48);
-  ctx.lineTo(cvs.width / 2, cvs.height / 1.23);
-  ctx.lineTo(cvs.width / 2, cvs.height / 1.48);
-  ctx.lineTo(cvs.width / 2, cvs.width / 5);
-  ctx.closePath();
-  ctx.fill(); // CHEVRONS
-
-  ctx.fillStyle = strongColor;
-
-  for (var i = 0; i < power; i++) {
-    ctx.beginPath();
-    ctx.moveTo(cvs.width / 5, cvs.height / 6 + 70 * i - 15);
-    ctx.lineTo(cvs.width / 5, cvs.height / 6 + 40 + 70 * i - 15);
-    ctx.lineTo(cvs.width / 2, cvs.height / 3.3 + 40 + 70 * i - 15);
-    ctx.lineTo(cvs.width * .8, cvs.height / 6 + 40 + 70 * i - 15);
-    ctx.lineTo(cvs.width * .8, cvs.height / 6 + 70 * i - 15);
-    ctx.lineTo(cvs.width / 2, cvs.height / 3.3 + 70 * i - 15);
-    ctx.closePath();
-    ctx.fill();
-  } // ARMOIRIES
-  // var img = new Image;
-  // img.src = "/fief/storage/app/public/banners/blue.png";
-  // img.width = '20%';
-  // img.height = '20%';
-  // img.onload = ()=>{
-  //     ctx.drawImage(img, 75, 75, 100, 100);
-  // }
-
 }
 
 /***/ }),
@@ -25863,18 +25834,6 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -25933,15 +25892,14 @@ var __webpack_exports__ = {};
   !*** ./resources/js/game.js ***!
   \******************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _army_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./army.js */ "./resources/js/army.js");
-/* harmony import */ var _animations_cards_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animations/cards.js */ "./resources/js/animations/cards.js");
+/* harmony import */ var _animations_cards_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animations/cards.js */ "./resources/js/animations/cards.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-
+// import { draw } from './army.js';
 
 
 
@@ -25967,9 +25925,21 @@ document.onload = init();
 function init() {
   document.querySelector('.locations').addEventListener('click', function (e) {
     chooseVillage(e);
+    moveArmy(e);
   });
-  (0,_army_js__WEBPACK_IMPORTED_MODULE_0__.drawAll)(3);
-} // \\\
+} // fun for later
+// function addBtnFx(e){
+//     console.log(e.target);
+//     let btns = document.querySelectorAll('button');
+//     btns.forEach(el=>{
+//         el.addEventListener('click', e=>{
+//             let fx = new Audio('./storage/fx/click.mp3');
+//             console.log(fx);
+//             fx.play();
+//         })
+//     })
+// }
+// \\\
 // -----------------------------------
 // GAME START ::::: STEP 1 = DRAW LORD
 // -----------------------------------
@@ -25979,8 +25949,8 @@ function init() {
 document.getElementById('step1').addEventListener('click', function (e) {
   axios.post('./gamestart/1').then(function (res) {
     if (res.data) {
-      (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_1__.createNextCard)(res.data);
-      (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_1__.drawAnimation)(res.data);
+      (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_0__.createNextCard)(res.data);
+      (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_0__.drawAnimation)(res.data);
     }
   });
 }); // \\\
@@ -25994,22 +25964,24 @@ document.getElementById('step2').addEventListener('click', function (e) {
 });
 
 function chooseVillage(e) {
-  if (document.querySelector('.choose-village')) {
+  if (document.querySelector('.choose-village') && (e.target.className === 'city' || e.target.className === 'village')) {
     axios.post('./gamestart/2', {
       village: e.target.id
     }).then(function (res) {
-      console.log(res.data);
-
       if (res.data) {
-        e.target.innerHTML += "<span class=chateau></span>\n    \n                <div class='army'>\n                    <span id='".concat(res.data.name, "' class='lord'>\n                        <canvas height=\"400px\" width=\"250px\" class='banner' id=\"banner").concat(document.querySelectorAll('.lord-banner').length + 1, "\"></canvas>\n                    </span>\n                </div>\n                ");
-        (0,_army_js__WEBPACK_IMPORTED_MODULE_0__.drawAll)();
+        e.target.innerHTML += "<span class=chateau></span>\n    \n                <div class='army'>\n                    <span id='".concat(res.data.name, "' class='lord'></span>\n                </div>");
+        document.getElementById('step2').classList.remove('choose-village'); // BANNERS :: add later
+        // let bannerCount = document.querySelectorAll('.lord-banner').length+1;
+        // <canvas height="400px" width="250px" class='banner' id="banner${bannerCount}"></canvas>
+        // let target = document.getElementById(`banner${bannerCount}`);
+        // draw(target, res.data.power);
       }
     });
   }
 } // \\\
-// ------------------------
-// CARDS ::::: DRAW & RESET
-// ------------------------
+// --------------------------
+// CARDS ::::: DRAW & DISCARD
+// --------------------------
 // ///
 // document.querySelector('.game-cards').addEventListener('click', e=>{
 //     let pileType = e.target.parentNode.parentNode.className.includes('lord') ? 'lord' : 'event';
@@ -26027,9 +25999,9 @@ function chooseVillage(e) {
 //     }
 // })
 // \\\
-// ------------------------
-// CARDS ::::: DRAW & RESET
-// ------------------------
+// ---------------------
+// BUILDINGS ::::: BUILD
+// ---------------------
 // ///
 // CASTLES !!!
 // var draw = false;
@@ -26064,7 +26036,7 @@ document.getElementById('turn-indicator').addEventListener('click', function (e)
   if (e.target.id.includes('phase') && !e.target.className) {
     axios.post('./changeturn', {
       phase: e.target.id.split('-')[1]
-    }).then(function (res) {
+    }).then(function () {
       var oldPhase = document.querySelector('.current-phase');
       e.target.className = oldPhase.className;
       oldPhase.className = "";
@@ -26090,22 +26062,75 @@ function endTurn() {
       currentPhase.className = "";
     }
   });
-}
+} // \\\
+// ------------------------
+// ARMIES ::::: SHOW FORCES
+// ------------------------
+// ///
+
 
 document.querySelector('.locations').addEventListener('click', function (e) {
-  if (e.target.className.includes('lord')) {
+  if (e.target.className.includes('lord') && !document.querySelector('.move-active')) {
     showArmy(e);
   }
 });
 
 function showArmy(e) {
-  console.log(e.target); // axios.post('./show/army', {
-  //     lord: e.target.id
-  // })
-  // .then(res=>{
-  //     console.log(res);
-  // })
-} //////// RESETS ////////
+  axios.post('./show/army', {
+    lord: e.target.id,
+    village: e.target.parentNode.parentNode.id
+  }).then(function (res) {
+    console.log(res); // let modal = document.getElementById('info-modal');
+    // modal.classList.add('show');
+    // modal.classList.add(res.data.color+'-bordered');
+    // modal.addEventListener('click', ()=>{modal.classList.remove('show')})
+  });
+} // \\\
+// ----------------------
+// ARMIES ::::: MOUVEMENT
+// ----------------------
+// ///
+
+
+document.getElementById('moveBtn').addEventListener('click', function (e) {
+  e.target.classList.toggle('move-active');
+});
+
+function moveArmy(e) {// FROM
+  // if((e.target.parentNode.className.includes('army') || e.target.className.includes('army'))
+  //     && document.querySelector('.move-active')){
+  //     if(!document.querySelector('.from') &&
+  //     (e.target.parentNode.parentNode.className.includes('city') ||
+  //         e.target.parentNode.parentNode.className.includes('village'))){
+  //             e.target.parentNode.parentNode.classList.add('from');
+  //     }
+  // }
+  //     // TO
+  // else if(document.querySelector('.from')){
+  //     if(e.target.className.includes('city') || e.target.className.includes('village')){
+  //         e.target.classList.add('to');
+  //     }
+  //     else if(e.target.parentNode.className.includes('city') || e.target.parentNode.className.includes('village')){
+  //         e.target.parentNode.classList.add('to');
+  //     }
+  //     if(document.querySelector('.move-active')){
+  //         document.querySelector('.move-active').classList.remove('move-active');
+  //     }
+  // }
+  // if(document.querySelector('.from') && document.querySelector('.to')){
+  //     axios.post('./move/army', {
+  //         from: document.querySelector('.from').id,
+  //         to: document.querySelector('.to').id,
+  //     })
+  //     .then(res=>{
+  //         console.log(res)
+  //     })
+  // }
+} // \\\
+// -------------------
+//  ::::: RESETS :::::
+// -------------------
+// ///
 
 
 document.getElementById('resetDeck').addEventListener('click', function (e) {

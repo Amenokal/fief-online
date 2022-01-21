@@ -1,6 +1,9 @@
 .army {
     height: 48px;
     width: 25px;
+    position: relative;
+    z-index: 3;
+
     
     .lord {
         height: 100%;
@@ -10,7 +13,6 @@
         background-repeat: no-repeat;
         background-size: contain;
         position: absolute;
-        z-index: 3;
         transition: .5s ease;
         box-shadow: 0px 0px 15px -5px #000000;
 
@@ -23,5 +25,113 @@
         }
     }
 
+    .lord-forces {
+        display: flex;
+        justify-content: center;
+    }
+    .army-forces{
+        width: 0px;
+        position: absolute;
+        left: 100%;
+        top: -20%;
+        display: flex;
+        flex-direction: column;
+        transition: .3s ease;
+        overflow: hidden;
+
+        div {
+            height: 50%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin: .1em 0;
+        }
+
+        &.show {
+            width: 50px;
+        }
+
+        .force-counter {
+            height: 25px;
+            width: 15px;
+            border: 1px solid rgb(216, 198, 137);
+            background-color: rgb(248, 234, 187);
+            border-top-right-radius: .5em;
+            border-bottom-right-radius: .5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    }
+
+
+    // ARMY MOVE OPTIONS
+    .move-options {
+        position: relative;
+        height: 0px;
+        width: 0px;
+        top: -10%;
+        left: -20;
+
+        i {
+            height: 0px;
+            width: 0px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            font-size: 0px;
+            color: transparent;
+            background-color: goldenrod;
+            box-shadow: inset 0px 0px 5px 1px rgb(75, 43, 16, .8), 0px 0px 4px 1px rgb(75, 43, 16, .8);
+            border-radius: 10em;
+
+            transition: .3s ease;
+
+            &:hover {
+                box-shadow: inset 0px 0px 15px 3px rgb(75, 43, 16, .8);
+            }
+        }
+
+        &.show {
+            height: auto;
+            width: auto;
+
+            i {
+                font-size: 1.2rem;
+                height: 35px;
+                width: 35px;   
+                color: rgb(68, 41, 6);
+
+                &:first-child {
+                    background-color: black;
+                    transform: translateY(-72%);
+                }
+                
+                &:nth-child(2) {
+                    background-color: black;
+                    transform: translateY(75%) translateX(-85%);
+                }
+    
+                &:nth-child(3) {
+                    transform: translateY(75%) translateX(85%);
+                }
+                
+                &:nth-child(4) {
+                    transform: translateX(0%) translateY(25%) scale(.8);
+                }
+
+                &.active {
+                    background-color: rgb(245, 198, 79);
+                }
+            }
+        }
+    }
     
 }

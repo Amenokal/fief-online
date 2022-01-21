@@ -30,14 +30,23 @@ class Realm {
         return Game::current()->players;
     }
 
-    public static function lords()
+    public static function lord(string $name)
     {
-        return self::self()->lordDeck()->where('on_board', true)->all();
+        return Game::current()->lordDeck()->where('name', $name)->first();
     }
 
-    public static function armies()
+    public static function lords()
     {
-        return Game::current()->soldiers->where('on_board', true)->all();
+        return Game::current()->lordDeck()->whereNotNull('village_id')->all();
+    }
+
+    public static function activeArmies()
+    {
+        return Game::current()->soldiers->whereNotNull('village_id')->all();
+    }
+    public static function waitingArmies()
+    {
+        return Game::current()->soldiers->whereNull('village_id')->all();
     }
 
     public static function villages()

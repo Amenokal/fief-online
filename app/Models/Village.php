@@ -2,7 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Card;
+use App\Models\Game;
+use App\Models\Player;
+use App\Models\Soldier;
 use App\Models\Building;
+use App\Custom\Helpers\Marechal;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -42,6 +47,13 @@ class Village extends Model
         return $this->hasMany(Building::class);
     }
 
+    public function lords()
+    {
+        return Card::where([
+            'game_id' => Game::current()->id,
+            'village_id' => $this->id
+        ]);
+    }
 
 
     /////

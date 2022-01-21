@@ -1,4 +1,4 @@
-import { drawAll } from './army.js';
+// import { draw } from './army.js';
 import { createNextCard } from './animations/cards.js';
 import { drawAnimation } from './animations/cards.js';
 
@@ -20,10 +20,23 @@ document.onload = init();
 function init(){
     document.querySelector('.locations').addEventListener('click', e=>{
         chooseVillage(e);
+        moveArmy(e);
     })
-    drawAll(3);
 }
 
+// fun for later
+// function addBtnFx(e){
+//     console.log(e.target);
+//     let btns = document.querySelectorAll('button');
+
+//     btns.forEach(el=>{
+//         el.addEventListener('click', e=>{
+//             let fx = new Audio('./storage/fx/click.mp3');
+//             console.log(fx);
+//             fx.play();
+//         })
+//     })
+// }
 
 // \\\
 // -----------------------------------
@@ -56,23 +69,28 @@ document.getElementById('step2').addEventListener('click', e=>{
 })
 
 function chooseVillage(e){
-    if(document.querySelector('.choose-village')){
+    if(document.querySelector('.choose-village') &&
+        (e.target.className === 'city' || e.target.className === 'village')){
         axios.post('./gamestart/2', {
             village: e.target.id
         })
         .then(res => {
-            console.log(res.data);
             if(res.data){
+
                 e.target.innerHTML += 
                 `<span class=chateau></span>
     
                 <div class='army'>
-                    <span id='${res.data.name}' class='lord'>
-                        <canvas height="400px" width="250px" class='banner' id="banner${document.querySelectorAll('.lord-banner').length+1}"></canvas>
-                    </span>
-                </div>
-                `;
-                drawAll();
+                    <span id='${res.data.name}' class='lord'></span>
+                </div>`;
+                document.getElementById('step2').classList.remove('choose-village');
+
+
+                // BANNERS :: add later
+                // let bannerCount = document.querySelectorAll('.lord-banner').length+1;
+                // <canvas height="400px" width="250px" class='banner' id="banner${bannerCount}"></canvas>
+                // let target = document.getElementById(`banner${bannerCount}`);
+                // draw(target, res.data.power);
             }
         });
     }
@@ -80,9 +98,9 @@ function chooseVillage(e){
 
 
 // \\\
-// ------------------------
-// CARDS ::::: DRAW & RESET
-// ------------------------
+// --------------------------
+// CARDS ::::: DRAW & DISCARD
+// --------------------------
 // ///
 
 
@@ -106,9 +124,9 @@ function chooseVillage(e){
 
 
 // \\\
-// ------------------------
-// CARDS ::::: DRAW & RESET
-// ------------------------
+// ---------------------
+// BUILDINGS ::::: BUILD
+// ---------------------
 // ///
 
 
@@ -149,12 +167,13 @@ function chooseVillage(e){
 // ///
 
 
+
 document.getElementById('turn-indicator').addEventListener('click', e=>{
     if(e.target.id.includes('phase') && !e.target.className){
         axios.post('./changeturn', {
             phase: e.target.id.split('-')[1]
         })
-        .then(res => {
+        .then(() => {
             let oldPhase = document.querySelector('.current-phase');
             e.target.className = oldPhase.className;
             oldPhase.className = "";
@@ -183,23 +202,103 @@ function endTurn(){
     })
 }
 
+
+
+// \\\
+// ------------------------
+// ARMIES ::::: SHOW FORCES
+// ------------------------
+// ///
+
+
+
 document.querySelector('.locations').addEventListener('click',e=>{
-    if(e.target.className.includes('lord')){
+    if(e.target.className.includes('lord') && !document.querySelector('.move-active')){
         showArmy(e);
     }
 })
 
 function showArmy(e){
-    console.log(e.target);
-    // axios.post('./show/army', {
-    //     lord: e.target.id
-    // })
-    // .then(res=>{
-    //     console.log(res);
-    // })
+    
+    axios.post('./show/army', {
+        lord: e.target.id,
+        village: e.target.parentNode.parentNode.id
+    })
+    .then(res=>{
+        console.log(res);
+        // let modal = document.getElementById('info-modal');
+        // modal.classList.add('show');
+        // modal.classList.add(res.data.color+'-bordered');
+
+        // modal.addEventListener('click', ()=>{modal.classList.remove('show')})
+    })
 }
 
-//////// RESETS ////////
+
+// \\\
+// ----------------------
+// ARMIES ::::: MOUVEMENT
+// ----------------------
+// ///
+
+
+
+document.getElementById('moveBtn').addEventListener('click', e=>{
+    e.target.classList.toggle('move-active');
+})
+function moveArmy(e){
+
+        // FROM
+    // if((e.target.parentNode.className.includes('army') || e.target.className.includes('army'))
+    //     && document.querySelector('.move-active')){
+        
+    //     if(!document.querySelector('.from') &&
+    //     (e.target.parentNode.parentNode.className.includes('city') ||
+    //         e.target.parentNode.parentNode.className.includes('village'))){
+    //             e.target.parentNode.parentNode.classList.add('from');
+    //     }
+    // }
+
+    //     // TO
+    // else if(document.querySelector('.from')){
+    //     if(e.target.className.includes('city') || e.target.className.includes('village')){
+    //         e.target.classList.add('to');
+    //     }
+    //     else if(e.target.parentNode.className.includes('city') || e.target.parentNode.className.includes('village')){
+    //         e.target.parentNode.classList.add('to');
+    //     }
+
+    //     if(document.querySelector('.move-active')){
+    //         document.querySelector('.move-active').classList.remove('move-active');
+    //     }
+    // }
+
+    // if(document.querySelector('.from') && document.querySelector('.to')){
+    //     axios.post('./move/army', {
+    //         from: document.querySelector('.from').id,
+    //         to: document.querySelector('.to').id,
+    //     })
+    //     .then(res=>{
+    //         console.log(res)
+    //     })
+    // }
+
+}
+
+
+
+
+
+
+
+
+// \\\
+// -------------------
+//  ::::: RESETS :::::
+// -------------------
+// ///
+
+
 
 document.getElementById('resetDeck').addEventListener('click', e=>{
     axios.post('./reset/deck')

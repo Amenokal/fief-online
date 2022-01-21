@@ -1,14 +1,12 @@
-@mixin themed($base, $txt){
+@mixin themed($base, $txt, $texture){
     background-color: $base;
     color: $txt;
-    background-image: url('/fief/storage/app/public/textures/grunge2.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url('/fief/storage/app/public/textures/'+$texture+'.png') !important;
 }
 
-@mixin theme-bordered($base, $txt, $strong){
-    @include themed($base, $txt);
+@mixin theme-bordered($base, $txt, $strong, $texture){
+    @include themed($base, $txt, $texture);
+    width: 100%;
     box-sizing: border-box;
     border: 5px solid $strong;
     
@@ -18,25 +16,25 @@
 }
 
 // RED
-.red-theme {@include themed(var(--red), var(--red-txt))}
-.red-bordered {@include theme-bordered(var(--red), var(--red-txt), var(--red-strong))}
+.red-theme {@include themed(var(--red), var(--red-txt), 'dark-leather')}
+.red-bordered {@include theme-bordered(var(--red), var(--red-txt), var(--red-strong), 'dark-leather')}
 
 // BLUE
-.blue-theme {@include themed(var(--blue), var(--blue-txt))}
-.blue-bordered {@include theme-bordered(var(--blue), var(--blue-txt), var(--blue-strong))}
+.blue-theme {@include themed(var(--blue), var(--blue-txt), 'blu-stripes')}
+.blue-bordered {@include theme-bordered(var(--blue), var(--blue-txt), var(--blue-strong), 'blu-stripes')}
 
 // GREEN
-.green-theme {@include themed(var(--green), var(--green-txt))}
-.green-bordered {@include theme-bordered(var(--green), var(--green-txt), var(--green-strong))}
+.green-theme {@include themed(var(--green), var(--green-txt), 'fake-luxury')}
+.green-bordered {@include theme-bordered(var(--green), var(--green-txt), var(--green-strong), 'fake-luxury')}
 
 // YELLOW
-.yellow-theme {@include themed(var(--yellow), var(--yellow-txt))}
-.yellow-bordered {@include theme-bordered(var(--yellow), var(--yellow-txt), var(--yellow-strong))}
+.yellow-theme {@include themed(var(--yellow), var(--yellow-txt), 'arabesque')}
+.yellow-bordered {@include theme-bordered(var(--yellow), var(--yellow-txt), var(--yellow-strong), 'arabesque')}
 
 // WHITE
-.white-theme {@include themed(var(--white), var(--white-txt))}
-.white-bordered {@include theme-bordered(var(--white), var(--white-txt), var(--white-strong))}
+.white-theme {@include themed(var(--white), var(--white-txt), 'perforated-white-leather')}
+.white-bordered {@include theme-bordered(var(--white), var(--white-txt), var(--white-strong), 'perforated-white-leather')}
 
 // BLACK
-.black-theme {@include themed(var(--black), var(--black-txt))}
-.black-bordered {@include theme-bordered(var(--black), var(--black-txt), var(--black-strong))}
+.black-theme {@include themed(var(--black), var(--black-txt), 'dark-wood')}
+.black-bordered {@include theme-bordered(var(--black), var(--black-txt), var(--black-strong), 'dark-wood')}

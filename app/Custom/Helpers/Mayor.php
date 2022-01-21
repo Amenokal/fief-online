@@ -20,14 +20,17 @@ class Mayor {
         Mayor::find($village_name)->update(['player_id'=>$player->id]);
     }
 
-    // public static function inspect(string $village_name)
-    // {
-    //     $conditions = ['game_id' => GameCurrent::id(),'village_id' => self::craft($village_name)->id];
-    //     $lords = collect(LordCards::where($conditions)->get());
-    //     $armies = collect(Soldiers::where($conditions)->get());
-    //     return $lords->merge($armies);
-    // }
-
-
+    public static function administrate()
+    {
+        $vilgs = Realm::villages();
+        foreach($vilgs as $vilg){
+            if($vilg->player_id && $vilg->soldiers()->get()->isEmpty()){
+                $vilg->update(['player_id' => null]);
+            }
+            elseif($vilg->player_id === null && $vilg->soldiers()->get()->isNotEmpty()){
+                $vilg->update(['player_id' => $vilg->soldiers()->first()->player->id]); 
+            }
+        }
+    }
 
 }

@@ -3,11 +3,13 @@
 namespace App\Custom\Services;
 
 use App\Models\Card;
+use App\Models\Village;
 use Illuminate\Http\Request;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Marechal;
 use App\Custom\Helpers\Architect;
+use App\Custom\Services\ArmyServices;
 use App\Custom\Services\DeckServices;
 
 class GameStartServices {
@@ -25,19 +27,17 @@ class GameStartServices {
         }
     }
 
-    public static function chooseVillage(Request $request)
+    public static function chooseVillage(Village $village)
     {
-        $village_name = $request->village;
-        $village = Mayor::find($village_name);
+        if(Local::player()->villages->isEmpty() && $village->player_id === null){
 
-        if(Local::player()->villages->isEmpty() && !$village->player_id && $request->village){
-
-            $lord = Local::cards()->first();
-            $lord->play();
+            $starter_army = ['sergeant',3,'knight',1];
+            $lord = Local::cards()->first()->play();
+            
             Architect::build('chateau', $village);
-            Marechal::moveLord($lord, $village);
-            Marechal::recruit(['sergeant',5,'knight',1], $village);
-            Mayor::takeControl(Local::player(), $village_name);
+            ArmyServices::newLord($lord, $village);
+            ArmyServices::recruit($starter_army, $village);
+            Mayor::administrate();
             return $lord;
         }
     }
