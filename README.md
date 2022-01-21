@@ -1,30 +1,40 @@
+# HOME
+- Login rework -> register error messages
+- Log events rework
 
-# TODO: ORGANIZING && MOVING ARMIES ???? •w•
+# LOBBY
+- Event rework
+- Lobby to game redirect broken
 
-- ArmyServices ?
-- Marechal::march() /!\
-> how will be displayed on client side ?
-> how move soldiers between armies ?
-> wich data will be sent with axios request ?
-> banners !?
+# CARDS
+- Set up ingame card draw (back ok)
+- Set up reshuffle when deck is empty (back almost done)
+> Discard piles
+> Disaster cards
 
-- possible solutions
-I) different options onclick on lord in game view while move phase :
-> move all || put 1 sergeant in village || inspect & manage manually
->>> all other phases = inspect army = show nb of soldiers/lords
+# ARMIES
+> Move: let one
+> Move: inspect
+> Army manager modal
 
-II) new db table "armies"? id | power | lord_id
-III) foreign id -> bind soldiers to lord 
-
-# TODO: CARDS
+# TODO: TITLES
 
 # TODO: DIPLOMACY
 
+# TODO: record all events in db table to play asynch
 
+# TODO: ingame chat
 
+# TODO: discord server
+
+# TODO: FullScreen / adapt to screen resolution
+
+# TODO: ANIMATIONS
+> moving armies
+> loading screen
 
 # ----
-# TODO: create .htaccess file in root directory to remove /public/ from url
+# BEFORE RELEASE: create .htaccess file in root directory to remove /public/ from url
 > change all paths for ingame background-img & redirects
 
 ### .htaccess file content  ###
