@@ -21,9 +21,10 @@ class GameController extends Controller
 {
     public function index(){
         
-        // dd(Mayor::administrate());
+        // dd(Local::player()->lordsHere(Mayor::find('pugnac'))->first()->army_power());
+        // dd(Realm::lord('Henri')->player);
 
-        // dd(Marechal::evaluate('Henri'));
+        // dd(Realm::lord('Henri'));
         // dd(Realm::lords());
         
         // TODO: make middleware for game booting
@@ -33,7 +34,7 @@ class GameController extends Controller
             'player' => Local::player(),
             'player_cards' => Local::cards(),
             
-            'players' => Realm::families(),
+            'families' => Realm::families(),
             'turn' => Realm::year(),
             'currentPlayer' => Realm::currentPlayer(),
 
@@ -42,7 +43,7 @@ class GameController extends Controller
             'next_event_card' => DeckServices::nextCards('event')->first(),
 
             'villages' => Realm::villages(),
-            'occupied' => Realm::villages()->whereNotNull('player_id')->all(),
+
             'army' => Realm::activeArmies(),
             'lords' => Realm::lords(),
             'buildings' => Realm::buildings()

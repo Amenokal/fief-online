@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Custom\Helpers\Local;
+use App\Custom\Helpers\Marechal;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -51,6 +52,16 @@ class Card extends Model
         $card->delete();
     }
 
+
+    public function army_power()
+    {
+        return Marechal::evaluate($this, true);
+    }
+
+    public function army()
+    {
+        return Marechal::evaluate($this, false);
+    }
 
     public function game()
     {

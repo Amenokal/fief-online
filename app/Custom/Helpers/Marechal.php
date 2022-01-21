@@ -14,6 +14,8 @@ class Marechal {
 
     public static $power = 0;
     public static $power_counter = 0;
+    public static $sergeants = 0;
+    public static $knights = 0;
 
     public static function armyOf(Card $lord)
     {
@@ -31,7 +33,7 @@ class Marechal {
         return collect($lords)->merge(collect($soldiers));
     }
 
-    public static function evaluate(Card $lord)
+    public static function evaluate(Card $lord, bool $only_banner)
     {
         $army = self::armyOf($lord);
 
@@ -55,13 +57,21 @@ class Marechal {
             self::$power_counter = 3;
         }
 
-        $sergeants = count($army->where('type', 'sergeant')->all());
-        $knights = count($army->where('type', 'knight')->all());
-        $response = [
-            'power' => self::$power_counter,
-            'sergeants' => $sergeants,
-            'knights' => $knights,
-        ];
-        return $response;
+        // dd(self::$power);
+
+        if($only_banner){
+            return self::$power_counter;
+        }else{
+            self::$sergeants = count($army->where('type', 'sergeant')->all());
+            self::$knights = count($army->where('type', 'knight')->all());
+            $response = [
+                'power' => self::$power_counter,
+                'sergeants' => self::$sergeants,
+                'knights' => self::$knights,
+            ];
+            return $response;
+        }
+
     }
+
 }

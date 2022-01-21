@@ -55,7 +55,6 @@ class Village extends Model
         ]);
     }
 
-
     /////
 
 
