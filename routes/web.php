@@ -4,7 +4,7 @@ use App\Custom\Helpers\Realm;
 use App\Custom\Services\DeckServices;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
-use App\Http\Controllers\CardsController;
+use App\Http\Controllers\Game\CardsController;
 use App\Custom\Services\GameStartServices;
 use App\Http\Controllers\Web\GameController;
 use App\Http\Controllers\Game\ArmyController;
@@ -78,7 +78,7 @@ Route::post('/endturn', [TurnController::class, 'endTurn']);
     // ARMIES
     // ------
 
-Route::post('/show/army', [ArmyController::class, 'showArmy']);
+// Route::post('/show/army', [ArmyController::class, 'showArmy']);
 
 
 // PHASES

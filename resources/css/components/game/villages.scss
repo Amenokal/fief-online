@@ -1,5 +1,10 @@
 .locations {
-    
+
+    .empty {
+        border: 1px solid rgb(126, 126, 126);
+    }
+
+
     .village,
     .city {
         position: absolute;
@@ -9,9 +14,9 @@
         border-radius: .3em;
         transition: .3s ease;
         
-        &:hover{
-            transform: scale(1.2);
-        }
+        // &:hover{
+            // transform: scale(1.2);
+        // }
     }
 
     //COUNTY 1
@@ -19,7 +24,7 @@
         left: 77%;
         top: 20%;
         opacity: 0;
-        border: 2px solid forestgreen;
+        // border: 2px solid forestgreen;
         
         &::after {
             content:'TOURNUS';
@@ -40,130 +45,130 @@
     #belleville{
         left: 87%;
         top: 5%;
-        border: 2px solid forestgreen;
+        // border: 2px solid forestgreen;
     }
     #pugnac{
         left: 88%;
         top: 36%;
-        border: 2px solid forestgreen;
+        // border: 2px solid forestgreen;
     }
     
     // COUNTY 2
     #st-gérôme{
         left:85.5%;
         top:58.5%;
-        border: 2px solid rgb(255, 206, 81);
+        // border: 2px solid rgb(255, 206, 81);
     }
     #st-médard{
         left:63.5%;
         top:56%;
-        border: 2px solid rgb(255, 206, 81);
+        // border: 2px solid rgb(255, 206, 81);
     }
     #st-andré{
         left:88.5%;
         top:79%;
-        border: 2px solid rgb(255, 206, 81);
+        // border: 2px solid rgb(255, 206, 81);
     }
     
     //DUCHY 1
     #bourg{
         left:53%;
         top:80%;
-        border: 2px solid firebrick;
+        // border: 2px solid firebrick;
     }
     #villeneuve{
         left:44%;
         top:56%;
-        border: 2px solid firebrick;
+        // border: 2px solid firebrick;
     }
     #st-vivien{
         left:37%;
         top:80%;
-        border: 2px solid firebrick;
+        // border: 2px solid firebrick;
     }
     #la-buissière{
         left:72%;
         top:82.5%;
-        border: 2px solid firebrick;
+        // border: 2px solid firebrick;
     }
     
     //BARONY 1
     #les-essarts{
         left: 29%;
         top: 59%;
-        border: 2px solid rgb(0, 204, 0)
+        // border: 2px solid rgb(0, 204, 0)
     }
     #st-paul{
         left:14%;
         top:81%;
-        border: 2px solid rgb(0, 204, 0)
+        // border: 2px solid rgb(0, 204, 0)
     }
     
     //COUNTY 3
     #sigy{
         left:5%;
         top:63%;
-        border: 2px solid dodgerblue;
+        // border: 2px solid dodgerblue;
     }
     #marcamps{
         left:14.5%;
         top:48.5%;
-        border: 2px solid dodgerblue;
+        // border: 2px solid dodgerblue;
     }
     #st-ciers-d-abzac{
         left: 7%;
         top:32%;
-        border: 2px solid dodgerblue;
+        // border: 2px solid dodgerblue;
     }
     
     //DUCHY 2
     #blaye{
         left:25%;
         top:26%;
-        border: 2px solid rgb(255, 133, 52);
+        // border: 2px solid rgb(255, 133, 52);
     }
     #beaujeu{
         left: 6%;
         top: 11%;
-        border: 2px solid rgb(255, 133, 52);
+        // border: 2px solid rgb(255, 133, 52);
     }
     #la-salle{
         left: 22%;
         top: 4%;
-        border: 2px solid rgb(255, 133, 52);
+        // border: 2px solid rgb(255, 133, 52);
     }
     #charolles{
         left: 36%;
         top: 37%;
-        border: 2px solid rgb(255, 133, 52);
+        // border: 2px solid rgb(255, 133, 52);
     }
     
     // COUNTY 4
     #sennecy{
         left: 37%;
         top: 12%;
-        border: 2px solid rgb(231, 202, 202);
+        // border: 2px solid rgb(231, 202, 202);
     }
     #l-épervier{
         left: 50%;
         top: 28%;
-        border: 2px solid rgb(231, 202, 202);
+        // border: 2px solid rgb(231, 202, 202);
     }
     #château-neuf{
         left: 51%;
         top: 8%;
-        border: 2px solid rgb(231, 202, 202);
+        // border: 2px solid rgb(231, 202, 202);
     }
 
     // BARONY 2
     #mazilles{
         left: 63%;
         top: 13%;
-        border: 2px solid rgb(231, 192, 233);
+        // border: 2px solid rgb(231, 192, 233);
     }
     #st-andromy{
         left: 71.5%;
         top: 40%;
-        border: 2px solid rgb(231, 192, 233);
+        // border: 2px solid rgb(231, 192, 233);
     }
 }

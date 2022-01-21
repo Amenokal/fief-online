@@ -59,5 +59,24 @@ class DeckServices {
     {
         return DeckServices::nextCards('lord')->skip(1)->first()->disaster;
     }
+
+
+
+
+
+    public static function discard(string $deck, string $card_name)
+    {
+        $card = Card::where([
+            'game_id' => Game::current()->id,
+            'deck' => $deck,
+            'name' => $card_name
+        ]);
+        $card->update([
+            'on_board' => false,
+            'village_id' => null,
+            'player_id' => null
+        ]);
+        $card->delete();
+    }
     
 }

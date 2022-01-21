@@ -20,9 +20,15 @@
         <div class='main-section'>
 
             <section class='players'>
-                @foreach ($players as $player)
-                    <div class='player-info-wrapper {{$player->color}}-bordered'>
-                        <div class='player-name'>{{$player->familyname}}</div>
+                @foreach ($families as $fam)
+                    <div class='player-info-wrapper {{$fam->color}}-bordered'>
+                        <span @class([
+                            'player-name',
+                            'current-player' => $currentPlayer->id === $fam->id
+                        ])>
+                            <i class="fas fa-crown"></i>
+                            {{$fam->familyname}}
+                        </span>
                     </div>
                 @endforeach
             </section>
@@ -35,7 +41,7 @@
                         :player="$player"
                         :lords="$lords"
                         :buildings="$buildings"
-                        :occupied="$occupied"
+                        :families="$families"
                     />
 
                     <x-board-cards :disasters="$inc_disasters" :nextcard="$next_event_card"/>
@@ -47,9 +53,7 @@
         
         <div class='player-hand hand-{{ $player_cards->count() }}'>
             @foreach ($player_cards as $card)
-                <figure class='card'>
-                    <img src='{{ $card->img_src }}' id='{{ $card->type }}-{{ $card->name }}'>
-                </figure>
+                <span style='background-image: url({{ $card->img_src }})' class='card' id='{{ $card->deck }}-{{ $card->name }}'></span>
             @endforeach
         </div>
         
@@ -68,7 +72,7 @@
 
 
     <aside class='modal-wrapper' id='info-modal'>
-        <span>RAPPORT DE FORCES</span>
+        <span>MODAL</span>
         <div>
             <div class='info-lord'></div>
             <div class='info-soldiers'></div>

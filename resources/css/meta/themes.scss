@@ -1,7 +1,7 @@
 @mixin themed($base, $txt, $texture){
     background-color: $base;
     color: $txt;
-    background-image: url('/fief/storage/app/public/textures/'+$texture+'.png') !important;
+    background-image: url('/fief/storage/app/public/textures/'+$texture+'.png');
 }
 
 @mixin theme-bordered($base, $txt, $strong, $texture){
@@ -11,7 +11,13 @@
     border: 5px solid $strong;
     
     &.token {
-        border: 2px solid $strong;
+        border: 3px solid $base;
+    }
+
+    &.village {
+        background-color: transparent;
+        background-image: none;
+        border: 3px solid $base;
     }
 }
 

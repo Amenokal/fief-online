@@ -1,8 +1,10 @@
 // CUSTOM CANVAS BANNERS !!!
 
-export function drawAll(power){
+export function drawBanners(){
+    console.log('init')
     document.querySelectorAll('.banner').forEach(el=>{
-        draw(el, power);
+        console.log(el)
+        draw(el);
     })
 }
 
@@ -11,12 +13,15 @@ function getProp(what){
 }
 
 
-export function draw(target, power = 1){
+export function draw(target){
+
+    console.log(target);
 
     let elm = document.querySelector('.game-view').className.split(' ')[1].split('-')[0];
     let baseColor = getProp(elm);
     let strongColor = getProp(elm+'-strong');
     let txtColor = getProp(elm+'-txt');
+    let power = target.className.split(' ')[2].split('-')[1];
 
     let cvs = target;
     let ctx = cvs.getContext('2d');

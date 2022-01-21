@@ -1,3 +1,31 @@
+// \\\
+// --------------------
+// PHASES ::::: DISCARD
+// --------------------
+// ///
+
+import axios from "axios";
+
+document.querySelector('.player-hand').addEventListener('click', e=>{
+
+    if(document.querySelector('.current-phase').id === 'phase-5' && e.target.className.includes('card')){
+        let card = e.target;
+        axios.post('./discard', {
+            deck: card.id.split('-')[0],
+            card: card.id.split('-')[1]
+        })
+        .then(()=>{
+            card.classList.add('discarded');
+
+            setTimeout(() => {
+                card.remove()
+            }, 1000);
+        })
+    }
+
+})
+
+
 
 // \\\
 // --------------------------------
@@ -26,13 +54,16 @@ export function drawAnimation(data){
     let card = document.getElementById('to-draw');
     card.classList.add('draw-animation');
 
-    let anim = setTimeout(() => {
+    setTimeout(() => {
         card.remove();
         document.querySelector('.player-hand').innerHTML +=
-        `<figure class='card'>
-            <img src='${data.img_src}' id='${data.name}'>
-        </figure>`
-    }, 1000);
+        `<span 
+            id='${data.deck}-${data.name}'
+            class='card'
+            style='background-image: url(${data.img_src})'
+        ></span>`
+
+    }, 1500);
 
 }
 

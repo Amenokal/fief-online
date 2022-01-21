@@ -1,12 +1,13 @@
 // import { draw } from './army.js';
-import { createNextCard } from './animations/cards.js';
-import { drawAnimation } from './animations/cards.js';
+import { createNextCard } from './phases/cards.js';
+import { drawAnimation } from './phases/cards.js';
+import { drawBanners } from './banner.js';
 
 const { default: axios } = require('axios');
 const { remove } = require('lodash');
 require('./bootstrap');
-require('./animations/cards')
-require('./animations/armies')
+require('./phases/cards')
+require('./phases/armies')
 
 
 // \\\
@@ -18,9 +19,9 @@ require('./animations/armies')
 document.onload = init();
 
 function init(){
+    drawBanners();
     document.querySelector('.locations').addEventListener('click', e=>{
         chooseVillage(e);
-        moveArmy(e);
     })
 }
 
@@ -69,8 +70,7 @@ document.getElementById('step2').addEventListener('click', e=>{
 })
 
 function chooseVillage(e){
-    if(document.querySelector('.choose-village') &&
-        (e.target.className === 'city' || e.target.className === 'village')){
+    if(document.querySelector('.choose-village') && e.target.className === 'village'){
         axios.post('./gamestart/2', {
             village: e.target.id
         })
@@ -83,6 +83,8 @@ function chooseVillage(e){
                 <div class='army'>
                     <span id='${res.data.name}' class='lord'></span>
                 </div>`;
+
+                
                 document.getElementById('step2').classList.remove('choose-village');
 
 
@@ -212,78 +214,28 @@ function endTurn(){
 
 
 
-document.querySelector('.locations').addEventListener('click',e=>{
-    if(e.target.className.includes('lord') && !document.querySelector('.move-active')){
-        showArmy(e);
-    }
-})
+// document.querySelector('.locations').addEventListener('click',e=>{
+//     if(e.target.className.includes('lord') && !document.querySelector('.move-active')){
+//         showArmy(e);
+//     }
+// })
 
-function showArmy(e){
+// function showArmy(e){
     
-    axios.post('./show/army', {
-        lord: e.target.id,
-        village: e.target.parentNode.parentNode.id
-    })
-    .then(res=>{
-        console.log(res);
+//     axios.post('./show/army', {
+//         lord: e.target.id,
+//         village: e.target.parentNode.parentNode.id
+//     })
+//     .then(res=>{
+//         console.log(res);
         // let modal = document.getElementById('info-modal');
         // modal.classList.add('show');
         // modal.classList.add(res.data.color+'-bordered');
 
         // modal.addEventListener('click', ()=>{modal.classList.remove('show')})
-    })
-}
+//     })
+// }
 
-
-// \\\
-// ----------------------
-// ARMIES ::::: MOUVEMENT
-// ----------------------
-// ///
-
-
-
-document.getElementById('moveBtn').addEventListener('click', e=>{
-    e.target.classList.toggle('move-active');
-})
-function moveArmy(e){
-
-        // FROM
-    // if((e.target.parentNode.className.includes('army') || e.target.className.includes('army'))
-    //     && document.querySelector('.move-active')){
-        
-    //     if(!document.querySelector('.from') &&
-    //     (e.target.parentNode.parentNode.className.includes('city') ||
-    //         e.target.parentNode.parentNode.className.includes('village'))){
-    //             e.target.parentNode.parentNode.classList.add('from');
-    //     }
-    // }
-
-    //     // TO
-    // else if(document.querySelector('.from')){
-    //     if(e.target.className.includes('city') || e.target.className.includes('village')){
-    //         e.target.classList.add('to');
-    //     }
-    //     else if(e.target.parentNode.className.includes('city') || e.target.parentNode.className.includes('village')){
-    //         e.target.parentNode.classList.add('to');
-    //     }
-
-    //     if(document.querySelector('.move-active')){
-    //         document.querySelector('.move-active').classList.remove('move-active');
-    //     }
-    // }
-
-    // if(document.querySelector('.from') && document.querySelector('.to')){
-    //     axios.post('./move/army', {
-    //         from: document.querySelector('.from').id,
-    //         to: document.querySelector('.to').id,
-    //     })
-    //     .then(res=>{
-    //         console.log(res)
-    //     })
-    // }
-
-}
 
 
 

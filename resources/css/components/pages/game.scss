@@ -1,8 +1,8 @@
 @mixin textured {
     background-image: url('/fief/storage/app/public/textures/grunge2.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    // background-position: center;
+    // background-repeat: no-repeat;
+    // background-size: cover;
     box-sizing: border-box;
     border: 5px solid black;
     box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.7);
@@ -10,7 +10,6 @@
 
 .game-container {
     background-color: var(--background-black);
-    overflow: hidden;
     height: 100%;
     width: 100%;
 
@@ -50,6 +49,7 @@
         height: 95%;
         width: 100%;
         display: flex;
+        justify-content: center;
     }
 
     .players {
@@ -58,12 +58,25 @@
         flex-direction: column;
         justify-content: space-between;
         @include textured;
+        background-color: rgb(83, 48, 20);
+        background-image: url('/fief/storage/app/public/textures/purty-wood.png');
+
+        .fa-crown{
+            width: 0px;
+        }
             
         .player-name {
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.4);
+            
+            &.current-player{
+                .fa-crown{
+                    width: 20px;
+                    margin-right: .3em;
+                }
+            }
         }
 
         button {
@@ -71,6 +84,7 @@
             border: 2px solid rgb(143, 116, 80);
             background-color: burlywood;
         }
+
     }
 
 
@@ -89,7 +103,7 @@
         display: flex;
         box-sizing: border-box;
         padding: 1em;
-        box-shadow: inset 5px 3px 15px -5px #000000;
+        box-shadow: inset 0px 0px 43px 20px rgba(0,0,0,0.41);
 
         .game-board {
             height: 100%;
@@ -160,7 +174,7 @@
 
     .player-hand {
         height: 50px;
-        width: 100%;
+        width: 300px;
         position: absolute;
         bottom: 0;
         display: flex;

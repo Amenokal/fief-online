@@ -26,10 +26,10 @@
     transform: translateX(0px) translateY(0px) rotate(0deg);
   }
   40% {
-    transform: translateX(-200px) translateY(200px) rotate(-35deg);
+    transform: translateX(-300px) translateY(200px) rotate(-35deg);
   }
   to {
-    transform: translateX(-300px) translateY(700px) rotate(-90deg);
+    transform: translateX(-600px) translateY(700px) rotate(-90deg);
   }
 }
 
@@ -38,10 +38,10 @@
     transform: translateX(0px) translateY(0px) rotate(0deg);
   }
   40% {
-    transform: translateX(-200px) translateY(200px) rotate(-35deg);
+    transform: translateX(-300px) translateY(200px) rotate(-35deg);
   }
   to {
-    transform: translateX(-300px) translateY(700px) rotate(-90deg);
+    transform: translateX(-600px) translateY(700px) rotate(-90deg);
   }
 }
 @-webkit-keyframes drawn {
@@ -76,120 +76,178 @@
     opacity: 1;
   }
 }
+@-webkit-keyframes discarded {
+  from {
+    transform: scale(1.5) translateY(-3em) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(2) translateY(-6em) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: scale(3) translateY(-6em) rotate(20deg);
+    opacity: 0;
+  }
+}
+@keyframes discarded {
+  from {
+    transform: scale(1.5) translateY(-3em) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(2) translateY(-6em) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: scale(3) translateY(-6em) rotate(20deg);
+    opacity: 0;
+  }
+}
 .red-theme {
   background-color: var(--red);
   color: var(--red-txt);
-  background-image: url("/fief/storage/app/public/textures/dark-leather.png") !important;
+  background-image: url("/fief/storage/app/public/textures/dark-leather.png");
 }
 
 .red-bordered {
   background-color: var(--red);
   color: var(--red-txt);
-  background-image: url("/fief/storage/app/public/textures/dark-leather.png") !important;
+  background-image: url("/fief/storage/app/public/textures/dark-leather.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--red-strong);
 }
 .red-bordered.token {
-  border: 2px solid var(--red-strong);
+  border: 3px solid var(--red);
+}
+.red-bordered.village {
+  background-color: transparent;
+  background-image: none;
+  border: 3px solid var(--red);
 }
 
 .blue-theme {
   background-color: var(--blue);
   color: var(--blue-txt);
-  background-image: url("/fief/storage/app/public/textures/blu-stripes.png") !important;
+  background-image: url("/fief/storage/app/public/textures/blu-stripes.png");
 }
 
 .blue-bordered {
   background-color: var(--blue);
   color: var(--blue-txt);
-  background-image: url("/fief/storage/app/public/textures/blu-stripes.png") !important;
+  background-image: url("/fief/storage/app/public/textures/blu-stripes.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--blue-strong);
 }
 .blue-bordered.token {
-  border: 2px solid var(--blue-strong);
+  border: 3px solid var(--blue);
+}
+.blue-bordered.village {
+  background-color: transparent;
+  background-image: none;
+  border: 3px solid var(--blue);
 }
 
 .green-theme {
   background-color: var(--green);
   color: var(--green-txt);
-  background-image: url("/fief/storage/app/public/textures/fake-luxury.png") !important;
+  background-image: url("/fief/storage/app/public/textures/fake-luxury.png");
 }
 
 .green-bordered {
   background-color: var(--green);
   color: var(--green-txt);
-  background-image: url("/fief/storage/app/public/textures/fake-luxury.png") !important;
+  background-image: url("/fief/storage/app/public/textures/fake-luxury.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--green-strong);
 }
 .green-bordered.token {
-  border: 2px solid var(--green-strong);
+  border: 3px solid var(--green);
+}
+.green-bordered.village {
+  background-color: transparent;
+  background-image: none;
+  border: 3px solid var(--green);
 }
 
 .yellow-theme {
   background-color: var(--yellow);
   color: var(--yellow-txt);
-  background-image: url("/fief/storage/app/public/textures/arabesque.png") !important;
+  background-image: url("/fief/storage/app/public/textures/arabesque.png");
 }
 
 .yellow-bordered {
   background-color: var(--yellow);
   color: var(--yellow-txt);
-  background-image: url("/fief/storage/app/public/textures/arabesque.png") !important;
+  background-image: url("/fief/storage/app/public/textures/arabesque.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--yellow-strong);
 }
 .yellow-bordered.token {
-  border: 2px solid var(--yellow-strong);
+  border: 3px solid var(--yellow);
+}
+.yellow-bordered.village {
+  background-color: transparent;
+  background-image: none;
+  border: 3px solid var(--yellow);
 }
 
 .white-theme {
   background-color: var(--white);
   color: var(--white-txt);
-  background-image: url("/fief/storage/app/public/textures/perforated-white-leather.png") !important;
+  background-image: url("/fief/storage/app/public/textures/perforated-white-leather.png");
 }
 
 .white-bordered {
   background-color: var(--white);
   color: var(--white-txt);
-  background-image: url("/fief/storage/app/public/textures/perforated-white-leather.png") !important;
+  background-image: url("/fief/storage/app/public/textures/perforated-white-leather.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--white-strong);
 }
 .white-bordered.token {
-  border: 2px solid var(--white-strong);
+  border: 3px solid var(--white);
+}
+.white-bordered.village {
+  background-color: transparent;
+  background-image: none;
+  border: 3px solid var(--white);
 }
 
 .black-theme {
   background-color: var(--black);
   color: var(--black-txt);
-  background-image: url("/fief/storage/app/public/textures/dark-wood.png") !important;
+  background-image: url("/fief/storage/app/public/textures/dark-wood.png");
 }
 
 .black-bordered {
   background-color: var(--black);
   color: var(--black-txt);
-  background-image: url("/fief/storage/app/public/textures/dark-wood.png") !important;
+  background-image: url("/fief/storage/app/public/textures/dark-wood.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--black-strong);
 }
 .black-bordered.token {
-  border: 2px solid var(--black-strong);
+  border: 3px solid var(--black);
+}
+.black-bordered.village {
+  background-color: transparent;
+  background-image: none;
+  border: 3px solid var(--black);
 }
 
 .token {
   height: 27px;
   width: 27px;
   padding: 0.1em;
-  background-color: papayawhip;
   border-radius: 0.2em;
+  background-color: papayawhip;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 60%;
@@ -327,11 +385,6 @@
   top: 24%;
 }
 
-/**
-  * CARDS
-  * -----
-  *
-  */
 .card {
   height: 100px;
   width: 70px;
@@ -339,15 +392,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-}
-.card img {
-  height: 50%;
-  width: auto;
-  transition: 0.6s ease;
-}
-.card img:hover {
-  transform: scale(1.4) translateY(-2em);
 }
 .card .overline {
   position: absolute;
@@ -384,17 +428,34 @@
 }
 
 .player-hand .card {
-  height: 250px;
-  width: 230px;
-  -webkit-animation: "drawn" 0.5s forwards;
-          animation: "drawn" 0.5s forwards;
+  height: 120px;
+  width: 80px;
+  position: relative;
+  bottom: 40%;
+  background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.2s ease;
+}
+.player-hand .card:hover {
+  transform: scale(1.5) translateY(-3em);
 }
 
 .draw-animation {
-  -webkit-animation: "draw" 1.5s forwards;
-          animation: "draw" 1.5s forwards;
+  -webkit-animation: "draw" 1.5s forwards ease-out;
+          animation: "draw" 1.5s forwards ease-out;
 }
 
+.discarded {
+  transform: scale(1.5) translateY(-3em);
+  -webkit-animation: "discarded" 1s forwards ease-out;
+          animation: "discarded" 1s forwards ease-out;
+}
+
+.locations .empty {
+  border: 1px solid #7e7e7e;
+}
 .locations .village,
 .locations .city {
   position: absolute;
@@ -404,15 +465,10 @@
   border-radius: 0.3em;
   transition: 0.3s ease;
 }
-.locations .village:hover,
-.locations .city:hover {
-  transform: scale(1.2);
-}
 .locations #tournus {
   left: 77%;
   top: 20%;
   opacity: 0;
-  border: 2px solid forestgreen;
 }
 .locations #tournus::after {
   content: "TOURNUS";
@@ -431,117 +487,94 @@
 .locations #belleville {
   left: 87%;
   top: 5%;
-  border: 2px solid forestgreen;
 }
 .locations #pugnac {
   left: 88%;
   top: 36%;
-  border: 2px solid forestgreen;
 }
 .locations #st-gérôme {
   left: 85.5%;
   top: 58.5%;
-  border: 2px solid #ffce51;
 }
 .locations #st-médard {
   left: 63.5%;
   top: 56%;
-  border: 2px solid #ffce51;
 }
 .locations #st-andré {
   left: 88.5%;
   top: 79%;
-  border: 2px solid #ffce51;
 }
 .locations #bourg {
   left: 53%;
   top: 80%;
-  border: 2px solid firebrick;
 }
 .locations #villeneuve {
   left: 44%;
   top: 56%;
-  border: 2px solid firebrick;
 }
 .locations #st-vivien {
   left: 37%;
   top: 80%;
-  border: 2px solid firebrick;
 }
 .locations #la-buissière {
   left: 72%;
   top: 82.5%;
-  border: 2px solid firebrick;
 }
 .locations #les-essarts {
   left: 29%;
   top: 59%;
-  border: 2px solid #00cc00;
 }
 .locations #st-paul {
   left: 14%;
   top: 81%;
-  border: 2px solid #00cc00;
 }
 .locations #sigy {
   left: 5%;
   top: 63%;
-  border: 2px solid dodgerblue;
 }
 .locations #marcamps {
   left: 14.5%;
   top: 48.5%;
-  border: 2px solid dodgerblue;
 }
 .locations #st-ciers-d-abzac {
   left: 7%;
   top: 32%;
-  border: 2px solid dodgerblue;
 }
 .locations #blaye {
   left: 25%;
   top: 26%;
-  border: 2px solid #ff8534;
 }
 .locations #beaujeu {
   left: 6%;
   top: 11%;
-  border: 2px solid #ff8534;
 }
 .locations #la-salle {
   left: 22%;
   top: 4%;
-  border: 2px solid #ff8534;
 }
 .locations #charolles {
   left: 36%;
   top: 37%;
-  border: 2px solid #ff8534;
 }
 .locations #sennecy {
   left: 37%;
   top: 12%;
-  border: 2px solid #e7caca;
 }
 .locations #l-épervier {
   left: 50%;
   top: 28%;
-  border: 2px solid #e7caca;
 }
 .locations #château-neuf {
   left: 51%;
   top: 8%;
-  border: 2px solid #e7caca;
 }
 .locations #mazilles {
   left: 63%;
   top: 13%;
-  border: 2px solid #e7c0e9;
 }
 .locations #st-andromy {
   left: 71.5%;
   top: 40%;
-  border: 2px solid #e7c0e9;
 }
 
 .chateau {
@@ -584,6 +617,7 @@
   width: 25px;
   position: relative;
   z-index: 3;
+  display: flex;
 }
 .army .lord {
   height: 100%;
@@ -616,27 +650,15 @@
   flex-direction: column;
   transition: 0.3s ease;
   overflow: hidden;
-}
-.army .army-forces div {
-  height: 50%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin: 0.1em 0;
+  text-align: right;
 }
 .army .army-forces.show {
-  width: 50px;
+  width: 37px;
+  border-radius: 0.3em;
+  color: firebrick;
 }
-.army .army-forces .force-counter {
-  height: 25px;
-  width: 15px;
-  border: 1px solid #d8c689;
-  background-color: #f8eabb;
-  border-top-right-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.army .army-forces.show span {
+  margin: 0.1em;
 }
 .army .move-options {
   position: relative;
@@ -691,10 +713,15 @@
 .army .move-options.show i.active {
   background-color: #f5c64f;
 }
+.army .banner {
+  height: 85%;
+  width: auto;
+  position: absolute;
+  right: -33%;
+}
 
 .game-container {
   background-color: var(--background-black);
-  overflow: hidden;
   height: 100%;
   width: 100%;
 }
@@ -730,6 +757,7 @@
   height: 95%;
   width: 100%;
   display: flex;
+  justify-content: center;
 }
 .game-container .players {
   width: 250px;
@@ -737,18 +765,24 @@
   flex-direction: column;
   justify-content: space-between;
   background-image: url("/fief/storage/app/public/textures/grunge2.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   box-sizing: border-box;
   border: 5px solid black;
   box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.7);
+  background-color: #533014;
+  background-image: url("/fief/storage/app/public/textures/purty-wood.png");
+}
+.game-container .players .fa-crown {
+  width: 0px;
 }
 .game-container .players .player-name {
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.4);
+}
+.game-container .players .player-name.current-player .fa-crown {
+  width: 20px;
+  margin-right: 0.3em;
 }
 .game-container .players button {
   height: 110px;
@@ -766,7 +800,7 @@
   display: flex;
   box-sizing: border-box;
   padding: 1em;
-  box-shadow: inset 5px 3px 15px -5px #000000;
+  box-shadow: inset 0px 0px 43px 20px rgba(0, 0, 0, 0.41);
 }
 .game-container .game-view .game-board {
   height: 100%;
@@ -796,9 +830,6 @@
   justify-content: center;
   background-color: var(--background-black);
   background-image: url("/fief/storage/app/public/textures/grunge2.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   box-sizing: border-box;
   border: 5px solid black;
   box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.7);
@@ -830,7 +861,7 @@
 }
 .game-container .player-hand {
   height: 50px;
-  width: 100%;
+  width: 300px;
   position: absolute;
   bottom: 0;
   display: flex;
@@ -1077,4 +1108,5 @@
 body {
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
 }

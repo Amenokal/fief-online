@@ -24,6 +24,16 @@ class Player extends Model
         'game_id',
     ];
 
+    public function lordsHere(Village $village)
+    {
+        return Card::where([
+            'player_id' => $this->id,
+            'game_id' => Game::current()->id,
+            'village_id' => $village->id,
+            'deck' => 'lord'
+        ])->get();
+    }
+
     public function cards()
     {
         return $this->hasMany(Card::class);
