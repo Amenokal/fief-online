@@ -7,10 +7,8 @@
 - Lobby to game redirect broken
 
 # CARDS
-- Set up ingame card draw (back ok)
-- Set up reshuffle when deck is empty (back almost done)
-> Discard piles
-> Disaster cards
+> disaster phase
+> pose phase (need titles)
 
 # ARMIES
 > Move: let one
@@ -30,10 +28,15 @@
 # TODO: FullScreen / adapt to screen resolution
 
 # TODO: ANIMATIONS
+> discard animation in discard piles
 > moving armies
 > loading screen
 
+
+
+
 # ----
+
 # BEFORE RELEASE: create .htaccess file in root directory to remove /public/ from url
 > change all paths for ingame background-img & redirects
 

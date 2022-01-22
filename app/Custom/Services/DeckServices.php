@@ -33,7 +33,7 @@ class DeckServices {
     {
 
         // shuffle if empty pile
-        if(!Gipsy::nextCard($deck)->exists()){
+        if(!Gipsy::nextCard($deck) || Gipsy::nextCard($deck) === null){
             Gipsy::shuffleDeck($deck);
         }
 
@@ -50,11 +50,13 @@ class DeckServices {
 
             if($inc_disasters<3){
                 Gipsy::nextCard('event')->update([
-                    'on_board' => true,
-                    'is_next' => false
+                    'is_next' => false,
+                    'on_board' => true
                 ]);
             }elseif($inc_disasters >= 3){
-                Gipsy::nextCard('event')->update(['is_next' => false])->delete();
+                Gipsy::nextCard('event')->update([
+                    'is_next' => false,
+                ])->delete();
             }
             Gipsy::makeNewNextCard('event');
             return ['nextCardType' => Gipsy::getNextType($deck)];

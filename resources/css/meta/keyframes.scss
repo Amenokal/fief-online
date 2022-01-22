@@ -38,3 +38,50 @@
         opacity: 0
     }
 }
+
+@keyframes disas-animation-0 {
+    from {
+        transform: translateY(0) scale(1) rotate(90deg);
+    }
+    50% {
+        transform: translateY(50%) scale(1.2) rotate(90deg);        
+    }
+    to {
+        transform: translateY(90%) scale(1) rotate(90deg);        
+    }
+}
+@keyframes disas-animation-1 {
+    from {
+        transform: translateY(0) scale(1) rotate(90deg);
+    }
+    50% {
+        transform: translateY(100%) scale(1.2) rotate(90deg);        
+    }
+    to {
+        transform: translateY(180%) scale(1) rotate(90deg);        
+    }
+}
+@keyframes disas-animation-2 {
+    from {
+        transform: translateY(0) scale(1) rotate(90deg);
+    }
+    50% {
+        transform: translateY(150%) scale(1.2) rotate(90deg);        
+    }
+    to {
+        transform: translateY(260%) scale(1) rotate(90deg);        
+    }
+}
+
+// TODO
+@keyframes disas-animation-discard {
+    from {
+        transform: translateY(0) scale(1) rotate(90deg);
+    }
+    50% {
+        transform: translateY(170%) scale(1.2) rotate(90deg);        
+    }
+    to {
+        transform: translateY(340%) scale(1) rotate(90deg);        
+    }
+}

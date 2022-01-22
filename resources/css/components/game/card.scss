@@ -70,3 +70,16 @@
     transform: scale(1.5) translateY(-3em);
     animation: 'discarded' 1s forwards ease-out;
 }
+
+.disas-animation-0 {
+    animation: 'disas-animation-0' 1s ease-out forwards;
+    z-index: 2;
+}
+.disas-animation-1 {
+    animation: 'disas-animation-0' 1.5s ease-out forwards;
+    z-index: 2;
+}
+.disas-animation-2 {
+    animation: 'disas-animation-0' 2s ease-out forwards;
+    z-index: 2;
+}

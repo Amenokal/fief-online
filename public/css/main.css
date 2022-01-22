@@ -94,6 +94,94 @@
     opacity: 0;
   }
 }
+@-webkit-keyframes disas-animation-0 {
+  from {
+    transform: translateY(0) scale(1) rotate(90deg);
+  }
+  50% {
+    transform: translateY(50%) scale(1.2) rotate(90deg);
+  }
+  to {
+    transform: translateY(90%) scale(1) rotate(90deg);
+  }
+}
+@keyframes disas-animation-0 {
+  from {
+    transform: translateY(0) scale(1) rotate(90deg);
+  }
+  50% {
+    transform: translateY(50%) scale(1.2) rotate(90deg);
+  }
+  to {
+    transform: translateY(90%) scale(1) rotate(90deg);
+  }
+}
+@-webkit-keyframes disas-animation-1 {
+  from {
+    transform: translateY(0) scale(1) rotate(90deg);
+  }
+  50% {
+    transform: translateY(100%) scale(1.2) rotate(90deg);
+  }
+  to {
+    transform: translateY(180%) scale(1) rotate(90deg);
+  }
+}
+@keyframes disas-animation-1 {
+  from {
+    transform: translateY(0) scale(1) rotate(90deg);
+  }
+  50% {
+    transform: translateY(100%) scale(1.2) rotate(90deg);
+  }
+  to {
+    transform: translateY(180%) scale(1) rotate(90deg);
+  }
+}
+@-webkit-keyframes disas-animation-2 {
+  from {
+    transform: translateY(0) scale(1) rotate(90deg);
+  }
+  50% {
+    transform: translateY(150%) scale(1.2) rotate(90deg);
+  }
+  to {
+    transform: translateY(260%) scale(1) rotate(90deg);
+  }
+}
+@keyframes disas-animation-2 {
+  from {
+    transform: translateY(0) scale(1) rotate(90deg);
+  }
+  50% {
+    transform: translateY(150%) scale(1.2) rotate(90deg);
+  }
+  to {
+    transform: translateY(260%) scale(1) rotate(90deg);
+  }
+}
+@-webkit-keyframes disas-animation-discard {
+  from {
+    transform: translateY(0) scale(1) rotate(90deg);
+  }
+  50% {
+    transform: translateY(170%) scale(1.2) rotate(90deg);
+  }
+  to {
+    transform: translateY(340%) scale(1) rotate(90deg);
+  }
+}
+@keyframes disas-animation-discard {
+  from {
+    transform: translateY(0) scale(1) rotate(90deg);
+  }
+  50% {
+    transform: translateY(170%) scale(1.2) rotate(90deg);
+  }
+  to {
+    transform: translateY(340%) scale(1) rotate(90deg);
+  }
+}
 .red-theme {
   background-color: var(--red);
   color: var(--red-txt);
@@ -444,6 +532,24 @@
   transform: scale(1.5) translateY(-3em);
   -webkit-animation: "discarded" 1s forwards ease-out;
           animation: "discarded" 1s forwards ease-out;
+}
+
+.disas-animation-0 {
+  -webkit-animation: "disas-animation-0" 1s ease-out forwards;
+          animation: "disas-animation-0" 1s ease-out forwards;
+  z-index: 2;
+}
+
+.disas-animation-1 {
+  -webkit-animation: "disas-animation-0" 1.5s ease-out forwards;
+          animation: "disas-animation-0" 1.5s ease-out forwards;
+  z-index: 2;
+}
+
+.disas-animation-2 {
+  -webkit-animation: "disas-animation-0" 2s ease-out forwards;
+          animation: "disas-animation-0" 2s ease-out forwards;
+  z-index: 2;
 }
 
 .locations .empty {

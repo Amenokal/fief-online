@@ -63,6 +63,7 @@ Route::post('/reset/board', [TestController::class, 'resetBoard']);
 
 Route::post('/draw/card', [CardsController::class, 'draw']);
 Route::post('/discard', [CardsController::class, 'discard']);
+Route::post('/shuffle', [CardsController::class, 'shuffle']);
 
     // TURNS
     // -----

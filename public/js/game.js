@@ -2358,9 +2358,8 @@ document.querySelector('.game-cards').addEventListener('click', function (e) {
   var phase = document.querySelector('.current-phase').id.split('-')[1];
   var pile = e.target.parentNode.id.split('-')[0];
   var isDisaster = e.target.className.split(' ')[1].split('-')[0] === 'disaster';
-  console.log(isDisaster);
 
-  if ((pile == 'lord' || pile == 'event') && phase === '6') {
+  if ((pile == 'lord' || pile == 'event') && phase === '6' && e.target.className.includes('card')) {
     axios__WEBPACK_IMPORTED_MODULE_0___default().post('./draw/card', {
       deck: pile,
       isDisaster: isDisaster
@@ -2370,6 +2369,17 @@ document.querySelector('.game-cards').addEventListener('click', function (e) {
       } else {
         disasterAnimation(res.data.nextCardType);
       }
+    });
+  }
+}); // RESHUFFLE IF EMPTY
+
+document.querySelector('.game-cards').addEventListener('click', function (e) {
+  if (e.target.id.includes('shuffle')) {
+    var deck = e.target.id.split('-')[1];
+    axios__WEBPACK_IMPORTED_MODULE_0___default().post('./shuffle', {
+      deck: deck
+    }).then(function (res) {
+      document.querySelector("".concat(deck, "-pile-wrapper")).innerHTML = "<x-card-verso class=\"card ".concat(res.data.nextCardType, "-card\"/>");
     });
   }
 }); // \\\
@@ -2392,17 +2402,22 @@ function drawAnimation(newCard, nextCardType) {
 }
 
 function disasterAnimation(nextCardType) {
-  document.querySelector('.event-pile-wrapper').innerHTML += "<x-card-verso class=\"card ".concat(nextCardType, "-card\"/>");
-  var card = document.querySelector('.disaster-card');
+  var pile = document.querySelector('.event-pile-wrapper');
+  pile.children[0].id = 'to-inc-pile';
+  pile.innerHTML += "<x-card-verso class=\"card ".concat(nextCardType, "-card\"/>");
+  var card = document.getElementById('to-inc-pile');
+  var alreadyInc = document.querySelectorAll('.incomming-disaster-card-wrapper>.disaster-card').length;
   card.classList.add("disas-animation-".concat(alreadyInc));
+  console.log(card);
+  console.log(alreadyInc);
+  var timeout = 1000 + alreadyInc * 500;
   setTimeout(function () {
     card.remove();
-  }, 1000);
-  var incDisasPiles = document.querySelectorAll('.incomming-disaster-card-wrapper');
-  var eventDiscardPile = document.querySelector('.event-discard-pile-wrapper');
-  var alreadyInc = document.querySelectorAll('.incomming-disaster-card-wrapper>.disaster-card').length;
-  var pile = alreadyInc < 3 ? incDisasPiles[alreadyInc] : eventDiscardPile;
-  pile.innerHTML += "<x-card-recto class=\"card disaster-card\" />";
+    var incDisasPiles = document.querySelectorAll('.incomming-disaster-card-wrapper');
+    var eventDiscardPile = document.querySelector('.event-discard-pile-wrapper');
+    var incPile = alreadyInc < 3 ? incDisasPiles[alreadyInc] : eventDiscardPile;
+    incPile.innerHTML += "<x-card-recto class=\"card disaster-card\" />";
+  }, timeout);
 }
 
 /***/ }),

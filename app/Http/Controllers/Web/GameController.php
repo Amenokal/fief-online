@@ -22,9 +22,8 @@ class GameController extends Controller
 {
     public function index(){
         
-        // dd(Gipsy::discardedCards('event')->first());
-        // Gipsy::makeNewNextCard('event');
         // dd(Gipsy::nextCard('event'));
+        // dd(Gipsy::nextCard('event')->first());
 
         // TODO: make middleware for game booting
         BootServices::init('vanilla');
@@ -41,8 +40,8 @@ class GameController extends Controller
             'inc_disasters' => Realm::incommingDisasters()->count(),
             'next_lord_card' => Gipsy::nextCard('lord'),
             'next_event_card' => Gipsy::nextCard('event'),
-            'lord_discard_pile' => Gipsy::discardedCards('lord'),
-            'event_discard_pile' => Gipsy::discardedCards('event'),
+            'lord_discard_pile' => Gipsy::discardedCards('lord')->all(),
+            'event_discard_pile' => Gipsy::discardedCards('event')->all(),
 
             'villages' => Realm::villages(),
 

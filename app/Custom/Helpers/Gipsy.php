@@ -63,10 +63,15 @@ class Gipsy {
         ])
         ->whereNull('player_id');
 
-        self::$deck->update(['is_next'=>false]);
+        self::$deck->update([
+            'is_next' => false,
+            'player_id' => null,
+            'village_id' => null,
+        ]);
         self::$deck->restore(); 
 
         self::makeNewNextCard($type);
-        
+
+        return ['nextCardType' => Gipsy::getNextType($type)];
     }
 }
