@@ -1,54 +1,48 @@
+<?php
+    $disaster = 'event';
+    $isdisaster = true;
+?>
+
 <div class='game-cards' id='game-cards'>
 
-    <div class='card-pile lord-discard-pile-wrapper'></div>
-
-    <div class='card-pile lord-pile-wrapper'>
-        <figure class='card lord-card'>
-            <img src='./storage/images/f.png'>
-            <span class='overline'></span>
-        </figure>
+    <div class='card-pile lord-discard-pile-wrapper' id='lord-discardPile'>
+        @foreach($lorddiscard as $card)
+            <x-card-verso :type="$card->deck" />
+        @endforeach
     </div>
 
-    <div class='card-pile event-pile-wrapper disaster-pile-wrapper'>
-            <figure @class([
-                "card",
-                "event-card" => $nextcard->disaster,
-                "disaster-card" => !$nextcard->disaster,
-            ])>
-                <img src='./storage/images/f.png'>
-                <span class='overline'>
-            </figure>
-            <figure class='card disaster-card'>
-                <img src='./storage/images/f-w.png'>
-                <span class='overline'>
-            </figure>
+    <div class='card-pile lord-pile-wrapper' id='lord-drawPile'>
+        @if($nextlordcard)
+            <x-card-verso :type="$nextlordcard->deck" />
+        @endif
     </div>
 
-    <div class='card-pile incomming-disaster-card-wrapper'>
+    <div class='card-pile event-pile-wrapper disaster-pile-wrapper' id='event-drawPile'>
+        @if($nexteventcard)
+            <x-card-verso :type="$nexteventcard->deck" :disaster="$nexteventcard->disaster" />
+        @endif
+    </div>
+
+    <div class='card-pile incomming-disaster-card-wrapper' id='incDisasPile1'>
         @if($disasters>0)
-            <figure class='card disaster-card'>
-                <img src='./storage/images/f-w.png'>
-                <span class='overline'>
-            </figure>
+            <x-card-verso :type="$disaster" :disaster="$isdisaster"/>
         @endif
     </div>
-    <div class='card-pile incomming-disaster-card-wrapper'>
+    <div class='card-pile incomming-disaster-card-wrapper' id='incDisasPile2'>
         @if($disasters>1)
-            <figure class='card disaster-card'>
-                <img src='./storage/images/f-w.png'>
-                <span class='overline'>
-            </figure>
+            <x-card-verso :type="$disaster" :disaster="$isdisaster"/>
         @endif
     </div>
-    <div class='card-pile incomming-disaster-card-wrapper'>
+    <div class='card-pile incomming-disaster-card-wrapper' id='incDisasPile3'>
         @if($disasters>2)
-            <figure class='card disaster-card'>
-                <img src='./storage/images/f-w.png'>
-                <span class='overline'>
-            </figure>
+            <x-card-verso :type="$disaster" :disaster="$isdisaster"/>
         @endif
     </div>
 
-    <div class='card-pile event-discard-pile-wrapper'></div>
+    <div class='card-pile event-discard-pile-wrapper' id='event-discardPile'>
+        @foreach($eventdiscard as $card)
+            <x-card-verso :type="$eventdiscard->deck" :disaster="$eventdiscard->disaster"/>
+        @endforeach
+    </div>
 
 </div> 

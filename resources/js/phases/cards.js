@@ -1,85 +1,96 @@
+import axios from "axios";
+
+
 // \\\
 // --------------------
-// PHASES ::::: DISCARD
+// PHASES ::::: CARDS
 // --------------------
 // ///
 
-import axios from "axios";
 
+// DISCARD
 document.querySelector('.player-hand').addEventListener('click', e=>{
+    let phase = document.querySelector('.current-phase').id.split('-')[1];
 
-    if(document.querySelector('.current-phase').id === 'phase-5' && e.target.className.includes('card')){
+    if(e.target.className.includes('card') && phase === '5'){
         let card = e.target;
+
         axios.post('./discard', {
             deck: card.id.split('-')[0],
             card: card.id.split('-')[1]
         })
         .then(()=>{
-            card.classList.add('discarded');
-
-            setTimeout(() => {
-                card.remove()
-            }, 1000);
-        })
+            if(phase === '5'){
+                card.classList.add('discarded');
+                setTimeout(() => {card.remove()}, 1000);
+            }
+        });
     }
+})
 
+// DRAW
+document.querySelector('.game-cards').addEventListener('click', e=>{
+    let phase = document.querySelector('.current-phase').id.split('-')[1];
+    let pile = e.target.parentNode.id.split('-')[0];
+    let isDisaster = e.target.className.split(' ')[1].split('-')[0] === 'disaster';
+    console.log(isDisaster);
+
+    if( (pile == 'lord' || pile == 'event') && phase === '6'){
+        axios.post('./draw/card', {
+            deck: pile,
+            isDisaster: isDisaster
+        })
+        .then(res=>{
+            if(!isDisaster){
+                drawAnimation(res.data.drawnCard, res.data.nextCardType)
+            }
+            else{
+                disasterAnimation(res.data.nextCardType)
+            }
+        });
+    }
 })
 
 
-
 // \\\
-// --------------------------------
-// ANIMATIONS ::::: CARD ANIMATIONS
-// --------------------------------
+// ---------------------
+// ANIMATIONS ::::: CARD
+// ---------------------
 // ///
 
-export function createNextCard(data){
-    let pile = document.querySelector(`.${data.deck}-pile-wrapper`);
+function drawAnimation(newCard, nextCardType){
+    let pile = document.querySelector(`.${newCard.deck}-pile-wrapper`);
     pile.children[0].id = 'to-draw';
     pile.children[0].style.zIndex = 2;
+    
+    pile.innerHTML += `<x-card-verso class="card ${nextCardType}-card"/>`
 
-    let type;
-    if(data.deck === 'lord'){
-        type = 'lord'
-    }else if(data.deck === 'event'){
-        type = data.nextType ? 'disaster' : 'event'
-    }
-    pile.innerHTML +=
-    `<figure class='card ${type}-card'>
-        <span class='overline'></span>
-    </figure>`
-}
-
-export function drawAnimation(data){
     let card = document.getElementById('to-draw');
     card.classList.add('draw-animation');
-
     setTimeout(() => {
         card.remove();
         document.querySelector('.player-hand').innerHTML +=
-        `<span 
-            id='${data.deck}-${data.name}'
-            class='card'
-            style='background-image: url(${data.img_src})'
-        ></span>`
-
-    }, 1500);
-
+        `<x-card-recto
+            class="card"
+            id="${newCard.deck}-${newCard.name}"
+            style="background-image: url(${newCard.img_src})"
+        />`
+    }, 1000);
 }
 
-function disasterAnimation(){
+function disasterAnimation(nextCardType){
+    document.querySelector('.event-pile-wrapper').innerHTML +=
+    `<x-card-verso class="card ${nextCardType}-card"/>`
+    
     let card = document.querySelector('.disaster-card');
-    card.remove();
-
-    let pile;
-    if(incDisasterNb()<3){
-        pile = document.querySelectorAll('.incomming-disaster-card-wrapper')[incDisasterNb()];
-    } else {
-        pile = document.querySelector('.event-discard-pile-wrapper');
-    }
-    pile.innerHTML +=
-    `<figure class='card incomming-disaster'>
-        <span class='overline'></span>
-    </figure>`
-
+    card.classList.add(`disas-animation-${alreadyInc}`);
+    setTimeout(() => {
+        card.remove();
+    }, 1000);
+    
+    let incDisasPiles = document.querySelectorAll('.incomming-disaster-card-wrapper');
+    let eventDiscardPile = document.querySelector('.event-discard-pile-wrapper');
+    let alreadyInc = document.querySelectorAll('.incomming-disaster-card-wrapper>.disaster-card').length;
+    let pile = alreadyInc < 3 ? incDisasPiles[alreadyInc] : eventDiscardPile;
+    pile.innerHTML += `<x-card-recto class="card disaster-card" />`
 }

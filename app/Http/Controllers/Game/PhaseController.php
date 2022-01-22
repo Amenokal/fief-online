@@ -24,7 +24,8 @@ class PhaseController extends Controller
         GameStartServices::chooseVillage($village);
 
         return view('components.army', [
-            'village' => $village
+            'village' => $village,
+            'families' => Realm::families()
         ]);
     }
 

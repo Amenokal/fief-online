@@ -8,6 +8,11 @@ use App\Custom\Services\DeckServices;
 
 class CardsController extends Controller
 {
+    public static function draw(Request $request)
+    {
+        return DeckServices::draw($request->deck, $request->isDisaster);
+    }
+
     public static function discard(Request $request)
     {
         DeckServices::discard($request->deck, $request->card);

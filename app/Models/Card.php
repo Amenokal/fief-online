@@ -22,7 +22,7 @@ class Card extends Model
         'instant',
         'disaster',
         'on_board',
-        'order',
+        'is_next',
         'img_src',
         'game_id',
         'player_id',

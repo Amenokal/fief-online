@@ -56,21 +56,21 @@
 
     {
         "name": "Famine",
-        "deck": "disaster",
+        "deck": "event",
         "img_src": "storage/cards/disasters/famine.png",
         "disaster": true,
         "nb": 4
     },
     {
         "name": "Mauvais Temps",
-        "deck": "disaster",
+        "deck": "event",
         "img_src": "storage/cards/disasters/mauvaistemps.png",
         "disaster": true,
         "nb": 4
     },
     {
         "name": "Peste",
-        "deck": "disaster",
+        "deck": "event",
         "img_src": "storage/cards/disasters/peste.png",
         "disaster": true,
         "nb": 2

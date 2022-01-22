@@ -18,20 +18,16 @@ class Game extends Model
 
     public $fillable = [
         'mod',
-        'is_over'
+        'is_over',
+        'player', 
+        'phase', 
+        'turn', 
     ];
 
     public static function current()
     {
         return Game::latest()->first();
     }
-
-
-    public function turn()
-    {
-        return $this->hasOne(GameTurn::class);
-    }
-
 
     public function players()
     {
@@ -43,15 +39,6 @@ class Game extends Model
     {
         return $this->hasMany(Card::class);
     }
-
-        public function lordDeck()
-        {
-            return $this->cards()->where('deck', 'lord')->get();
-        }
-        public function eventDeck()
-        {
-            return $this->cards()->where('deck', 'event')->get();
-        }
 
 
     public function soldiers()

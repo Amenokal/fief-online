@@ -12,6 +12,7 @@ use App\Models\Building;
 use App\Models\Villages;
 use App\Models\Buildings;
 use Illuminate\Http\Request;
+use App\Custom\Helpers\Gipsy;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
@@ -31,10 +32,11 @@ class TestController extends Controller
         ->update([
             'on_board'=>false,
             'player_id'=>null,
-            'village_id'=>null
+            'village_id'=>null,
+            'is_next' => false
         ]);
-        DeckServices::shuffleDeck('lord');
-        DeckServices::shuffleDeck('event');
+        Gipsy::shuffleDeck('lord');
+        Gipsy::shuffleDeck('event');
     }
 
     public function resetBoard()

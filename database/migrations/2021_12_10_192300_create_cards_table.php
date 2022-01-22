@@ -21,7 +21,7 @@ class CreateCardsTable extends Migration
             $table->boolean('instant')->default(false);
             $table->boolean('disaster')->default(false);
             $table->boolean('on_board')->default(false);
-            $table->integer('order')->nullable();
+            $table->boolean('is_next')->default(false);
             $table->string('img_src');
             $table->foreignId('game_id')->constrained();
             $table->foreignId('player_id')->nullable()->constrained()->default(null);
