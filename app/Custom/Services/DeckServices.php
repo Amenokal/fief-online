@@ -4,6 +4,8 @@ namespace App\Custom\Services;
 
 use App\Models\Card;
 use App\Models\Game;
+use App\Custom\Helpers\Gipsy;
+use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Librarian;
 
 class DeckServices {
@@ -23,46 +25,53 @@ class DeckServices {
                 ]);
             }
         }    
-        self::shuffleDeck('lord');
-        self::shuffleDeck('event');
+        Gipsy::shuffleDeck('lord');
+        Gipsy::shuffleDeck('event');
     }
-        
-    public static function shuffleDeck(string $type)
-    {
-        $deck = $type === 'lord' ? 'lord' : 'event';
-        $cards = Card::withTrashed()
-        ->where([
-            'game_id' => Game::current()->id,
-            'deck' => $deck
-        ])
-        ->whereNull('player_id')
-        ->inRandomOrder()
-        ->get();
 
-        foreach($cards as $card){
-            $i=0;
-            $card->update(['order'=>$i++]);
-            $card->restore();
+    public static function draw(string $deck, bool $isDisaster)
+    {
+
+        // shuffle if empty pile
+        if(!Gipsy::nextCard($deck)->exists()){
+            Gipsy::shuffleDeck($deck);
         }
+
+        // if drawn card is a disaster
+        // either put on waiting line
+        // or discard it
+        // then return disaster data to client
+        if($isDisaster){
+            $inc_disasters = Card::where([
+                'game_id' => Game::current()->id,
+                'deck' => 'disaster',
+                'on_board' => true
+            ])->count();
+
+            if($inc_disasters<3){
+                Gipsy::nextCard('event')->update([
+                    'on_board' => true,
+                    'is_next' => false
+                ]);
+            }elseif($inc_disasters >= 3){
+                Gipsy::nextCard('event')->update(['is_next' => false])->delete();
+            }
+            Gipsy::makeNewNextCard('event');
+            return ['nextCardType' => Gipsy::getNextType($deck)];
+        }
+        
+        // if not a disaster, get the next card
+        // updates it
+        // make new next card
+        // send drawn card data & next card color to client
+        $card = Gipsy::nextCard($deck);
+        $card->update([
+            'player_id' => Local::player()->id,
+            'is_next' => false
+        ]);
+        Gipsy::makeNewNextCard($deck);
+        return ['drawnCard' => $card, 'nextCardType' => Gipsy::getNextType($deck)];
     }
-
-    public static function nextCards(string $type)
-    {
-        $deck = $type === 'lord' ? Game::current()->lordDeck() : Game::current()->eventDeck() ;
-        $next = $deck->whereNull('player_id')
-        ->sortBy('order')
-        ->all();
-        return collect($next);
-    }
-
-    public static function isNextDisaster()
-    {
-        return DeckServices::nextCards('lord')->skip(1)->first()->disaster;
-    }
-
-
-
-
 
     public static function discard(string $deck, string $card_name)
     {

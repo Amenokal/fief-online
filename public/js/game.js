@@ -2326,72 +2326,83 @@ document.querySelector('.game-view').addEventListener('click', function (e) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createNextCard": () => (/* binding */ createNextCard),
-/* harmony export */   "drawAnimation": () => (/* binding */ drawAnimation)
-/* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-// \\\
+ // \\\
 // --------------------
-// PHASES ::::: DISCARD
+// PHASES ::::: CARDS
 // --------------------
 // ///
+// DISCARD
 
 document.querySelector('.player-hand').addEventListener('click', function (e) {
-  if (document.querySelector('.current-phase').id === 'phase-5' && e.target.className.includes('card')) {
+  var phase = document.querySelector('.current-phase').id.split('-')[1];
+
+  if (e.target.className.includes('card') && phase === '5') {
     var card = e.target;
     axios__WEBPACK_IMPORTED_MODULE_0___default().post('./discard', {
       deck: card.id.split('-')[0],
       card: card.id.split('-')[1]
     }).then(function () {
-      card.classList.add('discarded');
-      setTimeout(function () {
-        card.remove();
-      }, 1000);
+      if (phase === '5') {
+        card.classList.add('discarded');
+        setTimeout(function () {
+          card.remove();
+        }, 1000);
+      }
+    });
+  }
+}); // DRAW
+
+document.querySelector('.game-cards').addEventListener('click', function (e) {
+  var phase = document.querySelector('.current-phase').id.split('-')[1];
+  var pile = e.target.parentNode.id.split('-')[0];
+  var isDisaster = e.target.className.split(' ')[1].split('-')[0] === 'disaster';
+  console.log(isDisaster);
+
+  if ((pile == 'lord' || pile == 'event') && phase === '6') {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().post('./draw/card', {
+      deck: pile,
+      isDisaster: isDisaster
+    }).then(function (res) {
+      if (!isDisaster) {
+        drawAnimation(res.data.drawnCard, res.data.nextCardType);
+      } else {
+        disasterAnimation(res.data.nextCardType);
+      }
     });
   }
 }); // \\\
-// --------------------------------
-// ANIMATIONS ::::: CARD ANIMATIONS
-// --------------------------------
+// ---------------------
+// ANIMATIONS ::::: CARD
+// ---------------------
 // ///
 
-function createNextCard(data) {
-  var pile = document.querySelector(".".concat(data.deck, "-pile-wrapper"));
+function drawAnimation(newCard, nextCardType) {
+  var pile = document.querySelector(".".concat(newCard.deck, "-pile-wrapper"));
   pile.children[0].id = 'to-draw';
   pile.children[0].style.zIndex = 2;
-  var type;
-
-  if (data.deck === 'lord') {
-    type = 'lord';
-  } else if (data.deck === 'event') {
-    type = data.nextType ? 'disaster' : 'event';
-  }
-
-  pile.innerHTML += "<figure class='card ".concat(type, "-card'>\n        <span class='overline'></span>\n    </figure>");
-}
-function drawAnimation(data) {
+  pile.innerHTML += "<x-card-verso class=\"card ".concat(nextCardType, "-card\"/>");
   var card = document.getElementById('to-draw');
   card.classList.add('draw-animation');
   setTimeout(function () {
     card.remove();
-    document.querySelector('.player-hand').innerHTML += "<span \n            id='".concat(data.deck, "-").concat(data.name, "'\n            class='card'\n            style='background-image: url(").concat(data.img_src, ")'\n        ></span>");
-  }, 1500);
+    document.querySelector('.player-hand').innerHTML += "<x-card-recto\n            class=\"card\"\n            id=\"".concat(newCard.deck, "-").concat(newCard.name, "\"\n            style=\"background-image: url(").concat(newCard.img_src, ")\"\n        />");
+  }, 1000);
 }
 
-function disasterAnimation() {
+function disasterAnimation(nextCardType) {
+  document.querySelector('.event-pile-wrapper').innerHTML += "<x-card-verso class=\"card ".concat(nextCardType, "-card\"/>");
   var card = document.querySelector('.disaster-card');
-  card.remove();
-  var pile;
-
-  if (incDisasterNb() < 3) {
-    pile = document.querySelectorAll('.incomming-disaster-card-wrapper')[incDisasterNb()];
-  } else {
-    pile = document.querySelector('.event-discard-pile-wrapper');
-  }
-
-  pile.innerHTML += "<figure class='card incomming-disaster'>\n        <span class='overline'></span>\n    </figure>";
+  card.classList.add("disas-animation-".concat(alreadyInc));
+  setTimeout(function () {
+    card.remove();
+  }, 1000);
+  var incDisasPiles = document.querySelectorAll('.incomming-disaster-card-wrapper');
+  var eventDiscardPile = document.querySelector('.event-discard-pile-wrapper');
+  var alreadyInc = document.querySelectorAll('.incomming-disaster-card-wrapper>.disaster-card').length;
+  var pile = alreadyInc < 3 ? incDisasPiles[alreadyInc] : eventDiscardPile;
+  pile.innerHTML += "<x-card-recto class=\"card disaster-card\" />";
 }
 
 /***/ }),
@@ -26067,8 +26078,7 @@ var __webpack_exports__ = {};
   !*** ./resources/js/game.js ***!
   \******************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _phases_cards_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./phases/cards.js */ "./resources/js/phases/cards.js");
-/* harmony import */ var _banner_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./banner.js */ "./resources/js/banner.js");
+/* harmony import */ var _banner_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./banner.js */ "./resources/js/banner.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -26076,8 +26086,8 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 // import { draw } from './army.js';
-
-
+// import { createNextCard } from './phases/cards.js';
+// import { drawAnimation } from './phases/cards.js';
 
 
 var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
@@ -26100,10 +26110,7 @@ __webpack_require__(/*! ./phases/armies */ "./resources/js/phases/armies.js"); /
 document.onload = init();
 
 function init() {
-  (0,_banner_js__WEBPACK_IMPORTED_MODULE_1__.drawBanners)();
-  document.querySelector('.locations').addEventListener('click', function (e) {
-    chooseVillage(e);
-  });
+  (0,_banner_js__WEBPACK_IMPORTED_MODULE_0__.drawBanners)();
 } // fun for later
 // function addBtnFx(e){
 //     console.log(e.target);
@@ -26126,8 +26133,8 @@ function init() {
 document.getElementById('step1').addEventListener('click', function (e) {
   axios.post('./gamestart/1').then(function (res) {
     if (res.data) {
-      (0,_phases_cards_js__WEBPACK_IMPORTED_MODULE_0__.createNextCard)(res.data);
-      (0,_phases_cards_js__WEBPACK_IMPORTED_MODULE_0__.drawAnimation)(res.data);
+      createNextCard(res.data);
+      drawAnimation(res.data);
     }
   });
 }); // \\\
@@ -26139,9 +26146,8 @@ document.getElementById('step1').addEventListener('click', function (e) {
 document.getElementById('step2').addEventListener('click', function (e) {
   e.target.classList.toggle('choose-village');
 });
-
-function chooseVillage(e) {
-  if (document.querySelector('.choose-village') && e.target.className === 'village') {
+document.querySelector('.locations').addEventListener('click', function (e) {
+  if (document.querySelector('.choose-village') && e.target.className === 'village empty') {
     axios.post('./gamestart/2', {
       village: e.target.id
     }).then(function (res) {
@@ -26155,7 +26161,7 @@ function chooseVillage(e) {
       }
     });
   }
-} // \\\
+}); // \\\
 // --------------------------
 // CARDS ::::: DRAW & DISCARD
 // --------------------------
@@ -26207,7 +26213,6 @@ function chooseVillage(e) {
 // TURNS ::::: PASS TURNS BTN & PHASE SELECTOR
 // -------------------------------------------
 // ///
-
 
 document.getElementById('turn-indicator').addEventListener('click', function (e) {
   if (e.target.id.includes('phase') && !e.target.className) {
@@ -26271,21 +26276,8 @@ function endTurn() {
 
 document.getElementById('resetDeck').addEventListener('click', function (e) {
   axios.post('./reset/deck').then(function () {
-    var _iterator = _createForOfIteratorHelper(document.querySelector('.player-hand').children),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var card = _step.value;
-
-        if (card) {
-          card.remove();
-        }
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
+    for (var i = 0; i < document.querySelector('.player-hand').children.length; i++) {
+      document.querySelector('.player-hand').children[i].remove();
     }
   });
 });
@@ -26296,13 +26288,29 @@ document.getElementById('resetBoard').addEventListener('click', function (e) {
     var banners = document.querySelectorAll('.banner');
 
     if (castles) {
-      var _iterator2 = _createForOfIteratorHelper(castles),
+      var _iterator = _createForOfIteratorHelper(castles),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var c = _step.value;
+          c.remove();
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+
+    if (lords) {
+      var _iterator2 = _createForOfIteratorHelper(lords),
           _step2;
 
       try {
         for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var c = _step2.value;
-          c.remove();
+          var l = _step2.value;
+          l.remove();
         }
       } catch (err) {
         _iterator2.e(err);
@@ -26311,35 +26319,19 @@ document.getElementById('resetBoard').addEventListener('click', function (e) {
       }
     }
 
-    if (lords) {
-      var _iterator3 = _createForOfIteratorHelper(lords),
+    if (banners) {
+      var _iterator3 = _createForOfIteratorHelper(banners),
           _step3;
 
       try {
         for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-          var l = _step3.value;
-          l.remove();
+          var b = _step3.value;
+          b.remove();
         }
       } catch (err) {
         _iterator3.e(err);
       } finally {
         _iterator3.f();
-      }
-    }
-
-    if (banners) {
-      var _iterator4 = _createForOfIteratorHelper(banners),
-          _step4;
-
-      try {
-        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-          var b = _step4.value;
-          b.remove();
-        }
-      } catch (err) {
-        _iterator4.e(err);
-      } finally {
-        _iterator4.f();
       }
     }
   });

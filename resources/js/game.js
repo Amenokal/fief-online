@@ -1,6 +1,6 @@
 // import { draw } from './army.js';
-import { createNextCard } from './phases/cards.js';
-import { drawAnimation } from './phases/cards.js';
+// import { createNextCard } from './phases/cards.js';
+// import { drawAnimation } from './phases/cards.js';
 import { drawBanners } from './banner.js';
 
 const { default: axios } = require('axios');
@@ -20,9 +20,6 @@ document.onload = init();
 
 function init(){
     drawBanners();
-    document.querySelector('.locations').addEventListener('click', e=>{
-        chooseVillage(e);
-    })
 }
 
 // fun for later
@@ -69,8 +66,8 @@ document.getElementById('step2').addEventListener('click', e=>{
     e.target.classList.toggle('choose-village');
 })
 
-function chooseVillage(e){
-    if(document.querySelector('.choose-village') && e.target.className === 'village'){
+document.querySelector('.locations').addEventListener('click', e=>{
+    if(document.querySelector('.choose-village') && e.target.className === 'village empty'){
         axios.post('./gamestart/2', {
             village: e.target.id
         })
@@ -96,7 +93,7 @@ function chooseVillage(e){
             }
         });
     }
-}
+});
 
 
 // \\\
@@ -255,10 +252,8 @@ function endTurn(){
 document.getElementById('resetDeck').addEventListener('click', e=>{
     axios.post('./reset/deck')
     .then(()=>{
-        for(let card of document.querySelector('.player-hand').children){
-            if(card){
-                card.remove()
-            }
+        for(let i=0; i<document.querySelector('.player-hand').children.length; i++){
+            document.querySelector('.player-hand').children[i].remove();
         }
     })
 })

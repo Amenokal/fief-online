@@ -48,11 +48,6 @@ class Player extends Model
     {
         return $this->hasMany(Village::class);
     }
-
-    public function turn()
-    {
-        return $this->hasOne(GameTurn::class);
-    }
     
 
 

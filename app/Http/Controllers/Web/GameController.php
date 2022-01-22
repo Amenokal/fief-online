@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Card;
 use App\Models\Game;
 use App\Models\Soldier;
 use App\Models\Village;
 use App\Models\Soldiers;
 use App\Models\Villages;
 use App\Custom\Helpers\Local;
+use App\Custom\Helpers\Gipsy;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Marechal;
-use App\Custom\Helpers\GameCurrent;
 use App\Http\Controllers\Controller;
 use App\Custom\Services\BootServices;
 use App\Custom\Services\DeckServices;
@@ -21,12 +22,10 @@ class GameController extends Controller
 {
     public function index(){
         
-        // dd(Local::player()->lordsHere(Mayor::find('pugnac'))->first()->army_power());
-        // dd(Realm::lord('Henri')->player);
+        // dd(Gipsy::discardedCards('event')->first());
+        // Gipsy::makeNewNextCard('event');
+        // dd(Gipsy::nextCard('event'));
 
-        // dd(Realm::lord('Henri'));
-        // dd(Realm::lords());
-        
         // TODO: make middleware for game booting
         BootServices::init('vanilla');
 
@@ -40,7 +39,10 @@ class GameController extends Controller
 
             'phases' => TurnServices::phaseNames(),
             'inc_disasters' => Realm::incommingDisasters()->count(),
-            'next_event_card' => DeckServices::nextCards('event')->first(),
+            'next_lord_card' => Gipsy::nextCard('lord'),
+            'next_event_card' => Gipsy::nextCard('event'),
+            'lord_discard_pile' => Gipsy::discardedCards('lord'),
+            'event_discard_pile' => Gipsy::discardedCards('event'),
 
             'villages' => Realm::villages(),
 

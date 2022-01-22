@@ -2,6 +2,11 @@
 
     .empty {
         border: 1px solid rgb(126, 126, 126);
+
+        &:hover{
+            border: 1px solid rgb(207, 207, 207); 
+            transform: scale(1.1);
+        }
     }
 
 

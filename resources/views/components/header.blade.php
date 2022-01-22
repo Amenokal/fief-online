@@ -5,8 +5,8 @@
         <section
             id="phase-{{$phase['id']}}" 
             @class([
-                "current-phase" => $phase['id'] === $turn->phase,
-                "$currentplayer->color-bordered" => $phase['id'] === $turn->phase
+                "current-phase" => $phase['id'] === $turn['phase'],
+                "$currentplayer->color-bordered" => $phase['id'] === $turn['phase']
             ])
         >
 

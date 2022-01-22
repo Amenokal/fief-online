@@ -36,7 +36,8 @@
             <section class='game-view {{ $currentPlayer->color }}-theme'>
                 <div class='game-board'>
 
-                    <x-villages :villages="$villages"
+                    <x-villages 
+                        :villages="$villages"
                         :army="$army"
                         :player="$player"
                         :lords="$lords"
@@ -44,8 +45,14 @@
                         :families="$families"
                     />
 
-                    <x-board-cards :disasters="$inc_disasters" :nextcard="$next_event_card"/>
-                    
+                    <x-board-cards
+                        :nextlordcard="$next_lord_card"
+                        :nexteventcard="$next_event_card"
+                        :disasters="$inc_disasters"
+                        :lorddiscard="$lord_discard_pile"
+                        :eventdiscard="$event_discard_pile"
+                    />
+
                 </div>
             </section>
             

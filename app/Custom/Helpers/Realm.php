@@ -2,6 +2,7 @@
 
 namespace App\Custom\Helpers;
 
+use App\Models\Card;
 use App\Models\Game;
 use App\Models\Player;
 
@@ -12,17 +13,21 @@ class Realm {
         return Game::current();
     }
 
-    public static function year()
-    {
-        return Game::current()->turn;
-
-    }
     public static function currentPlayer()
     {
         return Player::where([
             'game_id'=>Game::current()->id,
-            'id'=>Game::current()->turn->player_id
+            'id'=>Game::current()->player
         ])->first();
+    }
+
+    public static function year()
+    {
+        return [
+            'player'=>Game::current()->player,
+            'phase'=>Game::current()->phase,
+            'turn'=>Game::current()->turn
+        ];
     }
 
     public static function families()
@@ -32,12 +37,23 @@ class Realm {
 
     public static function lord(string $name)
     {
-        return Game::current()->lordDeck()->where('name', $name)->first();
+        return Card::where([
+            'game_id' => Game::current()->id,
+            'deck' => 'lord',
+            'name' => $name
+        ])
+        ->whereNotNull('village_id')
+        ->get();
     }
 
     public static function lords()
     {
-        return Game::current()->lordDeck()->whereNotNull('village_id')->all();
+        return Card::where([
+            'game_id' => Game::current()->id,
+            'deck' => 'lord'
+        ])
+        ->whereNotNull('village_id')
+        ->get();
     }
 
     public static function activeArmies()
@@ -57,21 +73,6 @@ class Realm {
     public static function buildings()
     {
         return Game::current()->buildings;
-    }
-
-    public static function nextCards(string $type)
-    {
-    //     $deck = $type === 'lord' ? Game::current()->lordDeck() : Game::current()->eventDeck();
-    //     $next = collect(
-    //         Game::current()->lordDeck()->whereNull('player_id')
-    //         ->sortBy('order')
-    //         ->take(2)
-    //         ->all()
-    //     );
-    //     $first = $next->first();
-    //     $second = ['isNextDisaster' => $next->skip(1)->first()->disaster];
-    //     $response = collect($first)->merge(collect($second));
-    //     return $response;
     }
 
     public static function incommingDisasters()

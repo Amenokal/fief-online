@@ -7,7 +7,6 @@ use App\Models\Player;
 use App\Models\Soldier;
 use App\Models\Village;
 use App\Models\Building;
-use App\Models\GameTurn;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Librarian;
 
@@ -41,7 +40,6 @@ class BootServices {
     {
         if(!Game::current() || Game::current()->is_over){
             Game::create(['mod'=>self::$mod]);
-            GameTurn::create(['game_id' => Game::current()->id]);
         }
     }
     

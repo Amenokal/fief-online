@@ -1,13 +1,9 @@
 <?php
 
-use App\Custom\Helpers\Realm;
-use App\Custom\Services\DeckServices;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Game\CardsController;
-use App\Custom\Services\GameStartServices;
 use App\Http\Controllers\Web\GameController;
-use App\Http\Controllers\Game\ArmyController;
 use App\Http\Controllers\Game\TurnController;
 use App\Http\Controllers\Web\LobbyController;
 use App\Http\Controllers\Game\PhaseController;
@@ -65,8 +61,7 @@ Route::post('/reset/board', [TestController::class, 'resetBoard']);
     // DRAW
     // ----
 
-Route::post('/draw/lord', [CardsController::class, 'drawLord']);
-Route::post('/draw/event', [CardsController::class, 'drawEvent']);
+Route::post('/draw/card', [CardsController::class, 'draw']);
 Route::post('/discard', [CardsController::class, 'discard']);
 
     // TURNS
@@ -94,5 +89,10 @@ Route::post('/gamestart/2', [PhaseController::class, 'chooseVillage']);
     // -------------------
 
 Route::post('/move/all', [PhaseController::class, 'moveAll']);
+
+
+
+
+Route::get('/t', [TestController::class, 't']);
 
 require __DIR__.'/auth.php';
