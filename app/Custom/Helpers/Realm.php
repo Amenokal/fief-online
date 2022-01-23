@@ -43,7 +43,7 @@ class Realm {
             'name' => $name
         ])
         ->whereNotNull('village_id')
-        ->get();
+        ->first();
     }
 
     public static function lords()

@@ -28,59 +28,69 @@ export function draw(target){
 
     // MANCHE
     ctx.fillStyle = 'rgb(58, 28, 0)';
-    ctx.fillRect(cvs.width/2-4, 0, 8, cvs.height);
-    ctx.fillRect(cvs.width/15, cvs.height/14.5, cvs.width*.87, cvs.height/20);
+    ctx.fillRect(119, 0, 12, 400);
+    ctx.fillRect(25, 35, 200, 12);
 
-    // ATTACHES
-    ctx.strokeStyle = 'black';
-    ctx.beginPath();
-    ctx.moveTo(cvs.width/2,cvs.height/40);
-    ctx.lineTo(cvs.height/10, cvs.width/9);
-    ctx.closePath();
-    ctx.stroke();
+    // // ATTACHES
+    // ctx.strokeStyle = 'black';
+    // ctx.beginPath();
+    // ctx.moveTo(cvs.width/2,cvs.height/40);
+    // ctx.lineTo(cvs.height/10, cvs.width/9);
+    // ctx.closePath();
+    // ctx.stroke();
 
-    ctx.strokeStyle = 'black';
-    ctx.beginPath();
-    ctx.moveTo(cvs.width/2,cvs.height/40);
-    ctx.lineTo(cvs.width*.85, cvs.width/9);
-    ctx.closePath();
-    ctx.stroke();
+    // ctx.strokeStyle = 'black';
+    // ctx.beginPath();
+    // ctx.moveTo(cvs.width/2,cvs.height/40);
+    // ctx.lineTo(cvs.width*.85, cvs.width/9);
+    // ctx.closePath();
+    // ctx.stroke();
+
+
+
+
 
 
     // BORDER
     ctx.fillStyle = strongColor;
     ctx.beginPath();
-    ctx.moveTo(cvs.width/10,cvs.width/10);
-    ctx.lineTo(cvs.width/10,cvs.height/1.4);
-    ctx.lineTo(cvs.width/2,cvs.height/1.13);
-    ctx.lineTo(cvs.width*(9/10),cvs.height/1.4);
-    ctx.lineTo(cvs.width*(9/10),cvs.width/10);
+    ctx.moveTo(35,30);
+    ctx.lineTo(35,300);
+    ctx.lineTo(125,350);
+    ctx.lineTo(215,300);
+    ctx.lineTo(215,300);
+    ctx.lineTo(215,30);
     ctx.closePath();
     ctx.fill();
 
-    // BASE
+    // // BASE
     ctx.fillStyle = baseColor;
     ctx.beginPath();
-    ctx.moveTo(cvs.width/5,cvs.width/5);
-    ctx.lineTo(cvs.width/5,cvs.height/1.48);
-    ctx.lineTo(cvs.width/2,cvs.height/1.23);
-    ctx.lineTo(cvs.width*(4/5),cvs.height/1.48);
-    ctx.lineTo(cvs.width*(4/5),cvs.width/5);
+    ctx.moveTo(50,50);
+    ctx.lineTo(50,285);
+    ctx.lineTo(125,325);
+    ctx.lineTo(200,285);
+    ctx.lineTo(200,50);
     ctx.closePath();
     ctx.fill();
 
-    // 2ND COLOR
+
+
+    // // POWER
     ctx.fillStyle = txtColor;
     ctx.beginPath();
-    ctx.moveTo(cvs.width/5,cvs.width/5);
-    ctx.lineTo(cvs.width/5,cvs.height/1.48);
-    ctx.lineTo(cvs.width/2,cvs.height/1.23);
-    ctx.lineTo(cvs.width/2,cvs.height/1.48);
-    ctx.lineTo(cvs.width/2,cvs.width/5);
+    ctx.moveTo(50,285);
+    ctx.lineTo(125,325);
+    ctx.lineTo(125,325-((275/37)*1));
+    ctx.lineTo(50,325-((275/37)*1));
     ctx.closePath();
     ctx.fill();
 
-    // CHEVRONS
+
+
+
+
+    // // CHEVRONS
     ctx.fillStyle = strongColor;
     for(let i=0; i<power; i++){
         ctx.beginPath();
@@ -93,6 +103,8 @@ export function draw(target){
         ctx.closePath();
         ctx.fill();
     }
+
+
 
     // ARMOIRIES
     // var img = new Image;

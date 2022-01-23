@@ -33,6 +33,26 @@ class Marechal {
         return collect($lords)->merge(collect($soldiers));
     }
 
+    public static function letOne(Card $lord)
+    {
+        $lords = Card::where([
+            'game_id' => Game::current()->id,
+            'deck' => 'lord',
+            'village_id' => $lord->village_id
+        ])->get();
+
+        $soldiers = Soldier::where([
+            'game_id' => Game::current()->id,
+            'village_id' => $lord->village_id
+        ])
+        ->orderBy('type', 'desc')
+        ->get();
+        $one = $soldiers[0];
+        $soldiers = $soldiers->skip(1)->all();
+
+        return ['army'=>collect($lords)->merge(collect($soldiers)), 'one'=>$one];
+    }
+
     public static function evaluate(Card $lord, bool $only_banner)
     {
         $army = self::armyOf($lord);

@@ -74,4 +74,5 @@ class Gipsy {
 
         return ['nextCardType' => Gipsy::getNextType($type)];
     }
+
 }

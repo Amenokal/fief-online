@@ -20,20 +20,27 @@ class PhaseController extends Controller
     public function chooseVillage(Request $request)
     {
         $village = Mayor::find($request->village);
-         
-        GameStartServices::chooseVillage($village);
-
-        return view('components.army', [
-            'village' => $village,
-            'families' => Realm::families()
-        ]);
+        return GameStartServices::chooseVillage($village);
     }
 
 
-    
+
     public function moveAll(Request $request)
     {
         $army = Marechal::armyOf(Realm::lord($request->lord));
+        $to = Mayor::find($request->village);
+
+        ArmyServices::march($army, $to);
+
+        return view('components.army', [
+            'village' => $to,
+            'families' => Realm::families()
+        ]);
+    }
+    public function letOne(Request $request)
+    {
+        $army = Marechal::letOne(Realm::lord($request->lord))['army'];
+        $one = Marechal::letOne(Realm::lord($request->lord))['one'];
         $to = Mayor::find($request->village);
 
         ArmyServices::march($army, $to);

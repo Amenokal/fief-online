@@ -1,6 +1,6 @@
-@forelse ($families as $fam)
+@foreach ($families as $fam)
 
-@if($fam->lordsHere($village)->isNotEmpty())
+@if($fam->lordsHere($village)->isNotEmpty() || $fam->sergeantsHere($village) || $fam->knightsHere($village))
 
 <div class='army'>
 
@@ -17,11 +17,20 @@
         <i id='move-option-close' class="fas fa-times-circle"></i>
     </div>
 
-    <canvas height="400px" width="250px" class='banner {{$fam->color}} power-{{$fam->lordsHere($village)->first()->army_power()}}'></canvas>
+    {{-- <canvas height="400px" width="250px" class='banner {{$fam->color}} power-{{$fam->lordsHere($village)->first()->army_power()}}'></canvas> --}}
 
     <div class='army-forces'>
-        <span class='sergeant token {{$fam->color}}-bordered'>{{$fam->lordsHere($village)->first()->army()['sergeants']}}</span>
-        <span class='knight token {{$fam->color}}-bordered'>{{$fam->lordsHere($village)->first()->army()['knights']}}</span>
+        <div class='sergeant-container'>
+            @for($i=0; $i<count($fam->sergeantsHere($village)); $i++)
+               <span class='sergeant token {{$fam->color}}-bordered'></span>
+            @endfor
+        </div>
+
+        <div class='knight-container'>
+            @for($i=0; $i<count($fam->knightsHere($village)); $i++)
+                <span class='knight token {{$fam->color}}-bordered'></span>
+            @endfor
+        </div>
     </div>
     
 
@@ -29,5 +38,4 @@
 
 @endif
 
-@empty
-@endforelse
+@endforeach

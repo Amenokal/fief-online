@@ -20,8 +20,12 @@ use App\Custom\Services\TurnServices;
 
 class GameController extends Controller
 {
+
+
     public function index(){
-        
+        // dd(Local::player()->villages->isEmpty());
+
+        // dd(Marechal::letOne(Realm::lord('Quentin'))['one']);
         // dd(Gipsy::nextCard('event'));
         // dd(Gipsy::nextCard('event')->first());
 
@@ -31,7 +35,7 @@ class GameController extends Controller
         return view('layouts.game', [
             'player' => Local::player(),
             'player_cards' => Local::cards(),
-            
+
             'families' => Realm::families(),
             'turn' => Realm::year(),
             'currentPlayer' => Realm::currentPlayer(),

@@ -33,6 +33,24 @@ class Player extends Model
             'deck' => 'lord'
         ])->get();
     }
+    public function sergeantsHere(Village $village)
+    {
+        return Soldier::where([
+            'player_id' => $this->id,
+            'game_id' => Game::current()->id,
+            'village_id' => $village->id,
+            'type' => 'sergeant'
+        ])->get();
+    }
+    public function knightsHere(Village $village)
+    {
+        return Soldier::where([
+            'player_id' => $this->id,
+            'game_id' => Game::current()->id,
+            'village_id' => $village->id,
+            'type' => 'knight'
+        ])->get();
+    }
 
     public function cards()
     {

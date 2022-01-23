@@ -1,13 +1,10 @@
-// import { draw } from './army.js';
-// import { createNextCard } from './phases/cards.js';
-// import { drawAnimation } from './phases/cards.js';
-import { drawBanners } from './banner.js';
-
 const { default: axios } = require('axios');
-const { remove } = require('lodash');
+
 require('./bootstrap');
-require('./phases/cards')
-require('./phases/armies')
+
+require('./phases/00_start');
+require('./phases/02_cards');
+require('./phases/04_armies');
 
 
 // \\\
@@ -16,11 +13,11 @@ require('./phases/armies')
 // -----------------------
 // ///
 
-document.onload = init();
+// document.onload = init();
 
-function init(){
-    drawBanners();
-}
+// function init(){
+//     drawBanners();
+// }
 
 // fun for later
 // function addBtnFx(e){
@@ -35,91 +32,6 @@ function init(){
 //         })
 //     })
 // }
-
-// \\\
-// -----------------------------------
-// GAME START ::::: STEP 1 = DRAW LORD
-// -----------------------------------
-// ///
-
-
-document.getElementById('step1').addEventListener('click', e => {
-    axios.post('./gamestart/1')
-    .then(res => {
-        if(res.data){
-            createNextCard(res.data);
-            drawAnimation(res.data)
-        }
-    });
-})
-
-
-// \\\
-// ----------------------------------------
-// GAME START ::::: STEP 2 = CHOOSE VILLAGE
-// ----------------------------------------
-// ///
-
-
-
-document.getElementById('step2').addEventListener('click', e=>{
-    e.target.classList.toggle('choose-village');
-})
-
-document.querySelector('.locations').addEventListener('click', e=>{
-    if(document.querySelector('.choose-village') && e.target.className === 'village empty'){
-        axios.post('./gamestart/2', {
-            village: e.target.id
-        })
-        .then(res => {
-            if(res.data){
-
-                e.target.innerHTML += 
-                `<span class=chateau></span>
-    
-                <div class='army'>
-                    <span id='${res.data.name}' class='lord'></span>
-                </div>`;
-
-                
-                document.getElementById('step2').classList.remove('choose-village');
-
-
-                // BANNERS :: add later
-                // let bannerCount = document.querySelectorAll('.lord-banner').length+1;
-                // <canvas height="400px" width="250px" class='banner' id="banner${bannerCount}"></canvas>
-                // let target = document.getElementById(`banner${bannerCount}`);
-                // draw(target, res.data.power);
-            }
-        });
-    }
-});
-
-
-// \\\
-// --------------------------
-// CARDS ::::: DRAW & DISCARD
-// --------------------------
-// ///
-
-
-
-// document.querySelector('.game-cards').addEventListener('click', e=>{
-//     let pileType = e.target.parentNode.parentNode.className.includes('lord') ? 'lord' : 'event';
-//     sendDrawRequest(cardType, pileType);
-// })
-
-// DISCARD
-// document.querySelector('.player-hand').addEventListener('click', e => {
-//     if(e.target.parentNode.className.includes('card')){
-//         axios.post('./discard', {
-//             name: e.target.id.split('-')[1]
-//         })
-//         .then(() => {
-//             e.target.parentNode.remove();
-//         })
-//     }
-// })
 
 
 // \\\
@@ -218,7 +130,7 @@ function endTurn(){
 // })
 
 // function showArmy(e){
-    
+
 //     axios.post('./show/army', {
 //         lord: e.target.id,
 //         village: e.target.parentNode.parentNode.id
@@ -272,12 +184,12 @@ document.getElementById('resetBoard').addEventListener('click', e=>{
         if(lords){
             for(let l of lords){
                 l.remove()
-            }  
+            }
         }
         if(banners){
             for(let b of banners){
                 b.remove()
-            }  
+            }
         }
     })
 })

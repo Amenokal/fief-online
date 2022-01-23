@@ -1,4 +1,4 @@
-<div class='locations'>    
+<div class='locations'>
 
     @foreach($villages as $vilg)
 
@@ -13,14 +13,14 @@
         ])>
 
             @foreach($buildings as $b)
-
                 @if($b->village_id === $vilg->id)
-
                     <span class="{{$b->name}}"></span>
                 @endif
             @endforeach
 
-            <x-army :village="$vilg" :families="$families" />
+            @if($vilg->soldiers->isNotEmpty())
+                <x-army :village="$vilg" :families="$families" />
+            @endif
 
         </span>
 

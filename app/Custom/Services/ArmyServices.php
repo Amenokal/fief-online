@@ -87,6 +87,8 @@ class ArmyServices {
             $soldier->update(['village_id' => $to->id]);
         }
         Mayor::administrate();
+
+        return $army;
     }
 
 }

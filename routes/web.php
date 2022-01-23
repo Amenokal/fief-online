@@ -90,10 +90,11 @@ Route::post('/gamestart/2', [PhaseController::class, 'chooseVillage']);
     // -------------------
 
 Route::post('/move/all', [PhaseController::class, 'moveAll']);
+Route::post('/move/let/one', [PhaseController::class, 'letOne']);
 
 
 
 
-Route::get('/t', [TestController::class, 't']);
+Route::get('/t', [PhaseController::class, 'letOne']);
 
 require __DIR__.'/auth.php';

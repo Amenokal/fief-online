@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body>    
+<body>
+
 <div class='game-container'>
-    
+
     <x-header :phases="$phases" :turn="$turn" :currentplayer="$currentPlayer"/>
 
     <main>
@@ -32,11 +33,11 @@
                     </div>
                 @endforeach
             </section>
-            
+
             <section class='game-view {{ $currentPlayer->color }}-theme'>
                 <div class='game-board'>
 
-                    <x-villages 
+                    <x-villages
                         :villages="$villages"
                         :army="$army"
                         :player="$player"
@@ -55,15 +56,15 @@
 
                 </div>
             </section>
-            
+
         </div>
-        
+
         <div class='player-hand hand-{{ $player_cards->count() }}'>
             @foreach ($player_cards as $card)
                 <span style='background-image: url({{ $card->img_src }})' class='card' id='{{ $card->deck }}-{{ $card->name }}'></span>
             @endforeach
         </div>
-        
+
         <nav>
             <button id='step1'>step 1</button>
             <button id='step2'>step 2</button>
