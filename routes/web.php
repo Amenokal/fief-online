@@ -52,7 +52,7 @@ Route::post('/lobby/msg', [LobbyController::class, 'newMsg']);
 // ::: GAME :::
 // ============
 
-// META 
+// META
 // ====
 
 Route::post('/reset/deck', [TestController::class, 'resetCards']);
@@ -71,10 +71,12 @@ Route::post('/shuffle', [CardsController::class, 'shuffle']);
 Route::post('/changeturn', [TurnController::class, 'changeTurn']);
 Route::post('/endturn', [TurnController::class, 'endTurn']);
 
-    // ARMIES
-    // ------
+    // PLAYER BOARDS
+    // -------------
 
-// Route::post('/show/army', [ArmyController::class, 'showArmy']);
+Route::get('/show/board', [GameController::class, 'showBoard']);
+
+
 
 
 // PHASES
@@ -95,6 +97,6 @@ Route::post('/move/let/one', [PhaseController::class, 'letOne']);
 
 
 
-Route::get('/t', [PhaseController::class, 'letOne']);
+Route::get('/t', [TestController::class, 'playerBoard']);
 
 require __DIR__.'/auth.php';

@@ -60,6 +60,7 @@
         @include textured;
         background-color: rgb(83, 48, 20);
         background-image: url('/fief/storage/app/public/textures/purty-wood.png');
+        z-index: 2;
 
         .fa-crown{
             width: 0px;
@@ -76,6 +77,10 @@
                     width: 20px;
                     margin-right: .3em;
                 }
+            }
+
+            &:hover{
+                cursor: pointer;
             }
         }
 

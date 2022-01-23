@@ -1,43 +1,8 @@
-<div class='player-board'>
-    <div class='lord-slot'>
-        <div class='titles'>
-            <span class='crown'></span>
-            <span class='crown'></span>
-            <span class='slot'></span>
-            <span class='cross'></span>
-            <span class='cross'></span>
-            <span></span>
-        </div>
-    </div>
-    <div class='lord-slot'>
-        <div class='titles'>
-            <span class='crown'></span>
-            <span class='crown'></span>
-            <span class='slot'></span>
-            <span class='cross'></span>
-            <span class='cross'></span>
-            <span></span>
-        </div>
-    </div>
-    <div class='lord-slot'>
-        <div class='titles'>
-            <span class='crown'></span>
-            <span class='crown'></span>
-            <span class='slot'></span>
-            <span class='cross'></span>
-            <span class='cross'></span>
-            <span></span>
-        </div>
-    </div>
-    <div class='lord-slot'>
-        <div class='titles'>
-            <span class='crown'></span>
-            <span class='crown'></span>
-            <span class='slot'></span>
-            <span class='cross'></span>
-            <span class='cross'></span>
-            <span></span>
-        </div>
-    </div>
-    <div class='info'></div>
-</div>
+<aside class='player-board {{ $player->color }}-bordered'>
+
+    @for($i=0; $i<4; $i++)
+        <x-player-board-slot :player="$player" :i="$i"/>
+    @endfor
+
+    <section class='info'></section>
+</aside>

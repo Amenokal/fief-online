@@ -60,4 +60,9 @@ class TestController extends Controller
         ->update(['village_id'=>null]);
     }
 
+    public function playerBoard()
+    {
+        return view('components.player-board');
+    }
+
 }

@@ -8,8 +8,9 @@ use App\Models\Soldier;
 use App\Models\Village;
 use App\Models\Soldiers;
 use App\Models\Villages;
-use App\Custom\Helpers\Local;
+use Illuminate\Http\Request;
 use App\Custom\Helpers\Gipsy;
+use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Marechal;
@@ -52,6 +53,14 @@ class GameController extends Controller
             'army' => Realm::activeArmies(),
             'lords' => Realm::lords(),
             'buildings' => Realm::buildings()
+        ]);
+    }
+
+    public function showBoard(Request $request)
+    {
+        $player = Realm::families()->where('familyname', $request->house)->first();
+        return view('components.player-board', [
+            'player' => $player
         ]);
     }
 }

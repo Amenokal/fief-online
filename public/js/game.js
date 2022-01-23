@@ -26200,27 +26200,44 @@ __webpack_require__(/*! ./phases/00_start */ "./resources/js/phases/00_start.js"
 __webpack_require__(/*! ./phases/02_cards */ "./resources/js/phases/02_cards.js");
 
 __webpack_require__(/*! ./phases/04_armies */ "./resources/js/phases/04_armies.js"); // \\\
-// -----------------------
-// ::::: ONLOAD INIT :::::
-// -----------------------
+// ------------------------------
+// ::::: SHOW PLAYER BOARDS :::::
+// ------------------------------
 // ///
-// document.onload = init();
-// function init(){
-//     drawBanners();
-// }
-// fun for later
-// function addBtnFx(e){
-//     console.log(e.target);
-//     let btns = document.querySelectorAll('button');
-//     btns.forEach(el=>{
-//         el.addEventListener('click', e=>{
-//             let fx = new Audio('./storage/fx/click.mp3');
-//             console.log(fx);
-//             fx.play();
-//         })
-//     })
-// }
-// \\\
+
+
+document.querySelectorAll('.player-name').forEach(function (el) {
+  el.addEventListener('click', showBoard);
+});
+
+function showBoard(e) {
+  if (!document.querySelector('.player-board.open')) {
+    var player = e.target;
+    axios.get('./show/board', {
+      params: {
+        house: player.innerText
+      }
+    }).then(function (res) {
+      document.querySelector('main').innerHTML += res.data;
+      document.querySelector('.player-board').classList.add('open');
+      player.addEventListener('click', showBoard);
+    }).then(function (res) {
+      document.querySelector('.player-board.open').addEventListener('click', closeBoard);
+      document.querySelectorAll('.player-name').forEach(function (el) {
+        el.addEventListener('click', showBoard);
+      });
+    });
+  }
+}
+
+function closeBoard(e) {
+  var pBoard = document.querySelector('.player-board.open');
+  pBoard.classList.remove('open');
+  pBoard.classList.add('close');
+  setTimeout(function () {
+    pBoard.remove();
+  }, 1500);
+} // \\\
 // ---------------------
 // BUILDINGS ::::: BUILD
 // ---------------------
@@ -26285,29 +26302,6 @@ function endTurn() {
     }
   });
 } // \\\
-// ------------------------
-// ARMIES ::::: SHOW FORCES
-// ------------------------
-// ///
-// document.querySelector('.locations').addEventListener('click',e=>{
-//     if(e.target.className.includes('lord') && !document.querySelector('.move-active')){
-//         showArmy(e);
-//     }
-// })
-// function showArmy(e){
-//     axios.post('./show/army', {
-//         lord: e.target.id,
-//         village: e.target.parentNode.parentNode.id
-//     })
-//     .then(res=>{
-//         console.log(res);
-// let modal = document.getElementById('info-modal');
-// modal.classList.add('show');
-// modal.classList.add(res.data.color+'-bordered');
-// modal.addEventListener('click', ()=>{modal.classList.remove('show')})
-//     })
-// }
-// \\\
 // -------------------
 //  ::::: RESETS :::::
 // -------------------

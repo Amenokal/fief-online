@@ -6,32 +6,42 @@ require('./phases/00_start');
 require('./phases/02_cards');
 require('./phases/04_armies');
 
-
 // \\\
-// -----------------------
-// ::::: ONLOAD INIT :::::
-// -----------------------
+// ------------------------------
+// ::::: SHOW PLAYER BOARDS :::::
+// ------------------------------
 // ///
 
-// document.onload = init();
+document.querySelectorAll('.player-name').forEach(el=>{
+    el.addEventListener('click', showBoard);
+})
 
-// function init(){
-//     drawBanners();
-// }
+function showBoard(e){
+    if(!document.querySelector('.player-board.open')){
+        let player = e.target;
+        axios.get('./show/board', {params: {house: player.innerText}})
+        .then(res=>{
+            document.querySelector('main').innerHTML += res.data;
+            document.querySelector('.player-board').classList.add('open');
+            player.addEventListener('click', showBoard)
+        })
+        .then(res=>{
+            document.querySelector('.player-board.open').addEventListener('click', closeBoard);
+            document.querySelectorAll('.player-name').forEach(el=>{
+                el.addEventListener('click', showBoard);
+            })
+        })
+    }
+}
 
-// fun for later
-// function addBtnFx(e){
-//     console.log(e.target);
-//     let btns = document.querySelectorAll('button');
-
-//     btns.forEach(el=>{
-//         el.addEventListener('click', e=>{
-//             let fx = new Audio('./storage/fx/click.mp3');
-//             console.log(fx);
-//             fx.play();
-//         })
-//     })
-// }
+function closeBoard(e){
+    let pBoard = document.querySelector('.player-board.open');
+    pBoard.classList.remove('open');
+    pBoard.classList.add('close');
+    setTimeout(() => {
+        pBoard.remove();
+    }, 1500);
+}
 
 
 // \\\
@@ -77,8 +87,6 @@ require('./phases/04_armies');
 // -------------------------------------------
 // ///
 
-
-
 document.getElementById('turn-indicator').addEventListener('click', e=>{
     if(e.target.id.includes('phase') && !e.target.className){
         axios.post('./changeturn', {
@@ -116,50 +124,10 @@ function endTurn(){
 
 
 // \\\
-// ------------------------
-// ARMIES ::::: SHOW FORCES
-// ------------------------
-// ///
-
-
-
-// document.querySelector('.locations').addEventListener('click',e=>{
-//     if(e.target.className.includes('lord') && !document.querySelector('.move-active')){
-//         showArmy(e);
-//     }
-// })
-
-// function showArmy(e){
-
-//     axios.post('./show/army', {
-//         lord: e.target.id,
-//         village: e.target.parentNode.parentNode.id
-//     })
-//     .then(res=>{
-//         console.log(res);
-        // let modal = document.getElementById('info-modal');
-        // modal.classList.add('show');
-        // modal.classList.add(res.data.color+'-bordered');
-
-        // modal.addEventListener('click', ()=>{modal.classList.remove('show')})
-//     })
-// }
-
-
-
-
-
-
-
-
-
-// \\\
 // -------------------
 //  ::::: RESETS :::::
 // -------------------
 // ///
-
-
 
 document.getElementById('resetDeck').addEventListener('click', e=>{
     axios.post('./reset/deck')

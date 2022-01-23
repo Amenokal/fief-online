@@ -14,9 +14,11 @@
 
 <div class='game-container'>
 
+
     <x-header :phases="$phases" :turn="$turn" :currentplayer="$currentPlayer"/>
 
     <main>
+        {{-- <x-player-board /> --}}
 
         <div class='main-section'>
 
