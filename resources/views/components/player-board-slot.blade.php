@@ -8,12 +8,19 @@
 
     </span>
 
-    <span @class([
-        "slot",
-        "used" => $player->lords($i)
-    ])
-    >
+    <span class='crown'>
+
     </span>
+
+    @if($player->lords($i))
+        <span
+            class="slot player-board-{{$player->lords($i)->name}}"
+            {{-- style="background-image: url('/fief/storage/app/public/cards/lords/{{$player->lords($i)->name}}.png')"> --}}
+            style="background-image: url('/fief/storage/app/public/cards/lords/Eric.png')">
+        </span>
+    @else
+        <span class="slot"></span>
+    @endif
 
     <span class='cross'>
 

@@ -6,14 +6,99 @@
     background-color: papayawhip;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 60%;
+    background-size: contain;
     position: absolute;
-    
+    box-shadow: 0px 0px 4px 1px black;
+
+    &.none {
+        opacity: .5;
+    }
+
     &.sergeant {
         background-image: url('/fief/storage/app/public/images/soldier.png');
     }
     &.knight {
         background-image: url('/fief/storage/app/public/images/knight.png');
-        background-size: 70%;
+    }
+    &.trebuchet {
+        background-image: url('/fief/storage/app/public/images/trebuchet.png');
+    }
+    &.ring {
+        background-image: url('/fief/storage/app/public/images/ring.png');
+    }
+    &.ambassy {
+        background-image: url('/fief/storage/app/public/images/ambassy.png');
+    }
+    &.treasure {
+        background-image: url('/fief/storage/app/public/images/treasure.png');
+    }
+
+    &.sergeant {
+        &:nth-child(1){
+            left: 2px;
+        }
+        &:nth-child(2){
+            left: 4px;
+        }
+        &:nth-child(3){
+            left: 6px;
+        }
+        &:nth-child(4){
+            left: 8px;
+        }
+        &:nth-child(5){
+            left: 10px;
+        }
+        &:nth-child(6){
+            left: 12px;
+        }
+        &:nth-child(7){
+            left: 14px;
+        }
+        &:nth-child(8){
+            left: 16px;
+        }
+        &:nth-child(9){
+            left: 18px;
+        }
+        &:nth-child(10){
+            left: 20px;
+        }
+        &:nth-child(11){
+            left: 22px;
+        }
+        &:nth-child(12){
+            left: 24px;
+        }
+        &:nth-child(13){
+            left: 26px;
+        }
+    }
+
+    &.knight {
+        &:nth-child(1){
+            left: 2px;
+        }
+        &:nth-child(2){
+            left: 4px;
+        }
+        &:nth-child(3){
+            left: 6px;
+        }
+        &:nth-child(4){
+            left: 8px;
+        }
+        &:nth-child(5){
+            left: 10px;
+        }
+        &:nth-child(6){
+            left: 12px;
+        }
+        &:nth-child(7){
+            left: 14px;
+        }
+        &:nth-child(8){
+            left: 16px;
+        }
     }
 }

@@ -71,6 +71,23 @@ class Player extends Model
         }
     }
 
+    public function remainingSergeants()
+    {
+        return Soldier::where([
+            'game_id'=>Game::current()->id,
+            'village_id'=>null,
+            'type'=>'sergeant'
+        ])->get();
+    }
+    public function remainingKnights()
+    {
+        return Soldier::where([
+            'game_id'=>Game::current()->id,
+            'village_id'=>null,
+            'type'=>'knight'
+        ])->get();
+    }
+
     public function cards()
     {
         return $this->hasMany(Card::class);
