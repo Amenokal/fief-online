@@ -14,6 +14,7 @@ use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Marechal;
+use App\Custom\Services\ArmyServices;
 use App\Http\Controllers\Controller;
 use App\Custom\Services\BootServices;
 use App\Custom\Services\DeckServices;
@@ -24,10 +25,12 @@ class GameController extends Controller
 
 
     public function index(){
-        // dd(Mayor::find('st-médard')->lords()->exists(), Mayor::find('st-médard')->soldiers()->exists());
-        // !$vilg->lords() && !$vilg->soldiers()
 
-        // dd(Marechal::letOne(Realm::lord('Quentin'))['one']);
+        // dd(ArmyServices::letOne(Marechal::armyOf(Realm::lord('Charles')),Realm::lord('Charles'))['moving']);
+
+        // $filtered = $collection->filter(function ($value, $key) {
+        //     return $value > 2;
+        // });
 
         // TODO: make middleware for game booting
         BootServices::init('vanilla');
@@ -38,19 +41,19 @@ class GameController extends Controller
 
             'families' => Realm::families(),
             'turn' => Realm::year(),
+            'phases' => TurnServices::phaseNames(),
             'currentPlayer' => Realm::currentPlayer(),
 
-            'phases' => TurnServices::phaseNames(),
-            'inc_disasters' => Realm::incommingDisasters()->count(),
             'next_lord_card' => Gipsy::nextCard('lord'),
             'next_event_card' => Gipsy::nextCard('event'),
+            'inc_disasters' => Realm::incommingDisasters()->count(),
             'lord_discard_pile' => Gipsy::discardedCards('lord')->all(),
             'event_discard_pile' => Gipsy::discardedCards('event')->all(),
 
-            'villages' => Realm::villages(),
 
-            'army' => Realm::activeArmies(),
+            'villages' => Realm::villages(),
             'lords' => Realm::lords(),
+            'army' => Realm::activeArmies(),
             'buildings' => Realm::buildings()
         ]);
     }

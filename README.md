@@ -1,3 +1,7 @@
+# BUG
+- lord disappears when moveoption : letOne and lord is alone;
+> disable letOne when lord is alone in JS
+
 # HOME
 - Login rework -> register error messages
 - Log events rework
@@ -11,6 +15,7 @@
 > pose phase (need titles)
 
 # ARMIES
+> JS class : ArmyManager for front-end army move & merges
 > Move: let one
 > Move: inspect
 > Army manager modal

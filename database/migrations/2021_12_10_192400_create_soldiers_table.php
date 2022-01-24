@@ -20,7 +20,6 @@ class CreateSoldiersTable extends Migration
             $table->integer('power');
             $table->integer('pv');
             $table->foreignId('village_id')->nullable()->constrained()->default(null);
-            $table->foreignId('lord_id')->nullable()->constrained('cards')->default(null);
             $table->foreignId('player_id')->constrained();
             $table->foreignId('game_id')->constrained();
         });

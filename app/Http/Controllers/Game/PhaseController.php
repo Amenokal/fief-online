@@ -27,8 +27,9 @@ class PhaseController extends Controller
     // PHASE ? ::::: MOVEMENTS
     public function moveAll(Request $request)
     {
+        $to = Mayor::find($request->villageTo);
         $army = Marechal::armyOf(Realm::lord($request->lord));
-        ArmyServices::moveAll($army, Mayor::find($request->villageTo));
+        ArmyServices::move($army, $to);
 
         return response()
             ->view('components.army', [
@@ -41,21 +42,24 @@ class PhaseController extends Controller
             ]);
     }
 
-    // public function letOne(Request $request)
-    // {
-    //     $army = Marechal::letOne(Realm::lord($request->lord))['army'];
-    //     $one = Marechal::letOne(Realm::lord($request->lord))['one'];
-    //     $to = Mayor::find($request->village);
+    public function letOne(Request $request)
+    {
+        $to = Mayor::find($request->villageTo);
+        $lord = Realm::lord($request->lord);
+        $army = Marechal::armyOf($lord);
 
-    //     ArmyServices::march($army, $to);
+        $moving = ArmyServices::letOne($army, $lord)['moving'];
+        $staying = ArmyServices::letOne($army, $lord)['staying'];
+        ArmyServices::move($moving, $to);
 
-    //     return response()->json(
-    //         ['movingArmy' => view('components.army', [
-    //             'village' => $to,
-    //             'families' => Realm::families()
-    //             ]),
-    //         'one' => $one
-    //         ]
-    //     );
-    // }
+        return response()
+        ->view('components.army', [
+            'village' => Mayor::find($request->villageTo),
+            'families' => Realm::families()
+        ])
+        ->withHeaders([
+            'toVillageColor' => Mayor::find($request->villageTo)->player->color ?? false,
+            'staying' => $staying->type
+         ]);
+    }
 }

@@ -49,12 +49,15 @@ class GameStartServices {
             Marechal::newLord($lord, $village);
             Marechal::recruit($starter_army, $village);
             Mayor::administrate();
-            return view('components.army', [
-                'families' => Realm::families(),
-                'village' => $village,
-            ]);
+            return response()->view('components.army', [
+                    'families' => Realm::families(),
+                    'village' => $village,
+                ])
+                ->withHeaders([
+                    'playercolor' => Local::player()->color
+                ]);
         }else{
-            return response(['error' => 'ERROR: village already chosen']);
+            return response(['playercolor' => Local::player()->color, 'error' => 'ERROR: village already chosen']);
         }
     }
 

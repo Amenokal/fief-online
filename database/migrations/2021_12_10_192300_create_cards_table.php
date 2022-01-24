@@ -26,7 +26,7 @@ class CreateCardsTable extends Migration
             $table->foreignId('game_id')->constrained();
             $table->foreignId('player_id')->nullable()->constrained()->default(null);
             $table->foreignId('village_id')->nullable()->constrained()->default(null);
-            $table->softDeletes();        
+            $table->softDeletes();
         });
     }
 

@@ -30,7 +30,7 @@ document.getElementById('step2').addEventListener('click', e=>{
     e.target.classList.toggle('active');
 
     document.querySelectorAll('.village').forEach(el=>{
-        if(e.target.className.includes('active')){
+        if(document.querySelector('#step2.active')){
             el.addEventListener('click', chooseVillage, true);
             if(el.className.includes('empty')){
                 el.classList.add('to-choose');
@@ -50,11 +50,16 @@ function chooseVillage(e){
         village: village.id
     })
     .then(res => {
-        console.log(res.data.error);
         if(!res.data.error){
             village.innerHTML += `<span class='chateau'></span>`
             village.innerHTML += res.data;
+            village.classList.remove('empty');
+            village.classList.add(`${res.headers.playercolor}-bordered`)
             document.getElementById('step2').classList.remove('active');
+            document.querySelectorAll('.village').forEach(el=>{
+                el.classList.remove('to-choose');
+                el.removeEventListener('click', chooseVillage, true);
+            })
         }
         else {
             console.log(res.data.error);

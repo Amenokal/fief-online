@@ -13,7 +13,7 @@ use Illuminate\Support\Collection;
 
 class ArmyServices {
 
-    public static function moveAll(Collection $army, Village $to)
+    public static function move(Collection $army, Village $to)
     {
         foreach($army as $soldier){
             $soldier->update(['village_id' => $to->id]);
@@ -21,27 +21,40 @@ class ArmyServices {
         Mayor::administrate();
     }
 
-    public static function letOne(Card $lord)
+    public static function letOne(Collection $army, Card $moving_lord)
     {
-        $lords = Card::where([
-            'game_id' => Game::current()->id,
-            'deck' => 'lord',
-            'village_id' => $lord->village_id
-        ])->get();
 
-        $soldiers = Soldier::where([
-            'game_id' => Game::current()->id,
-            'village_id' => $lord->village_id
-        ])
-        ->orderBy('type', 'desc')
-        ->get();
-        $one = $soldiers[0];
-        $soldiers = $soldiers->skip(1)->all();
+        $sergeants = $army->filter(function ($value, $key) {
+            return $value->type === 'sergeant';
+        });
+        $knights = $army->filter(function ($value, $key) {
+            return $value->type === 'knight';
+        });
+        $lords = $army->filter(function ($value, $key) {
+            return !!$value->gender;
+        });
 
-        Mayor::administrate();
+        if($sergeants->isNotEmpty()){
+            $staying = $sergeants->shift();
+        }
+        else{
+            if($knights->isNotEmpty()){
+                $staying = $knights->shift();
+            }
+            else{
+                if($lords->isNotEmpty()){
+                    foreach($lords as $lord){
+                        if($lord !== $moving_lord){
+                            $staying = $lords->shift();
+                        }
+                    }
+                }
+            }
+        }
+        $moving = collect([$sergeants, $knights, $lords]);
 
+        return ['moving'=>collect($moving)->flatten(), 'staying'=>$staying];
 
-        return ['army'=>collect($lords)->merge(collect($soldiers)), 'one'=>$one];
     }
 
 }

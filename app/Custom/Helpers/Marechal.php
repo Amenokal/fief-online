@@ -9,6 +9,7 @@ use App\Models\Soldier;
 use App\Models\Village;
 use App\Models\Soldiers;
 use App\Models\Villages;
+use Illuminate\Support\Collection;
 
 class Marechal {
 
@@ -85,7 +86,7 @@ class Marechal {
         }
     }
 
-    public static function armyOf(Card $lord)
+    public static function armyOf(Card $lord) : Collection
     {
         $lords = Card::where([
             'game_id' => Game::current()->id,
@@ -98,7 +99,7 @@ class Marechal {
             'village_id' => $lord->village_id
         ])->get();
 
-        return collect($lords)->merge(collect($soldiers));
+        return collect($soldiers)->merge(collect($lords));
     }
 
 

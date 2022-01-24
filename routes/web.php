@@ -91,8 +91,8 @@ Route::post('/gamestart/2', [PhaseController::class, 'chooseVillage']);
     // PHASE 11 ::::: MOVE
     // -------------------
 
-Route::post('/move/all', [PhaseController::class, 'moveAll']);
-Route::post('/move/let/one', [PhaseController::class, 'letOne']);
+Route::post('/move/moveall', [PhaseController::class, 'moveAll']);
+Route::post('/move/letone', [PhaseController::class, 'letOne']);
 
 
 
