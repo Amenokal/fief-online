@@ -17,6 +17,74 @@ class Marechal {
     public static $sergeants = 0;
     public static $knights = 0;
 
+    public static $moving;
+
+    public static function newLord(Card $lord, Village $to)
+    {
+        $lord->update([
+            'village_id' => $to->id,
+            'on_board' => true
+        ]);
+        return $lord;
+    }
+
+    public static function moveLord(Card $lord, Village $to)
+    {
+        $lord->update([
+            'village_id' => $to->id
+        ]);
+        return $lord;
+    }
+
+    public static function removeLord(Card $lord)
+    {
+        $lord->update([
+            'player_id' => null,
+            'village_id' => null,
+            'on_board' => false
+        ]);
+        $lord->delete();
+    }
+
+
+
+/**
+ *                    ::::: ARMIES :::::
+ *
+ *  • $army is an simple array following the pattern
+ *                [ 'type' , 'amount' , ... ]
+ *
+ *  • *available types registered in json file at :
+ *                storage / data / *-mod-* / armies.json*
+ */
+
+
+    public static function recruit(array $army, Village $village)
+    {
+        for($i=0; $i<count($army); $i+=2){
+            Soldier::where([
+                'game_id' => Game::current()->id,
+                'type' => $army[$i],
+                'player_id' => Local::player()->id,
+                'village_id' => null
+            ])
+            ->take($army[$i+1])
+            ->update(['village_id' => $village->id]);
+        }
+    }
+
+    public function disband(array $army)
+    {
+        for($i=0; $i<count($army); $i+=2){
+            Soldier::where([
+                'game_id' => Game::current()->id,
+                'type' => $army[$i],
+            ])
+            ->take($army[$i+1])
+            ->update(['village_id' => null]);
+        }
+    }
+
     public static function armyOf(Card $lord)
     {
         $lords = Card::where([
@@ -33,65 +101,34 @@ class Marechal {
         return collect($lords)->merge(collect($soldiers));
     }
 
-    public static function letOne(Card $lord)
+
+
+    public static function evaluate(Village $village, Player $player)
     {
         $lords = Card::where([
             'game_id' => Game::current()->id,
             'deck' => 'lord',
-            'village_id' => $lord->village_id
+            'village_id' => $village->id,
+            'player_id' => $player->id
         ])->get();
+
 
         $soldiers = Soldier::where([
             'game_id' => Game::current()->id,
-            'village_id' => $lord->village_id
-        ])
-        ->orderBy('type', 'desc')
-        ->get();
-        $one = $soldiers[0];
-        $soldiers = $soldiers->skip(1)->all();
+            'village_id' => $village->id,
+            'player_id' => $player->id
+        ])->get();
 
-        return ['army'=>collect($lords)->merge(collect($soldiers)), 'one'=>$one];
-    }
-
-    public static function evaluate(Card $lord, bool $only_banner)
-    {
-        $army = self::armyOf($lord);
-
-        foreach($army as $men){
-            if($men->gender === 'M'){
-                self::$power += 1;
-            }
-            // titled women and d'Arc conditions here later ...
-            // d'Arc will be a title btw
-
-            elseif($men->power){
-                self::$power += $men->power;
+        $power = 0;
+        foreach($lords as $lord){
+            if($lord->gender === 'M'){
+                $power++;
             }
         }
-
-        if(self::$power<7){
-            self::$power_counter = 1;
-        }elseif(self::$power<13){
-            self::$power_counter = 2;
-        }else{
-            self::$power_counter = 3;
+        foreach($soldiers as $soldier){
+            $power += $soldier->power;
         }
-
-        // dd(self::$power);
-
-        if($only_banner){
-            return self::$power_counter;
-        }else{
-            self::$sergeants = count($army->where('type', 'sergeant')->all());
-            self::$knights = count($army->where('type', 'knight')->all());
-            $response = [
-                'power' => self::$power_counter,
-                'sergeants' => self::$sergeants,
-                'knights' => self::$knights,
-            ];
-            return $response;
-        }
-
+        return $power;
     }
 
 }

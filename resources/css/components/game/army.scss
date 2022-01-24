@@ -4,7 +4,7 @@
     position: relative;
     z-index: 3;
     display: flex;
-    
+
     .lord {
         height: 100%;
         width: 100%;
@@ -108,7 +108,7 @@
 
 
     // ARMY MOVE OPTIONS
-    .move-options {
+    .move-menu {
         position: relative;
         height: 0px;
         width: 0px;
@@ -147,28 +147,29 @@
             i {
                 font-size: 1.2rem;
                 height: 35px;
-                width: 35px;   
+                width: 35px;
                 color: rgb(68, 41, 6);
 
                 &:first-child {
                     background-color: black;
                     transform: translateY(-72%);
                 }
-                
+
                 &:nth-child(2) {
                     transform: translateY(75%) translateX(-85%);
                 }
-    
+
                 &:nth-child(3) {
                     transform: translateY(75%) translateX(85%);
                 }
-                
+
                 &:nth-child(4) {
                     transform: translateX(0%) translateY(25%) scale(.8);
                 }
 
                 &.active {
                     background-color: rgb(245, 198, 79);
+                    color: white;
                 }
             }
         }
@@ -183,5 +184,5 @@
         right: -50%;
         z-index: 5;
     }
-    
+
 }

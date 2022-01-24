@@ -62,6 +62,14 @@ class Player extends Model
             'type' => 'knight'
         ])->get();
     }
+    public function armyHere(Village $village)
+    {
+        if($this->sergeantsHere($village) || $this->knightsHere($village) || $this->lordsHere($village)){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
     public function cards()
     {

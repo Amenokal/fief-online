@@ -20,17 +20,25 @@ class Mayor {
         Mayor::find($village_name)->update(['player_id'=>$player->id]);
     }
 
+    public static $new_owner = null;
+    public static $counter = 0;
+    public static $power = 0;
+
     public static function administrate()
     {
-        $vilgs = Realm::villages();
-        foreach($vilgs as $vilg){
-            if($vilg->player_id && $vilg->soldiers()->get()->isEmpty()){
+        foreach(Realm::villages() as $vilg){
+            if(!$vilg->lords()->exists() && !$vilg->soldiers()->exists()){
                 $vilg->update(['player_id' => null]);
-            }
-            elseif($vilg->player_id === null && $vilg->soldiers()->get()->isNotEmpty()){
-                $vilg->update(['player_id' => $vilg->soldiers()->first()->player->id]); 
+            }else{
+                foreach(Realm::families() as $fam){
+                    self::$power = Marechal::evaluate($vilg, $fam);
+                    if(self::$power>self::$counter){
+                        self::$counter = self::$power;
+                        self::$new_owner = $fam;
+                    }
+                }
+                $vilg->update(['player_id' => self::$new_owner->id]);
             }
         }
     }
-
 }

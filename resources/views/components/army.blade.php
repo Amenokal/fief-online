@@ -1,20 +1,20 @@
 @foreach ($families as $fam)
 
-@if($fam->lordsHere($village)->isNotEmpty() || $fam->sergeantsHere($village) || $fam->knightsHere($village))
+@if($fam->lordsHere($village) || $fam->armyHere($village))
 
-<div class='army'>
+<div class='army {{$fam->color}}'>
 
     <div class='lord-forces'>
         @foreach($fam->lordsHere($village) as $lord)
             <span id="{{$lord->name}}" class='lord'></span>
         @endforeach
     </div>
-        
-    <div class='move-options'>
-        <i id='move-option-inspect' class="fas fa-search"></i>
-        <i id='move-option-let-one' class="fas fa-male"></i>
-        <i id='move-option-move-all' class="fas fa-angle-double-right"></i>
-        <i id='move-option-close' class="fas fa-times-circle"></i>
+
+    <div class='move-menu'>
+        <i id='inspect' class="move-option fas fa-search"></i>
+        <i id='let-one' class="move-option fas fa-male"></i>
+        <i id='move-all' class="move-option fas fa-angle-double-right"></i>
+        <i id='close' class="move-option fas fa-times-circle"></i>
     </div>
 
     {{-- <canvas height="400px" width="250px" class='banner {{$fam->color}} power-{{$fam->lordsHere($village)->first()->army_power()}}'></canvas> --}}
@@ -32,7 +32,7 @@
             @endfor
         </div>
     </div>
-    
+
 
 </div>
 

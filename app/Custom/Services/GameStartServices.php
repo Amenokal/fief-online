@@ -5,12 +5,11 @@ namespace App\Custom\Services;
 use App\Models\Card;
 use App\Models\Game;
 use App\Models\Village;
-use Illuminate\Http\Request;
-use App\Custom\Helpers\Gipsy;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
+use App\Custom\Helpers\Realm;
+use App\Custom\Helpers\Marechal;
 use App\Custom\Helpers\Architect;
-use App\Custom\Services\ArmyServices;
 
 class GameStartServices {
 
@@ -47,11 +46,11 @@ class GameStartServices {
             $lord = Local::cards()->first()->play();
 
             Architect::build('chateau', $village);
-            ArmyServices::newLord($lord, $village);
-            ArmyServices::recruit($starter_army, $village);
+            Marechal::newLord($lord, $village);
+            Marechal::recruit($starter_army, $village);
             Mayor::administrate();
             return view('components.army', [
-                'families' => Local::player(),
+                'families' => Realm::families(),
                 'village' => $village,
             ]);
         }else{

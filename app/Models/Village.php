@@ -55,6 +55,18 @@ class Village extends Model
         ]);
     }
 
+    public function hasArmy()
+    {
+        return $this->soldiers ? true : false;
+    }
+
+    public function hasOwner()
+    {
+        return !!$this->player;
+    }
+
+
+
     /////
 
 
@@ -63,7 +75,7 @@ class Village extends Model
     {
         return $this->belongsTo(Game::class);
     }
-    
+
     public function player()
     {
         return $this->belongsTo(Player::class);

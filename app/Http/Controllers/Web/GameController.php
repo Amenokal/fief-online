@@ -24,11 +24,10 @@ class GameController extends Controller
 
 
     public function index(){
-        // dd(Local::player()->villages->isEmpty());
+        // dd(Mayor::find('st-médard')->lords()->exists(), Mayor::find('st-médard')->soldiers()->exists());
+        // !$vilg->lords() && !$vilg->soldiers()
 
         // dd(Marechal::letOne(Realm::lord('Quentin'))['one']);
-        // dd(Gipsy::nextCard('event'));
-        // dd(Gipsy::nextCard('event')->first());
 
         // TODO: make middleware for game booting
         BootServices::init('vanilla');

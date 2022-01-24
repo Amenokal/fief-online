@@ -2302,216 +2302,148 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
     axios = _require["default"];
 
 document.getElementById('moveBtn').addEventListener('click', function (e) {
-  e.target.classList.toggle('move-active');
+  console.log('moveBtn');
+  e.target.classList.toggle('active');
 });
 document.querySelector('.game-view').addEventListener('click', function (e) {
-  var phase = document.querySelector('.current-phase'); // ONCLICK LORD >>> MOVE PHASE
+  var phase = document.querySelector('.current-phase'); // MOVE PHASE >>> WHEN CLICK ON LORD
 
-  if (phase.id === 'phase-11' && document.querySelector('.move-active') && e.target.className.includes('lord')) {
+  if (phase.id === "phase-11" && document.querySelector('#moveBtn.active') && e.target.className.includes('lord')) {
     // OPEN MOVE OPTIONS
     e.target.parentNode.nextElementSibling.classList.add('show'); // SET INITIAL ARMY POSITION DATA
 
     e.target.classList.add('moving-lord');
     e.target.parentNode.parentNode.classList.add('moving-army');
     e.target.parentNode.parentNode.parentNode.classList.add('village-from'); // ADD MOVE OPTION LISTENERS
+    // document.querySelector('.move-menu.show').children[0].addEventListener('click', inspect, true);
+    // document.querySelector('.move-menu.show').children[1].addEventListener('click', letOne, true);
 
-    document.querySelector('.move-options.show').children[0].addEventListener('click', inspect, true);
-    document.querySelector('.move-options.show').children[1].addEventListener('click', letOne, true);
-    document.querySelector('.move-options.show').children[2].addEventListener('click', moveAll, true);
-    document.querySelector('.move-options.show').children[3].addEventListener('click', cleanMovePhase, true);
+    document.querySelector('.move-menu.show').children[2].addEventListener('click', moveAll, true); // document.querySelector('.move-menu.show').children[3].addEventListener('click', cleanMovePhase, true);
   }
 });
 
 function moveAll(e) {
-  if (document.querySelector('.active')) {
-    document.querySelector('.active').classList.remove('active');
-  }
+  console.log('func movall');
 
-  if (!e.target.className.includes('active')) {
+  if (!!document.querySelectorAll('.move-option.active')[0]) {
+    e.target.classList.remove('active');
+  } else {
     e.target.classList.add('active');
   }
 
   document.querySelectorAll('.village').forEach(function (el) {
-    el.addEventListener('click', moveAllListener, true);
+    el.addEventListener('click', moveAllListeners, true);
   });
 }
 
-function moveAllListener(e) {
-  if (e.eventPhase === 1) {
+function moveAllListeners(e) {
+  if (document.querySelector('.current-phase').id === "phase-11" && e.currentTarget.className.includes('village')) {
     e.currentTarget.classList.add('village-to');
     axios.post('./move/all', {
       lord: document.querySelector('.moving-lord').id,
-      village: document.querySelector('.village-to').id
+      villageFrom: document.querySelector('.village-from').id,
+      villageTo: document.querySelector('.village-to').id
     }).then(function (res) {
+      // MANAGES VILLAGES OWNERSHIPS DISPLAY
+      var vFrom = document.querySelector('.village-from');
+      var vTo = document.querySelector('.village-to');
       document.querySelector('.moving-army').remove();
-      document.querySelector('.village-to').innerHTML += res.data;
-      cleanMovePhase();
-    });
-  }
-}
+      vTo.innerHTML += res.data;
 
-function letOne(e) {
-  if (document.querySelector('.active')) {
-    document.querySelector('.active').classList.remove('active');
-  }
-
-  if (!e.target.className.includes('active')) {
-    e.target.classList.add('active');
-  }
-
-  document.querySelectorAll('.village').forEach(function (el) {
-    el.addEventListener('click', letOneListener, true);
-  });
-}
-
-function letOneListener(e) {
-  if (e.eventPhase === 1) {
-    e.currentTarget.classList.add('village-to');
-    axios.post('./let/one', {
-      lord: document.querySelector('.moving-lord').id,
-      village: document.querySelector('.village-to').id
-    }).then(function (res) {
-      if (document.querySelector('.moving-army>.army-forces>.sergeant-container').hasChildNodes()) {
-        document.querySelector('.moving-army>.army-forces>.sergeant-container').firstElementChild.remove();
-      } else if (document.querySelector('.moving-army>.army-forces>.knight-container').hasChildNodes()) {
-        document.querySelector('.moving-army>.army-forces>.knight-container').firstElementChild.remove();
+      if (vFrom.className.includes('bordered')) {
+        vFrom.className = vFrom.className.split(' ')[0];
       }
 
-      document.querySelector('.moving-army').remove();
-      document.querySelector('.village-to').innerHTML += res.data;
-      cleanMovePhase();
+      if (vTo.className.includes('bordered')) {
+        vTo.className = vTo.className.split(' ')[0];
+      }
+
+      if (res.headers.fromvillagecolor) {
+        vFrom.classList.add("".concat(res.headers.fromvillagecolor, "-bordered"));
+      } else {
+        vFrom.classList.add("empty");
+      }
+
+      if (res.headers.tovillagecolor) {
+        vTo.classList.remove('empty');
+        vTo.classList.add("".concat(res.headers.tovillagecolor, "-bordered"));
+      }
+    }).then(function () {
+      // CLEAN CLASSES & LISTENERS
+      document.querySelector('.village-to').classList.remove('village-to');
+      document.querySelectorAll('.village').forEach(function (el) {
+        el.removeEventListener('click', moveAllListeners, true);
+      });
     });
   }
-} // function closeMoveOptions(){
+} // function letOne(e){
+//     if(document.querySelector('#let-one.active')){
+//         document.querySelector('.active').classList.remove('active')
+//     }
+//     if(!e.target.className.includes('active')){
+//         e.target.classList.add('active');
+//     }
+//     document.querySelectorAll('.village').forEach(el=>{
+//         el.addEventListener('click', letOneListener, true)
+//     })
+// }
+// function letOneListener(e){
+//     if(e.eventPhase === 1){
+//         e.currentTarget.classList.add('village-to');
+//         axios.post('./let/one', {
+//             lord: document.querySelector('.moving-lord').id,
+//             village: document.querySelector('.village-to').id
+//         })
+//         .then(res=>{
+//             console.log(res);
+//             // if(document.querySelector('.moving-army>.army-forces>.sergeant-container').hasChildNodes()){
+//             //     document.querySelector('.moving-army>.army-forces>.sergeant-container').firstElementChild.remove();
+//             // }else if(document.querySelector('.moving-army>.army-forces>.knight-container').hasChildNodes()){
+//             //     document.querySelector('.moving-army>.army-forces>.knight-container').firstElementChild.remove();
+//             // }
+//             // document.querySelector('.moving-army').remove();
+//             // document.querySelector('.village-to').innerHTML += res.data;
+//             // cleanMovePhase();
+//         })
+//     }
+// }
+// function closeMoveOptions(){
 //     document.querySelector('.moving-army').classList.remove('moving-army');
 //     document.querySelector('.village-from').classList.remove('village-from');
 //     if(document.querySelector('.active')){
 //         document.querySelector('.active').classList.remove('active');
 //     }
-//     document.querySelector('.move-options.show').children[0].removeEventListener('click', inspect, true);
-//     document.querySelector('.move-options.show').children[1].removeEventListener('click', letOne, true);
-//     document.querySelector('.move-options.show').children[2].removeEventListener('click', moveAll, true);
-//     document.querySelector('.move-options.show').children[3].removeEventListener('click', closeMoveOptions, true);
-//     document.querySelector('.move-options.show').classList.remove('show');
+//     document.querySelector('.move-menu.show').children[0].removeEventListener('click', inspect, true);
+//     document.querySelector('.move-menu.show').children[1].removeEventListener('click', letOne, true);
+//     document.querySelector('.move-menu.show').children[2].removeEventListener('click', moveAll, true);
+//     document.querySelector('.move-menu.show').children[3].removeEventListener('click', closeMoveOptions, true);
+//     document.querySelector('.move-menu.show').classList.remove('show');
 // }
 // ::::: OPTION SELECT :::::
 // -------------------------
-// ACTIVE OPTION #1 >>> MOVE ALL
-
-
-if (document.querySelector('.move-options.show') && e.target.id === 'move-option-move-all') {
-  e.target.classList.toggle('active');
-} // ACTIVE OPTION #2 >>> MOVE ALL BUT 1 
-
-
-if (document.querySelector('.move-options.show') && e.target.id === 'move-option-let-one') {
-  e.target.classList.toggle('active');
-}
-
-if (document.querySelector('#move-option-move-all.active') || document.querySelector('#move-option-let-one.active')) {
-  console.log('active listeners');
-  var vilg = document.querySelectorAll('.village');
-  vilg.forEach(function (el) {
-    el.addEventListener('click', activeVillageListeners, true);
-  });
-} // ::::: OPTION REQUESTS :::::
-// ---------------------------
-
-
-if (document.querySelector('.move-options.show') && (e.target.className.includes('village') || e.target.parentNode.className.includes('village'))) {
-  var _moveAll = document.getElementById('move-option-move-all').className.includes('active');
-
-  var _letOne = document.getElementById('move-option-let-one').className.includes('active');
-
-  if (e.target.className.includes('village')) {
-    villageTo = e.target;
-  } else if (e.target.parentNode.className.includes('village')) {
-    villageTo = e.target.parentNode;
-  } // REQUEST
-
-
-  if ((document.getElementById('move-option-move-all').className.includes('active') || document.getElementById('move-option-let-one').className.includes('active')) && villageTo !== null) {
-    var path;
-
-    if (_moveAll) {
-      path = './move/all';
-    } else if (_letOne) {
-      path = './move/let/one';
-    }
-
-    axios.post(path, {
-      lord: movingLord.id,
-      village: villageTo.id
-    }).then(function (res) {
-      document.querySelector('.moving').parentNode.parentNode.remove();
-      document.querySelector('.to').innerHTML += res.data;
-
-      if (_letOne) {
-        if (armyFrom.children[2].children[0].children[0].children) {
-          armyFrom.children[2].children[0].children[0].remove();
-        } else if (armyFrom.children[2].children[1].children[0].children) {
-          armyFrom.children[2].children[0].children[1].remove();
-        } else if (armyFrom.children[0].children) {
-          for (var i = 0; i < armyFrom.children[0].children.length; i++) {
-            if (!armyFrom.children[0].children[i].className.includes('moving')) {
-              armyFrom.children[0].children[i].remove();
-            }
-          }
-        }
-      } else {
-        armyFrom.remove();
-      }
-    }).then(function () {
-      if (document.querySelector('.move-options.show')) {
-        document.querySelector('.move-options.show').classList.remove('show');
-      }
-
-      if (document.querySelector('.active')) {
-        document.querySelector('.active').classList.remove('active');
-      }
-
-      if (document.querySelector('.move-active')) {
-        document.querySelector('.move-active').classList.remove('move-active');
-      }
-
-      if (document.querySelector('.to')) {
-        document.querySelector('.to').classList.remove('to');
-      }
-    });
-  } else {
-    if (document.querySelector('.move-options.show')) {
-      document.querySelector('.move-options.show').classList.remove('show');
-    }
-
-    if (document.querySelector('.active')) {
-      document.querySelector('.active').classList.remove('active');
-    }
-
-    if (document.querySelector('.move-active')) {
-      document.querySelector('.move-active').classList.remove('move-active');
-    }
-
-    if (document.querySelector('.to')) {
-      document.querySelector('.to').classList.remove('to');
-    }
-  }
-}
-
-function activeVillageListeners(e) {
-  if (e.eventPhase === 1) {
-    console.log(e.currentTarget);
-  }
-
-  removeVillageListeners();
-}
-
-function removeVillageListeners() {
-  console.log('remove listners');
-  var vilg = document.querySelectorAll('.village');
-  vilg.forEach(function (el) {
-    el.removeEventListener('click', activeVillageListeners, true);
-  });
-}
+// // ACTIVE OPTION #1 >>> MOVE ALL
+// if(document.querySelector('.move-menu.show') && e.target.id === 'move-all'){
+//     e.target.classList.toggle('active');
+// }
+// // ACTIVE OPTION #2 >>> MOVE ALL BUT 1
+// if(document.querySelector('.move-menu.show') && e.target.id === 'let-one'){
+//     e.target.classList.toggle('active');
+// }
+// if(document.querySelector('#move-all.active')||
+//     document.querySelector('#let-one.active')){
+//         console.log('active listeners')
+//     const vilg = document.querySelectorAll('.village');
+//     vilg.forEach(el=>{
+//         el.addEventListener('click', activeVillageListeners, true)
+//     })
+// }
+// function cleanMovementPhase(){
+//     document.getElementById('moveBtn').classList.remove('active');
+//     document.querySelector('.move-menu.show').classList.remove('show');
+//     document.querySelector('.active').classList.remove('active');
+//     document.querySelector('.village-from').classList.remove('from');
+//     document.querySelector('.village-to').classList.remove('to');
+// }
 
 /***/ }),
 
