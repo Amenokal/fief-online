@@ -192,67 +192,67 @@
 .token.treasure {
   background-image: url("/fief/storage/app/public/images/treasure.png");
 }
-.token.sergeant:nth-child(1) {
+.token.sergeant:nth-of-type(1) {
   left: 2px;
 }
-.token.sergeant:nth-child(2) {
+.token.sergeant:nth-of-type(2) {
   left: 4px;
 }
-.token.sergeant:nth-child(3) {
+.token.sergeant:nth-of-type(3) {
   left: 6px;
 }
-.token.sergeant:nth-child(4) {
+.token.sergeant:nth-of-type(4) {
   left: 8px;
 }
-.token.sergeant:nth-child(5) {
+.token.sergeant:nth-of-type(5) {
   left: 10px;
 }
-.token.sergeant:nth-child(6) {
+.token.sergeant:nth-of-type(6) {
   left: 12px;
 }
-.token.sergeant:nth-child(7) {
+.token.sergeant:nth-of-type(7) {
   left: 14px;
 }
-.token.sergeant:nth-child(8) {
+.token.sergeant:nth-of-type(8) {
   left: 16px;
 }
-.token.sergeant:nth-child(9) {
+.token.sergeant:nth-of-type(9) {
   left: 18px;
 }
-.token.sergeant:nth-child(10) {
+.token.sergeant:nth-of-type(10) {
   left: 20px;
 }
-.token.sergeant:nth-child(11) {
+.token.sergeant:nth-of-type(11) {
   left: 22px;
 }
-.token.sergeant:nth-child(12) {
+.token.sergeant:nth-of-type(12) {
   left: 24px;
 }
-.token.sergeant:nth-child(13) {
+.token.sergeant:nth-of-type(13) {
   left: 26px;
 }
-.token.knight:nth-child(1) {
+.token.knight:nth-of-type(1) {
   left: 2px;
 }
-.token.knight:nth-child(2) {
+.token.knight:nth-of-type(2) {
   left: 4px;
 }
-.token.knight:nth-child(3) {
+.token.knight:nth-of-type(3) {
   left: 6px;
 }
-.token.knight:nth-child(4) {
+.token.knight:nth-of-type(4) {
   left: 8px;
 }
-.token.knight:nth-child(5) {
+.token.knight:nth-of-type(5) {
   left: 10px;
 }
-.token.knight:nth-child(6) {
+.token.knight:nth-of-type(6) {
   left: 12px;
 }
-.token.knight:nth-child(7) {
+.token.knight:nth-of-type(7) {
   left: 14px;
 }
-.token.knight:nth-child(8) {
+.token.knight:nth-of-type(8) {
   left: 16px;
 }
 
@@ -470,21 +470,45 @@
   z-index: 2;
 }
 
-.locations .empty {
-  border: 1px solid #7e7e7e;
-}
-.locations .empty:hover {
-  border: 1px solid #cfcfcf;
-  transform: scale(1.1);
-}
-.locations .village,
-.locations .city {
+.locations .village {
   position: absolute;
   height: 8%;
   width: 6%;
   display: block;
   border-radius: 0.3em;
   transition: 0.3s ease;
+}
+.locations .village:hover {
+  transform: scale(1.4);
+  z-index: 4;
+}
+.locations .village:hover > .army:nth-of-type(1) {
+  transform: translateX(-30%);
+  transform: translateY(-30%);
+}
+.locations .village > .army:nth-of-type(1) {
+  left: -60%;
+  top: -80%;
+}
+.locations .village > .army:nth-of-type(2) {
+  left: -90%;
+  top: 0%;
+}
+.locations .village > .army:nth-of-type(3) {
+  left: -60%;
+  top: 60%;
+}
+.locations .village > .army:nth-of-type(4) {
+  left: 60%;
+  top: -80%;
+}
+.locations .village > .army:nth-of-type(5) {
+  left: 90%;
+  top: 0%;
+}
+.locations .village > .army:nth-of-type(6) {
+  left: 60%;
+  top: 60%;
 }
 .locations #tournus {
   left: 77%;
@@ -600,6 +624,7 @@
 
 .chateau {
   background-image: url("/fief/storage/app/public/images/chateau.png");
+  position: absolute;
   display: flex;
   background-position: center;
   background-repeat: no-repeat;
@@ -611,6 +636,7 @@
 
 .cite {
   background-image: url("/fief/storage/app/public/images/cite.png");
+  position: absolute;
   display: flex;
   background-position: center;
   background-repeat: no-repeat;
@@ -622,6 +648,7 @@
 
 .moulin {
   background-image: url("/fief/storage/app/public/images/moulin.png");
+  position: absolute;
   display: flex;
   background-position: center;
   background-repeat: no-repeat;
@@ -639,6 +666,7 @@
   position: relative;
   z-index: 3;
   display: flex;
+  transition: 0.3s ease;
 }
 .army .lord {
   height: 100%;
@@ -662,12 +690,16 @@
   display: flex;
   flex-direction: column;
   transition: 0.3s ease;
+  width: 37px;
+  top: 17%;
 }
-.army .army-forces .sergeant {
-  bottom: 50%;
+.army .army-forces:hover > div > .sergeant {
+  bottom: 70%;
+  z-index: 5;
 }
-.army .army-forces .knight {
-  top: 50%;
+.army .army-forces:hover > div > .knight {
+  top: 30%;
+  z-index: 5;
 }
 .army .move-menu {
   position: relative;
@@ -689,34 +721,37 @@
   color: transparent;
   background-color: goldenrod;
   box-shadow: inset 0px 0px 5px 1px rgba(75, 43, 16, 0.8), 0px 0px 4px 1px rgba(75, 43, 16, 0.8);
-  border-radius: 10em;
   transition: 0.3s ease;
 }
 .army .move-menu i:hover {
-  box-shadow: inset 0px 0px 15px 3px rgba(75, 43, 16, 0.8);
+  color: white;
 }
 .army .move-menu.show {
   height: auto;
   width: auto;
+  left: -40%;
+  z-index: 4;
 }
 .army .move-menu.show i {
-  font-size: 1.2rem;
-  height: 35px;
-  width: 35px;
+  font-size: 1rem;
+  height: 25px;
+  width: 25px;
   color: #442906;
 }
 .army .move-menu.show i:first-child {
-  background-color: black;
-  transform: translateY(-72%);
+  transform: translateY(160%) translateX(-100%);
 }
 .army .move-menu.show i:nth-child(2) {
-  transform: translateY(75%) translateX(-85%);
+  transform: translateY(160%);
 }
 .army .move-menu.show i:nth-child(3) {
-  transform: translateY(75%) translateX(85%);
+  transform: translateY(160%) translateX(100%);
 }
 .army .move-menu.show i:nth-child(4) {
-  transform: translateX(0%) translateY(25%) scale(0.8);
+  border-radius: 10em;
+  height: 20px;
+  width: 20px;
+  transform: translateY(150%) translateX(200%) scale(0.7);
 }
 .army .move-menu.show i.active {
   background-color: #f5c64f;
@@ -734,13 +769,8 @@
 .player-board {
   width: 900px;
   height: 420px;
-  position: absolute;
   top: 15%;
-  z-index: 5;
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .player-board.open {
   -webkit-animation: "openPlayerBoard" 1.5s ease-out forwards;
@@ -834,6 +864,94 @@
 .cross:nth-child(6) {
   grid-column: 7/8;
   grid-row: 4/11;
+}
+
+.army-manager {
+  height: 500px;
+  width: 735px;
+  background-color: #031c35;
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 5px solid #010c16;
+  box-shadow: inset 0px 0px 10px 5px rgba(1, 12, 22, 0.712);
+  display: flex;
+}
+.army-manager > * {
+  box-sizing: border-box;
+  border: 1px solid whitesmoke;
+}
+.army-manager > section {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.army-manager > section > * {
+  box-sizing: border-box;
+  border: 1px solid whitesmoke;
+}
+.army-manager > section > h1 {
+  height: 15%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.army-manager > section > div {
+  height: 85%;
+  width: 100%;
+}
+.army-manager .a-m-move-btns {
+  width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.army-manager .a-m-move-btns button {
+  color: orange;
+  background-color: orangered;
+  border: 1px solid orange;
+  border-radius: 0.3em;
+  margin: 1em 0;
+  font-size: 1.5rem;
+  padding: 0.3em;
+}
+.army-manager .token {
+  position: unset;
+  height: 45px;
+  width: 45px;
+}
+.army-manager .lord {
+  width: 25%;
+  background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.army-manager .a-m-staying-lords,
+.army-manager .a-m-moving-lords {
+  height: 33%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.army-manager .a-m-staying-army,
+.army-manager .a-m-moving-army {
+  height: 66%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: 1em;
+}
+.army-manager .selected-to-move,
+.army-manager .selected-to-stay {
+  transform: scale(0.8);
 }
 
 .game-container {
@@ -1032,6 +1150,14 @@
 }
 .game-container button.active {
   color: var(--red);
+}
+
+.modal {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
 }
 
 .login-container {

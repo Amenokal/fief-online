@@ -14,7 +14,7 @@
         <i class="move-option inspect fas fa-search"></i>
         <i class="move-option let-one fas fa-male"></i>
         <i class="move-option move-all fas fa-angle-double-right"></i>
-        <i class="move-option close fas fa-times-circle"></i>
+        <i class="move-option close fas fa-times"></i>
     </div>
 
     {{-- <canvas height="400px" width="250px" class='banner {{$fam->color}} power-{{$fam->lordsHere($village)->first()->army_power()}}'></canvas> --}}

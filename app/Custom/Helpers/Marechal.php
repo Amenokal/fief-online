@@ -9,6 +9,7 @@ use App\Models\Soldier;
 use App\Models\Village;
 use App\Models\Soldiers;
 use App\Models\Villages;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class Marechal {
@@ -102,7 +103,27 @@ class Marechal {
         return collect($soldiers)->merge(collect($lords));
     }
 
+    public static function splitedArmy(Request $request) : Collection
+    {
+        $moving_lords = [];
+        foreach($request->lords as $lord){
+            $moving_lords[] = Realm::lord($lord);
+        };
+        $moving_lords = collect($moving_lords);
 
+        $army = [];
+        foreach($request->army as $soldier){
+            $army[] = Soldier::where([
+                'game_id'=>Game::current()->id,
+                'type'=>$soldier,
+                'player_id'=>$moving_lords->first()->player->id,
+                'village_id'=>$moving_lords->first()->village_id,
+            ])->first();
+        };
+        $army = collect($army);
+
+        return $moving_lords->merge($army);
+    }
 
     public static function evaluate(Village $village, Player $player)
     {

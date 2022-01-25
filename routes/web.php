@@ -93,6 +93,8 @@ Route::post('/gamestart/2', [PhaseController::class, 'chooseVillage']);
 
 Route::post('/move/moveall', [PhaseController::class, 'moveAll']);
 Route::post('/move/letone', [PhaseController::class, 'letOne']);
+Route::get('/show/army/manager', [PhaseController::class, 'showArmyManager']);
+Route::post('/move/inspect', [PhaseController::class, 'inspect']);
 
 
 

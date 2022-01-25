@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Game;
 
+use App\Models\Card;
+use App\Models\Game;
+use App\Models\Soldier;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
@@ -60,6 +64,34 @@ class PhaseController extends Controller
         ->withHeaders([
             'toVillageColor' => Mayor::find($request->villageTo)->player->color ?? false,
             'staying' => $staying->type
-         ]);
+        ]);
+    }
+
+    public function showArmyManager(Request $request)
+    {
+        $village = Mayor::find($request->village);
+        $lord = Realm::lord($request->lord);
+
+        return view('components.army-manager', [
+            'player' => $lord->player,
+            'village' => $village
+        ]);
+    }
+
+    public function inspect(Request $request)
+    {
+        $to = Mayor::find($request->villageTo);
+        $army = Marechal::splitedArmy($request);
+
+        ArmyServices::move($army, $to);
+
+        return response()
+        ->view('components.army', [
+            'village' => Mayor::find($request->villageTo),
+            'families' => Realm::families()
+        ])
+        ->withHeaders([
+            'toVillageColor' => Mayor::find($request->villageTo)->player->color ?? false,
+        ]);
     }
 }

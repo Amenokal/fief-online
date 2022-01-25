@@ -1,27 +1,60 @@
 .locations {
 
-    .empty {
-        border: 1px solid rgb(126, 126, 126);
+    // .empty {
+    //     border: 1px solid rgb(126, 126, 126);
 
-        &:hover{
-            border: 1px solid rgb(207, 207, 207); 
-            transform: scale(1.1);
-        }
-    }
+    //     &:hover{
+    //         border: 1px solid rgb(207, 207, 207);
+    //         transform: scale(1.1);
+    //     }
+    // }
 
-
-    .village,
-    .city {
+    .village{
         position: absolute;
         height: 8%;
-        width: 6%;  
+        width: 6%;
         display: block;
         border-radius: .3em;
         transition: .3s ease;
-        
-        // &:hover{
-            // transform: scale(1.2);
-        // }
+
+        &:hover{
+            transform: scale(1.4);
+            z-index: 4;
+
+            &>.army{
+                &:nth-of-type(1){
+                    transform: translateX(-30%);
+                    transform: translateY(-30%);
+                }
+            }
+        }
+
+        &>.army{
+            &:nth-of-type(1){
+                left: -60%;
+                top: -80%;
+            }
+            &:nth-of-type(2){
+                left: -90%;
+                top: 0%;
+            }
+            &:nth-of-type(3){
+                left: -60%;
+                top: 60%;
+            }
+            &:nth-of-type(4){
+                left: 60%;
+                top: -80%;
+            }
+            &:nth-of-type(5){
+                left: 90%;
+                top: 0%;
+            }
+            &:nth-of-type(6){
+                left: 60%;
+                top: 60%;
+            }
+        }
     }
 
     //COUNTY 1
@@ -30,7 +63,7 @@
         top: 20%;
         opacity: 0;
         // border: 2px solid forestgreen;
-        
+
         &::after {
             content:'TOURNUS';
             position: absolute;
@@ -41,7 +74,7 @@
             background-color: darkgreen;
             padding: .3em;
             border-radius: .5em;
-            
+
         }
         &:hover {
             opacity: 1;
@@ -57,7 +90,7 @@
         top: 36%;
         // border: 2px solid forestgreen;
     }
-    
+
     // COUNTY 2
     #st-gérôme{
         left:85.5%;
@@ -74,7 +107,7 @@
         top:79%;
         // border: 2px solid rgb(255, 206, 81);
     }
-    
+
     //DUCHY 1
     #bourg{
         left:53%;
@@ -96,7 +129,7 @@
         top:82.5%;
         // border: 2px solid firebrick;
     }
-    
+
     //BARONY 1
     #les-essarts{
         left: 29%;
@@ -108,7 +141,7 @@
         top:81%;
         // border: 2px solid rgb(0, 204, 0)
     }
-    
+
     //COUNTY 3
     #sigy{
         left:5%;
@@ -125,7 +158,7 @@
         top:32%;
         // border: 2px solid dodgerblue;
     }
-    
+
     //DUCHY 2
     #blaye{
         left:25%;
@@ -147,7 +180,7 @@
         top: 37%;
         // border: 2px solid rgb(255, 133, 52);
     }
-    
+
     // COUNTY 4
     #sennecy{
         left: 37%;

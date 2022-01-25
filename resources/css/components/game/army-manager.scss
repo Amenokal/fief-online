@@ -1,0 +1,103 @@
+.army-manager{
+
+    height: 500px;
+    width: 735px;
+    background-color: rgb(3, 28, 53);
+    background-image: url('/fief/storage/app/public/textures/grunge2.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 5px solid rgb(1, 12, 22);
+    box-shadow: inset 0px 0px 10px 5px rgba(1, 12, 22, 0.712);
+    display: flex;
+
+    &>*{
+        box-sizing: border-box;
+        border: 1px solid whitesmoke;
+    }
+
+    &>section{
+        &>*{
+            box-sizing: border-box;
+            border: 1px solid whitesmoke;
+        }
+        height: 100%;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &>h1{
+            height: 15%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &>div{
+            height: 85%;
+            width: 100%;
+        }
+    }
+
+    .a-m-move-btns {
+        width: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        button {
+            color: orange;
+            background-color: orangered;
+            border: 1px solid orange;
+            border-radius: .3em;
+            margin: 1em 0;
+            font-size: 1.5rem;
+            padding: .3em;
+        }
+    }
+
+
+
+    .token {
+        position: unset;
+        height: 45px;
+        width: 45px;
+    }
+
+    .lord {
+        width: 25%;
+        background-image: url('/fief/storage/app/public/cards/lords/Eric.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .a-m-staying-lords,
+    .a-m-moving-lords
+    {
+        height: 33%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .a-m-staying-army,
+    .a-m-moving-army
+    {
+        height: 66%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        padding: 1em;
+    }
+
+    .selected-to-move,
+    .selected-to-stay{
+        transform: scale(.8)
+
+    }
+
+}

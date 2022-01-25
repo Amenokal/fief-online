@@ -1,4 +1,4 @@
-<aside class='player-board {{ $player->color }}-bordered'>
+<aside class='modal player-board {{ $player->color }}-bordered'>
 
     <section class="family-info">
 

@@ -4,6 +4,7 @@
     position: relative;
     z-index: 3;
     display: flex;
+    transition: .3s ease;
 
     .lord {
         height: 100%;
@@ -29,12 +30,17 @@
         display: flex;
         flex-direction: column;
         transition: .3s ease;
+        width: 37px;
+        top: 17%;
 
-        .sergeant{
-            bottom: 50%;
+        &:hover>div>.sergeant{
+            bottom: 70%;
+            z-index: 5;
         }
-        .knight{
-            top: 50%
+
+        &:hover>div>.knight{
+            top: 30%;
+            z-index: 5;
         }
     }
 
@@ -63,40 +69,44 @@
             color: transparent;
             background-color: goldenrod;
             box-shadow: inset 0px 0px 5px 1px rgb(75, 43, 16, .8), 0px 0px 4px 1px rgb(75, 43, 16, .8);
-            border-radius: 10em;
+            // border-radius: 10em;
 
             transition: .3s ease;
 
             &:hover {
-                box-shadow: inset 0px 0px 15px 3px rgb(75, 43, 16, .8);
+                color: white;
             }
         }
 
         &.show {
             height: auto;
             width: auto;
+            left: -40%;
+            z-index: 4;
 
             i {
-                font-size: 1.2rem;
-                height: 35px;
-                width: 35px;
+                font-size: 1rem;
+                height: 25px;
+                width: 25px;
                 color: rgb(68, 41, 6);
 
                 &:first-child {
-                    background-color: black;
-                    transform: translateY(-72%);
+                    transform: translateY(160%) translateX(-100%);
                 }
 
                 &:nth-child(2) {
-                    transform: translateY(75%) translateX(-85%);
+                    transform: translateY(160%);
                 }
 
                 &:nth-child(3) {
-                    transform: translateY(75%) translateX(85%);
+                    transform: translateY(160%) translateX(100%);
                 }
 
                 &:nth-child(4) {
-                    transform: translateX(0%) translateY(25%) scale(.8);
+                    border-radius: 10em;
+                    height: 20px;
+                    width: 20px;
+                    transform: translateY(150%) translateX(200%) scale(.7);
                 }
 
                 &.active {

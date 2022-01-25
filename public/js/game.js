@@ -2162,8 +2162,8 @@ var ArmyManager = /*#__PURE__*/function () {
   }
 
   _createClass(ArmyManager, null, [{
-    key: "removeLeftSoldiers",
-    value: function removeLeftSoldiers(type) {
+    key: "removeMovingSoldiers",
+    value: function removeMovingSoldiers(type) {
       var armyToRemoveFrom = Array.from(document.querySelectorAll('.moving-army>.army-forces>.sergeant-container>*, .moving-army>.army-forces>.knight-container>*, .moving-army>.lord-forces>*'));
       armyToRemoveFrom.splice(armyToRemoveFrom.findIndex(function (el) {
         return el.className.split(' ')[0] === type || el.id === type;
@@ -2171,6 +2171,31 @@ var ArmyManager = /*#__PURE__*/function () {
       armyToRemoveFrom.forEach(function (el) {
         el.remove();
       });
+    }
+  }, {
+    key: "removeMovingArmy",
+    value: function removeMovingArmy(army) {
+      document.querySelectorAll('.moving-army>.army-forces>.sergeant-container>.sergeant:not(.splited-to-stay), .moving-army>.army-forces>.knight-container>.knight:not(.splited-to-stay), .moving-army>.lord-forces>.lord:not(.splited-to-stay)').forEach(function (el) {
+        el.remove();
+      });
+    }
+  }, {
+    key: "movingArmy",
+    value: function movingArmy() {
+      var soldiers = [];
+      document.querySelectorAll('.moving-army>.army-forces>.sergeant-container>.sergeant:not(.splited-to-stay), .moving-army>.army-forces>.knight-container>.knight:not(.splited-to-stay)').forEach(function (el) {
+        soldiers.push(el.className.split(' ')[0]);
+      });
+      return soldiers;
+    }
+  }, {
+    key: "movingLords",
+    value: function movingLords() {
+      var lords = [];
+      document.querySelectorAll('.moving-army>.lord-forces>.lord:not(.splited-to-stay)').forEach(function (el) {
+        lords.push(el.id);
+      });
+      return lords;
     }
   }]);
 
@@ -2278,6 +2303,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _animations_cards_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../animations/cards.js */ "./resources/js/animations/cards.js");
 
+
  // \\\
 // --------------------
 // PHASES ::::: CARDS
@@ -2317,7 +2343,7 @@ document.querySelector('.game-cards').addEventListener('click', function (e) {
       if (!isDisaster) {
         (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_1__.drawAnimation)(res.data.drawnCard, res.data.nextCardType);
       } else {
-        disasterAnimation(res.data.nextCardType);
+        (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_1__.disasterAnimation)(res.data.nextCardType);
       }
     });
   }
@@ -2368,11 +2394,17 @@ document.querySelector('.game-view').addEventListener('click', function (e) {
     }
 
     if (!e.target.className.includes('active')) {
-      e.target.classList.add('active'); // ON "ACTIVE" > ADD VILLAGE LISTENERS
+      e.target.classList.add('active'); // INSPECT >> OPEN ARMY MANAGER MODAL
+
+      if (e.target.className.includes('inspect') && e.target.className.includes('active')) {
+        openArmyManager(e);
+      } // ON "ACTIVE" > ADD VILLAGE LISTENERS
+
 
       document.querySelectorAll('.village').forEach(function (el) {
         el.addEventListener('click', villageListeners, true);
       });
+      console.log('village listeners added');
     }
   }
 });
@@ -2380,90 +2412,191 @@ document.querySelector('.game-view').addEventListener('click', function (e) {
 function villageListeners(e) {
   if (document.querySelector('.current-phase').id === "phase-11" && e.currentTarget.className.includes('village')) {
     e.currentTarget.classList.add('village-to');
+    console.log('village listener');
 
     if (document.querySelector('.move-all.active')) {
       moveAll(e);
     } else if (document.querySelector('.let-one.active')) {
       letOne(e);
     } else if (document.querySelector('.inspect.active')) {
+      console.log('inspect option active');
       inspect(e);
     }
   }
 }
 
 function moveAll(e) {
-  if (document.querySelector('.current-phase').id === "phase-11" && e.currentTarget.className.includes('village')) {
-    console.log(e.currentTarget);
-    e.currentTarget.classList.add('village-to');
-    axios.post('./move/moveall', {
-      lord: document.querySelector('.moving-lord').id,
-      villageFrom: document.querySelector('.village-from').id,
-      villageTo: document.querySelector('.village-to').id
-    }).then(function (res) {
-      // MANAGES VILLAGES OWNERSHIPS DISPLAY
-      var vFrom = document.querySelector('.village-from');
-      var vTo = document.querySelector('.village-to');
-      document.querySelector('.moving-army').remove();
-      vTo.innerHTML += res.data;
+  axios.post('./move/moveall', {
+    lord: document.querySelector('.moving-lord').id,
+    villageFrom: document.querySelector('.village-from').id,
+    villageTo: document.querySelector('.village-to').id
+  }).then(function (res) {
+    // MANAGES VILLAGES OWNERSHIPS DISPLAY
+    var vFrom = document.querySelector('.village-from');
+    var vTo = document.querySelector('.village-to');
+    document.querySelector('.moving-army').remove();
+    vTo.innerHTML += res.data;
 
-      if (vFrom.className.includes('bordered')) {
-        vFrom.className = vFrom.className.split(' ')[0];
-      }
+    if (vFrom.className.includes('bordered')) {
+      vFrom.className = vFrom.className.split(' ')[0];
+    }
 
-      if (vTo.className.includes('bordered')) {
-        vTo.className = vTo.className.split(' ')[0];
-      }
+    if (vTo.className.includes('bordered')) {
+      vTo.className = vTo.className.split(' ')[0];
+    }
 
-      if (res.headers.fromvillagecolor) {
-        vFrom.classList.add("".concat(res.headers.fromvillagecolor, "-bordered"));
-      } else {
-        vFrom.classList.add("empty");
-      }
+    if (res.headers.fromvillagecolor) {
+      vFrom.classList.add("".concat(res.headers.fromvillagecolor, "-bordered"));
+    } else {
+      vFrom.classList.add("empty");
+    }
 
-      if (res.headers.tovillagecolor) {
-        vTo.classList.remove('empty');
-        vTo.classList.add("".concat(res.headers.tovillagecolor, "-bordered"));
-      }
-    }).then(function () {
-      // CLEAN CLASSES & LISTENERS
-      document.querySelector('.village-to').classList.remove('village-to');
-      document.querySelectorAll('.village').forEach(function (el) {
-        el.removeEventListener('click', villageListeners, true);
-      });
+    if (res.headers.tovillagecolor) {
+      vTo.classList.remove('empty');
+      vTo.classList.add("".concat(res.headers.tovillagecolor, "-bordered"));
+    }
+  }).then(function () {
+    // CLEAN CLASSES & LISTENERS
+    document.querySelector('.village-to').classList.remove('village-to');
+    document.querySelectorAll('.village').forEach(function (el) {
+      el.removeEventListener('click', villageListeners, true);
     });
-  }
+  });
 }
 
 function letOne(e) {
-  if (document.querySelector('.current-phase').id === "phase-11" && e.currentTarget.className.includes('village')) {
-    e.currentTarget.classList.add('village-to');
-    axios.post('./move/letone', {
-      lord: document.querySelector('.moving-lord').id,
-      villageFrom: document.querySelector('.village-from').id,
-      villageTo: document.querySelector('.village-to').id
-    }).then(function (res) {
-      var vTo = document.querySelector('.village-to'); // MOVE ARMIES
+  axios.post('./move/letone', {
+    lord: document.querySelector('.moving-lord').id,
+    villageFrom: document.querySelector('.village-from').id,
+    villageTo: document.querySelector('.village-to').id
+  }).then(function (res) {
+    var vTo = document.querySelector('.village-to'); // MOVE ARMIES
 
-      ArmyManager.removeLeftSoldiers(res.headers.staying);
-      vTo.innerHTML += res.data; // MANAGES VILLAGES OWNERSHIPS DISPLAY
+    ArmyManager.removeMovingSoldiers(res.headers.staying);
+    vTo.innerHTML += res.data; // MANAGES VILLAGES OWNERSHIPS DISPLAY
 
-      if (vTo.className.includes('bordered')) {
-        vTo.className = vTo.className.split(' ')[0];
+    if (vTo.className.includes('bordered')) {
+      vTo.className = vTo.className.split(' ')[0];
+    }
+
+    if (res.headers.tovillagecolor) {
+      vTo.classList.remove('empty');
+      vTo.classList.add("".concat(res.headers.tovillagecolor, "-bordered"));
+    }
+  }).then(function () {
+    // CLEAN CLASSES & LISTENERS
+    document.querySelector('.moving-army').classList.remove('moving-army');
+    document.querySelector('.move-menu.show>.active').classList.remove('active');
+    document.querySelector('.move-menu.show').classList.remove('show');
+    document.querySelector('.village-to').classList.remove('village-to');
+    document.querySelectorAll('.village').forEach(function (el) {
+      el.removeEventListener('click', villageListeners, true);
+    });
+  });
+}
+
+function inspect() {
+  console.log(ArmyManager.movingLords());
+  console.log(ArmyManager.movingArmy());
+  axios.post('./move/inspect', {
+    lords: ArmyManager.movingLords(),
+    army: ArmyManager.movingArmy(),
+    villageTo: document.querySelector('.village-to').id
+  }).then(function (res) {
+    var vTo = document.querySelector('.village-to'); // MOVE ARMIES
+
+    ArmyManager.removeMovingArmy();
+    vTo.innerHTML += res.data; // MANAGES VILLAGES OWNERSHIPS DISPLAY
+
+    if (vTo.className.includes('bordered')) {
+      vTo.className = vTo.className.split(' ')[0];
+    }
+
+    if (res.headers.tovillagecolor) {
+      vTo.classList.remove('empty');
+      vTo.classList.add("".concat(res.headers.tovillagecolor, "-bordered"));
+    }
+  }).then(function () {
+    // CLEAN CLASSES & LISTENERS
+    document.querySelectorAll('.splited-to-stay').forEach(function (el) {
+      el.classList.remove('splited-to-stay');
+    });
+    document.querySelector('.moving-army').classList.remove('moving-army');
+    document.querySelector('.move-menu.show>.active').classList.remove('active');
+    document.querySelector('.move-menu.show').classList.remove('show');
+    document.querySelector('.village-to').classList.remove('village-to');
+    document.querySelectorAll('.village').forEach(function (el) {
+      el.removeEventListener('click', villageListeners, true);
+    });
+  });
+}
+
+function openArmyManager(e) {
+  axios.get('./show/army/manager', {
+    params: {
+      'lord': document.querySelector('.moving-lord').id,
+      'village': document.querySelector('.village-from').id
+    }
+  }).then(function (res) {
+    document.querySelector('main').innerHTML += res.data;
+    var villageName = document.querySelector('.a-m-village>h1');
+    villageName.innerText = villageName.innerText.replace('-', " ").toUpperCase();
+    document.querySelector('.army-manager').addEventListener('click', armyManagerListener);
+  });
+}
+
+function armyManagerListener(e) {
+  if (e.target.className.includes('lord') || e.target.className.includes('token')) {
+    if (e.target.parentNode.className.includes('a-m-staying')) {
+      e.target.classList.toggle('selected-to-move');
+    } else if (e.target.parentNode.className.includes('a-m-moving')) {
+      e.target.classList.toggle('selected-to-stay');
+    }
+  }
+
+  if (e.target.className.includes('to-move-btn')) {
+    var toMove = document.querySelectorAll('.selected-to-move');
+    toMove.forEach(function (el) {
+      var clone = el.cloneNode();
+      clone.classList.remove('selected-to-move');
+
+      if (el.className.includes('token')) {
+        document.querySelector('.a-m-moving-army').appendChild(clone);
+      } else if (el.className.includes('lord')) {
+        document.querySelector('.a-m-moving-lords').appendChild(clone);
       }
 
-      if (res.headers.tovillagecolor) {
-        vTo.classList.remove('empty');
-        vTo.classList.add("".concat(res.headers.tovillagecolor, "-bordered"));
+      el.remove();
+    });
+  } else if (e.target.className.includes('to-stay-btn')) {
+    var toStay = document.querySelectorAll('.selected-to-stay');
+    toStay.forEach(function (el) {
+      var clone = el.cloneNode();
+      clone.classList.remove('selected-to-stay');
+
+      if (el.className.includes('token')) {
+        document.querySelector('.a-m-staying-army').appendChild(clone);
+      } else if (el.className.includes('lord')) {
+        document.querySelector('.a-m-staying-lords').appendChild(clone);
       }
-    }).then(function () {
-      // CLEAN CLASSES & LISTENERS
-      document.querySelector('.moving-army').classList.remove('moving-army');
-      document.querySelector('.move-menu.show>.active').classList.remove('active');
-      document.querySelector('.move-menu.show').classList.remove('show');
-      document.querySelector('.village-to').classList.remove('village-to');
-      document.querySelectorAll('.village').forEach(function (el) {
-        el.removeEventListener('click', villageListeners, true);
-      });
+
+      el.remove();
+    });
+  }
+
+  if (e.target.id === 'a-m-cancel-btn') {
+    document.querySelector('.army-manager.modal').remove();
+  } else if (e.target.id === 'a-m-validate-btn') {
+    document.querySelectorAll('.a-m-staying-lords>.lord, .a-m-staying-army>.token').forEach(function (el) {
+      if (el.className.includes('lord')) {
+        document.querySelector('.village-from>.moving-army>.lord-forces>#' + el.id).classList.add('splited-to-stay');
+      } else if (el.className.includes('sergeant') || el.className.includes('knight')) {
+        document.querySelector(".village-from>.moving-army>.army-forces>.".concat(el.className.split(' ')[0], "-container>.").concat(el.className.split(' ')[0], ":not(.splited-to-stay)")).classList.add('splited-to-stay');
+      }
+    });
+    document.querySelector('.army-manager.modal').remove();
+    document.querySelectorAll('.village').forEach(function (el) {
+      el.addEventListener('click', villageListeners, true);
     });
   }
 } // function cleanMovementPhase(){

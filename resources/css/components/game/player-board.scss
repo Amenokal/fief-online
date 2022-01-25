@@ -1,13 +1,8 @@
 .player-board{
     width: 900px;
     height: 420px;
-    position: absolute;
     top: 15%;
-    z-index: 5;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
     &.open{
         animation: 'openPlayerBoard' 1.5s ease-out forwards;
