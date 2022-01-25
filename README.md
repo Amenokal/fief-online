@@ -1,10 +1,10 @@
 # KNOWN BUGS
 
-lord disappears when moveoption : letOne and lord is alone
+When moveoption letOne with lone lord : lord disappearing
 - if lord alone > moveAll()
 - disable letOne when lord is alone in JS ?
 
-3 disasters on board already : to discard pile animation to make / bug: draw immediatly
+When 3 disasters on board already : no discard pile animation + draw immediatly
 
 # TASKS
 
@@ -34,34 +34,34 @@ lord disappears when moveoption : letOne and lord is alone
 
 # TODO
 
-## ARMIES
+### ARMIES
 - JS class : ArmyManager for front-end army move & merges
 - Restric inspect move = need a lord to move
 - listeners cleaner
 
-## CARDS
+### CARDS
 - disaster phase
 - pose phase (need titles)
 
-## GOLD
+### GOLD
 
-## BUILDINGS
+### BUILDINGS
 
-## BATTLES
+### BATTLES
 
-## SIEGE & PILLAGE
+### SIEGE & PILLAGE
 
-## ELECTIONS
+### ELECTIONS
 
-## DIPLOMACY
+### DIPLOMACY
 
-## record all events in db table to play asynch
+### record all events in db table to play asynch
 
-## ingame chat/discord server
+### ingame chat/discord server
 
 # NOTES
 
-## Before release
+### Before release
 
 create .htaccess file in root directory to remove /public/ from url
 - change all paths for ingame background-img & redirects
