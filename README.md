@@ -1,65 +1,69 @@
 # KNOWN BUGS
 
-lord disappears when moveoption : letOne and lord is alone;
+lord disappears when moveoption : letOne and lord is alone
 - if lord alone > moveAll()
 - disable letOne when lord is alone in JS ?
 
-3 disasters on board already : to discard pile animation to make / bug: draw immediatly ?
+3 disasters on board already : to discard pile animation to make / bug: draw immediatly
+
+# TASKS
 
 ## BACK-END
 
-HOME
+### HOME
 - Login rework -> register error messages
 - Log events rework
 
-LOBBY
+### LOBBY
 - Event rework
 - Lobby to game redirect broken
 
-### FRONT
+## FRONT-END
 
-SASS
+### SASS
 - file: background-image for each lords
 
-ANIMATIONS
+### ANIMATIONS
 - discard animation in discard piles
 - loading screen
 - moving armies (maybe)
 
-RESPONSIVE
+### RESPONSIVE
 - FullScreen
 - Media Queries
 
-#### TODO
+# TODO
 
-1) ARMIES
+## ARMIES
 - JS class : ArmyManager for front-end army move & merges
 - Restric inspect move = need a lord to move
 - listeners cleaner
 
-2) CARDS
-> disaster phase
-> pose phase (need titles)
+## CARDS
+- disaster phase
+- pose phase (need titles)
 
-3) GOLD
+## GOLD
 
-4) BUILDINGS
+## BUILDINGS
 
-5) BATTLES
+## BATTLES
 
-6) SIEGE & PILLAGE
+## SIEGE & PILLAGE
 
-7) ELECTIONS
+## ELECTIONS
 
-8) DIPLOMACY
+## DIPLOMACY
 
-9) record all events in db table to play asynch
+## record all events in db table to play asynch
 
-10) ingame chat/discord server
+## ingame chat/discord server
 
-##### NOTES
+# NOTES
 
-Before release : create .htaccess file in root directory to remove /public/ from url
+## Before release
+
+create .htaccess file in root directory to remove /public/ from url
 - change all paths for ingame background-img & redirects
 
 .htaccess file content:
