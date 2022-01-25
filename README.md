@@ -1,71 +1,69 @@
-### <BUG> ###
+# KNOWN BUGS
 
-- lord disappears when moveoption : letOne and lord is alone;
-> if lord alone > moveAll()
-> disable letOne when lord is alone in JS ?
+lord disappears when moveoption : letOne and lord is alone;
+- if lord alone > moveAll()
+- disable letOne when lord is alone in JS ?
 
-- bug when 3 disasters on board already : to discard pile animation to make / bug: draw immediatly ?
+3 disasters on board already : to discard pile animation to make / bug: draw immediatly ?
 
+## BACK-END
 
-
-### <BACK> ###
-
-# HOME
+HOME
 - Login rework -> register error messages
 - Log events rework
 
-# LOBBY
+LOBBY
 - Event rework
 - Lobby to game redirect broken
 
-# TODO: TITLES
+### FRONT
 
-# ARMIES
-> JS class : ArmyManager for front-end army move & merges
-> Restric inspect move = need a lord to move
-> listeners cleaner
+SASS
+- file: background-image for each lords
 
-# CARDS
+ANIMATIONS
+- discard animation in discard piles
+- loading screen
+- moving armies (maybe)
+
+RESPONSIVE
+- FullScreen
+- Media Queries
+
+#### TODO
+
+1) ARMIES
+- JS class : ArmyManager for front-end army move & merges
+- Restric inspect move = need a lord to move
+- listeners cleaner
+
+2) CARDS
 > disaster phase
 > pose phase (need titles)
 
-# TODO: GOLD
+3) GOLD
 
-# TODO BUILDINGS
+4) BUILDINGS
 
-# TODO: BATTLES
+5) BATTLES
 
-# TODO: SIEGE & PILLAGE
+6) SIEGE & PILLAGE
 
-# TODO: ELECTIONS
+7) ELECTIONS
 
-# TODO: DIPLOMACY
+8) DIPLOMACY
 
-# TODO: record all events in db table to play asynch
+9) record all events in db table to play asynch
 
-# TODO: ingame chat/discord server
+10) ingame chat/discord server
 
+##### NOTES
 
+Before release : create .htaccess file in root directory to remove /public/ from url
+- change all paths for ingame background-img & redirects
 
-### <FRONT> ###
+.htaccess file content:
 
-# SASS
-> file: background-image for each lords
-
-# TODO: ANIMATIONS
-> discard animation in discard piles
-> loading screen
-> moving armies (maybe)
-
-# TODO: FullScreen / adapt to screen resolution
-
-
-# ----
-
-# BEFORE RELEASE: create .htaccess file in root directory to remove /public/ from url
-> change all paths for ingame background-img & redirects
-
-### .htaccess file content  ###
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews
@@ -84,5 +82,3 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ server.php
 </IfModule>
-
-# ---
