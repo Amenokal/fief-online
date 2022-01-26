@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Game;
 
-use App\Models\Card;
-use App\Models\Game;
-use App\Models\Soldier;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Marechal;
+use App\Custom\Helpers\Architect;
 use App\Http\Controllers\Controller;
 use App\Custom\Services\ArmyServices;
+use App\Custom\Services\BankServices;
 use App\Custom\Services\GameStartServices;
 
 class PhaseController extends Controller
@@ -28,7 +27,40 @@ class PhaseController extends Controller
     }
 
 
-    // PHASE ? ::::: MOVEMENTS
+
+
+
+    // PHASE ::::: REVENUS
+    public function income()
+    {
+        return BankServices::income();
+    }
+
+    // PHASE ::::: BUY
+    public function buyBuilding(Request $request)
+    {
+        $village = Mayor::find($request->village);
+        $building = Realm::building($request->type);
+
+        if(!$village->hasBuilding($building->name) &&
+            Local::player()->canBuy($building) &&
+            !Realm::building($building)
+        ){
+
+            Architect::build($building, $village);
+            BankServices::buyBuilding($building);
+
+            return view('components.buildings', [
+                'building' => $building,
+                'village' => $village
+            ]);
+        }
+    }
+
+
+
+
+    // PHASE ::::: MOVEMENTS
     public function moveAll(Request $request)
     {
         $to = Mayor::find($request->villageTo);
@@ -57,14 +89,14 @@ class PhaseController extends Controller
         ArmyServices::move($moving, $to);
 
         return response()
-        ->view('components.army', [
-            'village' => Mayor::find($request->villageTo),
-            'families' => Realm::families()
-        ])
-        ->withHeaders([
-            'toVillageColor' => Mayor::find($request->villageTo)->player->color ?? false,
-            'staying' => $staying->type
-        ]);
+            ->view('components.army', [
+                'village' => Mayor::find($request->villageTo),
+                'families' => Realm::families()
+            ])
+            ->withHeaders([
+                'toVillageColor' => Mayor::find($request->villageTo)->player->color ?? false,
+                'staying' => $staying->type
+            ]);
     }
 
     public function showArmyManager(Request $request)

@@ -12,11 +12,11 @@
             "empty" => !$vilg->player
         ])>
 
-            @foreach($buildings as $b)
-                @if($b->village_id === $vilg->id)
-                    <span class="{{$b->name}}"></span>
-                @endif
-            @endforeach
+            <div class='village-buildings'>
+                @foreach($vilg->buildingsHere() as $b)
+                    <x-buildings :building="$b" :village="$vilg"/>
+                @endforeach
+            </div>
 
             @if($vilg->soldiers->isNotEmpty())
                 <x-army :village="$vilg" :families="$families" />

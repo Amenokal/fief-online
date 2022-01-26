@@ -47,12 +47,28 @@ class Village extends Model
         return $this->hasMany(Building::class);
     }
 
+    public function buildingsHere()
+    {
+        return $this->buildings()
+            ->where('village_id', $this->id)
+            ->get();
+    }
+
     public function lords()
     {
         return Card::where([
             'game_id' => Game::current()->id,
             'village_id' => $this->id
         ]);
+    }
+
+    public function hasMill()
+    {
+        return Building::where([
+            'game_id' => Game::current()->id,
+            'village_id' => $this->id,
+            'name' => 'moulin'
+        ])->exists();
     }
 
     public function hasArmy()

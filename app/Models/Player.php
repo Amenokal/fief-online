@@ -103,7 +103,11 @@ class Player extends Model
         return $this->hasMany(Village::class);
     }
 
+    public function canBuy(Building $building){
 
+        return $this->gold >= $building->price ? true : false;
+
+    }
 
     /////
 

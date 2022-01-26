@@ -1026,10 +1026,20 @@
 .game-container .players .player-name:hover {
   cursor: pointer;
 }
-.game-container .players button {
-  height: 110px;
-  border: 2px solid #8f7450;
+.game-container .players .building-btns {
+  display: flex;
+  justify-content: space-around;
+}
+.game-container .players .building-btns button {
+  width: 30% !important;
+  height: 50px !important;
+  border: 1px solid #8f7450;
   background-color: burlywood;
+  position: unset;
+  transform: unset;
+}
+.game-container .players .building-btns .buy-this {
+  box-shadow: inset 0px 0px 4px 1px #422b0c;
 }
 .game-container .main-section {
   width: 100%;

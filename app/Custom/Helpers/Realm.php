@@ -77,10 +77,20 @@ class Realm {
 
     public static function incommingDisasters()
     {
-        return self::self()->cards()
+        return Game::current()->cards()
         ->where([
             'disaster' => true,
             'on_board' => true
         ]);
+    }
+
+    public static function building(string $type)
+    {
+        return Game::current()->buildings()
+        ->where([
+            'name' => $type,
+            'village_id' => null,
+        ])
+        ->first();
     }
 }

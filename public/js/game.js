@@ -2204,6 +2204,31 @@ var ArmyManager = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./resources/js/classes/Builder.js":
+/*!*****************************************!*\
+  !*** ./resources/js/classes/Builder.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Builder": () => (/* binding */ Builder)
+/* harmony export */ });
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Builder = /*#__PURE__*/_createClass(function Builder(type) {
+  _classCallCheck(this, Builder);
+
+  this.type = type;
+});
+
+/***/ }),
+
 /***/ "./resources/js/phases/00_start.js":
 /*!*****************************************!*\
   !*** ./resources/js/phases/00_start.js ***!
@@ -2359,6 +2384,60 @@ document.querySelector('.game-cards').addEventListener('click', function (e) {
     });
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/phases/03_gold.js":
+/*!****************************************!*\
+  !*** ./resources/js/phases/03_gold.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
+
+var _require2 = __webpack_require__(/*! ../classes/Builder */ "./resources/js/classes/Builder.js"),
+    Builder = _require2.Builder;
+
+document.querySelectorAll('#buyBtn-moulin, #buyBtn-sergeant, #buyBtn-knight').forEach(function (el) {
+  el.addEventListener('click', readyToBuy);
+});
+
+function readyToBuy(e) {
+  if (document.querySelector('.buy-this')) {
+    document.querySelector('.buy-this').classList.remove('buy-this');
+  }
+
+  e.target.classList.add('buy-this');
+  document.querySelectorAll('.village').forEach(function (el) {
+    el.addEventListener('click', buyHere, true);
+  });
+}
+
+;
+
+function buyHere(e) {
+  var village = false;
+  var type = document.querySelector('.buy-this').id.split('-')[1];
+
+  if (e.currentTarget.className.includes('village')) {
+    village = e.currentTarget.id;
+  }
+
+  if (village) {
+    axios.post('./gold/buy', {
+      village: village,
+      type: type
+    }).then(function (res) {
+      console.log(res);
+      document.querySelector("#".concat(village, ">.village-buildings")).innerHTML += res.data;
+    });
+  }
+
+  document.querySelectorAll('.village').forEach(function (el) {
+    el.removeEventListener('click', buyHere, true);
+  });
+}
 
 /***/ }),
 
@@ -26292,6 +26371,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./phases/00_start */ "./resources/js/phases/00_start.js");
 
 __webpack_require__(/*! ./phases/02_cards */ "./resources/js/phases/02_cards.js");
+
+__webpack_require__(/*! ./phases/03_gold */ "./resources/js/phases/03_gold.js");
 
 __webpack_require__(/*! ./phases/04_armies */ "./resources/js/phases/04_armies.js"); // \\\
 // ------------------------------

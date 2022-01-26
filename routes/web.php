@@ -88,6 +88,12 @@ Route::get('/show/board', [GameController::class, 'showBoard']);
 Route::post('/gamestart/1', [PhaseController::class, 'drawFirstLord']);
 Route::post('/gamestart/2', [PhaseController::class, 'chooseVillage']);
 
+
+    // PHASE 4 ::::: BUY
+    // -----------------
+
+Route::post('/gold/buy', [PhaseController::class, 'buyBuilding']);
+
     // PHASE 11 ::::: MOVE
     // -------------------
 
@@ -99,6 +105,6 @@ Route::post('/move/inspect', [PhaseController::class, 'inspect']);
 
 
 
-Route::get('/t', [TestController::class, 'playerBoard']);
+Route::get('/t', [PhaseController::class, 'buyBuilding']);
 
 require __DIR__.'/auth.php';

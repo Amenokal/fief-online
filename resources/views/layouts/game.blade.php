@@ -33,6 +33,13 @@
                         </span>
                     </div>
                 @endforeach
+
+                <div class='building-btns'>
+                    <button class='moulin' id='buyBtn-moulin'></button>
+                    <button class='token sergeant' id='buyBtn-sergeant'></button>
+                    <button class='token knight' id='buyBtn-knight'></button>
+                </div>
+
             </section>
 
             <section class='game-view {{ $currentPlayer->color }}-theme'>
@@ -91,7 +98,6 @@
 </div>
 </body>
 
-<script src="{{asset('/js/lord-banner.js')}}"></script>
 <script src="{{asset('/js/game.js')}}"></script>
 
 </html>

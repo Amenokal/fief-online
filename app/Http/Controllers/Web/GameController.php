@@ -6,6 +6,7 @@ use App\Models\Card;
 use App\Models\Game;
 use App\Models\Soldier;
 use App\Models\Village;
+use App\Models\Building;
 use App\Models\Soldiers;
 use App\Models\Villages;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ use App\Custom\Helpers\Marechal;
 use App\Custom\Helpers\Librarian;
 use App\Http\Controllers\Controller;
 use App\Custom\Services\ArmyServices;
+use App\Custom\Services\BankServices;
 use App\Custom\Services\BootServices;
 use App\Custom\Services\DeckServices;
 use App\Custom\Services\TurnServices;
@@ -26,7 +28,8 @@ class GameController extends Controller
 
 
     public function index(){
-        // dd(Librarian::decipherJson('vanilla/titles.json'));
+
+        // BankServices::income();
 
         // dd(ArmyServices::letOne(Marechal::armyOf(Realm::lord('Charles')),Realm::lord('Charles'))['moving']);
 
