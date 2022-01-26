@@ -1,26 +1,46 @@
+@import '../../meta/mixin';
+
 @mixin building {
-    position: absolute;
-    display: flex;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
     height: 100% !important;
     width: 100% !important;
+    position: absolute;
     opacity: 1 !important;
 }
 
-.chateau {
-    background-image: url('/fief/storage/app/public/images/chateau.png');
-    @include building;
+@mixin remaining {
+    height: 40px;
+    width: 40px;
+    position: absolute;
 }
-.cite {
-    background-image: url('/fief/storage/app/public/images/cite.png');
-    @include building;
 
-}
-.moulin {
-    background-image: url('/fief/storage/app/public/images/moulin.png');
+.chateau{
     @include building;
+    @include back-img('images/chateau.png');
+}
+.cite{
+    @include building;
+    @include back-img('images/cite.png');
+}
+.moulin{
+    @include building;
+    @include back-img('images/moulin.png');
     transform: translateX(-20px) translateY(20px) scale(.6);
     z-index: 2;
 }
+
+.remaining-chateau,
+.remaining-cite,
+.remaining-moulin {
+    @include remaining;
+}
+.remaining-chateau{
+    @include back-img('images/chateau.png');
+}
+.remaining-cite{
+    @include back-img('images/cite.png');
+}
+.remaining-moulin {
+    @include back-img('images/moulin.png');
+}
+
+

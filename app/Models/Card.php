@@ -31,6 +31,14 @@ class Card extends Model
         // 'religious_title_id',
     ];
 
+    public function isTitled()
+    {
+        return Title::where([
+            'game_id' => Game::current()->id,
+            'lord_id' => $this->id,
+        ])->exists();
+    }
+
     public static function draw(Card $card)
     {
         return $card->update(['player_id' => Local::player()->id]);
@@ -52,17 +60,6 @@ class Card extends Model
         $card->delete();
     }
 
-
-    public function army_power()
-    {
-        return Marechal::evaluate($this, true);
-    }
-
-    public function army()
-    {
-        return Marechal::evaluate($this, false);
-    }
-
     public function game()
     {
         return $this->belongsTo(Game::class);
@@ -78,5 +75,5 @@ class Card extends Model
         return $this->belongsTo(Village::class);
     }
 
-    
+
 }

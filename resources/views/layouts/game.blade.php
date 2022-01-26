@@ -31,14 +31,49 @@
                             <i class="fas fa-crown"></i>
                             {{$fam->familyname}}
                         </span>
+                        <div class='player-info'>
+                            <p>Points: 0</p>
+                            <p>Or: {{$fam->gold}}</p>
+                        </div>
                     </div>
                 @endforeach
 
-                <div class='building-btns'>
-                    <button class='moulin' id='buyBtn-moulin'></button>
-                    <button class='token sergeant' id='buyBtn-sergeant'></button>
-                    <button class='token knight' id='buyBtn-knight'></button>
-                </div>
+                <nav>
+                    <div class='starter-phase-btns'>
+                        <h2>STARTER PHASE</h2>
+                        <div>
+                            <button id='step1'>Premier seigneur</button>
+                            <button id='step2'>Emplacement de départ</button>
+                        </div>
+                    </div>
+                    <div class='move-btns'>
+                        <h2>MOUVEMENT</h2>
+                        <div>
+                            <button id='moveBtn'>MOVE</button>
+                        </div>
+                    </div>
+                    <div class='building-btns'>
+                        <h2>BUY</h2>
+                        <div>
+                            <button class='moulin' id='buyBtn-moulin'></button>
+                            <button class='token sergeant' id='buyBtn-sergeant'></button>
+                            <button class='token knight' id='buyBtn-knight'></button>
+                        </div>
+                    </div>
+                    <div class='turn-btns'>
+                        <h2>TOUR</h2>
+                        <div>
+                            <button id='end-turn'>fin du tour</button>
+                        </div>
+                    </div>
+                    <div class='reset-btns'>
+                        <h2>RESETS</h2>
+                        <div>
+                            <button id='resetDeck'>Reset deck</button>
+                            <button id='resetBoard'>Reset board</button>
+                        </div>
+                    </div>
+                </nav>
 
             </section>
 
@@ -54,46 +89,33 @@
                         :families="$families"
                     />
 
-                    <x-board-cards
-                        :nextlordcard="$next_lord_card"
-                        :nexteventcard="$next_event_card"
-                        :disasters="$inc_disasters"
-                        :lorddiscard="$lord_discard_pile"
-                        :eventdiscard="$event_discard_pile"
-                    />
+                    <div class='game-board-info'>
+
+                        <x-board-info
+                            :nextlord="$next_lord_card"
+                            :nextevent="$next_event_card"
+                            :disasters="$inc_disasters"
+                            :lorddiscard="$lord_discard_pile"
+                            :eventdiscard="$event_discard_pile"
+                            :lords="$remaining_lords"
+                            :buildings="$remaining_buildings"
+                        />
+
+                    </div>
+
 
                 </div>
             </section>
 
         </div>
 
-        <div class='player-hand hand-{{ $player_cards->count() }}'>
+        <aside class='player-hand hand-{{$player_cards->count()}}'>
             @foreach ($player_cards as $card)
                 <span style='background-image: url({{ $card->img_src }})' class='card' id='{{ $card->deck }}-{{ $card->name }}'></span>
             @endforeach
-        </div>
-
-        <nav>
-            <button id='step1'>step 1</button>
-            <button id='step2'>step 2</button>
-            <button id='moveBtn'>MOVE</button>
-            <button id='end-turn'>fin du tour</button>
-            <button id='resetDeck'>Reset deck</button>
-            <button id='resetBoard'>Reset board</button>
-        </nav>
-
+        </aside>
 
     </main>
-
-
-
-    <aside class='modal-wrapper' id='info-modal'>
-        <span>MODAL</span>
-        <div>
-            <div class='info-lord'></div>
-            <div class='info-soldiers'></div>
-        </div>
-    </aside>
 
 </div>
 </body>

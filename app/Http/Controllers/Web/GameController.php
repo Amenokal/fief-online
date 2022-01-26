@@ -29,6 +29,8 @@ class GameController extends Controller
 
     public function index(){
 
+        // dd(Local::player()->lords()->skip(0)->first()->name);
+
         // BankServices::income();
 
         // dd(ArmyServices::letOne(Marechal::armyOf(Realm::lord('Charles')),Realm::lord('Charles'))['moving']);
@@ -49,12 +51,13 @@ class GameController extends Controller
             'phases' => TurnServices::phaseNames(),
             'currentPlayer' => Realm::currentPlayer(),
 
+            'remaining_lords' => Realm::remainingLords(),
+            'remaining_buildings' => Realm::remainingBuildings(),
             'next_lord_card' => Gipsy::nextCard('lord'),
             'next_event_card' => Gipsy::nextCard('event'),
+            'lord_discard_pile' => Gipsy::discardedCards('lord'),
+            'event_discard_pile' => Gipsy::discardedCards('event'),
             'inc_disasters' => Realm::incommingDisasters()->count(),
-            'lord_discard_pile' => Gipsy::discardedCards('lord')->all(),
-            'event_discard_pile' => Gipsy::discardedCards('event')->all(),
-
 
             'villages' => Realm::villages(),
             'lords' => Realm::lords(),

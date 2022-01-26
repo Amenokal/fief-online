@@ -1,0 +1,57 @@
+@mixin back-img($img){
+    background-image: url('/fief/storage/app/public/'+$img);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+@mixin spreadTokens {
+
+    &>.remaining-moulin,
+    &>.remaining-chateau,
+    &>.remaining-cite{
+
+        &:nth-of-type(2){
+            left: 2px;
+        }
+        &:nth-of-type(3){
+            left: 4px;
+        }
+        &:nth-of-type(4){
+            left: 6px;
+        }
+        &:nth-of-type(5){
+            left: 8px;
+        }
+        &:nth-of-type(6){
+            left: 10px;
+        }
+        &:nth-of-type(7){
+            left: 12px;
+        }
+        &:nth-of-type(8){
+            left: 14px;
+        }
+        &:nth-of-type(9){
+            left: 16px;
+        }
+        &:nth-of-type(10){
+            left: 18px;
+        }
+        &:nth-of-type(11){
+            left: 20px;
+        }
+        &:nth-of-type(12){
+            left: 22px;
+        }
+        &:nth-of-type(13){
+            left: 24px;
+        }
+        &:nth-of-type(14){
+            left: 26px;
+        }
+        &:nth-of-type(15){
+            left: 28px;
+        }
+    }
+}

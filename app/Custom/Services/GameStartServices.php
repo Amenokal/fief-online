@@ -45,7 +45,7 @@ class GameStartServices {
             $starter_army = ['sergeant',3,'knight',1];
             $lord = Local::cards()->first()->play();
 
-            Architect::build('chateau', $village);
+            Architect::build(Realm::building('chateau'), $village);
             Marechal::newLord($lord, $village);
             Marechal::recruit($starter_army, $village);
             Mayor::administrate();

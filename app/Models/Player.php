@@ -24,15 +24,14 @@ class Player extends Model
         'game_id',
     ];
 
-    public function lords(int $nb)
+    public function lords()
     {
         return Card::where([
             'game_id'=>Game::current()->id,
             'player_id' => $this->id,
-            'deck' => 'lord'
+            'deck' => 'lord',
         ])
-        ->skip($nb)
-        ->first();
+        ->get();
     }
 
     public function lordsHere(Village $village)

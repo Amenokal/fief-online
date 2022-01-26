@@ -12,10 +12,9 @@
 
     </span>
 
-    @if($player->lords($i))
+    @if($player->lords()->skip($i)->first())
         <span
-            class="slot player-board-{{$player->lords($i)->name}}"
-            {{-- style="background-image: url('/fief/storage/app/public/cards/lords/{{$player->lords($i)->name}}.png')"> --}}
+            class="slot player-board-{{$player->lords()->skip($i)->first()->name}}"
             style="background-image: url('/fief/storage/app/public/cards/lords/Eric.png')">
         </span>
     @else

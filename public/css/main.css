@@ -384,49 +384,57 @@
   top: 24%;
 }
 
-.card {
-  height: 100px;
-  width: 64px;
+.lord-verso {
+  height: 55px;
+  width: 80px;
   border-radius: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-}
-
-.lord-card {
-  background-image: url("/fief/storage/app/public/images/lord-card-verso.png");
+  position: relative;
+  background-image: url("/fief/storage/app/public/images/lord-card-verso-90.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-.event-card {
-  background-image: url("/fief/storage/app/public/images/event-card-verso.png");
+.event-verso {
+  height: 55px;
+  width: 80px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-image: url("/fief/storage/app/public/images/event-card-verso-90.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-.disaster-card,
-.incomming-disaster {
-  background-image: url("/fief/storage/app/public/images/disaster-card-verso.png");
+.disaster-verso {
+  height: 55px;
+  width: 80px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-image: url("/fief/storage/app/public/images/disaster-card-verso-90.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .card-pile {
+  height: 55px;
+  width: 80px;
+  border-radius: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.card-pile .card {
-  transform: rotate(90deg);
-}
-
-.discard-pile {
-  border: 1px solid #dadada;
+  position: relative;
+  border: 1px solid white;
 }
 
 .player-hand .card {
@@ -473,6 +481,13 @@
   z-index: 2;
 }
 
+.locations .empty {
+  border: 1px solid #7e7e7e;
+}
+.locations .empty:hover {
+  border: 1px solid #cfcfcf;
+  transform: scale(1.1);
+}
 .locations .village {
   position: absolute;
   height: 8%;
@@ -516,25 +531,10 @@
 .locations #tournus {
   left: 77%;
   top: 20%;
-  opacity: 0;
-}
-.locations #tournus::after {
-  content: "TOURNUS";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  font-size: 0.8rem;
-  color: lightgray;
-  background-color: darkgreen;
-  padding: 0.3em;
-  border-radius: 0.5em;
-}
-.locations #tournus:hover {
-  opacity: 1;
 }
 .locations #belleville {
-  left: 87%;
-  top: 5%;
+  left: 86.5%;
+  top: 6%;
 }
 .locations #pugnac {
   left: 88%;
@@ -550,26 +550,26 @@
 }
 .locations #st-andré {
   left: 88.5%;
-  top: 79%;
+  top: 79.5%;
 }
 .locations #bourg {
   left: 53%;
-  top: 80%;
+  top: 80.5%;
 }
 .locations #villeneuve {
   left: 44%;
   top: 56%;
 }
 .locations #st-vivien {
-  left: 37%;
+  left: 37.5%;
   top: 80%;
 }
 .locations #la-buissière {
-  left: 72%;
+  left: 71.5%;
   top: 82.5%;
 }
 .locations #les-essarts {
-  left: 29%;
+  left: 29.5%;
   top: 59%;
 }
 .locations #st-paul {
@@ -626,41 +626,67 @@
 }
 
 .chateau {
-  background-image: url("/fief/storage/app/public/images/chateau.png");
-  position: absolute;
-  display: flex;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   height: 100% !important;
   width: 100% !important;
+  position: absolute;
   opacity: 1 !important;
+  background-image: url("/fief/storage/app/public/images/chateau.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .cite {
-  background-image: url("/fief/storage/app/public/images/cite.png");
-  position: absolute;
-  display: flex;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   height: 100% !important;
   width: 100% !important;
+  position: absolute;
   opacity: 1 !important;
+  background-image: url("/fief/storage/app/public/images/cite.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .moulin {
-  background-image: url("/fief/storage/app/public/images/moulin.png");
-  position: absolute;
-  display: flex;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
   height: 100% !important;
   width: 100% !important;
+  position: absolute;
   opacity: 1 !important;
+  background-image: url("/fief/storage/app/public/images/moulin.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   transform: translateX(-20px) translateY(20px) scale(0.6);
   z-index: 2;
+}
+
+.remaining-chateau,
+.remaining-cite,
+.remaining-moulin {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+}
+
+.remaining-chateau {
+  background-image: url("/fief/storage/app/public/images/chateau.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.remaining-cite {
+  background-image: url("/fief/storage/app/public/images/cite.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.remaining-moulin {
+  background-image: url("/fief/storage/app/public/images/moulin.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .army {
@@ -1000,7 +1026,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #533014;
+  background-color: #d4beac;
   background-image: url("/fief/storage/app/public/images/oldpaper2.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -1010,35 +1036,62 @@
   border: 5px solid black;
   box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.7);
 }
-.game-container .players .fa-crown {
-  width: 0px;
+.game-container .players .player-info-wrapper {
+  box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.4);
 }
-.game-container .players .player-name {
+.game-container .players .player-info-wrapper .player-name {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.4);
+  border-bottom: 2px solid;
+  border-color: inherit;
 }
-.game-container .players .player-name.current-player .fa-crown {
-  width: 20px;
-  margin-right: 0.3em;
-}
-.game-container .players .player-name:hover {
+.game-container .players .player-info-wrapper .player-name:hover {
   cursor: pointer;
 }
-.game-container .players .building-btns {
+.game-container .players .player-info-wrapper .player-info {
   display: flex;
-  justify-content: space-around;
 }
-.game-container .players .building-btns button {
-  width: 30% !important;
-  height: 50px !important;
+.game-container .players .player-info-wrapper .player-info p {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-container .players nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.game-container .players nav * {
+  font-size: 0.7rem;
+}
+.game-container .players nav h2 {
+  text-align: center;
+}
+.game-container .players nav div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+.game-container .players nav div div {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+}
+.game-container .players nav div div button {
+  height: 100% !important;
+  width: auto !important;
+  min-width: 33% !important;
   border: 1px solid #8f7450;
   background-color: burlywood;
   position: unset;
   transform: unset;
 }
-.game-container .players .building-btns .buy-this {
+.game-container .players nav div div .buy-this {
   box-shadow: inset 0px 0px 4px 1px #422b0c;
 }
 .game-container .main-section {
@@ -1056,52 +1109,114 @@
 }
 .game-container .game-view .game-board {
   height: 100%;
-  width: 95%;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  box-shadow: 0px 0px 7px 4px rgba(29, 29, 29, 0.877);
 }
 .game-container .game-view .game-board .locations {
-  height: 96%;
-  width: 80%;
+  height: 100%;
+  width: 81.8%;
   position: relative;
   background-image: url("/fief/storage/app/public/images/board.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  box-shadow: 0px 0px 7px 4px rgba(29, 29, 29, 0.877);
 }
-.game-container .game-view .game-board .board-img {
-  height: 100%;
-  width: auto;
-}
-.game-container .game-view .game-board .game-cards {
-  height: 96%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: var(--background-black);
+.game-container .game-view .game-board .game-board-info {
   background-image: url("/fief/storage/app/public/textures/grunge2.png");
   box-sizing: border-box;
   border: 5px solid black;
   box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.7);
+  height: 100%;
+  width: 18.2%;
+  background-color: var(--background-black);
   box-shadow: 0px 0px 7px 4px rgba(29, 29, 29, 0.877);
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
 }
-.game-container .game-view .game-board .game-cards .card-pile {
+.game-container .game-view .game-board .game-board-info .remaining-buildings {
+  grid-row: 1/2;
+  grid-column: 1/11;
+  display: flex;
+  justify-content: space-around;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div {
   position: relative;
-  height: 70px;
-  width: 100px;
-  border: 1px solid white;
-  border-radius: 0.5em;
+  right: 15%;
 }
-.game-container .game-view .game-board .game-cards .card-pile:first-child {
-  margin: 1em 0;
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(2), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(2), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(2) {
+  left: 2px;
 }
-.game-container .game-view .game-board .game-cards .card-pile:nth-child(4) {
-  margin-top: 1em;
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(3), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(3), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(3) {
+  left: 4px;
 }
-.game-container .game-view .game-board .game-cards .card-pile:last-child {
-  margin: 1em 0;
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(4), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(4), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(4) {
+  left: 6px;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(5), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(5), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(5) {
+  left: 8px;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(6), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(6), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(6) {
+  left: 10px;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(7), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(7), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(7) {
+  left: 12px;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(8), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(8), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(8) {
+  left: 14px;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(9), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(9), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(9) {
+  left: 16px;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(10), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(10), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(10) {
+  left: 18px;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(11), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(11), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(11) {
+  left: 20px;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(12), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(12), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(12) {
+  left: 22px;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(13), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(13), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(13) {
+  left: 24px;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(14), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(14), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(14) {
+  left: 26px;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(15), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(15), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(15) {
+  left: 28px;
+}
+.game-container .game-view .game-board .game-board-info .remaining-lords {
+  grid-row: 2/3;
+  grid-column: 1/11;
+}
+.game-container .game-view .game-board .game-board-info .game-cards {
+  grid-row: 3/11;
+  grid-column: 1/6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.game-container .game-view .game-board .game-board-info .game-cards span:nth-child(1) {
+  margin-bottom: 0.4em;
+}
+.game-container .game-view .game-board .game-board-info .game-cards span:nth-child(3) {
+  margin-bottom: 0.4em;
+}
+.game-container .game-view .game-board .game-board-info .game-cards span:nth-child(6) {
+  margin-bottom: 0.4em;
+}
+.game-container .game-view .game-board .game-board-info .game-info-tokens {
+  grid-row: 3/6;
+  grid-column: 6/11;
+}
+.game-container .game-view .game-board .game-board-info .game-info-cards {
+  grid-row: 6/11;
+  grid-column: 6/11;
 }
 .game-container .player-hand {
   height: 50px;
@@ -1116,29 +1231,6 @@
 .game-container .player-hand .in-hand-card {
   -webkit-animation: "inHandCard" 1s ease forwards;
           animation: "inHandCard" 1s ease forwards;
-}
-.game-container nav {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 5%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.game-container nav button {
-  margin: 0.5em 0;
-  height: 60px;
-  width: 60px;
-  background-color: goldenrod;
-  border: 3px solid #a17914;
-  border-radius: 100%;
-  box-shadow: inset 0px 0px 10px 3px rgba(75, 43, 16, 0.8), 0px 0px 4px 1px rgba(75, 43, 16, 0.8);
-  transition: 0.1s ease-out;
-}
-.game-container nav button:hover {
-  box-shadow: inset 0px 0px 15px 3px rgba(75, 43, 16, 0.8);
 }
 .game-container .modal-wrapper {
   height: 70%;

@@ -5,6 +5,7 @@ namespace App\Custom\Helpers;
 use App\Models\Card;
 use App\Models\Game;
 use App\Models\Player;
+use App\Models\Building;
 
 class Realm {
 
@@ -55,6 +56,15 @@ class Realm {
         ->whereNotNull('village_id')
         ->get();
     }
+    public static function remainingLords()
+    {
+        return Card::where([
+            'game_id' => Game::current()->id,
+            'deck' => 'lord',
+            'village_id' => null
+        ])
+        ->get();
+    }
 
     public static function activeArmies()
     {
@@ -70,9 +80,26 @@ class Realm {
         return Game::current()->villages;
     }
 
+    public static function building(string $type)
+    {
+        return Game::current()->buildings()
+        ->where([
+            'name' => $type,
+            'village_id' => null,
+        ])
+        ->first();
+    }
     public static function buildings()
     {
         return Game::current()->buildings;
+    }
+    public static function remainingBuildings()
+    {
+        return Building::where([
+            'game_id'=>Game::current()->id,
+            'village_id' => null
+        ])
+        ->get();
     }
 
     public static function incommingDisasters()
@@ -84,13 +111,5 @@ class Realm {
         ]);
     }
 
-    public static function building(string $type)
-    {
-        return Game::current()->buildings()
-        ->where([
-            'name' => $type,
-            'village_id' => null,
-        ])
-        ->first();
-    }
+
 }

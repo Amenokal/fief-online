@@ -1,13 +1,13 @@
 .locations {
 
-    // .empty {
-    //     border: 1px solid rgb(126, 126, 126);
+    .empty {
+        border: 1px solid rgb(126, 126, 126);
 
-    //     &:hover{
-    //         border: 1px solid rgb(207, 207, 207);
-    //         transform: scale(1.1);
-    //     }
-    // }
+        &:hover{
+            border: 1px solid rgb(207, 207, 207);
+            transform: scale(1.1);
+        }
+    }
 
     .village{
         position: absolute;
@@ -61,28 +61,28 @@
     #tournus {
         left: 77%;
         top: 20%;
-        opacity: 0;
+        // opacity: 0;
         // border: 2px solid forestgreen;
 
-        &::after {
-            content:'TOURNUS';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            font-size: .8rem;
-            color: lightgray;
-            background-color: darkgreen;
-            padding: .3em;
-            border-radius: .5em;
+        // &::after {
+        //     content:'TOURNUS';
+        //     position: absolute;
+        //     top: -50%;
+        //     left: -50%;
+        //     font-size: .8rem;
+        //     color: lightgray;
+        //     background-color: darkgreen;
+        //     padding: .3em;
+        //     border-radius: .5em;
 
-        }
-        &:hover {
-            opacity: 1;
-        }
+        // }
+        // &:hover {
+        //     opacity: 1;
+        // }
     }
     #belleville{
-        left: 87%;
-        top: 5%;
+        left: 86.5%;
+        top: 6%;
         // border: 2px solid forestgreen;
     }
     #pugnac{
@@ -104,14 +104,14 @@
     }
     #st-andré{
         left:88.5%;
-        top:79%;
+        top:79.5%;
         // border: 2px solid rgb(255, 206, 81);
     }
 
     //DUCHY 1
     #bourg{
         left:53%;
-        top:80%;
+        top:80.5%;
         // border: 2px solid firebrick;
     }
     #villeneuve{
@@ -120,19 +120,19 @@
         // border: 2px solid firebrick;
     }
     #st-vivien{
-        left:37%;
+        left:37.5%;
         top:80%;
         // border: 2px solid firebrick;
     }
     #la-buissière{
-        left:72%;
+        left:71.5%;
         top:82.5%;
         // border: 2px solid firebrick;
     }
 
     //BARONY 1
     #les-essarts{
-        left: 29%;
+        left: 29.5%;
         top: 59%;
         // border: 2px solid rgb(0, 204, 0)
     }
