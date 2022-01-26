@@ -19,9 +19,9 @@ class Game extends Model
     public $fillable = [
         'mod',
         'is_over',
-        'player', 
-        'phase', 
-        'turn', 
+        'player',
+        'phase',
+        'turn',
     ];
 
     public static function current()
@@ -45,7 +45,7 @@ class Game extends Model
     {
         return $this->hasMany(Soldier::class);
     }
-    
+
 
     public function buildings()
     {
@@ -56,6 +56,11 @@ class Game extends Model
     public function villages()
     {
         return $this->hasMany(Village::class);
+    }
+
+    public function titles()
+    {
+        return $this->hasMany(Title::class);
     }
 
 

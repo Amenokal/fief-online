@@ -17,8 +17,8 @@ class CreateVillagesTable extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('capital');
-            // $table->integer('lord_territory');
-            // $table->integer('religious_territory');
+            $table->integer('lord_territory');
+            $table->integer('religious_territory');
             $table->foreignId('game_id')->constrained();
             $table->foreignId('player_id')->nullable()->constrained()->default(null);
         });

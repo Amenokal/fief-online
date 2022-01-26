@@ -19,8 +19,8 @@ class Village extends Model
     public $fillable = [
         'name',
         'capital',
-        // 'lord_territory',
-        // 'religious_territory',
+        'lord_territory',
+        'religious_territory',
         'game_id',
         'player_id',
     ];

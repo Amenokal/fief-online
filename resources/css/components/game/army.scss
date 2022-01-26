@@ -33,13 +33,14 @@
         width: 37px;
         top: 17%;
 
+
         &:hover>div>.sergeant{
-            bottom: 70%;
+            top: -35%;
             z-index: 5;
         }
 
         &:hover>div>.knight{
-            top: 30%;
+            top: 35%;
             z-index: 5;
         }
     }
@@ -51,7 +52,7 @@
         height: 0px;
         width: 0px;
         top: -10%;
-        left: -20;
+        left: -40%;
 
         i {
             height: 0px;
@@ -68,12 +69,12 @@
             font-size: 0px;
             color: transparent;
             background-color: goldenrod;
-            box-shadow: inset 0px 0px 5px 1px rgb(75, 43, 16, .8), 0px 0px 4px 1px rgb(75, 43, 16, .8);
             // border-radius: 10em;
 
             transition: .3s ease;
 
             &:hover {
+                box-shadow: inset 0px 0px 5px 1px rgb(75, 43, 16, .8);
                 color: white;
             }
         }
@@ -81,7 +82,6 @@
         &.show {
             height: auto;
             width: auto;
-            left: -40%;
             z-index: 4;
 
             i {

@@ -3,6 +3,7 @@
 namespace App\Custom\Services;
 
 use App\Models\Game;
+use App\Models\Title;
 use App\Models\Player;
 use App\Models\Soldier;
 use App\Models\Village;
@@ -15,6 +16,7 @@ class BootServices {
     public static $mod;
     public static $family_names;
     public static $colors;
+    public static $titles;
     public static $villages;
     public static $buildings;
     public static $armies;
@@ -24,13 +26,15 @@ class BootServices {
         self::$mod = $mod;
         self::$family_names = Librarian::decipherJson('meta/family_names.json')->flatten();
         self::$colors = Librarian::decipherJson('meta/colors.json')->flatten();
+        self::$titles = Librarian::decipherJson(self::$mod.'/titles.json');
         self::$villages = Librarian::decipherJson(self::$mod.'/villages.json');
         self::$buildings = Librarian::decipherJson(self::$mod.'/buildings.json');
         self::$armies = Librarian::decipherJson(self::$mod.'/armies.json');
-        
+
         self::createGame();
         self::createDecks();
         self::createPlayers();
+        self::createTitles();
         self::createVillages();
         self::createBuildings();
         self::createArmies();
@@ -42,18 +46,18 @@ class BootServices {
             Game::create(['mod'=>self::$mod]);
         }
     }
-    
+
     private static function createDecks()
     {
         if(Game::current()->cards->isEmpty()){
             DeckServices::setUpDecks(self::$mod);
         }
     }
-    
+
     private static function createPlayers()
-    {   
+    {
         if(!Local::player()){
-            
+
             Player::create([
                 'game_id' => Game::current()->id,
                 'user_id' => Local::user()->id,
@@ -61,7 +65,7 @@ class BootServices {
                 'color' => self::setColor(),
                 'gold' => 5
             ]);
-            
+
         }
     }
         private static function setName()
@@ -78,6 +82,24 @@ class BootServices {
             }
             return self::$colors->random();
         }
+
+    private static function createTitles()
+    {
+        if(Game::current()->titles->isEmpty()){
+
+            foreach(self::$titles as $t){
+
+                Title::create([
+                    'type' => $t['type'],
+                    'zone' => $t['zone'] ?? null,
+                    'title_m' => $t['title_m'] ?? null,
+                    'title_f' => $t['title_f'] ?? null,
+                    'game_id' => Game::current()->id
+                ]);
+            }
+
+        }
+    }
 
     private static function createVillages()
     {
@@ -120,7 +142,7 @@ class BootServices {
         if(Game::current()->soldiers->isEmpty()){
 
             foreach(self::$armies as $a){
-                
+
                 for($i=0; $i<$a['nb']; $i++){
                     Soldier::create([
                         'type' => $a['type'],

@@ -1,0 +1,120 @@
+[
+    {
+        "type": "crown",
+        "zone": 1,
+        "title_m": "Duc",
+        "title_f": "Duchesse"
+    },
+    {
+        "type": "crown",
+        "zone": 2,
+        "title_m": "Comte",
+        "title_f": "Comtesse"
+    },
+    {
+        "type": "crown",
+        "zone": 3,
+        "title_m": "Baron",
+        "title_f": "Baronne"
+    },
+    {
+        "type": "crown",
+        "zone": 4,
+        "title_m": "Comte",
+        "title_f": "Comtesse"
+    },
+    {
+        "type": "crown",
+        "zone": 5,
+        "title_m": "Comte",
+        "title_f": "Comtesse"
+    },
+    {
+        "type": "crown",
+        "zone": 6,
+        "title_m": "Duc",
+        "title_f": "Duchesse"
+    },
+    {
+        "type": "crown",
+        "zone": 7,
+        "title_m": "Baron",
+        "title_f": "Baronne"
+    },
+    {
+        "type": "crown",
+        "zone": 8,
+        "title_m": "Comte",
+        "title_f": "Comtesse"
+    },
+
+
+
+    {
+        "type": "cross",
+        "zone": 1,
+        "title_m": "Évêque"
+    },
+    {
+        "type": "cross",
+        "zone": 2,
+        "title_m": "Évêque"
+    },
+    {
+        "type": "cross",
+        "zone": 3,
+        "title_m": "Évêque"
+    },
+    {
+        "type": "cross",
+        "zone": 4,
+        "title_m": "Évêque"
+    },
+    {
+        "type": "cross",
+        "zone": 5,
+        "title_m": "Évêque"
+    },
+
+
+
+    {
+        "type": "cross",
+        "title_m": "Cardinal"
+    },
+    {
+        "type": "cross",
+        "title_m": "Cardinal"
+    },
+    {
+        "type": "cross",
+        "title_m": "Cardinal"
+    },
+    {
+        "type": "cross",
+        "title_m": "Cardinal"
+    },
+
+
+
+    {
+        "type": "king",
+        "title_m": "Roi"
+    },
+    {
+        "type": "queen",
+        "title_f": "Reine"
+    },
+    {
+        "type": "prince",
+        "title_m": "Prince"
+    },
+    {
+        "type": "pape",
+        "title_m": "Pape"
+    },
+    {
+        "type": "d'Arc",
+        "title_f": "d'Arc"
+    }
+]

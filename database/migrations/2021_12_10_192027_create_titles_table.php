@@ -13,18 +13,16 @@ class CreateTitlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lord_titles', function (Blueprint $table) {
+        Schema::create('titles', function (Blueprint $table) {
             $table->id();
+            $table->string('type');
+            $table->integer('zone')->nullable()->default(null);
+            $table->string('title_m')->nullable()->default(null);
+            $table->string('title_f')->nullable()->default(null);
+            $table->foreignId('lord_id')->nullable()->constrained()->default(null);
+            $table->foreignId('player_id')->nullable()->constrained()->default(null);
             $table->foreignId('game_id')->constrained();
-            $table->foreignId('player_id')->constrained()->nullable();
         });
-
-        Schema::create('religious_titles', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('game_id')->constrained();
-            $table->foreignId('player_id')->constrained()->nullable();
-        });
-
     }
 
     /**
@@ -34,8 +32,6 @@ class CreateTitlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lord_titles');
-        Schema::dropIfExists('religious_titles');
-        
+        Schema::dropIfExists('titles');
     }
 }

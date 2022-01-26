@@ -14,8 +14,9 @@ use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Marechal;
-use App\Custom\Services\ArmyServices;
+use App\Custom\Helpers\Librarian;
 use App\Http\Controllers\Controller;
+use App\Custom\Services\ArmyServices;
 use App\Custom\Services\BootServices;
 use App\Custom\Services\DeckServices;
 use App\Custom\Services\TurnServices;
@@ -25,6 +26,7 @@ class GameController extends Controller
 
 
     public function index(){
+        // dd(Librarian::decipherJson('vanilla/titles.json'));
 
         // dd(ArmyServices::letOne(Marechal::armyOf(Realm::lord('Charles')),Realm::lord('Charles'))['moving']);
 

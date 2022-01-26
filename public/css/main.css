@@ -170,6 +170,9 @@
   background-size: contain;
   position: absolute;
   box-shadow: 0px 0px 4px 1px black;
+  top: 0%;
+  bottom: 0%;
+  transition: 0.5s ease;
 }
 .token.none {
   opacity: 0.5;
@@ -694,11 +697,11 @@
   top: 17%;
 }
 .army .army-forces:hover > div > .sergeant {
-  bottom: 70%;
+  top: -35%;
   z-index: 5;
 }
 .army .army-forces:hover > div > .knight {
-  top: 30%;
+  top: 35%;
   z-index: 5;
 }
 .army .move-menu {
@@ -706,7 +709,7 @@
   height: 0px;
   width: 0px;
   top: -10%;
-  left: -20;
+  left: -40%;
 }
 .army .move-menu i {
   height: 0px;
@@ -720,16 +723,15 @@
   font-size: 0px;
   color: transparent;
   background-color: goldenrod;
-  box-shadow: inset 0px 0px 5px 1px rgba(75, 43, 16, 0.8), 0px 0px 4px 1px rgba(75, 43, 16, 0.8);
   transition: 0.3s ease;
 }
 .army .move-menu i:hover {
+  box-shadow: inset 0px 0px 5px 1px rgba(75, 43, 16, 0.8);
   color: white;
 }
 .army .move-menu.show {
   height: auto;
   width: auto;
-  left: -40%;
   z-index: 4;
 }
 .army .move-menu.show i {
@@ -998,13 +1000,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-color: #533014;
+  background-image: url("/fief/storage/app/public/images/oldpaper2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 300%;
+  z-index: 2;
   box-sizing: border-box;
   border: 5px solid black;
   box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.7);
-  background-color: #533014;
-  background-image: url("/fief/storage/app/public/textures/purty-wood.png");
-  z-index: 2;
 }
 .game-container .players .fa-crown {
   width: 0px;
