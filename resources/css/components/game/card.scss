@@ -37,11 +37,22 @@
     @include card-pile;
     @include bck-img('disaster-card-verso-90.png');
 }
+.disaster-recto {
+    height: 80px;
+    width: 55px;
+    transform: rotate(90deg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
 
 .card-pile{
     @include card-pile;
-    // transform: rotate(90deg);
     border: 1px solid white;
+
+    .card{
+        position: absolute;
+    }
 }
 
 .player-hand {
@@ -59,6 +70,12 @@
         &:hover {
             transform: scale(1.5) translateY(-3em);
         }
+    }
+
+    .to-be-played{
+        box-sizing: border-box;
+        border: 3px solid goldenrod;
+        box-shadow: 0px 0px 4px 4px gold;
     }
 
 }

@@ -28,6 +28,12 @@ class Local {
     {
         return Local::player()->cards;
     }
+    public static function card(string $name)
+    {
+        return Local::player()->cards()
+        ->where('name', $name)
+        ->first();
+    }
 
 
 

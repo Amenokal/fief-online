@@ -49,11 +49,11 @@ class TestController extends Controller
 
         Card::where([
             'game_id' => Game::current()->id,
-            'on_board' => true,
         ])
         ->update([
             'on_board'=>false,
-            'village_id'=>null
+            'village_id'=>null,
+            'cross_id'=>null
         ]);
 
         Soldier::where('game_id',Game::current()->id)

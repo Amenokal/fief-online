@@ -426,6 +426,15 @@
   background-size: contain;
 }
 
+.disaster-recto {
+  height: 80px;
+  width: 55px;
+  transform: rotate(90deg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .card-pile {
   height: 55px;
   width: 80px;
@@ -435,6 +444,9 @@
   align-items: center;
   position: relative;
   border: 1px solid white;
+}
+.card-pile .card {
+  position: absolute;
 }
 
 .player-hand .card {
@@ -450,6 +462,11 @@
 }
 .player-hand .card:hover {
   transform: scale(1.5) translateY(-3em);
+}
+.player-hand .to-be-played {
+  box-sizing: border-box;
+  border: 3px solid goldenrod;
+  box-shadow: 0px 0px 4px 4px gold;
 }
 
 .draw-animation {
@@ -487,6 +504,23 @@
 .locations .empty:hover {
   border: 1px solid #cfcfcf;
   transform: scale(1.1);
+}
+.locations .icons {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+.locations .icons i {
+  color: #eeeeee;
+  z-index: 5;
+  text-shadow: black 0px 0px 5px;
+}
+.locations .wealth {
+  box-shadow: 0px 0px 5px 2px rgba(255, 217, 0, 0.774);
 }
 .locations .village {
   position: absolute;
@@ -1045,6 +1079,7 @@
   justify-content: center;
   border-bottom: 2px solid;
   border-color: inherit;
+  text-shadow: inherit 0px 0px 5px;
 }
 .game-container .players .player-info-wrapper .player-name:hover {
   cursor: pointer;
@@ -1057,6 +1092,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-shadow: inherit 0px 0px 5px;
 }
 .game-container .players nav {
   width: 100%;
@@ -1192,6 +1228,17 @@
 .game-container .game-view .game-board .game-board-info .remaining-lords {
   grid-row: 2/3;
   grid-column: 1/11;
+  display: flex;
+  flex-wrap: wrap;
+}
+.game-container .game-view .game-board .game-board-info .remaining-lords .remaining-lord {
+  height: 30px;
+  width: 12%;
+  background-image: url("/fief/storage/app/public/images/charles.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  box-shadow: 0px 0px 15px -5px #000000;
 }
 .game-container .game-view .game-board .game-board-info .game-cards {
   grid-row: 3/11;
@@ -1201,13 +1248,13 @@
   align-items: center;
   justify-content: center;
 }
-.game-container .game-view .game-board .game-board-info .game-cards span:nth-child(1) {
+.game-container .game-view .game-board .game-board-info .game-cards > div:nth-child(1) {
   margin-bottom: 0.4em;
 }
-.game-container .game-view .game-board .game-board-info .game-cards span:nth-child(3) {
+.game-container .game-view .game-board .game-board-info .game-cards > div:nth-child(3) {
   margin-bottom: 0.4em;
 }
-.game-container .game-view .game-board .game-board-info .game-cards span:nth-child(6) {
+.game-container .game-view .game-board .game-board-info .game-cards > div:nth-child(6) {
   margin-bottom: 0.4em;
 }
 .game-container .game-view .game-board .game-board-info .game-info-tokens {
@@ -1451,30 +1498,30 @@
 
 @-webkit-keyframes draw {
   from {
-    transform: translateX(0px) translateY(0px) rotate(90deg) scale(1);
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
     box-shadow: 0px 0px 0px 0px black;
   }
-  60% {
-    transform: translateX(-200px) translateY(0px) rotate(90deg) scale(1.5);
+  40% {
+    transform: translateX(-200px) translateY(50px) rotate(-50deg) scale(1.5);
     box-shadow: 0px 0px 20px 1px black;
   }
   to {
-    transform: translateX(-600px) translateY(700px) rotate(0deg) scale(1.3);
+    transform: translateX(-500px) translateY(600px) rotate(-90deg) scale(1.3);
     box-shadow: 0px 0px 20px 1px black;
   }
 }
 
 @keyframes draw {
   from {
-    transform: translateX(0px) translateY(0px) rotate(90deg) scale(1);
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
     box-shadow: 0px 0px 0px 0px black;
   }
-  60% {
-    transform: translateX(-200px) translateY(0px) rotate(90deg) scale(1.5);
+  40% {
+    transform: translateX(-200px) translateY(50px) rotate(-50deg) scale(1.5);
     box-shadow: 0px 0px 20px 1px black;
   }
   to {
-    transform: translateX(-600px) translateY(700px) rotate(0deg) scale(1.3);
+    transform: translateX(-500px) translateY(600px) rotate(-90deg) scale(1.3);
     box-shadow: 0px 0px 20px 1px black;
   }
 }
@@ -1524,90 +1571,90 @@
 }
 @-webkit-keyframes disas-animation-0 {
   from {
-    transform: translateY(0) scale(1) rotate(90deg);
+    transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(50%) scale(1.2) rotate(90deg);
+    transform: translateY(50%) scale(1.2);
   }
   to {
-    transform: translateY(90%) scale(1) rotate(90deg);
+    transform: translateY(90%) scale(1);
   }
 }
 @keyframes disas-animation-0 {
   from {
-    transform: translateY(0) scale(1) rotate(90deg);
+    transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(50%) scale(1.2) rotate(90deg);
+    transform: translateY(50%) scale(1.2);
   }
   to {
-    transform: translateY(90%) scale(1) rotate(90deg);
+    transform: translateY(90%) scale(1);
   }
 }
 @-webkit-keyframes disas-animation-1 {
   from {
-    transform: translateY(0) scale(1) rotate(90deg);
+    transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(100%) scale(1.2) rotate(90deg);
+    transform: translateY(100%) scale(1.2);
   }
   to {
-    transform: translateY(180%) scale(1) rotate(90deg);
+    transform: translateY(180%) scale(1);
   }
 }
 @keyframes disas-animation-1 {
   from {
-    transform: translateY(0) scale(1) rotate(90deg);
+    transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(100%) scale(1.2) rotate(90deg);
+    transform: translateY(100%) scale(1.2);
   }
   to {
-    transform: translateY(180%) scale(1) rotate(90deg);
+    transform: translateY(180%) scale(1);
   }
 }
 @-webkit-keyframes disas-animation-2 {
   from {
-    transform: translateY(0) scale(1) rotate(90deg);
+    transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(150%) scale(1.2) rotate(90deg);
+    transform: translateY(150%) scale(1.2);
   }
   to {
-    transform: translateY(260%) scale(1) rotate(90deg);
+    transform: translateY(260%) scale(1);
   }
 }
 @keyframes disas-animation-2 {
   from {
-    transform: translateY(0) scale(1) rotate(90deg);
+    transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(150%) scale(1.2) rotate(90deg);
+    transform: translateY(150%) scale(1.2);
   }
   to {
-    transform: translateY(260%) scale(1) rotate(90deg);
+    transform: translateY(260%) scale(1);
   }
 }
 @-webkit-keyframes disas-animation-discard {
   from {
-    transform: translateY(0) scale(1) rotate(90deg);
+    transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(170%) scale(1.2) rotate(90deg);
+    transform: translateY(170%) scale(1.2);
   }
   to {
-    transform: translateY(340%) scale(1) rotate(90deg);
+    transform: translateY(340%) scale(1);
   }
 }
 @keyframes disas-animation-discard {
   from {
-    transform: translateY(0) scale(1) rotate(90deg);
+    transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(170%) scale(1.2) rotate(90deg);
+    transform: translateY(170%) scale(1.2);
   }
   to {
-    transform: translateY(340%) scale(1) rotate(90deg);
+    transform: translateY(340%) scale(1);
   }
 }
 @-webkit-keyframes openPlayerBoard {

@@ -27,8 +27,8 @@ class Card extends Model
         'game_id',
         'player_id',
         'village_id',
-        // 'lord_title_id',
-        // 'religious_title_id',
+        'crown_id',
+        'cross_id',
     ];
 
     public function isTitled()
@@ -73,6 +73,15 @@ class Card extends Model
     public function village()
     {
         return $this->belongsTo(Village::class);
+    }
+
+    public function inflictedVillages(int $zone)
+    {
+        return Village::where([
+            'game_id'=>Game::current()->id,
+            'religious_territory'=>$zone
+        ])
+        ->get();
     }
 
 

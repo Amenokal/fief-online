@@ -63,6 +63,7 @@
                     <div class='turn-btns'>
                         <h2>TOUR</h2>
                         <div>
+                            <button id='disasters-btn'>calamités</button>
                             <button id='end-turn'>fin du tour</button>
                         </div>
                     </div>
@@ -111,7 +112,12 @@
 
         <aside class='player-hand hand-{{$player_cards->count()}}'>
             @foreach ($player_cards as $card)
-                <span style='background-image: url({{ $card->img_src }})' class='card' id='{{ $card->deck }}-{{ $card->name }}'></span>
+                <span
+                    draggable="true"
+                    class='card'
+                    id='{{ $card->deck }}-{{ $card->name }}'
+                    style='background-image: url({{ $card->img_src }})'
+                ></span>
             @endforeach
         </aside>
 

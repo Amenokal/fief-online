@@ -2072,33 +2072,31 @@ __webpack_require__.r(__webpack_exports__);
 // ---------------------
 // ///
 function drawAnimation(newCard, nextCardType) {
-  var pile = document.querySelector(".".concat(newCard.deck, "-pile-wrapper"));
+  var pile = document.getElementById("".concat(newCard.deck, "CardPile"));
   pile.children[0].id = 'to-draw';
   pile.children[0].style.zIndex = 2;
-  pile.innerHTML += "<x-card-verso class=\"card ".concat(nextCardType, "-card\"/>");
+  pile.innerHTML += "<span class=\"card ".concat(nextCardType, "-verso\"></span>");
   var card = document.getElementById('to-draw');
   card.classList.add('draw-animation');
   setTimeout(function () {
     card.remove();
-    document.querySelector('.player-hand').innerHTML += "<x-card-recto\n            class=\"card\"\n            id=\"".concat(newCard.deck, "-").concat(newCard.name, "\"\n            style=\"background-image: url(").concat(newCard.img_src, ")\"\n        />");
+    document.querySelector('.player-hand').innerHTML += "<span\n            class=\"card\"\n            id=\"".concat(newCard.deck, "-").concat(newCard.name, "\"\n            style=\"background-image: url(").concat(newCard.img_src, ")\"\n        ></span>");
   }, 1000);
 }
 function disasterAnimation(nextCardType) {
-  var pile = document.querySelector('.event-pile-wrapper');
+  var pile = document.getElementById('eventCardPile');
   pile.children[0].id = 'to-inc-pile';
-  pile.innerHTML += "<x-card-verso class=\"card ".concat(nextCardType, "-card\"/>");
+  pile.innerHTML += "<span class=\"card ".concat(nextCardType, "-verso\"></span>");
   var card = document.getElementById('to-inc-pile');
-  var alreadyInc = document.querySelectorAll('.incomming-disaster-card-wrapper>.disaster-card').length;
+  var alreadyInc = document.querySelectorAll('.inc-disas>.card').length < 3 ? document.querySelectorAll('.inc-disas>.card').length : 'discard';
   card.classList.add("disas-animation-".concat(alreadyInc));
-  console.log(card);
-  console.log(alreadyInc);
   var timeout = 1000 + alreadyInc * 500;
   setTimeout(function () {
     card.remove();
-    var incDisasPiles = document.querySelectorAll('.incomming-disaster-card-wrapper');
-    var eventDiscardPile = document.querySelector('.event-discard-pile-wrapper');
+    var incDisasPiles = document.querySelectorAll('.inc-disas');
+    var eventDiscardPile = document.getElementById('eventDiscardPile');
     var incPile = alreadyInc < 3 ? incDisasPiles[alreadyInc] : eventDiscardPile;
-    incPile.innerHTML += "<x-card-recto class=\"card disaster-card\" />";
+    incPile.innerHTML += '<span class="card disaster-verso" ></span>';
   }, timeout);
 }
 
@@ -2229,6 +2227,75 @@ var Builder = /*#__PURE__*/_createClass(function Builder(type) {
 
 /***/ }),
 
+/***/ "./resources/js/classes/Village.js":
+/*!*****************************************!*\
+  !*** ./resources/js/classes/Village.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Village": () => (/* binding */ Village)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var Village = /*#__PURE__*/function () {
+  function Village() {
+    _classCallCheck(this, Village);
+  }
+
+  _createClass(Village, null, [{
+    key: "allFromReligiousZone",
+    value: function allFromReligiousZone(villageName) {
+      console.log(villageName);
+      var vilg = document.getElementById(villageName);
+      var zone = vilg.className.split(' ')[1];
+      return document.querySelectorAll('.' + zone);
+    }
+  }, {
+    key: "addIcon",
+    value: function addIcon(villageName, card) {
+      var icon;
+
+      if (card == 'Bonne Récolte' || card == 'Beau Temps') {
+        icon = '<i class="fas fa-sun"></i>';
+      }
+
+      document.querySelector("#".concat(villageName, ">.icons")).innerHTML += icon;
+    }
+  }, {
+    key: "disaster",
+    value: function disaster(villageName, _disaster) {
+      var icon;
+
+      if (_disaster === 'Famine') {
+        icon = 'water';
+      } else if (_disaster === 'Mauvais Temps') {
+        icon = 'snowflake';
+      } else if (_disaster === 'Peste') {
+        icon === 'skull-crossbones';
+      }
+
+      var isHere = false;
+      document.querySelectorAll("#".concat(villageName, ">.icons>i")).forEach(function (el) {
+        if (el.className.includes('fa-' + icon)) {
+          isHere = document.querySelector("#".concat(villageName, ">.icons>.fa-").concat(icon));
+        }
+      });
+      return isHere;
+    }
+  }]);
+
+  return Village;
+}();
+
+/***/ }),
+
 /***/ "./resources/js/phases/00_start.js":
 /*!*****************************************!*\
   !*** ./resources/js/phases/00_start.js ***!
@@ -2326,7 +2393,9 @@ function cleanStartPhase() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _animations_cards_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../animations/cards.js */ "./resources/js/animations/cards.js");
+/* harmony import */ var _classes_Village_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../classes/Village.js */ "./resources/js/classes/Village.js");
+/* harmony import */ var _animations_cards_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../animations/cards.js */ "./resources/js/animations/cards.js");
+
 
 
  // \\\
@@ -2357,8 +2426,8 @@ document.querySelector('.player-hand').addEventListener('click', function (e) {
 
 document.querySelector('.game-cards').addEventListener('click', function (e) {
   var phase = document.querySelector('.current-phase').id.split('-')[1];
-  var pile = e.target.parentNode.id.split('-')[0];
-  var isDisaster = e.target.className.split(' ')[1].split('-')[0] === 'disaster';
+  var pile = e.target.parentNode.id.split('CardPile')[0];
+  var isDisaster = e.target.className.includes('disaster'); // DRAW
 
   if ((pile == 'lord' || pile == 'event') && phase === '6' && e.target.className.includes('card')) {
     axios__WEBPACK_IMPORTED_MODULE_0___default().post('./draw/card', {
@@ -2366,24 +2435,128 @@ document.querySelector('.game-cards').addEventListener('click', function (e) {
       isDisaster: isDisaster
     }).then(function (res) {
       if (!isDisaster) {
-        (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_1__.drawAnimation)(res.data.drawnCard, res.data.nextCardType);
+        (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_2__.drawAnimation)(res.data.drawnCard, res.data.nextCardType);
       } else {
-        (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_1__.disasterAnimation)(res.data.nextCardType);
+        (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_2__.disasterAnimation)(res.data.nextCardType);
       }
     });
-  }
-}); // RESHUFFLE IF EMPTY
+  } // SHUFFLE IF EMPTY
 
-document.querySelector('.game-cards').addEventListener('click', function (e) {
+
   if (e.target.id.includes('shuffle')) {
     var deck = e.target.id.split('-')[1];
     axios__WEBPACK_IMPORTED_MODULE_0___default().post('./shuffle', {
       deck: deck
     }).then(function (res) {
-      document.querySelector("".concat(deck, "-pile-wrapper")).innerHTML = "<x-card-verso class=\"card ".concat(res.data.nextCardType, "-card\"/>");
+      document.querySelector("".concat(deck, "-pile-wrapper")).innerHTML = "<spanclass=\"card ".concat(res.data.nextCardType, "-verso\"/>");
     });
   }
+}); // DISASTERS
+
+document.getElementById('disasters-btn').addEventListener('click', showDisasters);
+
+function showDisasters(e) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().get('./disasters/show').then(function (res) {
+    console.log(res.data);
+
+    var _loop = function _loop(i) {
+      setTimeout(function () {
+        document.getElementById('incDisas-' + i).innerHTML = "<span\n                        class=\"card disaster-recto ".concat(res.data[i].name, "\"\n                        style=\"background-image: url('").concat(res.data[i].img, "')\"\n                    ></span>");
+
+        if (res.data[i].zone === 6) {
+          document.getElementById('incDisas-' + i).innerHTML = "<div class='card-pile inc-disas' id='incDisas-{{$i}}'></div>";
+        }
+
+        res.data[i].villages.forEach(function (el) {
+          var icon;
+
+          if (res.data[i].name === 'Famine') {
+            icon = '<i class="disas-icon fas fa-water"></i>';
+          } else if (res.data[i].name === 'Mauvais Temps') {
+            icon = '<i class="far fa-snowflake"></i>';
+          } else if (res.data[i].name === 'Peste') {
+            icon = '<i class="fas fa-skull-crossbones"></i>';
+          }
+
+          document.querySelector("#".concat(el, ">.icons")).innerHTML += icon;
+        });
+      }, i * 1000);
+    };
+
+    for (var i = 0; i < res.data.length; i++) {
+      _loop(i);
+    }
+  });
+} // PLAY CARDS
+
+
+document.querySelectorAll('.player-hand>.card').forEach(function (el) {
+  el.addEventListener('click', playCard);
 });
+
+function playCard(e) {
+  if (document.querySelector('.to-be-played') && !e.target.className.includes('to-be-played')) {
+    document.querySelector('.to-be-played').classList.remove('to-be-played');
+  }
+
+  e.target.classList.toggle('to-be-played');
+
+  if (document.querySelector('.to-be-played')) {
+    document.querySelectorAll('.village').forEach(function (el) {
+      el.addEventListener('click', playCardOnVillage, true);
+    });
+  } else {
+    document.querySelectorAll('.village').forEach(function (el) {
+      el.removeEventListener('click', playCardOnVillage, true);
+    });
+  }
+}
+
+function playCardOnVillage(e) {
+  var card = document.querySelector('.to-be-played');
+  var cardName = document.querySelector('.to-be-played').id.split('-')[1];
+  var village = e.currentTarget.id;
+  var hadEffect = false; // ADD WEALTH
+
+  if (cardName == 'Bonne Récolte' && !_classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(village, 'Famine') && !_classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(village, 'Mauvais Temps') || cardName == 'Beau Temps' && !_classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(village, 'Mauvais Temps') && !_classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(village, 'Famine')) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().post('./play/add/wealth', {
+      card: cardName,
+      village: village
+    }).then(function () {
+      _classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.allFromReligiousZone(village).forEach(function (el) {
+        _classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.addIcon(el.id, cardName);
+      });
+      card.remove();
+    });
+  } // REMOVE DISASTER
+  else if (cardName == 'Bonne Récolte' && _classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(village, 'Famine') || cardName == 'Beau Temps' && _classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(village, 'Mauvais Temps')) {
+    var disaster = _classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(village, 'Famine') ? 'Famine' : 'Mauvais Temps';
+    axios__WEBPACK_IMPORTED_MODULE_0___default().post('./play/remove/disaster', {
+      card: cardName,
+      village: village,
+      disaster: disaster
+    }).then(function () {
+      _classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.allFromReligiousZone(village).forEach(function (el) {
+        if (_classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(village, 'Famine')) {
+          _classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(el.id, 'Famine').remove();
+        } else if (_classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(village, 'Mauvais Temps')) {
+          _classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(el.id, 'Mauvais Temps').remove();
+        }
+      });
+      document.querySelector('.' + disaster).remove();
+      card.remove();
+    });
+  } else if (cardName == 'Beau Temps' && !_classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(village, 'Mauvais Temps') && !_classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.disaster(village, 'Famine')) {
+    _classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.allFromReligiousZone(village).forEach(function (el) {
+      _classes_Village_js__WEBPACK_IMPORTED_MODULE_1__.Village.addIcon(el.id, cardName);
+    });
+    hadEffect = true;
+  }
+
+  if (hadEffect) {
+    card.remove();
+  }
+}
 
 /***/ }),
 

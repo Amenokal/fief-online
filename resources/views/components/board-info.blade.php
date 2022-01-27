@@ -18,64 +18,75 @@
 
 <div class='remaining-lords'>
     @foreach ($lords as $lord)
-        <span class='remaining-lord-{{$lord->name}}'></span>
+        @if($lord->name !== 'Cardinal' && $lord->name !== "d'Arc")
+            <span class='remaining-lord' id='waiting-{{$lord->name}}'></span>
+        @endif
     @endforeach
 </div>
 
+
+
+{{-- ::::: GAME CARDS ::::: --}}
 <div class='game-cards'>
 
-    @if($lorddiscard->isNotEmpty())
-        @foreach($lorddiscard as $card)
-            <span class='card lord-verso discarded-lord'></span>
-        @endforeach
-    @else
-        <span class='card-pile'></span>
-    @endif
+    <div class='card-pile' id='lordDiscardPile'>
+        @if($lorddiscard->isNotEmpty())
+            @foreach($lorddiscard as $card)
+                <span class='card lord-verso discarded-lord'></span>
+            @endforeach
+        @endif
+    </div>
 
 
-    @if($nextlord->exists())
-        <span class='card-pile lord-verso' id='nextLordCard'></span>
-    @else
-        <span class='card-pile'>
+    <div class='card-pile' id='lordCardPile'>
+        @if($nextlord->exists())
+            <span class='card lord-verso'></span>
+        @else
             <i class="fas fa-sync" id='shuffleLord'></i>
-        </span>
-    @endif
+        @endif
+    </div>
 
 
-    @if($nextevent->exists())
-        <span id='nextEventCard' @class([
-            "card-pile",
-            "event-verso" => !$nextevent->disaster,
-            "disaster-verso" => $nextevent->disaster
-        ])></span>
-    @else
-        <span class='card-pile'>
+    <div class='card-pile' id='eventCardPile'>
+        @if($nextevent->exists())
+            <span @class([
+                "card",
+                "event-verso" => !$nextevent->disaster,
+                "disaster-verso" => $nextevent->disaster
+            ])></span>
+        @else
             <i class="fas fa-sync" id='shuffleEvent'></i>
-        </span>
-    @endif
+        @endif
+    </div>
+
 
 
     @for($i=0; $i<3; $i++)
-        @if($i<$disasters)
-            <span class='card disaster-card' id='incDisas-{{$i}}'></span>
-        @else
-            <span class='card-pile' id='incDisasPile-{{$i}}'></span>
-        @endif
+        <div class='card-pile inc-disas' id='incDisas-{{$i}}'>
+            @if(!!$disasters->skip($i)->first())
+                @if(!!$disasters->skip($i)->first()->cross_id)
+                    <div class='card disaster-recto {{$disasters->skip($i)->first()->name}}' style="background-image: url({{$disasters->skip($i)->first()->img_src}})"></div>
+                @else
+                    <div class='card disaster-verso'></div>
+                @endif
+            @endif
+        </div>
     @endfor
 
 
-    @if($eventdiscard->isNotEmpty())
-        @foreach($eventdiscard as $card)
-            <span @class([
-                'card',
-                'discarded-event',
-                "event-verso" => !$card->disaster,
-                "disaster-verso" => $card->disaster
-            ])></span>
-        @endforeach
-    @else
-        <span class='card-pile'></span>
-    @endif
+    <div class='card-pile' id='eventDiscardPile'>
+        @if($eventdiscard->isNotEmpty())
+            @foreach($eventdiscard as $card)
+                <span @class([
+                    'card',
+                    'discarded-event',
+                    "event-verso" => !$card->disaster,
+                    "disaster-verso" => $card->disaster
+                ])></span>
+            @endforeach
+        @endif
+    </div>
+
 
 </div>
 

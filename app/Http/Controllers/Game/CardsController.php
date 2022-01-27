@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Game;
 
+use App\Models\Village;
 use Illuminate\Http\Request;
 use App\Custom\Helpers\Gipsy;
+use App\Custom\Helpers\Mayor;
 use App\Http\Controllers\Controller;
 use App\Custom\Services\DeckServices;
 
@@ -22,5 +24,24 @@ class CardsController extends Controller
     public static function shuffle(Request $request)
     {
         return Gipsy::shuffleDeck($request->deck);
+    }
+
+    public static function showDisasters()
+    {
+        return DeckServices::showDisasters();
+    }
+
+    public static function addWealth(Request $request)
+    {
+        $village = Mayor::find($request->village);
+        $card = $request->card;
+        DeckServices::addWealth($card, $village);
+    }
+
+    public static function removeDisaster(Request $request)
+    {
+        $village = Mayor::find($request->village);
+        $card = $request->card;
+        DeckServices::removeDisaster($card, $request->disaster, $village);
     }
 }

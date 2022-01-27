@@ -61,9 +61,7 @@ Route::post('/reset/board', [TestController::class, 'resetBoard']);
     // DRAW
     // ----
 
-Route::post('/draw/card', [CardsController::class, 'draw']);
-Route::post('/discard', [CardsController::class, 'discard']);
-Route::post('/shuffle', [CardsController::class, 'shuffle']);
+
 
     // TURNS
     // -----
@@ -88,9 +86,19 @@ Route::get('/show/board', [GameController::class, 'showBoard']);
 Route::post('/gamestart/1', [PhaseController::class, 'drawFirstLord']);
 Route::post('/gamestart/2', [PhaseController::class, 'chooseVillage']);
 
-
-    // PHASE 4 ::::: BUY
+    // PHASE ::::: CARDS
     // -----------------
+
+Route::post('/draw/card', [CardsController::class, 'draw']);
+Route::post('/discard', [CardsController::class, 'discard']);
+Route::post('/shuffle', [CardsController::class, 'shuffle']);
+Route::get('/disasters/show', [CardsController::class, 'showDisasters']);
+
+Route::post('/play/add/wealth', [CardsController::class, 'addWealth']);
+Route::post('/play/remove/disaster', [CardsController::class, 'removeDisaster']);
+
+    // PHASE ::::: GOLD
+    // ----------------
 
 Route::post('/gold/buy', [PhaseController::class, 'buyBuilding']);
 

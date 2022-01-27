@@ -77,7 +77,7 @@
     },
 
 
-    
+
     {
         "name": "Henri",
         "deck": "lord",
@@ -104,13 +104,6 @@
         "deck": "lord",
         "gender": "F",
         "img_src": "storage/cards/lords/Mireille.png",
-        "nb": 1
-    },
-    {
-        "name": "Henri",
-        "deck": "lord",
-        "gender": "M",
-        "img_src": "storage/cards/lords/Eric.png",
         "nb": 1
     },
     {
@@ -170,7 +163,7 @@
         "nb": 1
     },
     {
-        "name": 
+        "name":
         "Thierry",
         "deck": "lord",
         "gender": "M",

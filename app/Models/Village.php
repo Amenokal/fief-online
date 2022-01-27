@@ -31,6 +31,29 @@ class Village extends Model
     }
 
 
+    /*
+    * params = "Famine" || "Mauvais Temps" || "Peste"
+    */
+    public function isAfflictedBy(string $name)
+    {
+        return Card::where([
+            'game_id'=>Game::current()->id,
+            'disaster'=>true,
+            'cross_id'=>$this->religious_territory,
+            'name'=>$name
+        ])->exists();
+    }
+    public function isBlessedBy(string $name)
+    {
+        return Card::where([
+            'game_id'=>Game::current()->id,
+            'disaster'=>false,
+            'cross_id'=>$this->religious_territory,
+            'name'=>$name
+        ])->exists();
+    }
+
+
 
     public function cards()
     {
