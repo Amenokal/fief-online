@@ -21,6 +21,7 @@ class DeckServices {
                     'name' => $card['name'],
                     'deck' => $card['deck'],
                     'gender' => $card['gender'] ?? null,
+                    'move' => $card['move'] ?? null,
                     'disaster' => $card['disaster'] ?? false,
                     'img_src' => $card['img_src'],
                     'game_id' => Game::current()->id,

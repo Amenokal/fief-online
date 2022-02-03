@@ -1,6 +1,13 @@
+@import '../../meta/mixin.scss';
+
+.armies {
+    height: 100%;
+    width: 100%;
+}
+
 .army {
-    height: 40px;
-    width: 25px;
+    height: 100%;
+    width: 100%;
     position: relative;
     z-index: 3;
     display: flex;
@@ -20,26 +27,65 @@
 
     .lord-forces {
         height: 100%;
-        width: 100%;
+        width: 50%;
         display: flex;
         justify-content: center;
+        position: relative;
+
+        .lord{
+            &:nth-child(1){
+                z-index: 4;
+            }
+            &:nth-child(2){
+                z-index: 3;
+                left: -40%;
+            }
+            &:nth-child(3){
+                z-index: 2;
+                left: -80%;
+            }
+            &:nth-child(4){
+                z-index: 1;
+                left: -120%;
+            }
+        }
+
+        &:hover {
+            .lord {
+                &:nth-child(2){
+                    left: -80%;
+                }
+                &:nth-child(3){
+                    z-index: 2;
+                    left: -160%;
+                }
+                &:nth-child(4){
+                    z-index: 1;
+                    left: -240%;
+                }
+
+            }
+        }
     }
 
     .army-forces{
         position: relative;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         transition: .3s ease;
-        width: 37px;
-        top: 17%;
+        width: 50%;
+        top: 20%;
+        @include spreadTokens;
+        @include spreadMoreOnHover;
 
 
-        &:hover>div>.sergeant{
+        &:hover>.sergeant{
             top: -35%;
             z-index: 5;
         }
 
-        &:hover>div>.knight{
+        &:hover>.knight{
             top: 35%;
             z-index: 5;
         }

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Game;
 
+use App\Models\Game;
+use App\Models\Player;
 use Illuminate\Http\Request;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
+use App\Custom\Helpers\Noble;
 use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Marechal;
 use App\Custom\Helpers\Architect;
@@ -31,28 +34,111 @@ class PhaseController extends Controller
 
 
     // PHASE ::::: REVENUS
-    public function income()
+    public function getIncome()
     {
-        return BankServices::income();
+        $data = BankServices::income();
+        return response()
+            ->view('components.player-info', [
+                'fam' => Local::player(),
+                'currentplayer' => Realm::currentPlayer()
+            ])
+            ->withHeaders([
+                'data' => $data
+            ]);
     }
 
     // PHASE ::::: BUY
-    public function buyBuilding(Request $request)
+    public function buyMill(Request $request)
     {
         $village = Mayor::find($request->village);
-        $building = Realm::building($request->type);
+        $building = Architect::building('moulin');
 
-        if(!$village->hasBuilding($building->name) &&
-            Local::player()->canBuy($building) &&
-            !Realm::building($building)
-        ){
-
+        if(BankServices::canBuyMill($village, Local::player())) {
             Architect::build($building, $village);
-            BankServices::buyBuilding($building);
+            Local::player()->update(['gold'=>Local::player()->gold - $building->price]);
 
-            return view('components.buildings', [
+            return response()->view('components.buildings', [
                 'building' => $building,
                 'village' => $village
+            ])
+            ->withHeaders([
+                'gold'=>Local::player()->gold
+            ]);
+        }
+    }
+    public function buyCastle(Request $request)
+    {
+        $village = Mayor::find($request->village);
+        $building = Architect::building('chateau');
+
+        if(BankServices::canBuyCastle($village, Local::player())) {
+            Architect::build($building, $village);
+            Local::player()->update(['gold'=>Local::player()->gold - $building->price]);
+
+            return response()->view('components.buildings', [
+                'building' => $building,
+                'village' => $village
+            ])
+            ->withHeaders([
+                'gold'=>Local::player()->gold,
+                'color'=>Local::player()->color
+            ]);
+        }
+    }
+    public function buySergeant(Request $request)
+    {
+        $village = Mayor::find($request->village);
+
+        if(BankServices::canBuySergeant($village, Local::player())) {
+            Marechal::recruit(['sergeant', 1], $village);
+            Local::player()->update(['gold'=> Local::player()->gold - 1]);
+
+            return response()->view('components.army', [
+                'families' => Realm::families(),
+                'village' => $village
+            ])
+            ->withHeaders([
+                'gold'=>Local::player()->gold,
+            ]);
+        }
+    }
+    public function buyKnight(Request $request)
+    {
+        $village = Mayor::find($request->village);
+
+        if(BankServices::canBuyKnight($village, Local::player())) {
+            Marechal::recruit(['knight', 1], $village);
+            Local::player()->update(['gold'=> Local::player()->gold - 1]);
+
+            return response()->view('components.army', [
+                'families' => Realm::families(),
+                'village' => $village
+            ])
+            ->withHeaders([
+                'gold'=>Local::player()->gold,
+            ]);
+        }
+    }
+    public function buyTitle(Request $request)
+    {
+        $title = Noble::crown($request->title);
+        $village = Mayor::find($request->village);
+        $lord = Realm::lord($request->lord);
+        $building = Architect::building('cite');
+
+        if(BankServices::canBuyTitle($village, Local::player())) {
+            $price = Noble::priceOf($title);
+            Local::player()->update(['gold'=> Local::player()->gold - $price]);
+            $lord->getCrown($title);
+            Architect::build($building, $village);
+
+            return response()->view('components.buildings', [
+                'building' => $building,
+                'village' => $village
+            ])
+            ->withHeaders([
+                'gold'=>Local::player()->gold,
+                'color'=>Local::player()->color
             ]);
         }
     }
@@ -114,16 +200,15 @@ class PhaseController extends Controller
     {
         $to = Mayor::find($request->villageTo);
         $army = Marechal::splitedArmy($request);
-
         ArmyServices::move($army, $to);
 
         return response()
-        ->view('components.army', [
-            'village' => Mayor::find($request->villageTo),
-            'families' => Realm::families()
-        ])
-        ->withHeaders([
-            'toVillageColor' => Mayor::find($request->villageTo)->player->color ?? false,
-        ]);
+            ->view('components.army', [
+                'village' => Mayor::find($request->villageTo),
+                'families' => Realm::families()
+            ])
+            ->withHeaders([
+                'toVillageColor' => $to->player->color ?? false,
+            ]);
     }
 }

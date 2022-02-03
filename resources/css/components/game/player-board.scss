@@ -50,24 +50,42 @@
     height: 90%;
     width: 25%;
     box-sizing: border-box;
-    border: 1px solid;
+    border: 2px solid;
     border-radius: inherit;
     border-color: inherit;
     margin: .7em;
+    position: relative;
     display: grid;
     grid-gap: .1em;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(10, 1fr);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
     *{
         box-sizing: border-box;
         border: 1px solid white;
         border-radius: .5em;
     }
+
+    &:nth-of-type(1){
+        background-image: url('/fief/storage/app/public/images/oldpaper1.jpg');
+    }
+    &:nth-of-type(2){
+        background-image: url('/fief/storage/app/public/images/oldpaper2.jpg');
+    }
+    &:nth-of-type(3){
+        background-image: url('/fief/storage/app/public/images/oldpaper3.jpg');
+    }
+    &:nth-of-type(4){
+        background-image: url('/fief/storage/app/public/images/oldpaper4.png');
+        background-size: 120% 130%;
+    }
 }
 
 
-.crown{
+.crown-slot{
     &:first-child{
         grid-column: 1 / 6;
         grid-row: 1 / 2;
@@ -94,9 +112,22 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .slot-name {
+        position: absolute;
+        top: 80%;
+        background-color: #ccccb4;
+        height: 1em;
+        display: flex;
+        align-items: center;
+        color: #593814;
+    }
 }
 
-.cross{
+.cross-slot{
     &:nth-child(5){
         grid-column: 6 / 7;
         grid-row: 4 / 11;

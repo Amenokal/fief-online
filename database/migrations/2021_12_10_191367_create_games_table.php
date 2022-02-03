@@ -18,7 +18,7 @@ class CreateGamesTable extends Migration
             $table->string('mod')->nullable();
             $table->boolean('is_over')->default(false);
             $table->integer('player')->default(1);
-            $table->integer('phase')->default(1);
+            $table->integer('phase')->default(0);
             $table->integer('turn')->default(1);
             $table->timestamps();
         });

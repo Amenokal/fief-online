@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Village;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Title extends Model
 {
@@ -19,4 +20,12 @@ class Title extends Model
         'lord_id',
         'game_id'
     ];
+
+    public function villages()
+    {
+        return Village::where([
+            'game_id'=>Game::current()->id,
+            'lord_territory'=>$this->zone
+        ])->get();
+    }
 }

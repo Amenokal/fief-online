@@ -1,46 +1,57 @@
 [
     {
-        "phase": "Oyez-Oyez!",
-        "name": "Mariages",
-        "id": 1
+        "phase": "Début de la partie",
+        "name": "Premier seigneur",
+        "id": 0
     },
     {
+        "phase": "Début de la partie",
+        "name": "Emplacement de départ",
+        "id": 1
+    },
+
+    {
         "phase": "Oyez-Oyez!",
-        "name": "Élection des Évêques",
+        "name": "Mariages",
         "id": 2
     },
     {
         "phase": "Oyez-Oyez!",
-        "name": "Élection du Pape",
+        "name": "Élection des Évêques",
         "id": 3
     },
     {
         "phase": "Oyez-Oyez!",
-        "name": "Élection du Roi",
+        "name": "Élection du Pape",
         "id": 4
     },
-         
-    
-    
+    {
+        "phase": "Oyez-Oyez!",
+        "name": "Élection du Roi",
+        "id": 5
+    },
+
+
+
     {
         "phase": "Cartes",
         "name": "Défausse",
-        "id": 5
-    },
-    {
-        "phase": "Cartes",
-        "name": "Pioche",
         "id": 6
     },
     {
         "phase": "Cartes",
-        "name": "Calamités",
+        "name": "Pioche",
         "id": 7
     },
     {
         "phase": "Cartes",
-        "name": "Pose",
+        "name": "Calamités",
         "id": 8
+    },
+    {
+        "phase": "Cartes",
+        "name": "Pose",
+        "id": 9
     },
 
 
@@ -48,12 +59,12 @@
     {
         "phase": "Économie",
         "name": "Revenus",
-        "id": 9
+        "id": 10
     },
     {
         "phase": "Économie",
         "name": "Dépenses",
-        "id": 10
+        "id": 11
     },
 
 
@@ -61,17 +72,17 @@
     {
         "phase": "Campagne",
         "name": "Mouvements",
-        "id": 11
-    },
-    {
-        "phase": "Campagne",
-        "name": "Batailles",
         "id": 12
     },
     {
         "phase": "Campagne",
-        "name": "Pillages",
+        "name": "Batailles",
         "id": 13
+    },
+    {
+        "phase": "Campagne",
+        "name": "Pillages",
+        "id": 14
     },
 
 
@@ -79,6 +90,6 @@
     {
         "phase": "Fin du tour",
         "name": "Décompte de points",
-        "id": 14
+        "id": 15
     }
 ]

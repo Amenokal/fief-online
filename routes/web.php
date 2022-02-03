@@ -26,7 +26,7 @@ use App\Http\Controllers\Event\LogEventController;
 Route::get('/', function () { return view('auth.login'); })->name('home');
 Route::get('/lobby', [LobbyController::class, 'index'])->middleware(['auth'])->name('menu');
 Route::get('/game', [GameController::class, 'index'])->middleware(['auth'])->name('game');
-
+Route::post('/update/game', [GameController::class, 'update'])->middleware(['auth'])->name('update');
 
 
 
@@ -48,7 +48,6 @@ Route::post('/lobby/msg', [LobbyController::class, 'newMsg']);
 
 
 
-
 // ::: GAME :::
 // ============
 
@@ -58,14 +57,10 @@ Route::post('/lobby/msg', [LobbyController::class, 'newMsg']);
 Route::post('/reset/deck', [TestController::class, 'resetCards']);
 Route::post('/reset/board', [TestController::class, 'resetBoard']);
 
-    // DRAW
-    // ----
-
-
-
     // TURNS
     // -----
 
+Route::post('/check/phase', [TurnController::class, 'giveTurn']);
 Route::post('/changeturn', [TurnController::class, 'changeTurn']);
 Route::post('/endturn', [TurnController::class, 'endTurn']);
 
@@ -73,7 +68,6 @@ Route::post('/endturn', [TurnController::class, 'endTurn']);
     // -------------
 
 Route::get('/show/board', [GameController::class, 'showBoard']);
-
 
 
 
@@ -92,24 +86,31 @@ Route::post('/gamestart/2', [PhaseController::class, 'chooseVillage']);
 Route::post('/draw/card', [CardsController::class, 'draw']);
 Route::post('/discard', [CardsController::class, 'discard']);
 Route::post('/shuffle', [CardsController::class, 'shuffle']);
+
 Route::get('/disasters/show', [CardsController::class, 'showDisasters']);
 
+Route::post('/play/lord', [CardsController::class, 'playLord']);
 Route::post('/play/add/wealth', [CardsController::class, 'addWealth']);
 Route::post('/play/remove/disaster', [CardsController::class, 'removeDisaster']);
 
     // PHASE ::::: GOLD
     // ----------------
 
-Route::post('/gold/buy', [PhaseController::class, 'buyBuilding']);
+Route::post('/gold/income', [PhaseController::class, 'getIncome']);
+
+Route::post('/gold/buy/mill', [PhaseController::class, 'buyMill']);
+Route::post('/gold/buy/castle', [PhaseController::class, 'buyCastle']);
+Route::post('/gold/buy/sergeant', [PhaseController::class, 'buySergeant']);
+Route::post('/gold/buy/knight', [PhaseController::class, 'buyKnight']);
+Route::post('/gold/buy/crown', [PhaseController::class, 'buyTitle']);
 
     // PHASE 11 ::::: MOVE
     // -------------------
 
 Route::post('/move/moveall', [PhaseController::class, 'moveAll']);
 Route::post('/move/letone', [PhaseController::class, 'letOne']);
-Route::get('/show/army/manager', [PhaseController::class, 'showArmyManager']);
 Route::post('/move/inspect', [PhaseController::class, 'inspect']);
-
+Route::get('/show/army/manager', [PhaseController::class, 'showArmyManager']);
 
 
 

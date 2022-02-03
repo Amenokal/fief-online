@@ -71,7 +71,10 @@ class Marechal {
                 'village_id' => null
             ])
             ->take($army[$i+1])
-            ->update(['village_id' => $village->id]);
+            ->update([
+                'village_id' => $village->id,
+                'just_arrived' => true
+            ]);
         }
     }
 
@@ -105,24 +108,30 @@ class Marechal {
 
     public static function splitedArmy(Request $request) : Collection
     {
-        $moving_lords = [];
-        foreach($request->lords as $lord){
-            $moving_lords[] = Realm::lord($lord);
-        };
-        $moving_lords = collect($moving_lords);
 
         $army = [];
         foreach($request->army as $soldier){
-            $army[] = Soldier::where([
-                'game_id'=>Game::current()->id,
-                'type'=>$soldier,
-                'player_id'=>$moving_lords->first()->player->id,
-                'village_id'=>$moving_lords->first()->village_id,
-            ])->first();
+            if($soldier === 'sergeant' || $soldier === 'knight'){
+                $boy = Soldier::where([
+                    'game_id'=>Game::current()->id,
+                    'type'=>$soldier,
+                    'player_id'=>Local::player()->id,
+                    'village_id'=>Mayor::find($request->villageFrom)->id,
+                ])->first();
+                $army[] = $boy;
+                $boy->delete();
+            }
+            else {
+                $army[] = Realm::lord($soldier);
+            }
         };
-        $army = collect($army);
 
-        return $moving_lords->merge($army);
+        $rest = Soldier::onlyTrashed()->get();
+        foreach($rest as $r){
+            $r->restore();
+        }
+
+        return collect($army);
     }
 
     public static function evaluate(Village $village, Player $player)

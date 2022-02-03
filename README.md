@@ -1,11 +1,3 @@
-# KNOWN BUGS
-
-When moveoption letOne with lone lord : lord disappearing
-- if lord alone > moveAll()
-- disable letOne when lord is alone in JS ?
-
-When 3 disasters on board already : no discard pile animation + draw immediatly
-
 # TASKS
 
 ## BACK-END
@@ -29,23 +21,25 @@ When 3 disasters on board already : no discard pile animation + draw immediatly
 - moving armies (maybe)
 
 ### RESPONSIVE
-- FullScreen
 - Media Queries
 
 # TODO
 
 ### ARMIES
-- JS class : ArmyManager for front-end army move & merges
 - Restric inspect move = need a lord to move
-- listeners cleaner
+- restrict move to 2
+- clean "just_arrived" and "move" on soldiers and lords after move phase finishes
 
 ### CARDS
-- disaster phase
-- pose phase (need titles)
+- tax
+- instant cards
 
 ### GOLD
+- buy titles
+- buy cardinal
 
 ### BUILDINGS
+- cities when a title is buyed
 
 ### BATTLES
 

@@ -1,0 +1,29 @@
+@import '../../meta/mixin';
+
+
+.parchemin {
+    min-height: 200px;
+    min-width: 400px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 10;
+
+    .modal-top {
+        height: 110px;
+        min-width: 600px;
+        background-image: url("/fief/storage/app/public/images/parchemin-top.png");
+        background-repeat: no-repeat;
+        transition: 1s ease;
+    }
+    .modal-bottom {
+        height: 106px;
+        min-width: 600px;
+        background-image: url("/fief/storage/app/public/images/parchemin-bottom.png");
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+}

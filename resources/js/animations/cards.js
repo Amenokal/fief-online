@@ -1,8 +1,53 @@
+import { GameElements } from '../classes/GameElements';
+import { Game } from '../classes/Game.js';
+
+
 // \\\
 // ---------------------
 // ANIMATIONS ::::: CARD
 // ---------------------
 // ///
+
+export function firstLordAnimation(newCard){
+    let pile = document.getElementById('lordCardPile');
+    pile.innerHTML += '<span class="card lord-verso"></span>';
+    console.log(pile);
+
+    let card = pile.children[0];
+    card.classList.add('draw-first-lord');
+    console.log(card);
+
+    setTimeout(() => {
+
+        card.addEventListener('click',()=>{
+            card.classList.add('clicked', 'reveal-1');
+
+            setTimeout(() => {
+
+                card.classList.remove('reveal-1');
+                card.classList.add('reveal-2');
+                card.id = newCard.name;
+                card.style = `background-image: url(${newCard.img_src})`;
+
+                setTimeout(() => {
+                    card.classList.remove('reveal-2');
+                    card.classList.add('take-first-lord');
+                }, 1500);
+
+                setTimeout(() => {
+                    document.querySelector('.player-hand').innerHTML +=
+                        GameElements.lordCardRecto(newCard.name, newCard.img_src);
+
+                    document.querySelector('.player-hand>.card').classList.add('drawn');
+
+                    card.remove();
+                }, 2000);
+
+            }, 500);
+        })
+
+    }, 1000);
+}
 
 export function drawAnimation(newCard, nextCardType){
 

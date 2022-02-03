@@ -1,9 +1,10 @@
+import { GameElements } from "./GameElements";
+
 export class Builder {
 
-    constructor(type){
-        this.type = type
+    static newCastle(villageName){
+        let target = document.querySelector(`#${villageName}>.buildings`);
+        target.innerHTML += GameElements.castle;
     }
-
-
 
 }

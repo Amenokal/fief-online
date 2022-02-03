@@ -1,36 +1,38 @@
+<?php $lord = $player->lords()->skip($i)->first()?>
+
 <section class='lord-slot'>
 
-    <span class='crown'>
+    @for ($j=0; $j<3; $j++)
+        <span class='crown-slot'>
 
-    </span>
+            @if($lord && $lord->isTitled() && $lord->title()->skip($j)->first())
 
-    <span class='crown'>
+                <span @class([
+                    'crown-slot',
+                    'crown'=>$lord && $lord->isTitled() && $lord->title()->skip($j)->first()
+                ])>
+                    {{$lord->title()->skip($j)->first()->zone}}
+                </span>
+            @endif
 
-    </span>
+        </span>
+    @endfor
 
-    <span class='crown'>
-
-    </span>
-
-    @if($player->lords()->skip($i)->first())
+    @if($lord))
         <span
-            class="slot player-board-{{$player->lords()->skip($i)->first()->name}}"
-            style="background-image: url('/fief/storage/app/public/cards/lords/Eric.png')">
+            class="slot player-board-{{$lord->name}}"
+            style="background-image: url('/fief/storage/app/public/cards/lords/Eric.png')"
+        >
+            <span class='slot-name'>{{$lord->name}}</span>
+
         </span>
     @else
         <span class="slot"></span>
     @endif
 
-    <span class='cross'>
+    <span class='cross-slot'></span>
+    <span class='cross-slot'></span>
 
-    </span>
-
-    <span class='cross'>
-
-    </span>
-
-    <span class='ring'>
-
-    </span>
+    <span class='ring'></span>
 
 </section>

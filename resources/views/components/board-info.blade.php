@@ -1,13 +1,13 @@
 <div class='remaining-buildings'>
     <div>
-        @foreach ($buildings as $b)
+        @foreach ($remnbuildings as $b)
             @if($b->name === 'moulin')
                 <span class='remaining-{{$b->name}}'></span>
             @endif
         @endforeach
     </div>
     <div>
-        @foreach ($buildings as $b)
+        @foreach ($remnbuildings as $b)
             @if($b->name === 'chateau')
                 <span class='remaining-{{$b->name}}'></span>
             @endif
@@ -17,7 +17,7 @@
 </div>
 
 <div class='remaining-lords'>
-    @foreach ($lords as $lord)
+    @foreach ($remnlords as $lord)
         @if($lord->name !== 'Cardinal' && $lord->name !== "d'Arc")
             <span class='remaining-lord' id='waiting-{{$lord->name}}'></span>
         @endif
@@ -90,6 +90,12 @@
 
 </div>
 
-<div class='game-info-tokens'></div>
+<div class='game-info-tokens'>
+    <span class='cardinal'></span>
+    <span class='cardinal'></span>
+    <span class='cardinal'></span>
+    <span class='cardinal payed-cross'></span>
+    <span class='arc'></span>
+</div>
 
 <div class='game-info-cards'></div>

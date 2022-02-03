@@ -83,113 +83,128 @@
         "deck": "lord",
         "gender": "M",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Baudoin",
         "deck": "lord",
         "gender": "M",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Blanche",
         "deck": "lord",
         "gender": "F",
         "img_src": "storage/cards/lords/Mireille.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Jeanne",
         "deck": "lord",
         "gender": "F",
         "img_src": "storage/cards/lords/Mireille.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Philippe",
         "deck": "lord",
         "gender": "M",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Lambert",
         "deck": "lord",
         "gender": "M",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Mireille",
         "deck": "lord",
         "gender": "F",
         "img_src": "storage/cards/lords/Mireille.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Aliénor",
         "deck": "lord",
         "gender": "F",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Charles",
         "deck": "lord",
         "gender": "M",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Guenièvre",
         "deck": "lord",
         "gender": "F",
         "img_src": "storage/cards/lords/Mireille.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Gauvin",
         "deck": "lord",
         "gender": "M",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "François",
         "deck": "lord",
         "gender": "M",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
-        "name":
-        "Thierry",
+        "name": "Thierry",
         "deck": "lord",
         "gender": "M",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Othon",
         "deck": "lord",
         "gender": "M",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Quentin",
         "deck": "lord",
         "gender": "M",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "Eric",
         "deck": "lord",
         "gender": "M",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 1
+        "nb": 1,
+        "move": 2
     },
     {
         "name": "d'Arc",
@@ -203,5 +218,6 @@
         "deck": "lord",
         "gender": "O",
         "img_src": "storage/cards/lords/Eric.png",
-        "nb": 3}
+        "nb": 3
+    }
 ]

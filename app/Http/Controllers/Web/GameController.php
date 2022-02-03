@@ -15,6 +15,7 @@ use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Marechal;
+use App\Custom\Helpers\Architect;
 use App\Custom\Helpers\Librarian;
 use App\Http\Controllers\Controller;
 use App\Custom\Services\ArmyServices;
@@ -27,11 +28,17 @@ class GameController extends Controller
 {
 
 
-    public function index(){
+    public function index()
+    {
+        // dd(
+        //     Soldier::where([
+        //         'game_id'=>Game::current()->id,
+        //         'type'=>'sergeant',
+        //         'player_id'=>Local::player()->id,
+        //         'village_id'=>Mayor::find('tournus')->id,
+        //     ])->first()
+        // );
 
-        // dd(Realm::incommingDisasters()->get());
-
-        // TODO: make middleware for game booting
         BootServices::init('vanilla');
 
         return view('layouts.game', [
@@ -41,7 +48,7 @@ class GameController extends Controller
             'families' => Realm::families(),
             'turn' => Realm::year(),
             'phases' => TurnServices::phaseNames(),
-            'currentPlayer' => Realm::currentPlayer(),
+            'current_player' => Realm::currentPlayer(),
 
             'remaining_lords' => Realm::remainingLords(),
             'remaining_buildings' => Realm::remainingBuildings(),
@@ -50,6 +57,32 @@ class GameController extends Controller
             'lord_discard_pile' => Gipsy::discardedCards('lord'),
             'event_discard_pile' => Gipsy::discardedCards('event'),
             'inc_disasters' => Realm::incommingDisasters(),
+
+            'villages' => Realm::villages(),
+            'lords' => Realm::lords(),
+            'army' => Realm::activeArmies(),
+            'buildings' => Realm::buildings()
+        ]);
+    }
+
+    public function update()
+    {
+        return view('components.game-content', [
+            'player' => Local::player(),
+            'playercards' => Local::cards(),
+
+            'families' => Realm::families(),
+            'turn' => Realm::year(),
+            'phases' => TurnServices::phaseNames(),
+            'currentplayer' => Realm::currentPlayer(),
+
+            'remnlords' => Realm::remainingLords(),
+            'remnbuildings' => Realm::remainingBuildings(),
+            'nextlord' => Gipsy::nextCard('lord'),
+            'nextevent' => Gipsy::nextCard('event'),
+            'lorddiscard' => Gipsy::discardedCards('lord'),
+            'eventdiscard' => Gipsy::discardedCards('event'),
+            'disasters' => Realm::incommingDisasters(),
 
             'villages' => Realm::villages(),
             'lords' => Realm::lords(),

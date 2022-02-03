@@ -29,11 +29,6 @@
 
     </section>
 
-    <div class='a-m-move-btns'>
-        <button class='to-move-btn'>>></button>
-        <button class='to-stay-btn'><<</button>
-    </div class='a-m-move-btns'>
-
     <section class='a-m-army'>
         <h1>
             DÉTACHEMENT

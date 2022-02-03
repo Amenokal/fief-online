@@ -1,0 +1,129 @@
+@import '../../meta/mixin';
+
+.game-board-titles {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.crown,
+.cross,
+.arc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.crown {
+    height: 3%;
+    width: 8%;
+    background-image: url('/fief/storage/app/public/images/crown.png');
+}
+.crown-slot {
+    height: 100%;
+    width: 100%;
+}
+    .crown-1 {
+        transform: rotate(90deg);
+        left: -2.5%;
+        top: 10%;
+    }
+    .crown-2 {
+        transform: rotate(180deg);
+        left: 44%;
+    }
+    .crown-3 {
+        transform: rotate(180deg);
+        left: 70%;
+    }
+    .crown-4 {
+        transform: rotate(-90deg);
+        right: -1.5%;
+        top: 25%;
+    }
+    .crown-5 {
+        transform: rotate(-90deg);
+        right: -1.5%;
+        top: 72%;
+    }
+    .crown-6 {
+        bottom: 0;
+        left: 30%;
+    }
+    .crown-7 {
+        bottom: 0;
+        left: 8%;
+    }
+    .crown-8 {
+        transform: rotate(90deg);
+        left:-2.8%;
+        top: 62%;
+    }
+
+.cross {
+    height: 15%;
+    width: 2%;
+    background-image: url('/fief/storage/app/public/images/cross.png');
+}
+    #cross-1{
+        transform: rotate(90deg);
+        left: 32%;
+        top: -6%;
+    }
+    #cross-2{
+        transform: rotate(90deg);
+        left: 62%;
+        top: -6%;
+    }
+    #cross-3{
+        transform: rotate(180deg);
+        right: 2%;
+        top: 42%;
+    }
+    #cross-4{
+        transform: rotate(-90deg);
+        left: 45%;
+        bottom: -6%;
+    }
+    #cross-5 {
+        top: 40%;
+    }
+
+.cardinal {
+    height: 18%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/fief/storage/app/public/images/free-cardinal.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.payed-cross {
+    background-image: url('/fief/storage/app/public/images/pay-cardinal.png');
+}
+
+.arc {
+    height: 18%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/fief/storage/app/public/images/arc.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.selected-title{
+    border: 2px solid gold;
+}
+
+.taken {
+    opacity: .5;
+}

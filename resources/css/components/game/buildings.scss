@@ -24,7 +24,7 @@
 .moulin{
     @include building;
     @include back-img('images/moulin.png');
-    transform: translateX(-20px) translateY(20px) scale(.6);
+    transform: translateX(-10px) translateY(10px) scale(.6);
     z-index: 2;
 }
 

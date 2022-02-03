@@ -9,7 +9,9 @@
 
     &>.remaining-moulin,
     &>.remaining-chateau,
-    &>.remaining-cite{
+    &>.remaining-cite,
+    &>.sergeant,
+    &>.knight {
 
         &:nth-of-type(2){
             left: 2px;
@@ -52,6 +54,57 @@
         }
         &:nth-of-type(15){
             left: 28px;
+        }
+    }
+}
+
+@mixin spreadMoreOnHover{
+    &:hover{
+
+        &>.sergeant,
+        &>.knight {
+            &:nth-of-type(2){
+                left: 5px;
+            }
+            &:nth-of-type(3){
+                left: 10px;
+            }
+            &:nth-of-type(4){
+                left: 15px;
+            }
+            &:nth-of-type(5){
+                left: 20px;
+            }
+            &:nth-of-type(6){
+                left: 25px;
+            }
+            &:nth-of-type(7){
+                left: 30px;
+            }
+            &:nth-of-type(8){
+                left: 35px;
+            }
+            &:nth-of-type(9){
+                left: 40px;
+            }
+            &:nth-of-type(10){
+                left: 45px;
+            }
+            &:nth-of-type(11){
+                left: 50px;
+            }
+            &:nth-of-type(12){
+                left: 55px;
+            }
+            &:nth-of-type(13){
+                left: 60px;
+            }
+            &:nth-of-type(14){
+                left: 65px;
+            }
+            &:nth-of-type(15){
+                left: 70px;
+            }
         }
     }
 }

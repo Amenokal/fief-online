@@ -1,3 +1,10 @@
+@mixin bck-img($img){
+    background-image: url('/fief/storage/app/public/images/'+$img);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 @mixin card {
     height: 100px;
     width: 64px;
@@ -18,12 +25,7 @@
     position: relative;
 }
 
-@mixin bck-img($img){
-    background-image: url('/fief/storage/app/public/images/'+$img);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-}
+
 
 .lord-verso {
     @include card-pile;
@@ -46,6 +48,9 @@
     background-size: contain;
 }
 
+
+
+// CARD-PILES FOR GAME-INFO
 .card-pile{
     @include card-pile;
     border: 1px solid white;
@@ -55,6 +60,9 @@
     }
 }
 
+
+
+// IN HAND CARDS
 .player-hand {
     .card {
         height: 120px;
@@ -77,28 +85,4 @@
         border: 3px solid goldenrod;
         box-shadow: 0px 0px 4px 4px gold;
     }
-
-}
-
-
-
-.draw-animation {
-    animation: 'draw' 1.5s forwards ease-out;
-}
-.discarded {
-    transform: scale(1.5) translateY(-3em);
-    animation: 'discarded' 1s forwards ease-out;
-}
-
-.disas-animation-0 {
-    animation: 'disas-animation-0' 1s ease-out forwards;
-    z-index: 2;
-}
-.disas-animation-1 {
-    animation: 'disas-animation-0' 1.5s ease-out forwards;
-    z-index: 2;
-}
-.disas-animation-2 {
-    animation: 'disas-animation-0' 2s ease-out forwards;
-    z-index: 2;
 }

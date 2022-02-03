@@ -30,34 +30,31 @@ class Village extends Model
         return $this->buildings()->where('name', $type)->get()->isNotEmpty();
     }
 
-
-    /*
+   /**
     * params = "Famine" || "Mauvais Temps" || "Peste"
     */
-    public function isAfflictedBy(string $name)
+    public function isModifiedBy(string $name)
     {
         return Card::where([
             'game_id'=>Game::current()->id,
-            'disaster'=>true,
             'cross_id'=>$this->religious_territory,
             'name'=>$name
-        ])->exists();
+        ])
+        ->exists();
     }
-    public function isBlessedBy(string $name)
-    {
-        return Card::where([
-            'game_id'=>Game::current()->id,
-            'disaster'=>false,
-            'cross_id'=>$this->religious_territory,
-            'name'=>$name
-        ])->exists();
-    }
-
 
 
     public function cards()
     {
         return $this->hasMany(Card::class);
+    }
+
+    public function title()
+    {
+        return Title::where([
+            'game_id'=>Game::current()->id,
+            'id'=>$this->lord_territory
+        ])->first();
     }
 
     public function soldiers()
@@ -73,7 +70,10 @@ class Village extends Model
     public function buildingsHere()
     {
         return $this->buildings()
-            ->where('village_id', $this->id)
+            ->where([
+                'game_id'=>Game::current()->id,
+                'village_id'=>$this->id
+            ])
             ->get();
     }
 
@@ -101,7 +101,7 @@ class Village extends Model
 
     public function hasOwner()
     {
-        return !!$this->player;
+        return !$this->player;
     }
 
 
@@ -115,9 +115,12 @@ class Village extends Model
         return $this->belongsTo(Game::class);
     }
 
-    public function player()
+    public function owner()
     {
-        return $this->belongsTo(Player::class);
+        return Player::where([
+            'game_id'=>Game::current()->id,
+            'id'=>$this->player_id
+        ])->first();
     }
 
 }

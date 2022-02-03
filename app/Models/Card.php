@@ -19,6 +19,8 @@ class Card extends Model
         'name',
         'deck',
         'gender',
+        'move',
+        'gender',
         'instant',
         'disaster',
         'on_board',
@@ -37,6 +39,12 @@ class Card extends Model
             'game_id' => Game::current()->id,
             'lord_id' => $this->id,
         ])->exists();
+    }
+    public function title(){
+        return Title::where([
+            'game_id' => Game::current()->id,
+            'lord_id' => $this->id,
+        ])->get();
     }
 
     public static function draw(Card $card)
@@ -75,14 +83,21 @@ class Card extends Model
         return $this->belongsTo(Village::class);
     }
 
-    public function inflictedVillages(int $zone)
+    public function getCrown(Title $title)
     {
-        return Village::where([
-            'game_id'=>Game::current()->id,
-            'religious_territory'=>$zone
-        ])
-        ->get();
+        $title->update([
+            'lord_id'=>$this->id,
+            'player_id'=>$this->player->id
+        ]);
     }
+    // public function inflictedVillages(int $zone)
+    // {
+    //     return Village::where([
+    //         'game_id'=>Game::current()->id,
+    //         'religious_territory'=>$zone
+    //     ])
+    //     ->get();
+    // }
 
 
 }

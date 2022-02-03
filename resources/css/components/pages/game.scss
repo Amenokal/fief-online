@@ -119,6 +119,15 @@
                 box-sizing: border-box;
                 border: 1px solid black;
 
+                &.building-btns div{
+                    height: 100px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    button{
+                        height: 50% !important;
+                    }
+                }
+
                 div {
                     display: flex;
                     flex-direction: row;
@@ -256,6 +265,7 @@
         width: 300px;
         position: absolute;
         bottom: 0;
+        left: 48%;
         display: flex;
         justify-content: space-around;
         transition: .5s ease;

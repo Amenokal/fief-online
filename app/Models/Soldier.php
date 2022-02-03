@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Soldier extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public $timestamps = false;
     public $fillable = [
@@ -15,6 +17,8 @@ class Soldier extends Model
         'price',
         'power',
         'pv',
+        'move',
+        'just_arrived',
         'village_id',
         'player_id',
         'game_id',
@@ -34,5 +38,5 @@ class Soldier extends Model
     {
         return $this->belongsTo(Village::class);
     }
-    
+
 }

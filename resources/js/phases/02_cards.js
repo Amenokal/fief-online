@@ -1,44 +1,51 @@
 import axios from "axios";
+
+import { Game } from '../classes/Game.js';
 import { Village } from '../classes/Village.js';
+
 import { drawAnimation } from '../animations/cards.js';
 import { disasterAnimation } from '../animations/cards.js';
 
 
+
 // \\\
-// --------------------
-// PHASES ::::: CARDS
-// --------------------
+// -------------------
+// CARDS ::::: DISCARD
+// -------------------
 // ///
 
+export function discard(e){
+    let card = e.target;
+    let cardType = e.target.id.split('-')[0];
+    let cardName = e.target.id.split('-')[1];
 
-// DISCARD
-document.querySelector('.player-hand').addEventListener('click', e=>{
-    let phase = document.querySelector('.current-phase').id.split('-')[1];
+    axios.post('./discard', {
+        deck: cardType,
+        card: cardName
+    })
+    .then(()=>{
+        card.classList.add('discarded');
+        setTimeout(() => {
+            card.remove();
+        }, 1000);
+    })
+}
 
-    if(e.target.className.includes('card') && phase === '5'){
-        let card = e.target;
 
-        axios.post('./discard', {
-            deck: card.id.split('-')[0],
-            card: card.id.split('-')[1]
-        })
-        .then(()=>{
-            if(phase === '5'){
-                card.classList.add('discarded');
-                setTimeout(() => {card.remove()}, 1000);
-            }
-        });
-    }
-})
 
-// DRAW
-document.querySelector('.game-cards').addEventListener('click', e=>{
+// \\\
+// ----------------
+// CARDS ::::: DRAW
+// ----------------
+// ///
+
+export function draw(e){
     let phase = document.querySelector('.current-phase').id.split('-')[1];
     let pile = e.target.parentNode.id.split('CardPile')[0];
     let isDisaster = e.target.className.includes('disaster');
 
     // DRAW
-    if( (pile == 'lord' || pile == 'event') && phase === '6' && e.target.className.includes('card')){
+    if((pile == 'lord' || pile == 'event') && e.target.className.includes('card')){
         axios.post('./draw/card', {
             deck: pile,
             isDisaster: isDisaster
@@ -50,7 +57,7 @@ document.querySelector('.game-cards').addEventListener('click', e=>{
             else{
                 disasterAnimation(res.data.nextCardType)
             }
-        });
+        })
     }
 
     // SHUFFLE IF EMPTY
@@ -61,17 +68,23 @@ document.querySelector('.game-cards').addEventListener('click', e=>{
         })
         .then(res=>{
             document.querySelector(`${deck}-pile-wrapper`).innerHTML =
-            `<spanclass="card ${res.data.nextCardType}-verso"/>`
+            `<span class="card ${res.data.nextCardType}-verso"/>`
         })
     }
-})
 
-// DISASTERS
-document.getElementById('disasters-btn').addEventListener('click', showDisasters);
-function showDisasters(e){
+}
+
+
+
+// \\\
+// --------------------
+// CARDS ::::: DISASTER
+// --------------------
+// ///
+
+export function showDisasters(){
     axios.get('./disasters/show')
     .then(res=>{
-        console.log(res.data);
         for(let i=0; i<res.data.length; i++){
             setTimeout(() => {
                 document.getElementById('incDisas-'+i).innerHTML =
@@ -101,11 +114,17 @@ function showDisasters(e){
     })
 }
 
-// PLAY CARDS
-document.querySelectorAll('.player-hand>.card').forEach(el=>{
-    el.addEventListener('click', playCard);
-});
-function playCard(e){
+
+
+// \\\
+// ----------------
+// CARDS ::::: PLAY
+// ----------------
+// ///
+
+export function playCard(e){
+
+
     if(document.querySelector('.to-be-played') && !e.target.className.includes('to-be-played')){
         document.querySelector('.to-be-played').classList.remove('to-be-played')
     }
@@ -128,6 +147,18 @@ function playCardOnVillage(e){
     let village = e.currentTarget.id;
     let hadEffect = false;
 
+    // PLAY LORD
+    if(card.id.includes('lord') && (!card.id.includes('Cardinal') || !card.id.includes('arc'))){
+
+        axios.post('./play/lord', {
+            lord: cardName,
+            village: village
+        })
+        .then(()=>{
+            Game.update();
+        })
+    }
+
     // ADD WEALTH
     if((cardName == 'Bonne Récolte' && !Village.disaster(village, 'Famine') && !Village.disaster(village, 'Mauvais Temps')) ||
         (cardName == 'Beau Temps' && !Village.disaster(village, 'Mauvais Temps') && !Village.disaster(village, 'Famine'))){
@@ -142,7 +173,6 @@ function playCardOnVillage(e){
                 });
                 card.remove();
             })
-
     }
 
     // REMOVE DISASTER
