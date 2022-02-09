@@ -13,7 +13,9 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/login.js', 'public/js')
    .js('resources/js/game.js', 'public/js')
-   .sass('resources/css/main.scss', 'public/css')
+   .sass('resources/css/main.scss', 'public/css').options({
+        processCssUrls: false
+   })
 
     // .postCss('resources/css/app.css', 'public/css', [
     // require('postcss-import'),
