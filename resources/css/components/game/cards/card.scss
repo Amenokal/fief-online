@@ -1,3 +1,5 @@
+@import '../../../meta/mixin.scss';
+
 // CARD FORMATS
 @mixin card {
     height: 200px;
@@ -31,10 +33,6 @@
         width: 80px;
         position: relative;
         bottom: 40%;
-        background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
         transition: .2s ease;
 
         &:hover {

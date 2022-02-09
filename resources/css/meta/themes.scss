@@ -1,7 +1,7 @@
 @mixin themed($base, $txt, $texture){
     background-color: $base;
     color: $txt;
-    background-image: url('/fief-online.com/public/storage/textures/'+$texture+'.png');
+    background-image: url('../public/storage/textures/'+$texture+'.png');
 }
 
 @mixin theme-bordered($base, $txt, $strong, $texture){

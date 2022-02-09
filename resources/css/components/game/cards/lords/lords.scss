@@ -1,7 +1,7 @@
 @import '../card.scss';
 
 @mixin lord-img($img){
-    background-image: url('/fief/public/storage/cards/lords/'+$img+'-card.png');
+    background-image: url('../public/storage/cards/lords/'+$img+'-card.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

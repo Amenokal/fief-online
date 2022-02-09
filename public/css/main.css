@@ -24,13 +24,13 @@
 .red-theme {
   background-color: var(--red);
   color: var(--red-txt);
-  background-image: url("/fief-online.com/public/storage/textures/dark-leather.png");
+  background-image: url("../public/storage/textures/dark-leather.png");
 }
 
 .red-bordered {
   background-color: var(--red);
   color: var(--red-txt);
-  background-image: url("/fief-online.com/public/storage/textures/dark-leather.png");
+  background-image: url("../public/storage/textures/dark-leather.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--red-strong);
@@ -52,13 +52,13 @@
 .blue-theme {
   background-color: var(--blue);
   color: var(--blue-txt);
-  background-image: url("/fief-online.com/public/storage/textures/blu-stripes.png");
+  background-image: url("../public/storage/textures/blu-stripes.png");
 }
 
 .blue-bordered {
   background-color: var(--blue);
   color: var(--blue-txt);
-  background-image: url("/fief-online.com/public/storage/textures/blu-stripes.png");
+  background-image: url("../public/storage/textures/blu-stripes.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--blue-strong);
@@ -80,13 +80,13 @@
 .green-theme {
   background-color: var(--green);
   color: var(--green-txt);
-  background-image: url("/fief-online.com/public/storage/textures/fake-luxury.png");
+  background-image: url("../public/storage/textures/fake-luxury.png");
 }
 
 .green-bordered {
   background-color: var(--green);
   color: var(--green-txt);
-  background-image: url("/fief-online.com/public/storage/textures/fake-luxury.png");
+  background-image: url("../public/storage/textures/fake-luxury.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--green-strong);
@@ -108,13 +108,13 @@
 .yellow-theme {
   background-color: var(--yellow);
   color: var(--yellow-txt);
-  background-image: url("/fief-online.com/public/storage/textures/arabesque.png");
+  background-image: url("../public/storage/textures/arabesque.png");
 }
 
 .yellow-bordered {
   background-color: var(--yellow);
   color: var(--yellow-txt);
-  background-image: url("/fief-online.com/public/storage/textures/arabesque.png");
+  background-image: url("../public/storage/textures/arabesque.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--yellow-strong);
@@ -136,13 +136,13 @@
 .white-theme {
   background-color: var(--white);
   color: var(--white-txt);
-  background-image: url("/fief-online.com/public/storage/textures/perforated-white-leather.png");
+  background-image: url("../public/storage/textures/perforated-white-leather.png");
 }
 
 .white-bordered {
   background-color: var(--white);
   color: var(--white-txt);
-  background-image: url("/fief-online.com/public/storage/textures/perforated-white-leather.png");
+  background-image: url("../public/storage/textures/perforated-white-leather.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--white-strong);
@@ -164,13 +164,13 @@
 .black-theme {
   background-color: var(--black);
   color: var(--black-txt);
-  background-image: url("/fief-online.com/public/storage/textures/dark-wood.png");
+  background-image: url("../public/storage/textures/dark-wood.png");
 }
 
 .black-bordered {
   background-color: var(--black);
   color: var(--black-txt);
-  background-image: url("/fief-online.com/public/storage/textures/dark-wood.png");
+  background-image: url("../public/storage/textures/dark-wood.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--black-strong);
@@ -274,7 +274,7 @@
   justify-content: center;
 }
 .game-container header section {
-  background-image: url("/fief-online.com/public/storage//textures/grunge2.png");
+  background-image: url("../public/storage//textures/grunge2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -306,7 +306,7 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: #d4beac;
-  background-image: url("/fief-online.com/public/storage//images/oldpaper2.jpg");
+  background-image: url("../public/storage//images/oldpaper2.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -410,14 +410,14 @@
   height: 100%;
   width: 81.8%;
   position: relative;
-  background-image: url("/fief-online.com/public/storage//images/board.jpg");
+  background-image: url("../public/storage//images/board.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   background-size: contain;
 }
 .game-container .game-view .game-board .game-board-info {
-  background-image: url("/fief-online.com/public/storage/textures/grunge2.png");
+  background-image: url("../public/storage/textures/grunge2.png");
   box-sizing: border-box;
   border: 5px solid black;
   box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.7);
@@ -663,7 +663,7 @@
   }
 }
 .login-container {
-  background-image: url("/fief-online.com/public/storage/images/home-background3.jpg");
+  background-image: url("../public/storage/images/home-background3.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -677,7 +677,7 @@
   top: 0px;
   height: 75px;
   width: 300px;
-  background-image: url("/fief-online.com/public/storage/images/parchemin-top.png");
+  background-image: url("../public/storage/images/parchemin-top.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -694,7 +694,7 @@
   top: -275px;
   width: 300px;
   height: 375px;
-  background-image: url("/fief-online.com/public/storage/images/parchemin-bottom.png");
+  background-image: url("../public/storage/images/parchemin-bottom.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -943,16 +943,16 @@
   border-radius: 0.5em;
 }
 .lord-slot:nth-of-type(1) {
-  background-image: url("/fief/storage/app/public/images/oldpaper1.jpg");
+  background-image: url("../public/images/oldpaper1.jpg");
 }
 .lord-slot:nth-of-type(2) {
-  background-image: url("/fief/storage/app/public/images/oldpaper2.jpg");
+  background-image: url("../public/images/oldpaper2.jpg");
 }
 .lord-slot:nth-of-type(3) {
-  background-image: url("/fief/storage/app/public/images/oldpaper3.jpg");
+  background-image: url("../public/images/oldpaper3.jpg");
 }
 .lord-slot:nth-of-type(4) {
-  background-image: url("/fief/storage/app/public/images/oldpaper4.png");
+  background-image: url("../public/images/oldpaper4.png");
   background-size: 120% 130%;
 }
 
@@ -1422,7 +1422,7 @@
   transform: rotate(90deg);
   left: -2.5%;
   top: 10%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-1.png");
+  background-image: url("../public/storage/tokens/titles/crown-1.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1431,7 +1431,7 @@
 .crown-2 {
   transform: rotate(180deg);
   left: 44%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-2.png");
+  background-image: url("../public/storage/tokens/titles/crown-2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1440,7 +1440,7 @@
 .crown-3 {
   transform: rotate(180deg);
   left: 70%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-3.png");
+  background-image: url("../public/storage/tokens/titles/crown-3.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1450,7 +1450,7 @@
   transform: rotate(-90deg);
   right: -1.5%;
   top: 25%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-4.png");
+  background-image: url("../public/storage/tokens/titles/crown-4.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1460,7 +1460,7 @@
   transform: rotate(-90deg);
   right: -1.5%;
   top: 72%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-5.png");
+  background-image: url("../public/storage/tokens/titles/crown-5.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1469,7 +1469,7 @@
 .crown-6 {
   bottom: 0;
   left: 30%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-6.png");
+  background-image: url("../public/storage/tokens/titles/crown-6.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1478,7 +1478,7 @@
 .crown-7 {
   bottom: 0;
   left: 8%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-7.png");
+  background-image: url("../public/storage/tokens/titles/crown-7.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1488,7 +1488,7 @@
   transform: rotate(90deg);
   left: -2.8%;
   top: 62%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-8.png");
+  background-image: url("../public/storage/tokens/titles/crown-8.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1503,7 +1503,7 @@
   transform: rotate(90deg);
   left: 32%;
   top: -6%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/cross-1.png");
+  background-image: url("../public/storage/tokens/titles/cross-1.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1513,7 +1513,7 @@
   transform: rotate(90deg);
   left: 62%;
   top: -6%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/cross-2.png");
+  background-image: url("../public/storage/tokens/titles/cross-2.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1523,7 +1523,7 @@
   transform: rotate(180deg);
   right: 2%;
   top: 42%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/cross-3.png");
+  background-image: url("../public/storage/tokens/titles/cross-3.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1533,7 +1533,7 @@
   transform: rotate(-90deg);
   left: 45%;
   bottom: -6%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/cross-4.png");
+  background-image: url("../public/storage/tokens/titles/cross-4.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1541,7 +1541,7 @@
 
 #cross-5 {
   top: 40%;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/cross-5.png");
+  background-image: url("../public/storage/tokens/titles/cross-5.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1553,14 +1553,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/cardinal-free.png");
+  background-image: url("../public/storage/tokens/titles/cardinal-free.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
 .payed-cross {
-  background-image: url("/fief-online.com/public/storage/tokens/titles/cardinal-pay.png");
+  background-image: url("../public/storage/tokens/titles/cardinal-pay.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1572,7 +1572,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("/fief-online.com/public/storage/tokens/titles/arc.png");
+  background-image: url("../public/storage/tokens/titles/arc.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1587,7 +1587,7 @@
   transition: 0.5s ease;
   z-index: 10;
   transform: rotate3d(1, 2, 0, 25deg) scale(1.2) translate(10%, -10%) !important;
-  cursor: url("/fief-online.com/public/storage/cursors/take.png") 10 10, pointer;
+  cursor: url("../public/storage/cursors/take.png") 10 10, pointer;
   z-index: 11;
   border-bottom: 0.5px solid black;
   border-left: 0.5px solid black;
@@ -1639,10 +1639,6 @@
   width: 80px;
   position: relative;
   bottom: 40%;
-  background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   transition: 0.2s ease;
 }
 .player-hand .card:hover {
@@ -1668,10 +1664,6 @@
   width: 80px;
   position: relative;
   bottom: 40%;
-  background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   transition: 0.2s ease;
 }
 .player-hand .card:hover {
@@ -1692,7 +1684,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/alienor-card.png");
+  background-image: url("../public/storage/cards/lords/alienor-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1707,7 +1699,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/arc-card.png");
+  background-image: url("../public/storage/cards/lords/arc-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1722,7 +1714,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/blanche-card.png");
+  background-image: url("../public/storage/cards/lords/blanche-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1737,7 +1729,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/cardinal-card.png");
+  background-image: url("../public/storage/cards/lords/cardinal-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1752,7 +1744,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/charles-card.png");
+  background-image: url("../public/storage/cards/lords/charles-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1767,7 +1759,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/eric-card.png");
+  background-image: url("../public/storage/cards/lords/eric-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1782,7 +1774,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/eric-card.png");
+  background-image: url("../public/storage/cards/lords/eric-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1797,7 +1789,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/francois-card.png");
+  background-image: url("../public/storage/cards/lords/francois-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1812,7 +1804,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/gauvain-card.png");
+  background-image: url("../public/storage/cards/lords/gauvain-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1827,7 +1819,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/guenievre-card.png");
+  background-image: url("../public/storage/cards/lords/guenievre-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1842,7 +1834,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/henri-card.png");
+  background-image: url("../public/storage/cards/lords/henri-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1857,7 +1849,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/isabelle-card.png");
+  background-image: url("../public/storage/cards/lords/isabelle-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1872,7 +1864,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/jeanne-card.png");
+  background-image: url("../public/storage/cards/lords/jeanne-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1887,7 +1879,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/lambert-card.png");
+  background-image: url("../public/storage/cards/lords/lambert-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1902,7 +1894,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/mireille-card.png");
+  background-image: url("../public/storage/cards/lords/mireille-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1917,7 +1909,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/othon-card.png");
+  background-image: url("../public/storage/cards/lords/othon-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1932,7 +1924,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/philippe-card.png");
+  background-image: url("../public/storage/cards/lords/philippe-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1947,7 +1939,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/quentin-card.png");
+  background-image: url("../public/storage/cards/lords/quentin-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1962,7 +1954,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/public/storage/cards/lords/thierry-card.png");
+  background-image: url("../public/storage/cards/lords/thierry-card.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1982,10 +1974,6 @@
   width: 80px;
   position: relative;
   bottom: 40%;
-  background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   transition: 0.2s ease;
 }
 .player-hand .card:hover {
@@ -2006,7 +1994,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/storage/app/public/images/cards/events/ambush.png");
+  background-image: url("../public/images/cards/events/ambush.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2021,7 +2009,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/storage/app/public/images/cards/events/harvest.png");
+  background-image: url("../public/images/cards/events/harvest.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2036,7 +2024,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/storage/app/public/images/cards/events/justice.png");
+  background-image: url("../public/images/cards/events/justice.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2051,7 +2039,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/storage/app/public/images/cards/events/murder.png");
+  background-image: url("../public/images/cards/events/murder.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2066,7 +2054,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/storage/app/public/images/cards/events/plague.png");
+  background-image: url("../public/images/cards/events/plague.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2081,7 +2069,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/storage/app/public/images/cards/events/plague.png");
+  background-image: url("../public/images/cards/events/plague.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2096,7 +2084,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/storage/app/public/images/cards/events/revolt.png");
+  background-image: url("../public/images/cards/events/revolt.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2111,7 +2099,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/storage/app/public/images/cards/events/starvation.png");
+  background-image: url("../public/images/cards/events/starvation.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2126,7 +2114,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/storage/app/public/images/cards/events/storm.png");
+  background-image: url("../public/images/cards/events/storm.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2141,7 +2129,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/storage/app/public/images/cards/events/tax.png");
+  background-image: url("../public/images/cards/events/tax.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2156,7 +2144,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/storage/app/public/images/cards/events/tunnel.png");
+  background-image: url("../public/images/cards/events/tunnel.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2171,7 +2159,7 @@
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("/fief/storage/app/public/images/cards/events/wealth.png");
+  background-image: url("../public/images/cards/events/wealth.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2195,7 +2183,7 @@
   transition: 0.5s ease;
   z-index: 10;
   transform: rotate3d(1, 2, 0, 25deg) scale(1.2) translate(10%, -10%) !important;
-  cursor: url("/fief-online.com/public/storage/cursors/take.png") 10 10, pointer;
+  cursor: url("../public/storage/cursors/take.png") 10 10, pointer;
   z-index: 11;
   border-bottom: 0.5px solid black;
   border-left: 0.5px solid black;
@@ -2211,7 +2199,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background-image: url("/fief-online.com/public/storage/cards/versos/lord-90.png");
+  background-image: url("../public/storage/cards/versos/lord-90.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2225,7 +2213,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background-image: url("/fief-online.com/public/storage/cards/versos/event-90.png");
+  background-image: url("../public/storage/cards/versos/event-90.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2239,7 +2227,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background-image: url("/fief-online.com/public/storage/cards/versos/disaster-90.png");
+  background-image: url("../public/storage/cards/versos/disaster-90.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2250,7 +2238,7 @@
   transition: 0.5s ease;
   z-index: 10;
   transform: rotate3d(1, 2, 0, 25deg) scale(1.2) translate(10%, -10%) !important;
-  cursor: url("/fief-online.com/public/storage/cursors/take.png") 10 10, pointer;
+  cursor: url("../public/storage/cursors/take.png") 10 10, pointer;
   z-index: 11;
   border-bottom: 0.5px solid black;
   border-left: 0.5px solid black;
@@ -2451,7 +2439,7 @@
   width: 100% !important;
   position: absolute;
   opacity: 1 !important;
-  background-image: url("/fief-online.com/public/storage/tokens/buildings/castle.png");
+  background-image: url("../public/storage/tokens/buildings/castle.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2462,7 +2450,7 @@
   width: 100% !important;
   position: absolute;
   opacity: 1 !important;
-  background-image: url("/fief-online.com/public/storage/tokens/buildings/city.png");
+  background-image: url("../public/storage/tokens/buildings/city.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2473,7 +2461,7 @@
   width: 100% !important;
   position: absolute;
   opacity: 1 !important;
-  background-image: url("/fief-online.com/public/storage/tokens/buildings/mill.png");
+  background-image: url("../public/storage/tokens/buildings/mill.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2485,7 +2473,7 @@
   height: 40px;
   width: 40px;
   position: absolute;
-  background-image: url("/fief-online.com/public/storage/tokens/buildings/castle.png");
+  background-image: url("../public/storage/tokens/buildings/castle.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2495,7 +2483,7 @@
   height: 40px;
   width: 40px;
   position: absolute;
-  background-image: url("/fief-online.com/public/storage/tokens/buildings/city.png");
+  background-image: url("../public/storage/tokens/buildings/city.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2505,7 +2493,7 @@
   height: 40px;
   width: 40px;
   position: absolute;
-  background-image: url("/fief-online.com/public/storage/tokens/buildings/mill.png");
+  background-image: url("../public/storage/tokens/buildings/mill.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2716,7 +2704,7 @@
   height: 500px;
   width: 735px;
   background-color: #031c35;
-  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-image: url("../public/textures/grunge2.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2774,7 +2762,7 @@
 }
 .army-manager .lord {
   width: 25%;
-  background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
+  background-image: url("../public/cards/lords/Eric.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2804,7 +2792,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/alienor-token.png");
+  background-image: url("../public/storage/tokens/lords/alienor-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2814,7 +2802,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/arthur-token.png");
+  background-image: url("../public/storage/tokens/lords/arthur-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2824,7 +2812,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/blanche-token.png");
+  background-image: url("../public/storage/tokens/lords/blanche-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2834,7 +2822,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/charles-token.png");
+  background-image: url("../public/storage/tokens/lords/charles-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2844,7 +2832,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/eric-token.png");
+  background-image: url("../public/storage/tokens/lords/eric-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2854,7 +2842,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/francois-token.png");
+  background-image: url("../public/storage/tokens/lords/francois-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2864,7 +2852,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/gauvain-token.png");
+  background-image: url("../public/storage/tokens/lords/gauvain-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2874,7 +2862,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/guenievre-token.png");
+  background-image: url("../public/storage/tokens/lords/guenievre-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2884,7 +2872,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/henri-token.png");
+  background-image: url("../public/storage/tokens/lords/henri-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2894,7 +2882,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/isabelle-token.png");
+  background-image: url("../public/storage/tokens/lords/isabelle-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2904,7 +2892,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/jeanne-token.png");
+  background-image: url("../public/storage/tokens/lords/jeanne-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2914,7 +2902,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/lambert-token.png");
+  background-image: url("../public/storage/tokens/lords/lambert-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2924,7 +2912,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/mireille-token.png");
+  background-image: url("../public/storage/tokens/lords/mireille-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2934,7 +2922,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/othon-token.png");
+  background-image: url("../public/storage/tokens/lords/othon-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2944,7 +2932,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/philippe-token.png");
+  background-image: url("../public/storage/tokens/lords/philippe-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2954,7 +2942,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/quentin-token.png");
+  background-image: url("../public/storage/tokens/lords/quentin-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2964,21 +2952,21 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief-online.com/public/storage/tokens/lords/thierry-token.png");
+  background-image: url("../public/storage/tokens/lords/thierry-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
 .sergeant {
-  background-image: url("/fief-online.com/public/storage/tokens/armies/soldier.png");
+  background-image: url("../public/storage/tokens/armies/soldier.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
 .knight {
-  background-image: url("/fief-online.com/public/storage/tokens/armies/knight.png");
+  background-image: url("../public/storage/tokens/armies/knight.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -3209,7 +3197,7 @@
   margin: 0;
   font-family: "MedievalSharp", cursive;
   font-size: 1.1rem;
-  cursor: url("/fief-online.com/public/storage/cursors/simple.png"), pointer;
+  cursor: url("../public/storage/cursors/simple.png"), pointer;
 }
 
 body {

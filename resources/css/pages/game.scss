@@ -1,11 +1,4 @@
-@import '../meta/mixin';
-
-@mixin textured {
-    background-image: url('/fief-online.com/public/storage/textures/grunge2.png');
-    box-sizing: border-box;
-    border: 5px solid black;
-    box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.7);
-}
+@import '../meta/mixin.scss';
 
 .game-container {
     background-color: var(--background-black);

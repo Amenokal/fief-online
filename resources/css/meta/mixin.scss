@@ -1,8 +1,14 @@
 @mixin back-img($img){
-    background-image: url('/fief-online.com/public/storage/'+$img);
+    background-image: url('../public/storage/'+$img);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+}
+@mixin textured {
+    background-image: url('../public/storage/textures/grunge2.png');
+    box-sizing: border-box;
+    border: 5px solid black;
+    box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.7);
 }
 
 @mixin takeAnimation(){
@@ -11,7 +17,7 @@
         transition: .5s ease;
         z-index: 10;
         transform: rotate3d(1,2,0,25deg) scale(1.2) translate(10%, -10%) !important;
-        cursor: url('/fief-online.com/public/storage/cursors/take.png') 10 10, pointer;
+        cursor: url('../public/storage/cursors/take.png') 10 10, pointer;
         z-index: 11;
         border-bottom: .5px solid black;
         border-left: .5px solid black;
