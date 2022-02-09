@@ -2322,6 +2322,13 @@ var Game = /*#__PURE__*/function () {
   }
 
   _createClass(Game, null, [{
+    key: "getData",
+    value: function getData() {
+      axios.post('./game/get/data').then(function (res) {
+        console.log(res);
+      });
+    }
+  }, {
     key: "update",
     value: function update() {
       var _this = this;
@@ -2353,11 +2360,15 @@ var Game = /*#__PURE__*/function () {
         el.addEventListener('click', showBoard);
       }); // turns
 
-      document.getElementById('turn-indicator').addEventListener('click', chooseTurn); // document.getElementById('end-turn').addEventListener('click',endTurn);
-      // options
-      // document.getElementById('fullScreen').addEventListener('click', toggleFullScreen);
-      //reset
-      // document.getElementById('resetAll').addEventListener('click', reset)
+      document.getElementById('turn-indicator').addEventListener('click', chooseTurn);
+
+      if (document.getElementById('end-turn')) {
+        document.getElementById('end-turn').addEventListener('click', endTurn); // options
+
+        document.getElementById('fullScreen').addEventListener('click', toggleFullScreen); //reset
+
+        document.getElementById('resetAll').addEventListener('click', reset);
+      }
     }
   }]);
 
@@ -26984,7 +26995,14 @@ var _require = __webpack_require__(/*! ./classes/Game */ "./resources/js/classes
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-document.onload = Game.setListeners();
+document.onload = Game.getData(); // document.onload = Game.setListeners();
+// document.querySelectorAll('.village').forEach(el=>{
+//     el.addEventListener('click', e=>{
+//         if(!e.currentTarget.className.includes('empty')){
+//             e.currentTarget.classList.toggle(`show-influence`);
+//         }
+//     }, true)
+// })
 })();
 
 /******/ })()

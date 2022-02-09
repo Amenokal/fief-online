@@ -1,7 +1,7 @@
 @import '../meta/mixin';
 
 @mixin textured {
-    background-image: url('/fief/storage/app/public/textures/grunge2.png');
+    background-image: url('/fief-online.com/public/storage/textures/grunge2.png');
     box-sizing: border-box;
     border: 5px solid black;
     box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.7);
@@ -21,9 +21,7 @@
         justify-content: center;
 
         section {
-            background-image: url('/fief/storage/app/public/textures/grunge2.png');
-            background-position: center;
-            background-repeat: no-repeat;
+            @include back-img('/textures/grunge2.png');
             background-size: cover;
             height: 100%;
             box-sizing: border-box;
@@ -57,9 +55,8 @@
         flex-direction: column;
         justify-content: space-between;
         background-color: rgb(212, 190, 172);
-        background-image: url('/fief/storage/app/public/images/oldpaper2.jpg');
+        @include back-img('/images/oldpaper2.jpg');
         background-position: center;
-        background-repeat: no-repeat;
         background-size: 300%;
         z-index: 2;
         box-sizing: border-box;
@@ -181,9 +178,7 @@
                 height: 100%;
                 width: 81.8%;
                 position: relative;
-                background-image: url('/fief/storage/app/public/images/board.jpg');
-                background-position: center;
-                background-repeat: no-repeat;
+                @include back-img('/images/board.jpg');
                 background-size: contain;
             }
 
@@ -215,13 +210,6 @@
                     grid-column: 1 / 11;
                     display: flex;
                     flex-wrap: wrap;
-
-                    .remaining-lord{
-                        height: 30px;
-                        width: 12%;
-                        @include back-img('images/charles.png');
-                        box-shadow: 0px 0px 15px -5px #000000;
-                    }
                 }
 
                 .game-cards{
@@ -273,28 +261,6 @@
 
         .in-hand-card {
             animation: 'inHandCard' 1s ease forwards;
-        }
-    }
-
-    // MODAL
-    .modal-wrapper {
-        height: 70%;
-        width: 50%;
-        position: absolute;
-        bottom: 20%;
-        left: 25%;
-        opacity: 0;
-        z-index: -1;
-        // background-image: url('/fief/storage/app/public/images/parchemin2.png');
-        // background-position: center;
-        // background-repeat: no-repeat;
-        // background-size: contain;
-        // transition: .5s ease;
-
-        &.show {
-            z-index: 5;
-            opacity: 0;
-            animation: 'modalshow' .5s forwards;
         }
     }
 

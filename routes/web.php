@@ -21,6 +21,8 @@ use App\Http\Controllers\Web\LoginController;
 |
 */
 
+
+
 // ::: WEB :::
 // ===========
 
@@ -41,6 +43,13 @@ Route::get('/game', [GameController::class, 'index'])
 
 Route::post('/gamestart/0', [GameController::class, 'start'])->middleware(['auth']);
 Route::post('/game/update', [GameController::class, 'update'])->middleware(['auth'])->name('update');
+Route::post('/game/get/data', [GameController::class, 'getData'])
+    // ->middleware([
+    //     'auth',
+    //     'connect.to.game',
+    //     'create.game'
+    // ])
+    ->name('get.data');
 
 
 

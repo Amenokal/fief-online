@@ -75,4 +75,13 @@ class Game extends Model
     {
         return $this->hasMany(Title::class);
     }
+
+    public static function turn()
+    {
+        return [
+            'player'=>Game::current()->current_player,
+            'phase'=>Game::current()->current_phase,
+            'turn'=>Game::current()->current_turn
+        ];
+    }
 }

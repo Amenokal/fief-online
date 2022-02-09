@@ -1,4 +1,4 @@
-<x-header :phases="$phases" :turn="$turn" :currentplayer="$currentplayer"/>
+<x-turn-indicator :phases="$phases" :turn="$turn" :currentplayer="$currentplayer"/>
 
 <main>
 

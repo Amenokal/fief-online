@@ -56,9 +56,9 @@ class RegisteredUserController extends Controller
             $template = '<span class="lobby-player" id="'.$username.'">'.$username.'</span>';
             event(new LogInEvent($template));
         }
-        
+
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::LOBBY);
+        return redirect(RouteServiceProvider::GAME);
     }
 }

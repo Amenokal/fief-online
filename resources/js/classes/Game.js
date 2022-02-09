@@ -10,6 +10,13 @@ const { Phases } = require('./Phases');
 
 export class Game {
 
+    static getData(){
+        axios.post('./game/get/data')
+        .then(res=>{
+            console.log(res);
+        })
+    }
+
     static update(){
         axios.post('./game/update')
         .then(res=>{
@@ -41,13 +48,17 @@ export class Game {
 
         // turns
         document.getElementById('turn-indicator').addEventListener('click', chooseTurn);
-        // document.getElementById('end-turn').addEventListener('click',endTurn);
 
-        // options
-        // document.getElementById('fullScreen').addEventListener('click', toggleFullScreen);
+        if(document.getElementById('end-turn')){
+            document.getElementById('end-turn').addEventListener('click',endTurn);
 
-        //reset
-        // document.getElementById('resetAll').addEventListener('click', reset)
+            // options
+            document.getElementById('fullScreen').addEventListener('click', toggleFullScreen);
+
+            //reset
+            document.getElementById('resetAll').addEventListener('click', reset)
+        }
+
 
     }
 }

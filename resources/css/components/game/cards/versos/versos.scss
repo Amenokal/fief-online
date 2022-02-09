@@ -1,7 +1,7 @@
 @import '../../../../meta/mixin.scss';
 
 @mixin card-pile {
-    height: 55px;
+    height: 50px;
     width: 80px;
     border-radius: .5em;
     display: flex;
@@ -16,6 +16,7 @@
 
     .card{
         position: absolute;
+        @include takeAnimation;
     }
 }
 
@@ -30,4 +31,8 @@
 .disaster-verso {
     @include card-pile;
     @include back-img('cards/versos/disaster-90.png');
+}
+
+.can-draw {
+    @include takeAnimation;
 }

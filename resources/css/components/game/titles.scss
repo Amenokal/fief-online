@@ -1,4 +1,5 @@
 @import '../../meta/mixin';
+@import '../keyframes/_keyframe-index';
 
 .game-board-titles {
     height: 100%;
@@ -8,14 +9,17 @@
 
 .crown,
 .cross,
-.arc {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.arc,
+.cardinal {
+    border-radius: .2em;
     position: absolute;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // background-position: center;
+    // background-repeat: no-repeat;
+    // background-size: contain;
+    animation: 'scaleGlow' 1s ease infinite;
 }
 
 .crown {
@@ -30,78 +34,78 @@
         transform: rotate(90deg);
         left: -2.5%;
         top: 10%;
-        background-image: url('/fief/public/storage/tokens/titles/crown-1.png');
+        @include back-img('tokens/titles/crown-1.png');
     }
     .crown-2 {
         transform: rotate(180deg);
         left: 44%;
-        background-image: url('/fief/public/storage/tokens/titles/crown-2.png');
+        @include back-img('tokens/titles/crown-2.png');
     }
     .crown-3 {
         transform: rotate(180deg);
         left: 70%;
-        background-image: url('/fief/public/storage/tokens/titles/crown-3.png');
+        @include back-img('tokens/titles/crown-3.png');
     }
     .crown-4 {
         transform: rotate(-90deg);
         right: -1.5%;
         top: 25%;
-        background-image: url('/fief/public/storage/tokens/titles/crown-4.png');
+        @include back-img('tokens/titles/crown-4.png');
     }
     .crown-5 {
         transform: rotate(-90deg);
         right: -1.5%;
         top: 72%;
-        background-image: url('/fief/public/storage/tokens/titles/crown-5.png');
+        @include back-img('tokens/titles/crown-5.png');
     }
     .crown-6 {
         bottom: 0;
         left: 30%;
-        background-image: url('/fief/public/storage/tokens/titles/crown-6.png');
+        @include back-img('tokens/titles/crown-6.png');
     }
     .crown-7 {
         bottom: 0;
         left: 8%;
-        background-image: url('/fief/public/storage/tokens/titles/crown-7.png');
+        @include back-img('tokens/titles/crown-7.png');
     }
     .crown-8 {
         transform: rotate(90deg);
         left:-2.8%;
         top: 62%;
-        background-image: url('/fief/public/storage/tokens/titles/crown-8.png');
+        @include back-img('tokens/titles/crown-8.png');
     }
 
 .cross {
-    height: 15%;
+    height: 14%;
     width: 2%;
 }
     #cross-1{
         transform: rotate(90deg);
         left: 32%;
         top: -6%;
-        background-image: url('/fief/public/storage/tokens/titles/cross-1.png');
+        @include back-img('tokens/titles/cross-1.png');
     }
     #cross-2{
         transform: rotate(90deg);
         left: 62%;
         top: -6%;
-        background-image: url('/fief/public/storage/tokens/titles/cross-2.png');
+        @include back-img('tokens/titles/cross-2.png');
     }
     #cross-3{
         transform: rotate(180deg);
         right: 2%;
         top: 42%;
-        background-image: url('/fief/public/storage/tokens/titles/cross-3.png');
+        @include back-img('tokens/titles/cross-3.png');
     }
     #cross-4{
         transform: rotate(-90deg);
         left: 45%;
         bottom: -6%;
-        background-image: url('/fief/public/storage/tokens/titles/cross-4.png');
+        @include back-img('tokens/titles/cross-4.png');
     }
     #cross-5 {
         top: 40%;
-        background-image: url('/fief/public/storage/tokens/titles/cross-5.png');
+        @include back-img('tokens/titles/cross-5.png');
     }
 
 .cardinal {
@@ -110,13 +114,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('/fief/public/storage/tokens/titles/cardinal-free.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    @include back-img('tokens/titles/cardinal-free.png');
 }
 .payed-cross {
-    background-image: url('/fief/public/storage/tokens/titles/cardinal-pay.png');
+    @include back-img('tokens/titles/cardinal-pay.png');
 }
 
 .arc {
@@ -125,14 +126,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('/fief/public/storage/tokens/titles/arc.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    @include back-img('tokens/titles/arc.png');
 }
 
 .selected-title{
     border: 2px solid gold;
+}
+
+.can-take{
+    @include takeAnimation;
 }
 
 .taken {

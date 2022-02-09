@@ -24,16 +24,17 @@
 .red-theme {
   background-color: var(--red);
   color: var(--red-txt);
-  background-image: url("/fief/storage/app/public/textures/dark-leather.png");
+  background-image: url("/fief-online.com/public/storage/textures/dark-leather.png");
 }
 
 .red-bordered {
   background-color: var(--red);
   color: var(--red-txt);
-  background-image: url("/fief/storage/app/public/textures/dark-leather.png");
+  background-image: url("/fief-online.com/public/storage/textures/dark-leather.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--red-strong);
+  transition: 1s ease;
 }
 .red-bordered.token {
   border: 3px solid var(--red);
@@ -43,20 +44,25 @@
   background-image: none;
   border: 3px solid var(--red);
 }
+.red-bordered.show-influence {
+  box-shadow: 0px 0px 40px 35px var(--red);
+  opacity: 0.7;
+}
 
 .blue-theme {
   background-color: var(--blue);
   color: var(--blue-txt);
-  background-image: url("/fief/storage/app/public/textures/blu-stripes.png");
+  background-image: url("/fief-online.com/public/storage/textures/blu-stripes.png");
 }
 
 .blue-bordered {
   background-color: var(--blue);
   color: var(--blue-txt);
-  background-image: url("/fief/storage/app/public/textures/blu-stripes.png");
+  background-image: url("/fief-online.com/public/storage/textures/blu-stripes.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--blue-strong);
+  transition: 1s ease;
 }
 .blue-bordered.token {
   border: 3px solid var(--blue);
@@ -66,20 +72,25 @@
   background-image: none;
   border: 3px solid var(--blue);
 }
+.blue-bordered.show-influence {
+  box-shadow: 0px 0px 40px 35px var(--blue);
+  opacity: 0.7;
+}
 
 .green-theme {
   background-color: var(--green);
   color: var(--green-txt);
-  background-image: url("/fief/storage/app/public/textures/fake-luxury.png");
+  background-image: url("/fief-online.com/public/storage/textures/fake-luxury.png");
 }
 
 .green-bordered {
   background-color: var(--green);
   color: var(--green-txt);
-  background-image: url("/fief/storage/app/public/textures/fake-luxury.png");
+  background-image: url("/fief-online.com/public/storage/textures/fake-luxury.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--green-strong);
+  transition: 1s ease;
 }
 .green-bordered.token {
   border: 3px solid var(--green);
@@ -89,20 +100,25 @@
   background-image: none;
   border: 3px solid var(--green);
 }
+.green-bordered.show-influence {
+  box-shadow: 0px 0px 40px 35px var(--green);
+  opacity: 0.7;
+}
 
 .yellow-theme {
   background-color: var(--yellow);
   color: var(--yellow-txt);
-  background-image: url("/fief/storage/app/public/textures/arabesque.png");
+  background-image: url("/fief-online.com/public/storage/textures/arabesque.png");
 }
 
 .yellow-bordered {
   background-color: var(--yellow);
   color: var(--yellow-txt);
-  background-image: url("/fief/storage/app/public/textures/arabesque.png");
+  background-image: url("/fief-online.com/public/storage/textures/arabesque.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--yellow-strong);
+  transition: 1s ease;
 }
 .yellow-bordered.token {
   border: 3px solid var(--yellow);
@@ -112,20 +128,25 @@
   background-image: none;
   border: 3px solid var(--yellow);
 }
+.yellow-bordered.show-influence {
+  box-shadow: 0px 0px 40px 35px var(--yellow);
+  opacity: 0.7;
+}
 
 .white-theme {
   background-color: var(--white);
   color: var(--white-txt);
-  background-image: url("/fief/storage/app/public/textures/perforated-white-leather.png");
+  background-image: url("/fief-online.com/public/storage/textures/perforated-white-leather.png");
 }
 
 .white-bordered {
   background-color: var(--white);
   color: var(--white-txt);
-  background-image: url("/fief/storage/app/public/textures/perforated-white-leather.png");
+  background-image: url("/fief-online.com/public/storage/textures/perforated-white-leather.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--white-strong);
+  transition: 1s ease;
 }
 .white-bordered.token {
   border: 3px solid var(--white);
@@ -135,20 +156,25 @@
   background-image: none;
   border: 3px solid var(--white);
 }
+.white-bordered.show-influence {
+  box-shadow: 0px 0px 40px 35px var(--white);
+  opacity: 0.7;
+}
 
 .black-theme {
   background-color: var(--black);
   color: var(--black-txt);
-  background-image: url("/fief/storage/app/public/textures/dark-wood.png");
+  background-image: url("/fief-online.com/public/storage/textures/dark-wood.png");
 }
 
 .black-bordered {
   background-color: var(--black);
   color: var(--black-txt);
-  background-image: url("/fief/storage/app/public/textures/dark-wood.png");
+  background-image: url("/fief-online.com/public/storage/textures/dark-wood.png");
   width: 100%;
   box-sizing: border-box;
   border: 5px solid var(--black-strong);
+  transition: 1s ease;
 }
 .black-bordered.token {
   border: 3px solid var(--black);
@@ -157,6 +183,10 @@
   background-color: transparent;
   background-image: none;
   border: 3px solid var(--black);
+}
+.black-bordered.show-influence {
+  box-shadow: 0px 0px 40px 35px var(--black);
+  opacity: 0.7;
 }
 
 .main-btn {
@@ -187,7 +217,7 @@
 .main-btn .texture {
   width: 100%;
   height: 100%;
-  background: url("/fief/public/storage/textures/grunge2.png");
+  background: url("/fief-online.com/public/storage/textures/grunge2.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -197,7 +227,7 @@
 .main-btn .texture2 {
   width: 100%;
   height: 100%;
-  background: url("/fief/public/storage/textures/subtle-grunge.png");
+  background: url("/fief-online.com/public/storage/textures/subtle-grunge.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -244,9 +274,10 @@
   justify-content: center;
 }
 .game-container header section {
-  background-image: url("/fief/storage/app/public/textures/grunge2.png");
-  background-position: center;
+  background-image: url("/fief-online.com/public/storage//textures/grunge2.png");
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   background-size: cover;
   height: 100%;
   box-sizing: border-box;
@@ -275,9 +306,11 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: #d4beac;
-  background-image: url("/fief/storage/app/public/images/oldpaper2.jpg");
-  background-position: center;
+  background-image: url("/fief-online.com/public/storage//images/oldpaper2.jpg");
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-position: center;
   background-size: 300%;
   z-index: 2;
   box-sizing: border-box;
@@ -377,13 +410,14 @@
   height: 100%;
   width: 81.8%;
   position: relative;
-  background-image: url("/fief/storage/app/public/images/board.jpg");
-  background-position: center;
+  background-image: url("/fief-online.com/public/storage//images/board.jpg");
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   background-size: contain;
 }
 .game-container .game-view .game-board .game-board-info {
-  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-image: url("/fief-online.com/public/storage/textures/grunge2.png");
   box-sizing: border-box;
   border: 5px solid black;
   box-shadow: inset 0px 0px 5px 3px rgba(24, 24, 24, 0.7);
@@ -478,15 +512,6 @@
   display: flex;
   flex-wrap: wrap;
 }
-.game-container .game-view .game-board .game-board-info .remaining-lords .remaining-lord {
-  height: 30px;
-  width: 12%;
-  background-image: url("/fief/public/storage/images/charles.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  box-shadow: 0px 0px 15px -5px #000000;
-}
 .game-container .game-view .game-board .game-board-info .game-cards {
   grid-row: 3/11;
   grid-column: 1/6;
@@ -526,21 +551,6 @@
 .game-container .player-hand .in-hand-card {
   -webkit-animation: "inHandCard" 1s ease forwards;
           animation: "inHandCard" 1s ease forwards;
-}
-.game-container .modal-wrapper {
-  height: 70%;
-  width: 50%;
-  position: absolute;
-  bottom: 20%;
-  left: 25%;
-  opacity: 0;
-  z-index: -1;
-}
-.game-container .modal-wrapper.show {
-  z-index: 5;
-  opacity: 0;
-  -webkit-animation: "modalshow" 0.5s forwards;
-          animation: "modalshow" 0.5s forwards;
 }
 .game-container .village.to-choose {
   border: 1px solid white;
@@ -653,9 +663,10 @@
   }
 }
 .login-container {
-  background-image: url("/fief/public/storage/images/home-background3.jpg");
-  background-position: center;
+  background-image: url("/fief-online.com/public/storage/images/home-background3.jpg");
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   background-size: cover;
   overflow: hidden;
   display: flex;
@@ -666,8 +677,11 @@
   top: 0px;
   height: 75px;
   width: 300px;
-  background-image: url("/fief/public/storage/images/parchemin-top.png");
+  background-image: url("/fief-online.com/public/storage/images/parchemin-top.png");
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-position: unset;
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -680,8 +694,10 @@
   top: -275px;
   width: 300px;
   height: 375px;
-  background-image: url("/fief/public/storage/images/parchemin-bottom.png");
+  background-image: url("/fief-online.com/public/storage/images/parchemin-bottom.png");
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -731,121 +747,6 @@
   transition: 0.3s ease;
   transform: scale(1.2);
   cursor: pointer;
-}
-
-.lobby-container {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #04002c;
-  background-image: url("/fief/public/storage/images/castle.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.lobby-container main {
-  height: 80%;
-  width: 70%;
-  display: flex;
-  background-color: blanchedalmond;
-  border: 5px solid white;
-  opacity: 0.8;
-}
-.lobby-container button {
-  height: 100%;
-  background-color: burlywood;
-  border: 1px solid #503f29;
-}
-.lobby-container .game-room {
-  height: 100%;
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  border-right: 5px solid white;
-}
-.lobby-container .game-room .game-lobby {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.lobby-container .game-room .game-lobby > * {
-  width: 90%;
-}
-.lobby-container .game-room .game-lobby p {
-  border-bottom: 1px solid black;
-  box-sizing: border-box;
-  padding: 0.5em;
-  font-size: 1.3rem;
-  font-weight: bolder;
-  letter-spacing: 0.1em;
-  text-align: center;
-}
-.lobby-container .game-room .game-lobby .lobby-player {
-  width: 90%;
-  padding: 0.5em;
-  display: flex;
-  justify-content: space-between;
-}
-.lobby-container .game-room .game-lobby .lobby-player::after {
-  content: "( ˘ -˘)";
-}
-.lobby-container .game-room .game-lobby .lobby-player.ready {
-  color: green;
-}
-.lobby-container .game-room .game-lobby .lobby-player.ready::after {
-  content: "(ง •̀_•́)ง";
-}
-.lobby-container .game-room .user-btns {
-  height: 50px;
-  display: flex;
-  border-top: 5px solid white;
-}
-.lobby-container .game-room .user-btns > * {
-  width: 50%;
-}
-.lobby-container .game-room .user-btns > * button {
-  width: 100%;
-}
-.lobby-container .chat {
-  height: 100%;
-  width: 650px;
-  display: flex;
-  flex-direction: column;
-}
-.lobby-container .chat .messages {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  box-sizing: border-box;
-  padding: 0.7em;
-}
-.lobby-container .chat .messages p {
-  line-height: 1em;
-  margin-top: 0.2em;
-}
-.lobby-container .chat .messages .init-game-msg {
-  color: firebrick;
-}
-.lobby-container .chat .write-message {
-  height: 200px;
-  border-top: 5px solid white;
-  display: flex;
-  justify-content: space-between;
-}
-.lobby-container .chat .write-message textarea {
-  height: 100%;
-  width: 100%;
-  border: none;
-  background-color: transparent;
-  resize: none;
-  outline: none;
-  box-sizing: border-box;
-  padding: 0.7em;
 }
 
 /**
@@ -1102,6 +1003,395 @@
   grid-row: 4/11;
 }
 
+.draw-first-lord {
+  z-index: 2;
+  -webkit-animation: "firstLordDraw" 1s forwards ease-out;
+          animation: "firstLordDraw" 1s forwards ease-out;
+  transition: 0.3s ease-out;
+}
+
+.draw-first-lord:hover {
+  cursor: pointer;
+}
+
+.clicked.reveal-1 {
+  -webkit-animation: "reveal-1" 0.5s ease-out;
+          animation: "reveal-1" 0.5s ease-out;
+}
+
+.clicked.reveal-2 {
+  -webkit-animation: "reveal-2" 0.5s forwards ease-out;
+          animation: "reveal-2" 0.5s forwards ease-out;
+}
+
+.take-first-lord {
+  -webkit-animation: "take-first-lord" 0.5s forwards ease-out;
+          animation: "take-first-lord" 0.5s forwards ease-out;
+}
+
+@-webkit-keyframes firstLordDraw {
+  from {
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
+  }
+  to {
+    transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3);
+  }
+}
+
+@keyframes firstLordDraw {
+  from {
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
+  }
+  to {
+    transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3);
+  }
+}
+@-webkit-keyframes reveal-1 {
+  from {
+    transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3) rotateX(0deg);
+  }
+  to {
+    transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3.5) rotateX(90deg);
+  }
+}
+@keyframes reveal-1 {
+  from {
+    transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3) rotateX(0deg);
+  }
+  to {
+    transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3.5) rotateX(90deg);
+  }
+}
+@-webkit-keyframes reveal-2 {
+  from {
+    transform: translateX(-600%) translateY(20%) scale(5) rotateY(-90deg);
+  }
+  to {
+    transform: translateX(-600%) translateY(20%) scale(5.5) rotateY(0deg);
+  }
+}
+@keyframes reveal-2 {
+  from {
+    transform: translateX(-600%) translateY(20%) scale(5) rotateY(-90deg);
+  }
+  to {
+    transform: translateX(-600%) translateY(20%) scale(5.5) rotateY(0deg);
+  }
+}
+@-webkit-keyframes take-first-lord {
+  from {
+    transform: translateX(-600%) translateY(20%) scale(5.5);
+  }
+  to {
+    transform: translateX(-600%) translateY(1000%) scale(3);
+  }
+}
+@keyframes take-first-lord {
+  from {
+    transform: translateX(-600%) translateY(20%) scale(5.5);
+  }
+  to {
+    transform: translateX(-600%) translateY(1000%) scale(3);
+  }
+}
+.draw-animation {
+  -webkit-animation: "draw" 1.5s forwards ease-out;
+          animation: "draw" 1.5s forwards ease-out;
+}
+
+@-webkit-keyframes draw {
+  from {
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
+  }
+  40% {
+    transform: translateX(-200px) translateY(50px) rotate(-50deg) scale(1.5);
+  }
+  to {
+    transform: translateX(-500px) translateY(600px) rotate(-90deg) scale(1.3);
+  }
+}
+
+@keyframes draw {
+  from {
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
+  }
+  40% {
+    transform: translateX(-200px) translateY(50px) rotate(-50deg) scale(1.5);
+  }
+  to {
+    transform: translateX(-500px) translateY(600px) rotate(-90deg) scale(1.3);
+  }
+}
+.drawn {
+  -webkit-animation: "drawn" forwards 0.5s ease;
+          animation: "drawn" forwards 0.5s ease;
+}
+
+@-webkit-keyframes drawn {
+  from {
+    transform: translateY(1.5em);
+  }
+  to {
+    transform: translateY(0em);
+  }
+}
+
+@keyframes drawn {
+  from {
+    transform: translateY(1.5em);
+  }
+  to {
+    transform: translateY(0em);
+  }
+}
+.discarded {
+  transform: scale(1.5) translateY(-3em);
+  -webkit-animation: "discarded" 1s forwards ease-out;
+          animation: "discarded" 1s forwards ease-out;
+}
+
+@-webkit-keyframes discarded {
+  from {
+    transform: scale(1.5) translateY(-3em) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(2) translateY(-6em) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: scale(3) translateY(-6em) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes discarded {
+  from {
+    transform: scale(1.5) translateY(-3em) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(2) translateY(-6em) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: scale(3) translateY(-6em) rotate(20deg);
+    opacity: 0;
+  }
+}
+.disas-animation-0 {
+  -webkit-animation: "disas-animation-0" 1s ease-out forwards;
+          animation: "disas-animation-0" 1s ease-out forwards;
+  z-index: 2;
+}
+
+.disas-animation-1 {
+  -webkit-animation: "disas-animation-1" 1.5s ease-out forwards;
+          animation: "disas-animation-1" 1.5s ease-out forwards;
+  z-index: 2;
+}
+
+.disas-animation-2 {
+  -webkit-animation: "disas-animation-2" 2s ease-out forwards;
+          animation: "disas-animation-2" 2s ease-out forwards;
+  z-index: 2;
+}
+
+@-webkit-keyframes disas-animation-0 {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(50%) scale(1.2);
+  }
+  to {
+    transform: translateY(90%) scale(1);
+  }
+}
+
+@keyframes disas-animation-0 {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(50%) scale(1.2);
+  }
+  to {
+    transform: translateY(90%) scale(1);
+  }
+}
+@-webkit-keyframes disas-animation-1 {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(100%) scale(1.2);
+  }
+  to {
+    transform: translateY(180%) scale(1);
+  }
+}
+@keyframes disas-animation-1 {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(100%) scale(1.2);
+  }
+  to {
+    transform: translateY(180%) scale(1);
+  }
+}
+@-webkit-keyframes disas-animation-2 {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(150%) scale(1.2);
+  }
+  to {
+    transform: translateY(260%) scale(1);
+  }
+}
+@keyframes disas-animation-2 {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(150%) scale(1.2);
+  }
+  to {
+    transform: translateY(260%) scale(1);
+  }
+}
+@-webkit-keyframes disas-animation-discard {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(170%) scale(1.2);
+  }
+  to {
+    transform: translateY(340%) scale(1);
+  }
+}
+@keyframes disas-animation-discard {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(170%) scale(1.2);
+  }
+  to {
+    transform: translateY(340%) scale(1);
+  }
+}
+@-webkit-keyframes openPlayerBoard {
+  from {
+    transform: translateX(-20em) scale(0.5);
+    z-index: 1;
+  }
+  40% {
+    transform: translateX(2em) scale(0.8);
+    z-index: 10;
+  }
+  to {
+    transform: translateX(0em) scale(1);
+    z-index: 10;
+  }
+}
+@keyframes openPlayerBoard {
+  from {
+    transform: translateX(-20em) scale(0.5);
+    z-index: 1;
+  }
+  40% {
+    transform: translateX(2em) scale(0.8);
+    z-index: 10;
+  }
+  to {
+    transform: translateX(0em) scale(1);
+    z-index: 10;
+  }
+}
+@-webkit-keyframes closePlayerBoard {
+  from {
+    transform: translateX(0em) scale(1);
+    z-index: 10;
+  }
+  40% {
+    transform: translateX(2em) scale(0.8);
+    z-index: 2;
+  }
+  to {
+    transform: translateX(-40em) scale(0.5);
+    z-index: 1;
+  }
+}
+@keyframes closePlayerBoard {
+  from {
+    transform: translateX(0em) scale(1);
+    z-index: 10;
+  }
+  40% {
+    transform: translateX(2em) scale(0.8);
+    z-index: 2;
+  }
+  to {
+    transform: translateX(-40em) scale(0.5);
+    z-index: 1;
+  }
+}
+@-webkit-keyframes lightGlow {
+  from {
+    box-shadow: 0px 0px 10px 2px #c7930e, 0px 0px 0px 0px gold;
+  }
+  50% {
+    box-shadow: 0px 0px 3px 2px rgba(218, 165, 32, 0.062), 0px 0px 2px 10px rgba(255, 217, 0, 0.075);
+  }
+  90% {
+    box-shadow: 0px 0px 0px 0px rgba(218, 165, 32, 0), 0px 0px 15px 5px rgba(255, 217, 0, 0);
+  }
+  to {
+    box-shadow: 0px 0px 0px 0px rgba(218, 165, 32, 0), 0px 0px 0px 0px rgba(255, 217, 0, 0.041);
+  }
+}
+@keyframes lightGlow {
+  from {
+    box-shadow: 0px 0px 10px 2px #c7930e, 0px 0px 0px 0px gold;
+  }
+  50% {
+    box-shadow: 0px 0px 3px 2px rgba(218, 165, 32, 0.062), 0px 0px 2px 10px rgba(255, 217, 0, 0.075);
+  }
+  90% {
+    box-shadow: 0px 0px 0px 0px rgba(218, 165, 32, 0), 0px 0px 15px 5px rgba(255, 217, 0, 0);
+  }
+  to {
+    box-shadow: 0px 0px 0px 0px rgba(218, 165, 32, 0), 0px 0px 0px 0px rgba(255, 217, 0, 0.041);
+  }
+}
+@-webkit-keyframes scaleGlow {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes scaleGlow {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 .game-board-titles {
   height: 100%;
   width: 100%;
@@ -1110,14 +1400,12 @@
 
 .crown,
 .cross,
-.arc {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.arc,
+.cardinal {
+  border-radius: 0.2em;
   position: absolute;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+  -webkit-animation: "scaleGlow" 1s ease infinite;
+          animation: "scaleGlow" 1s ease infinite;
 }
 
 .crown {
@@ -1134,56 +1422,80 @@
   transform: rotate(90deg);
   left: -2.5%;
   top: 10%;
-  background-image: url("/fief/public/storage/tokens/titles/crown-1.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-1.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .crown-2 {
   transform: rotate(180deg);
   left: 44%;
-  background-image: url("/fief/public/storage/tokens/titles/crown-2.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .crown-3 {
   transform: rotate(180deg);
   left: 70%;
-  background-image: url("/fief/public/storage/tokens/titles/crown-3.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-3.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .crown-4 {
   transform: rotate(-90deg);
   right: -1.5%;
   top: 25%;
-  background-image: url("/fief/public/storage/tokens/titles/crown-4.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-4.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .crown-5 {
   transform: rotate(-90deg);
   right: -1.5%;
   top: 72%;
-  background-image: url("/fief/public/storage/tokens/titles/crown-5.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-5.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .crown-6 {
   bottom: 0;
   left: 30%;
-  background-image: url("/fief/public/storage/tokens/titles/crown-6.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-6.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .crown-7 {
   bottom: 0;
   left: 8%;
-  background-image: url("/fief/public/storage/tokens/titles/crown-7.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-7.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .crown-8 {
   transform: rotate(90deg);
   left: -2.8%;
   top: 62%;
-  background-image: url("/fief/public/storage/tokens/titles/crown-8.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/crown-8.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .cross {
-  height: 15%;
+  height: 14%;
   width: 2%;
 }
 
@@ -1191,33 +1503,48 @@
   transform: rotate(90deg);
   left: 32%;
   top: -6%;
-  background-image: url("/fief/public/storage/tokens/titles/cross-1.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/cross-1.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 #cross-2 {
   transform: rotate(90deg);
   left: 62%;
   top: -6%;
-  background-image: url("/fief/public/storage/tokens/titles/cross-2.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/cross-2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 #cross-3 {
   transform: rotate(180deg);
   right: 2%;
   top: 42%;
-  background-image: url("/fief/public/storage/tokens/titles/cross-3.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/cross-3.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 #cross-4 {
   transform: rotate(-90deg);
   left: 45%;
   bottom: -6%;
-  background-image: url("/fief/public/storage/tokens/titles/cross-4.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/cross-4.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 #cross-5 {
   top: 40%;
-  background-image: url("/fief/public/storage/tokens/titles/cross-5.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/cross-5.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .cardinal {
@@ -1226,14 +1553,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("/fief/public/storage/tokens/titles/cardinal-free.png");
-  background-position: center;
+  background-image: url("/fief-online.com/public/storage/tokens/titles/cardinal-free.png");
   background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
 }
 
 .payed-cross {
-  background-image: url("/fief/public/storage/tokens/titles/cardinal-pay.png");
+  background-image: url("/fief-online.com/public/storage/tokens/titles/cardinal-pay.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .arc {
@@ -1242,14 +1572,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("/fief/public/storage/tokens/titles/arc.png");
-  background-position: center;
+  background-image: url("/fief-online.com/public/storage/tokens/titles/arc.png");
   background-repeat: no-repeat;
+  background-position: center;
   background-size: contain;
 }
 
 .selected-title {
   border: 2px solid gold;
+}
+
+.can-take:hover {
+  transform-origin: top right 0.5cm;
+  transition: 0.5s ease;
+  z-index: 10;
+  transform: rotate3d(1, 2, 0, 25deg) scale(1.2) translate(10%, -10%) !important;
+  cursor: url("/fief-online.com/public/storage/cursors/take.png") 10 10, pointer;
+  z-index: 11;
+  border-bottom: 0.5px solid black;
+  border-left: 0.5px solid black;
+  box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.53);
+  border-radius: 0.3em;
 }
 
 .taken {
@@ -1835,7 +2178,7 @@
 }
 
 .card-pile {
-  height: 55px;
+  height: 50px;
   width: 80px;
   border-radius: 0.5em;
   display: flex;
@@ -1847,49 +2190,99 @@
 .card-pile .card {
   position: absolute;
 }
+.card-pile .card:hover {
+  transform-origin: top right 0.5cm;
+  transition: 0.5s ease;
+  z-index: 10;
+  transform: rotate3d(1, 2, 0, 25deg) scale(1.2) translate(10%, -10%) !important;
+  cursor: url("/fief-online.com/public/storage/cursors/take.png") 10 10, pointer;
+  z-index: 11;
+  border-bottom: 0.5px solid black;
+  border-left: 0.5px solid black;
+  box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.53);
+  border-radius: 0.3em;
+}
 
 .lord-verso {
-  height: 55px;
+  height: 50px;
   width: 80px;
   border-radius: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  background-image: url("/fief/public/storage/cards/versos/lord-90.png");
+  background-image: url("/fief-online.com/public/storage/cards/versos/lord-90.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
 .event-verso {
-  height: 55px;
+  height: 50px;
   width: 80px;
   border-radius: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  background-image: url("/fief/public/storage/cards/versos/event-90.png");
+  background-image: url("/fief-online.com/public/storage/cards/versos/event-90.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
 .disaster-verso {
-  height: 55px;
+  height: 50px;
   width: 80px;
   border-radius: 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  background-image: url("/fief/public/storage/cards/versos/disaster-90.png");
+  background-image: url("/fief-online.com/public/storage/cards/versos/disaster-90.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
+.can-draw:hover {
+  transform-origin: top right 0.5cm;
+  transition: 0.5s ease;
+  z-index: 10;
+  transform: rotate3d(1, 2, 0, 25deg) scale(1.2) translate(10%, -10%) !important;
+  cursor: url("/fief-online.com/public/storage/cursors/take.png") 10 10, pointer;
+  z-index: 11;
+  border-bottom: 0.5px solid black;
+  border-left: 0.5px solid black;
+  box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.53);
+  border-radius: 0.3em;
+}
+
+@keyframes lightGlow {
+  from {
+    box-shadow: 0px 0px 10px 2px #c7930e, 0px 0px 0px 0px gold;
+  }
+  50% {
+    box-shadow: 0px 0px 3px 2px rgba(218, 165, 32, 0.062), 0px 0px 2px 10px rgba(255, 217, 0, 0.075);
+  }
+  90% {
+    box-shadow: 0px 0px 0px 0px rgba(218, 165, 32, 0), 0px 0px 15px 5px rgba(255, 217, 0, 0);
+  }
+  to {
+    box-shadow: 0px 0px 0px 0px rgba(218, 165, 32, 0), 0px 0px 0px 0px rgba(255, 217, 0, 0.041);
+  }
+}
+@keyframes scaleGlow {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 .locations .empty {
   border: 1px solid #7e7e7e;
 }
@@ -1921,6 +2314,8 @@
   display: block;
   border-radius: 0.3em;
   transition: 0.3s ease;
+  -webkit-animation: "scaleGlow" 1s ease infinite;
+          animation: "scaleGlow" 1s ease infinite;
 }
 .locations .village:hover {
   transform: scale(1.3);
@@ -2056,7 +2451,7 @@
   width: 100% !important;
   position: absolute;
   opacity: 1 !important;
-  background-image: url("/fief/public/storage/tokens/buildings/castle.png");
+  background-image: url("/fief-online.com/public/storage/tokens/buildings/castle.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2067,7 +2462,7 @@
   width: 100% !important;
   position: absolute;
   opacity: 1 !important;
-  background-image: url("/fief/public/storage/tokens/buildings/city.png");
+  background-image: url("/fief-online.com/public/storage/tokens/buildings/city.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2078,7 +2473,7 @@
   width: 100% !important;
   position: absolute;
   opacity: 1 !important;
-  background-image: url("/fief/public/storage/tokens/buildings/mill.png");
+  background-image: url("/fief-online.com/public/storage/tokens/buildings/mill.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2090,7 +2485,7 @@
   height: 40px;
   width: 40px;
   position: absolute;
-  background-image: url("/fief/public/storage/tokens/buildings/castle.png");
+  background-image: url("/fief-online.com/public/storage/tokens/buildings/castle.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2100,7 +2495,7 @@
   height: 40px;
   width: 40px;
   position: absolute;
-  background-image: url("/fief/public/storage/tokens/buildings/city.png");
+  background-image: url("/fief-online.com/public/storage/tokens/buildings/city.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2110,7 +2505,7 @@
   height: 40px;
   width: 40px;
   position: absolute;
-  background-image: url("/fief/public/storage/tokens/buildings/mill.png");
+  background-image: url("/fief-online.com/public/storage/tokens/buildings/mill.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2409,7 +2804,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/alienor-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/alienor-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2419,7 +2814,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/arthur-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/arthur-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2429,7 +2824,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/blanche-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/blanche-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2439,7 +2834,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/charles-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/charles-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2449,7 +2844,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/eric-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/eric-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2459,7 +2854,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/francois-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/francois-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2469,7 +2864,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/gauvain-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/gauvain-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2479,7 +2874,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/guenievre-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/guenievre-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2489,7 +2884,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/henri-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/henri-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2499,7 +2894,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/isabelle-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/isabelle-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2509,7 +2904,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/jeanne-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/jeanne-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2519,7 +2914,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/lambert-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/lambert-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2529,7 +2924,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/mireille-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/mireille-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2539,7 +2934,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/othon-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/othon-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2549,7 +2944,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/philippe-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/philippe-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2559,7 +2954,7 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/quentin-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/quentin-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2569,21 +2964,21 @@
   height: 30px;
   width: 10%;
   box-shadow: 0px 0px 15px -5px #000000;
-  background-image: url("/fief/public/storage/tokens/lords/thierry-token.png");
+  background-image: url("/fief-online.com/public/storage/tokens/lords/thierry-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
 .sergeant {
-  background-image: url("/fief/public/storage/tokens/armies/soldier.png");
+  background-image: url("/fief-online.com/public/storage/tokens/armies/soldier.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 }
 
 .knight {
-  background-image: url("/fief/public/storage/tokens/armies/knight.png");
+  background-image: url("/fief-online.com/public/storage/tokens/armies/knight.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2614,29 +3009,12 @@
           animation: "take-first-lord" 0.5s forwards ease-out;
 }
 
-@-webkit-keyframes firstLordDraw {
-  from {
-    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
-  }
-  to {
-    transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3);
-  }
-}
-
 @keyframes firstLordDraw {
   from {
     transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
   }
   to {
     transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3);
-  }
-}
-@-webkit-keyframes reveal-1 {
-  from {
-    transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3) rotateX(0deg);
-  }
-  to {
-    transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3.5) rotateX(90deg);
   }
 }
 @keyframes reveal-1 {
@@ -2647,28 +3025,12 @@
     transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3.5) rotateX(90deg);
   }
 }
-@-webkit-keyframes reveal-2 {
-  from {
-    transform: translateX(-600%) translateY(20%) scale(5) rotateY(-90deg);
-  }
-  to {
-    transform: translateX(-600%) translateY(20%) scale(5.5) rotateY(0deg);
-  }
-}
 @keyframes reveal-2 {
   from {
     transform: translateX(-600%) translateY(20%) scale(5) rotateY(-90deg);
   }
   to {
     transform: translateX(-600%) translateY(20%) scale(5.5) rotateY(0deg);
-  }
-}
-@-webkit-keyframes take-first-lord {
-  from {
-    transform: translateX(-600%) translateY(20%) scale(5.5);
-  }
-  to {
-    transform: translateX(-600%) translateY(1000%) scale(3);
   }
 }
 @keyframes take-first-lord {
@@ -2682,18 +3044,6 @@
 .draw-animation {
   -webkit-animation: "draw" 1.5s forwards ease-out;
           animation: "draw" 1.5s forwards ease-out;
-}
-
-@-webkit-keyframes draw {
-  from {
-    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
-  }
-  40% {
-    transform: translateX(-200px) translateY(50px) rotate(-50deg) scale(1.5);
-  }
-  to {
-    transform: translateX(-500px) translateY(600px) rotate(-90deg) scale(1.3);
-  }
 }
 
 @keyframes draw {
@@ -2712,15 +3062,6 @@
           animation: "drawn" forwards 0.5s ease;
 }
 
-@-webkit-keyframes drawn {
-  from {
-    transform: translateY(1.5em);
-  }
-  to {
-    transform: translateY(0em);
-  }
-}
-
 @keyframes drawn {
   from {
     transform: translateY(1.5em);
@@ -2733,21 +3074,6 @@
   transform: scale(1.5) translateY(-3em);
   -webkit-animation: "discarded" 1s forwards ease-out;
           animation: "discarded" 1s forwards ease-out;
-}
-
-@-webkit-keyframes discarded {
-  from {
-    transform: scale(1.5) translateY(-3em) rotate(0deg);
-    opacity: 1;
-  }
-  80% {
-    transform: scale(2) translateY(-6em) rotate(0deg);
-    opacity: 1;
-  }
-  to {
-    transform: scale(3) translateY(-6em) rotate(20deg);
-    opacity: 0;
-  }
 }
 
 @keyframes discarded {
@@ -2782,18 +3108,6 @@
   z-index: 2;
 }
 
-@-webkit-keyframes disas-animation-0 {
-  from {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(50%) scale(1.2);
-  }
-  to {
-    transform: translateY(90%) scale(1);
-  }
-}
-
 @keyframes disas-animation-0 {
   from {
     transform: translateY(0) scale(1);
@@ -2803,17 +3117,6 @@
   }
   to {
     transform: translateY(90%) scale(1);
-  }
-}
-@-webkit-keyframes disas-animation-1 {
-  from {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(100%) scale(1.2);
-  }
-  to {
-    transform: translateY(180%) scale(1);
   }
 }
 @keyframes disas-animation-1 {
@@ -2827,17 +3130,6 @@
     transform: translateY(180%) scale(1);
   }
 }
-@-webkit-keyframes disas-animation-2 {
-  from {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(150%) scale(1.2);
-  }
-  to {
-    transform: translateY(260%) scale(1);
-  }
-}
 @keyframes disas-animation-2 {
   from {
     transform: translateY(0) scale(1);
@@ -2849,17 +3141,6 @@
     transform: translateY(260%) scale(1);
   }
 }
-@-webkit-keyframes disas-animation-discard {
-  from {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(170%) scale(1.2);
-  }
-  to {
-    transform: translateY(340%) scale(1);
-  }
-}
 @keyframes disas-animation-discard {
   from {
     transform: translateY(0) scale(1);
@@ -2869,20 +3150,6 @@
   }
   to {
     transform: translateY(340%) scale(1);
-  }
-}
-@-webkit-keyframes openPlayerBoard {
-  from {
-    transform: translateX(-20em) scale(0.5);
-    z-index: 1;
-  }
-  40% {
-    transform: translateX(2em) scale(0.8);
-    z-index: 10;
-  }
-  to {
-    transform: translateX(0em) scale(1);
-    z-index: 10;
   }
 }
 @keyframes openPlayerBoard {
@@ -2899,20 +3166,6 @@
     z-index: 10;
   }
 }
-@-webkit-keyframes closePlayerBoard {
-  from {
-    transform: translateX(0em) scale(1);
-    z-index: 10;
-  }
-  40% {
-    transform: translateX(2em) scale(0.8);
-    z-index: 2;
-  }
-  to {
-    transform: translateX(-40em) scale(0.5);
-    z-index: 1;
-  }
-}
 @keyframes closePlayerBoard {
   from {
     transform: translateX(0em) scale(1);
@@ -2927,15 +3180,41 @@
     z-index: 1;
   }
 }
+@keyframes lightGlow {
+  from {
+    box-shadow: 0px 0px 10px 2px #c7930e, 0px 0px 0px 0px gold;
+  }
+  50% {
+    box-shadow: 0px 0px 3px 2px rgba(218, 165, 32, 0.062), 0px 0px 2px 10px rgba(255, 217, 0, 0.075);
+  }
+  90% {
+    box-shadow: 0px 0px 0px 0px rgba(218, 165, 32, 0), 0px 0px 15px 5px rgba(255, 217, 0, 0);
+  }
+  to {
+    box-shadow: 0px 0px 0px 0px rgba(218, 165, 32, 0), 0px 0px 0px 0px rgba(255, 217, 0, 0.041);
+  }
+}
+@keyframes scaleGlow {
+  from {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 * {
   margin: 0;
   font-family: "MedievalSharp", cursive;
   font-size: 1.1rem;
-  cursor: url("/fief/storage/app/public/cursors/simple.png"), pointer;
+  cursor: url("/fief-online.com/public/storage/cursors/simple.png"), pointer;
 }
 
 body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  transition: 0.1s ease;
 }

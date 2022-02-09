@@ -1,20 +1,20 @@
 <div class='locations'>
 
     <div class='game-board-titles'>
-        <span class='crown crown-1'></span>
-        <span class='crown crown-2'></span>
-        <span class='crown crown-3'></span>
-        <span class='crown crown-4'></span>
-        <span class='crown crown-5'></span>
-        <span class='crown crown-6'></span>
-        <span class='crown crown-7'></span>
-        <span class='crown crown-8'></span>
+        <span class='crown crown-1 can-take'></span>
+        <span class='crown crown-2 can-take'></span>
+        <span class='crown crown-3 can-take'></span>
+        <span class='crown crown-4 can-take'></span>
+        <span class='crown crown-5 can-take'></span>
+        <span class='crown crown-6 can-take'></span>
+        <span class='crown crown-7 can-take'></span>
+        <span class='crown crown-8 can-take'></span>
 
-        <span class='cross' id='cross-1'></span>
-        <span class='cross' id='cross-2'></span>
-        <span class='cross' id='cross-3'></span>
-        <span class='cross' id='cross-4'></span>
-        <span class='cross' id='cross-5'></span>
+        <span class='cross can-take' id='cross-1'></span>
+        <span class='cross can-take' id='cross-2'></span>
+        <span class='cross can-take' id='cross-3'></span>
+        <span class='cross can-take' id='cross-4'></span>
+        <span class='cross can-take' id='cross-5'></span>
     </div>
 
     @foreach($villages as $vilg)
@@ -25,7 +25,7 @@
 
         <span id='{{$vilg->name}}' @class([
             'village',
-            "religious-territory-$vilg->cross_zone",
+            "cross-zone-$vilg->cross_zone",
             "$color" => $vilg->player(),
             "empty" => !$vilg->player()
         ])>

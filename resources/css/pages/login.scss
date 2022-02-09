@@ -1,96 +1,94 @@
+@import '../meta/mixin.scss';
 @import '../components/keyframes/parchm.scss';
 
+
+
 .login-container {
-    background-image: url('/fief/public/storage/images/home-background3.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
+    @include back-img('images/home-background3.jpg');
     background-size: cover;
     overflow: hidden;
     display: flex;
-    // justify-content: center;
-    // align-items: center;
 
-.parchm-top {
-    position: absolute;
-    left: 2%;
-    top: 0px;
-    height: 75px;
-    width: 300px;
-    background-image: url('/fief/public/storage/images/parchemin-top.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-.parchm-bottom {
-    position: absolute;
-    left: 2%;
-    top: -275px;
-    width: 300px;
-    height: 375px;
-    background-image: url('/fief/public/storage/images/parchemin-bottom.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-form {
-    width: 50%;
-    height: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-    top: 5%;
-    z-index: 1;
-
-    .input-wrapper {
+    .parchm-top {
+        position: absolute;
+        left: 2%;
+        top: 0px;
+        height: 75px;
+        width: 300px;
+        @include back-img('images/parchemin-top.png');
+        background-position: unset;
+        background-size: cover;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    .parchm-bottom {
+        position: absolute;
+        left: 2%;
+        top: -275px;
+        width: 300px;
+        height: 375px;
+        @include back-img('images/parchemin-bottom.png');
+        background-size: cover;
+        display: flex;
         justify-content: center;
         align-items: center;
     }
-}
 
-input {
-    outline: none;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid burlywood;
-    text-align: center;
-}
+    form {
+        width: 50%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        position: relative;
+        top: 5%;
+        z-index: 1;
 
-button {
-    outline: none;
-    background-color: transparent;
-    border: none;
-
-    &:hover {
-        transition: .3s ease;
-        transform: scale(1.2);
-        cursor: pointer;
-    }
-}
-
-a {
-    text-decoration: none;
-
-    &:visited,
-    &:active {
-        color: black;
+        .input-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
-    &:hover {
-        transition: .3s ease;
-        transform: scale(1.2);
-        cursor: pointer;
+    input {
+        outline: none;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid burlywood;
+        text-align: center;
     }
-}
+
+    button {
+        outline: none;
+        background-color: transparent;
+        border: none;
+
+        &:hover {
+            transition: .3s ease;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+    }
+
+    a {
+        text-decoration: none;
+
+        &:visited,
+        &:active {
+            color: black;
+        }
+
+        &:hover {
+            transition: .3s ease;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+    }
 
 }
 

@@ -29,7 +29,7 @@
 
         <button type='submit'>Se connecter</button>
 
-        <a href='/fief/public/register'>Créer un compte</a>
+        <a href='{{ route('register') }}'>Créer un compte</a>
     </form>
 
 

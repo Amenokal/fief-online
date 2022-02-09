@@ -40,7 +40,7 @@
 
     <div class='card-pile' id='lordCardPile'>
         @if($nextlord->exists())
-            <span class='card lord-verso'></span>
+            <span class='card lord-verso can-draw'></span>
         @else
             <i class="fas fa-sync" id='shuffleLord'></i>
         @endif
@@ -51,9 +51,11 @@
         @if($nextevent->exists())
             <span @class([
                 "card",
+                "can-draw",
                 "event-verso" => !$nextevent->disaster,
                 "disaster-verso" => $nextevent->disaster
-            ])></span>
+            ])>
+            </span>
         @else
             <i class="fas fa-sync" id='shuffleEvent'></i>
         @endif

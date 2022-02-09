@@ -38,7 +38,7 @@ class GameController extends Controller
     {
         // dd(Realm::currentPlayer());
         // dd(Army::from(Village::get('blaye'), Local::player()));
-
+        // dd(Game::current()->is_started);
 
         return view('layouts.game', [
 
@@ -50,7 +50,7 @@ class GameController extends Controller
             'player' => Local::player(),
             'player_cards' => Local::player()->inHandCards(),
 
-            'turn' => Realm::year(),
+            'turn' => Game::turn(),
             'phases' => TurnServices::phaseNames(),
             'current_player' => Realm::currentPlayer(),
 
@@ -74,6 +74,17 @@ class GameController extends Controller
         Game::current()->update([
             'is_started'=>true,
             'current_phase'=>0
+        ]);
+        return response()->json([
+            'currentPlayer' => Realm::currentPlayer()->makeHidden(['user_id', 'game_id', 'id'])
+        ]);
+    }
+
+    public function getData()
+    {
+        return response()->json([
+            'currentPlayer' => Realm::currentPlayer()->makeHidden(['user_id', 'game_id', 'id']),
+            'turn' => Game::current()->turn()
         ]);
     }
 
