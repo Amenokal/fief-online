@@ -1,33 +1,33 @@
 [
-    {"name": "beaujeu","lord_territory": "1","religious_territory": "5","capital": false},
-    {"name": "la-salle","lord_territory": "1","religious_territory": "1","capital": false},
-    {"name": "blaye","lord_territory": "1","religious_territory": "1","capital": true},
-    {"name": "charolles","lord_territory": "1","religious_territory": "1","capital": false},
+    {"name": "beaujeu","crown_zone": "1","cross_zone": "5","capital": false},
+    {"name": "la-salle","crown_zone": "1","cross_zone": "1","capital": false},
+    {"name": "blaye","crown_zone": "1","cross_zone": "1","capital": true},
+    {"name": "charolles","crown_zone": "1","cross_zone": "1","capital": false},
 
-    {"name": "sennecy","lord_territory": "2","religious_territory": "1","capital": false},
-    {"name": "l-épervier","lord_territory": "2","religious_territory": "1","capital": false},
-    {"name": "château-neuf","lord_territory": "2","religious_territory": "2","capital": false},
+    {"name": "sennecy","crown_zone": "2","cross_zone": "1","capital": false},
+    {"name": "l-épervier","crown_zone": "2","cross_zone": "1","capital": false},
+    {"name": "château-neuf","crown_zone": "2","cross_zone": "2","capital": false},
 
-    {"name": "mazilles","lord_territory": "3","religious_territory": "2","capital": false},
-    {"name": "st-andromy","lord_territory": "3","religious_territory": "2","capital": false},
-    
-    {"name": "tournus","lord_territory": "4","religious_territory": "2","capital": true},
-    {"name": "belleville","lord_territory": "4","religious_territory": "3","capital": false},
-    {"name": "pugnac","lord_territory": "4","religious_territory": "3","capital": false},
+    {"name": "mazilles","crown_zone": "3","cross_zone": "2","capital": false},
+    {"name": "st-andromy","crown_zone": "3","cross_zone": "2","capital": false},
 
-    {"name": "st-médard","lord_territory": "5","religious_territory": "1","capital": false},
-    {"name": "st-gérôme","lord_territory": "5","religious_territory": "3","capital": true},
-    {"name": "st-andré","lord_territory": "5","religious_territory": "3","capital": false},
-    
-    {"name": "villeneuve","lord_territory": "6","religious_territory": "1","capital": false},
-    {"name": "la-buissière","lord_territory": "6","religious_territory": "3","capital": false},
-    {"name": "bourg","lord_territory": "6","religious_territory": "4","capital": true},
-    {"name": "st-vivien","lord_territory": "6","religious_territory": "4","capital": false},
-    
-    {"name": "les-essarts","lord_territory": "7","religious_territory": "4","capital": false},
-    {"name": "st-paul","lord_territory": "7","religious_territory": "5","capital": false},
-    
-    {"name": "marcamps","lord_territory": "8","religious_territory": "4","capital": false},
-    {"name": "sigy","lord_territory": "8","religious_territory": "5","capital": true},
-    {"name": "st-ciers-d-abzac","lord_territory": "8","religious_territory": "5","capital": false}
+    {"name": "tournus","crown_zone": "4","cross_zone": "2","capital": true},
+    {"name": "belleville","crown_zone": "4","cross_zone": "3","capital": false},
+    {"name": "pugnac","crown_zone": "4","cross_zone": "3","capital": false},
+
+    {"name": "st-médard","crown_zone": "5","cross_zone": "1","capital": false},
+    {"name": "st-gérôme","crown_zone": "5","cross_zone": "3","capital": true},
+    {"name": "st-andré","crown_zone": "5","cross_zone": "3","capital": false},
+
+    {"name": "villeneuve","crown_zone": "6","cross_zone": "1","capital": false},
+    {"name": "la-buissière","crown_zone": "6","cross_zone": "3","capital": false},
+    {"name": "bourg","crown_zone": "6","cross_zone": "4","capital": true},
+    {"name": "st-vivien","crown_zone": "6","cross_zone": "4","capital": false},
+
+    {"name": "les-essarts","crown_zone": "7","cross_zone": "4","capital": false},
+    {"name": "st-paul","crown_zone": "7","cross_zone": "5","capital": false},
+
+    {"name": "marcamps","crown_zone": "8","cross_zone": "4","capital": false},
+    {"name": "sigy","crown_zone": "8","cross_zone": "5","capital": true},
+    {"name": "st-ciers-d-abzac","crown_zone": "8","cross_zone": "5","capital": false}
 ]

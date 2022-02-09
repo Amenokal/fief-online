@@ -94,7 +94,7 @@ function buyHere(e){
         else if(document.querySelector('.buy-this').id.includes('crown') && document.querySelector('.selected-title') && document.querySelector('.selected-lord')){
             axios.post('./gold/buy/crown', {
                 village: village,
-                title: document.querySelector('.selected-title').id.split('-')[1],
+                title: document.querySelector('.selected-title').className.split(' ')[1].split('-')[1],
                 lord: document.querySelector('.selected-lord').id
             })
             .then(res=>{

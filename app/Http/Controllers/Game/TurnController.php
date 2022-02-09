@@ -13,7 +13,9 @@ class TurnController extends Controller
     public static function giveTurn()
     {
         $turn = TurnServices::giveTurn();
-        $message = TurnServices::phaseNames()[$turn['phase']];
+        $message = $turn['phase'] >= 0 ?
+            TurnServices::phaseNames()[$turn['phase']] :
+            "La partie n'a pas encore commencée";
 
         return response()->json(['turn'=>$turn, 'message'=>$message]);
     }

@@ -15,20 +15,20 @@ class CreateCardsTable extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('deck');
+            $table->string('name');
             $table->string('gender')->nullable()->default(null);
-            $table->integer('move')->nullable();
             $table->boolean('instant')->default(false);
             $table->boolean('disaster')->default(false);
             $table->boolean('on_board')->default(false);
             $table->boolean('is_next')->default(false);
-            $table->string('img_src');
-            $table->foreignId('game_id')->constrained();
             $table->foreignId('player_id')->nullable()->constrained()->default(null);
             $table->foreignId('village_id')->nullable()->constrained()->default(null);
             $table->foreignId('cross_id')->nullable()->default(null);
             $table->foreignId('crown_id')->nullable()->default(null);
+            $table->foreignId('game_id')->constrained();
+            $table->string('card_img');
+            $table->string('verso_img');
             $table->softDeletes();
         });
     }

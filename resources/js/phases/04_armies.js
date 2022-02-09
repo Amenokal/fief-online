@@ -23,22 +23,34 @@ export function moveListeners(e){
 
     // MOVE OPTION TOGGLE "ACTIVE"
     else if (e.target.className.includes('move-option') ){
-        if(document.querySelector('.move-menu.show>.active')){
-            document.querySelector('.move-menu.show>.active').classList.remove('active');
-        }
-        if(!e.target.className.includes('active')){
-            e.target.classList.add('active')
-
-            // INSPECT >> OPEN ARMY MANAGER MODAL
-            if(e.target.className.includes('inspect') && e.target.className.includes('active')){
-                openArmyManager(e);
+        if(e.target.className.includes('close')){
+            document.querySelector('.move-menu.show').classList.remove('show');
+            document.querySelector('.moving-lord').classList.remove('moving-lord');
+            document.querySelector('.moving-army').classList.remove('moving-army');
+            document.querySelector('.village-from').classList.remove('village-from');
+            if(document.querySelector('active')){
+                document.querySelector('active').classList.remove('active');
             }
-
-            // ON "ACTIVE" > ADD VILLAGE LISTENERS
-            document.querySelectorAll('.village').forEach(el=>{
-                el.addEventListener('click', villageListeners, true);
-            })
         }
+        else {
+            if(document.querySelector('.move-menu.show>.active')){
+                document.querySelector('.move-menu.show>.active').classList.remove('active');
+            }
+            if(!e.target.className.includes('active')){
+                e.target.classList.add('active')
+
+                // INSPECT >> OPEN ARMY MANAGER MODAL
+                if(e.target.className.includes('inspect') && e.target.className.includes('active')){
+                    openArmyManager(e);
+                }
+
+                // ON "ACTIVE" > ADD VILLAGE LISTENERS
+                document.querySelectorAll('.village').forEach(el=>{
+                    el.addEventListener('click', villageListeners, true);
+                })
+            }
+        }
+
     }
 };
 

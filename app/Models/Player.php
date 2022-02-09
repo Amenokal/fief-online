@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Custom\Services\PlayerServices;
 use App\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use App\Custom\Services\PlayerServices;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,7 +17,7 @@ class Player extends Model
 
     public $timestamps = false;
     protected $fillable = [
-        'familyname',
+        'family_name',
         'color',
         'gold',
         'married_to',
@@ -24,67 +25,17 @@ class Player extends Model
         'game_id',
     ];
 
-    public function lords()
+
+
+    // relationships
+    public function game()
     {
-        return Card::where([
-            'game_id'=>Game::current()->id,
-            'player_id' => $this->id,
-            'deck' => 'lord',
-        ])
-        ->get();
+        return $this->belongsTo(Game::class);
     }
 
-    public function lordsHere(Village $village)
+    public function user()
     {
-        return Card::where([
-            'game_id' => Game::current()->id,
-            'player_id' => $this->id,
-            'village_id' => $village->id,
-            'deck' => 'lord'
-        ])->get();
-    }
-    public function sergeantsHere(Village $village)
-    {
-        return Soldier::where([
-            'player_id' => $this->id,
-            'game_id' => Game::current()->id,
-            'village_id' => $village->id,
-            'type' => 'sergeant'
-        ])->get();
-    }
-    public function knightsHere(Village $village)
-    {
-        return Soldier::where([
-            'player_id' => $this->id,
-            'game_id' => Game::current()->id,
-            'village_id' => $village->id,
-            'type' => 'knight'
-        ])->get();
-    }
-    public function armyHere(Village $village)
-    {
-        if($this->sergeantsHere($village) || $this->knightsHere($village) || $this->lordsHere($village)){
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    public function remainingSergeants()
-    {
-        return Soldier::where([
-            'game_id'=>Game::current()->id,
-            'village_id'=>null,
-            'type'=>'sergeant'
-        ])->get();
-    }
-    public function remainingKnights()
-    {
-        return Soldier::where([
-            'game_id'=>Game::current()->id,
-            'village_id'=>null,
-            'type'=>'knight'
-        ])->get();
+        return $this->belongsTo(User::class);
     }
 
     public function cards()
@@ -102,24 +53,52 @@ class Player extends Model
         return $this->hasMany(Village::class);
     }
 
-    public function canBuy(Building $building){
 
-        return $this->gold >= $building->price ? true : false;
 
+    public function inHandCards() : Collection
+    {
+        return Card::where([
+            'game_id'=>Game::current()->id,
+            'player_id'=>$this->id,
+            'on_board'=>false
+        ])
+        ->get();
     }
 
-    /////
 
 
-
-    public function game()
+    public function lordsHere(Village $village) : Collection
     {
-        return $this->belongsTo(Game::class);
+        return Soldier::where([
+            'game_id' => Game::current()->id,
+            'player_id' => $this->id,
+            'village_id' => $village->id,
+            'type' => 'lord'
+        ])
+        ->get();
     }
 
-    public function user()
+    public function soldiersHere(Village $village) : Collection
     {
-        return $this->belongsTo(User::class);
+        return Soldier::where([
+            'game_id' => Game::current()->id,
+            'player_id' => $this->id,
+            'village_id' => $village->id,
+        ])
+        ->where('type', '!=', 'lord')
+        ->get();
+    }
+
+    public function armyHere(Village $village) : bool
+    {
+        return $this->soldiersHere($village) || $this->lordsHere($village);
+    }
+
+
+
+    public function canBuy(Building $building) : bool
+    {
+        return $this->gold >= $building->price;
     }
 
 }

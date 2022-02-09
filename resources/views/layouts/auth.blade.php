@@ -11,16 +11,13 @@
 
 <body class='login-container'>
 
-    <main>
-
-        <div class='parchm'>
-
-            @yield('content')
-
-        </div>
-        
+    <main class='parchm-top'>
+        @yield('content')
     </main>
-        
+
+    <span class='parchm-bottom'></span>
+
 </body>
-    
+
+<script src="{{asset('/js/login.js')}}"></script>
 </html>

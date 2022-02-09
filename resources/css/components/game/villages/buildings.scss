@@ -1,4 +1,4 @@
-@import '../../meta/mixin';
+@import '../../../meta/mixin.scss';
 
 @mixin building {
     height: 100% !important;
@@ -15,32 +15,30 @@
 
 .chateau{
     @include building;
-    @include back-img('images/chateau.png');
+    @include back-img('tokens/buildings/castle.png');
 }
 .cite{
     @include building;
-    @include back-img('images/cite.png');
+    @include back-img('tokens/buildings/city.png');
 }
 .moulin{
     @include building;
-    @include back-img('images/moulin.png');
+    @include back-img('tokens/buildings/mill.png');
     transform: translateX(-10px) translateY(10px) scale(.6);
     z-index: 2;
 }
 
-.remaining-chateau,
-.remaining-cite,
-.remaining-moulin {
-    @include remaining;
-}
 .remaining-chateau{
-    @include back-img('images/chateau.png');
+    @include remaining;
+    @include back-img('tokens/buildings/castle.png');
 }
 .remaining-cite{
-    @include back-img('images/cite.png');
+    @include remaining;
+    @include back-img('tokens/buildings/city.png');
 }
 .remaining-moulin {
-    @include back-img('images/moulin.png');
+    @include remaining;
+    @include back-img('tokens/buildings/mill.png');
 }
 
 

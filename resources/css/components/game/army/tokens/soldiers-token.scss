@@ -1,0 +1,9 @@
+@import '../../../../meta/mixin.scss';
+
+.sergeant {
+    @include back-img('tokens/armies/soldier.png');
+}
+
+.knight {
+    @include back-img('tokens/armies/knight.png');
+}

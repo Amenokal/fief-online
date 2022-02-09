@@ -5,51 +5,72 @@
     <div class='main-section'>
 
         <section class='players'>
+            @if (!$game->is_started)
 
-            @foreach ($families as $fam)
-                <x-player-info
-                    :fam="$fam"
-                    :currentplayer="$currentplayer"
-                />
-            @endforeach
+                @foreach ($users as $user)
+                    <div class='waiting-lobby-user'>
+                        <span>{{$user->username}}</span>
+                        <i class="far fa-check-square readyBtn"></i>
+                    </div>
+                @endforeach
 
-            <nav>
-                <div class='move-btns'>
-                    <h2>ACTIONS</h2>
-                    <div>
-                        <button id='moveBtn'>Move</button>
-                        <button id='disasters-btn'>Calamités</button>
-                        <button id='income-btn'>Revenus</button>
-                    </div>
-                </div>
-                <div class='building-btns'>
-                    <h2>BUY</h2>
-                    <div>
-                        <button class='moulin' id='buyBtn-moulin'></button>
-                        <button class='token sergeant' id='buyBtn-sergeant'></button>
-                        <button class='crown' id='buyBtn-crown'></button>
-                        <button class='chateau' id='buyBtn-chateau'></button>
-                        <button class='token knight' id='buyBtn-knight'></button>
-                        <button class='cardinal' id='buyBtn-cardinal'></button>
-                    </div>
-                </div>
-                <div class='turn-btns'>
-                    <h2>GLOBAL</h2>
-                    <div>
-                        <button id='step1'>Premier seigneur</button>
-                        <button id='step2'>Emplacement de départ</button>
-                        <button id='end-turn'>Fin du tour</button>
-                    </div>
-                </div>
-                <div class='reset-btns'>
-                    <h2>OPTIONS</h2>
-                    <div>
-                        <button id='fullScreen'>FullScreen</button>
-                        <button id='resetAll'>Reset</button>
-                    </div>
-                </div>
-            </nav>
+                <span class="main-btn">
+                    <span class='texture3'></span>
+                    <span class='texture2'></span>
+                    <span class='texture'></span>
+                    <button class='btn-content' id='startGameBtn'>
+                        COMMENCER
+                    </button>
+                </span>
 
+            @else
+
+                @foreach ($families as $fam)
+                    <x-player-info
+                        :fam="$fam"
+                        :currentplayer="$currentplayer"
+                    />
+                @endforeach
+
+                <nav>
+                    <div class='move-btns'>
+                        <h2>ACTIONS</h2>
+                        <div>
+                            <button id='moveBtn'>Move</button>
+                            <button id='disasters-btn'>Calamités</button>
+                            <button id='income-btn'>Revenus</button>
+                        </div>
+                    </div>
+                    <div class='building-btns'>
+                        <h2>BUY</h2>
+                        <div>
+                            <button class='moulin' id='buyBtn-moulin'></button>
+                            <button class='token sergeant' id='buyBtn-sergeant'></button>
+                            <button class='crown' id='buyBtn-crown'></button>
+                            <button class='chateau' id='buyBtn-chateau'></button>
+                            <button class='token knight' id='buyBtn-knight'></button>
+                            <button class='cardinal' id='buyBtn-cardinal'></button>
+                        </div>
+                    </div>
+                    <div class='turn-btns'>
+                        <h2>GLOBAL</h2>
+                        <div>
+                            <button id='step1'>Premier seigneur</button>
+                            <button id='step2'>Emplacement de départ</button>
+                            <button id='end-turn'>Fin du tour</button>
+                        </div>
+                    </div>
+                    <div class='reset-btns'>
+                        <h2>OPTIONS</h2>
+                        <div>
+                            <button id='lunchGame'>Start Game</button>
+                            <button id='fullScreen'>FullScreen</button>
+                            <button id='resetAll'>Reset</button>
+                        </div>
+                    </div>
+                </nav>
+
+            @endif
         </section>
 
         <section class='game-view {{ $currentplayer->color }}-theme'>

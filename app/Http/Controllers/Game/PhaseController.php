@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Game;
 
 use App\Models\Game;
 use App\Models\Player;
+use App\Models\Village;
 use Illuminate\Http\Request;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
@@ -11,22 +12,23 @@ use App\Custom\Helpers\Noble;
 use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Marechal;
 use App\Custom\Helpers\Architect;
+use App\Custom\Phases\StarterPhase;
 use App\Http\Controllers\Controller;
+use App\Custom\Phases\FirstLordPhase;
 use App\Custom\Services\ArmyServices;
 use App\Custom\Services\BankServices;
-use App\Custom\Services\GameStartServices;
 
 class PhaseController extends Controller
 {
     // PHASE 0 ::::: START GAME
     public function drawFirstLord()
     {
-        return GameStartServices::drawFirstLord();
+        return StarterPhase::drawFirstLord();
     }
     public function chooseVillage(Request $request)
     {
-        $village = Mayor::find($request->village);
-        return GameStartServices::chooseVillage($village);
+        $village = Village::get($request->village);
+        return StarterPhase::chooseVillage($village);
     }
 
 

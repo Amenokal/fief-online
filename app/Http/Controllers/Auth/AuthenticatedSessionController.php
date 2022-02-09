@@ -32,15 +32,15 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        $conditions = ['username' => $request->username, 'is_logged' => true];
-        $check = !User::where($conditions)->first();
+        // $conditions = ['username' => $request->username, 'is_logged' => true];
+        // $check = !User::where($conditions)->first();
 
-        if($check){
-            $username = $request->username;
-            $template = '<span class="lobby-player" id="'.$username.'">'.$username.'</span>';
-            event(new LogInEvent($template));
-        }
-                
+        // if($check){
+        //     $username = $request->username;
+        //     $template = '<span class="lobby-player" id="'.$username.'">'.$username.'</span>';
+        //     event(new LogInEvent($template));
+        // }
+
         $request->authenticate();
 
         $request->session()->regenerate();

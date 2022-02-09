@@ -1,3 +1,5 @@
+import { startGame } from '../phases/__startGame';
+
 import { drawFirstLord } from '../phases/00_start';
 import { chooseStartVillage } from '../phases/00_start';
 
@@ -20,6 +22,10 @@ export class Phases {
         game.replaceWith(game.cloneNode(true));
 
         switch(phase){
+
+            case -1: initStartGame();
+            break;
+
             case 0: initDrawFirstLord();
             break;
             case 1: initChooseStartLocation();
@@ -27,27 +33,34 @@ export class Phases {
 
             case 6: initDiscard();
             break;
-
             case 7: initDraw();
             break;
-
             case 8: initDisasters();
             break;
-
             case 9: initPlayCards();
             break;
 
             case 10: initIncome();
             break;
-
             case 11: initBuy();
             break;
 
             case 12: initMove();
             break;
+
+            default: break;
         }
     }
 }
+
+
+// PHASE 00 ::::: GAME START
+// -------------------------
+
+    function initStartGame(){
+        document.getElementById('startGameBtn').addEventListener('click', startGame)
+    }
+
 
 
 // PHASE 00 ::::: GAME START

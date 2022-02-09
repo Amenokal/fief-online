@@ -12,9 +12,9 @@ class TurnServices {
 
     public static function giveTurn(){
         return [
-            'turn' => Game::current()->turn,
-            'phase' => Game::current()->phase,
-            'player' => Game::current()->player
+            'turn' => Game::current()->current_turn,
+            'phase' => Game::current()->current_phase,
+            'player' => Game::current()->current_player
         ];
     }
 

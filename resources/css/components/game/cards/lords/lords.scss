@@ -1,0 +1,85 @@
+@import '../card.scss';
+
+@mixin lord-img($img){
+    background-image: url('/fief/public/storage/cards/lords/'+$img+'-card.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.alienor-card{
+    @include card;
+    @include lord-img('alienor');
+}
+.arc-card{
+    @include card;
+    @include lord-img('arc');
+}
+.blanche-card{
+    @include card;
+    @include lord-img('blanche');
+}
+.cardinal-card{
+    @include card;
+    @include lord-img('cardinal');
+}
+.charles-card{
+    @include card;
+    @include lord-img('charles');
+}
+.eric-card{
+    @include card;
+    @include lord-img('eric');
+}
+.eric-card{
+    @include card;
+    @include lord-img('eric');
+}
+.francois-card{
+    @include card;
+    @include lord-img('francois');
+}
+.gauvain-card{
+    @include card;
+    @include lord-img('gauvain');
+}
+.guenievre-card{
+    @include card;
+    @include lord-img('guenievre');
+}
+.henri-card{
+    @include card;
+    @include lord-img('henri');
+}
+.isabelle-card{
+    @include card;
+    @include lord-img('isabelle');
+}
+.jeanne-card{
+    @include card;
+    @include lord-img('jeanne');
+}
+.lambert-card{
+    @include card;
+    @include lord-img('lambert');
+}
+.mireille-card{
+    @include card;
+    @include lord-img('mireille');
+}
+.othon-card{
+    @include card;
+    @include lord-img('othon');
+}
+.philippe-card{
+    @include card;
+    @include lord-img('philippe');
+}
+.quentin-card{
+    @include card;
+    @include lord-img('quentin');
+}
+.thierry-card{
+    @include card;
+    @include lord-img('thierry');
+}

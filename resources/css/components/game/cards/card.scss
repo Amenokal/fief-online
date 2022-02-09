@@ -1,63 +1,25 @@
-@mixin bck-img($img){
-    background-image: url('/fief/storage/app/public/images/'+$img);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-
+// CARD FORMATS
 @mixin card {
-    height: 100px;
-    width: 64px;
+    height: 200px;
+    width: 130px;
     border-radius: .5em;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
+    z-index: 10;
 }
 
-@mixin card-pile {
+
+
+// ON BOARD DISASTER CARDS
+.disaster-recto {
     height: 55px;
     width: 80px;
-    border-radius: .5em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-
-
-.lord-verso {
-    @include card-pile;
-    @include bck-img('lord-card-verso-90.png');
-}
-.event-verso {
-    @include card-pile;
-    @include bck-img('event-card-verso-90.png');
-}
-.disaster-verso {
-    @include card-pile;
-    @include bck-img('disaster-card-verso-90.png');
-}
-.disaster-recto {
-    height: 80px;
-    width: 55px;
     transform: rotate(90deg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-}
-
-
-
-// CARD-PILES FOR GAME-INFO
-.card-pile{
-    @include card-pile;
-    border: 1px solid white;
-
-    .card{
-        position: absolute;
-    }
 }
 
 

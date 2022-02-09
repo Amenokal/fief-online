@@ -8,6 +8,7 @@ use App\Http\Controllers\Game\TurnController;
 use App\Http\Controllers\Web\LobbyController;
 use App\Http\Controllers\Game\PhaseController;
 use App\Http\Controllers\Event\LogEventController;
+use App\Http\Controllers\Web\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,24 @@ use App\Http\Controllers\Event\LogEventController;
 // ::: WEB :::
 // ===========
 
-Route::get('/', function () { return view('auth.login'); })->name('home');
-Route::get('/lobby', [LobbyController::class, 'index'])->middleware(['auth'])->name('menu');
-Route::get('/game', [GameController::class, 'index'])->middleware(['auth'])->name('game');
-Route::post('/update/game', [GameController::class, 'update'])->middleware(['auth'])->name('update');
+Route::get('/', [LoginController::class, 'index'])->name('home');
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'connect'])->name('login');
+
+Route::get('/register', [LoginController::class, 'register'])->name('register');
+Route::post('/register', [LoginController::class, 'createUser']);
+
+Route::get('/game', [GameController::class, 'index'])
+    ->middleware([
+        'auth',
+        'connect.to.game',
+        'create.game'
+    ])
+    ->name('game');
+
+Route::post('/gamestart/0', [GameController::class, 'start'])->middleware(['auth']);
+Route::post('/game/update', [GameController::class, 'update'])->middleware(['auth'])->name('update');
+
 
 
 
@@ -36,23 +51,23 @@ Route::post('/update/game', [GameController::class, 'update'])->middleware(['aut
     // LOG EVENTS
     // ----------
 
-Route::get('/log/in', [LogEventController::class, 'login']);
-Route::get('/log/out', [LogEventController::class, 'logout']);
+// Route::get('/log/in', [LogEventController::class, 'login']);
+// Route::get('/log/out', [LogEventController::class, 'logout']);
 
     // LOBBY EVENTS
     // ------------
 
-Route::get('/lobby/connect', [LobbyController::class, 'connectToGame']);
-Route::get('/lobby/ready', [LobbyController::class, 'isReady']);
-Route::post('/lobby/msg', [LobbyController::class, 'newMsg']);
+// Route::get('/lobby/connect', [LobbyController::class, 'connectToGame']);
+// Route::get('/lobby/ready', [LobbyController::class, 'isReady']);
+// Route::post('/lobby/msg', [LobbyController::class, 'newMsg']);
 
 
 
 // ::: GAME :::
 // ============
 
-// META
-// ====
+    // META
+    // ====
 
 Route::post('/reset/deck', [TestController::class, 'resetCards']);
 Route::post('/reset/board', [TestController::class, 'resetBoard']);
@@ -112,8 +127,4 @@ Route::post('/move/letone', [PhaseController::class, 'letOne']);
 Route::post('/move/inspect', [PhaseController::class, 'inspect']);
 Route::get('/show/army/manager', [PhaseController::class, 'showArmyManager']);
 
-
-
-Route::get('/t', [PhaseController::class, 'buyBuilding']);
-
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';

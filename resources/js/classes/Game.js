@@ -11,11 +11,11 @@ const { Phases } = require('./Phases');
 export class Game {
 
     static update(){
-        axios.post('./update/game')
+        axios.post('./game/update')
         .then(res=>{
             document.querySelector('.game-container').innerHTML = res.data;
         })
-        .then(res=>{
+        .then(()=>{
             this.setListeners();
         })
     }
@@ -25,7 +25,7 @@ export class Game {
         this.addPermanentListeners();
     }
 
-    static addPhaseListeners=()=>{
+    static addPhaseListeners(){
         axios.post('./check/phase')
         .then(res=>{
             Phases.addListeners(res.data.turn.phase);
@@ -41,13 +41,13 @@ export class Game {
 
         // turns
         document.getElementById('turn-indicator').addEventListener('click', chooseTurn);
-        document.getElementById('end-turn').addEventListener('click',endTurn);
+        // document.getElementById('end-turn').addEventListener('click',endTurn);
 
         // options
-        document.getElementById('fullScreen').addEventListener('click', toggleFullScreen);
+        // document.getElementById('fullScreen').addEventListener('click', toggleFullScreen);
 
         //reset
-        document.getElementById('resetAll').addEventListener('click', reset)
+        // document.getElementById('resetAll').addEventListener('click', reset)
 
     }
 }

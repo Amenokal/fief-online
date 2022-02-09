@@ -16,8 +16,6 @@ class AddMoreFieldsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->renameColumn('name', 'username');
             $table->string('email')->nullable()->change();
-            $table->boolean('is_logged')->default(false);
-            $table->boolean('is_ready')->default(false);
             $table->boolean('in_game')->default(false);
         });
     }

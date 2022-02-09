@@ -1,45 +1,45 @@
 <div class='locations'>
 
     <div class='game-board-titles'>
-        <span class='crown crown-1'>1</span>
-        <span class='crown crown-2'>2</span>
-        <span class='crown crown-3'>3</span>
-        <span class='crown crown-4'>4</span>
-        <span class='crown crown-5'>5</span>
-        <span class='crown crown-6'>6</span>
-        <span class='crown crown-7'>7</span>
-        <span class='crown crown-8'>8</span>
+        <span class='crown crown-1'></span>
+        <span class='crown crown-2'></span>
+        <span class='crown crown-3'></span>
+        <span class='crown crown-4'></span>
+        <span class='crown crown-5'></span>
+        <span class='crown crown-6'></span>
+        <span class='crown crown-7'></span>
+        <span class='crown crown-8'></span>
 
-        <span class='cross' id='cross-1'>1</span>
-        <span class='cross' id='cross-2'>2</span>
-        <span class='cross' id='cross-3'>3</span>
-        <span class='cross' id='cross-4'>4</span>
-        <span class='cross' id='cross-5'>5</span>
+        <span class='cross' id='cross-1'></span>
+        <span class='cross' id='cross-2'></span>
+        <span class='cross' id='cross-3'></span>
+        <span class='cross' id='cross-4'></span>
+        <span class='cross' id='cross-5'></span>
     </div>
 
     @foreach($villages as $vilg)
 
     <?php
-        $color = $vilg->owner()->color ?? '';
+        $color = $vilg->player() ? $vilg->player()->color."-bordered" : '';
     ?>
 
         <span id='{{$vilg->name}}' @class([
             'village',
-            "religious-territory-$vilg->religious_territory",
-            "$color-bordered" => $vilg->owner(),
-            "empty" => !$vilg->owner()
+            "religious-territory-$vilg->cross_zone",
+            "$color" => $vilg->player(),
+            "empty" => !$vilg->player()
         ])>
 
             <div class='icons'>
-                @if($vilg->isModifiedBy('Famine'))
+                @if($vilg->isModifiedBy('starvation'))
                     <i class="disas-icon fas fa-water"></i>
-                @elseif($vilg->isModifiedBy('Mauvais Temps'))
+                @elseif($vilg->isModifiedBy('storm'))
                     <i class="far fa-snowflake"></i>
-                @elseif($vilg->isModifiedBy('Peste'))
+                @elseif($vilg->isModifiedBy('plague'))
                     <i class="fas fa-skull-crossbones"></i>
-                @elseif($vilg->isModifiedBy('Bonne Récolte'))
+                @elseif($vilg->isModifiedBy('harvest'))
                     <i class="fas fa-sun"></i>
-                @elseif($vilg->isModifiedBy('Beau Temps'))
+                @elseif($vilg->isModifiedBy('wealth'))
                     <i class="fas fa-sun"></i>
                 @endif
             </div>
@@ -51,7 +51,7 @@
             </div>
 
             <div class='armies'>
-                @if($vilg->soldiers->isNotEmpty() || $vilg->lords()->exists())
+                @if($vilg->soldiers)
                     <x-army :village="$vilg" :families="$families" />
                 @endif
             </div>

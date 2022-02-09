@@ -7,7 +7,7 @@ use App\Models\Game;
 use App\Models\Player;
 use App\Models\Soldier;
 use App\Models\Building;
-use App\Custom\Helpers\Marechal;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -19,55 +19,52 @@ class Village extends Model
     public $fillable = [
         'name',
         'capital',
-        'lord_territory',
-        'religious_territory',
-        'game_id',
+        'crown_zone',
+        'cross_zone',
         'player_id',
+        'game_id'
     ];
 
-    public function hasBuilding(string $type)
+
+
+    // get himself
+    public static function get(string $name) : Village
     {
-        return $this->buildings()->where('name', $type)->get()->isNotEmpty();
+        return self::where('name', $name)->first();
     }
 
-   /**
-    * params = "Famine" || "Mauvais Temps" || "Peste"
-    */
-    public function isModifiedBy(string $name)
+    // game relationship
+    public function game()
     {
-        return Card::where([
-            'game_id'=>Game::current()->id,
-            'cross_id'=>$this->religious_territory,
-            'name'=>$name
-        ])
-        ->exists();
+        return $this->belongsTo(Game::class);
     }
 
-
-    public function cards()
+    // owner relationship
+    public function player()
     {
-        return $this->hasMany(Card::class);
+        return Player::find($this->player_id);
     }
 
-    public function title()
-    {
-        return Title::where([
-            'game_id'=>Game::current()->id,
-            'id'=>$this->lord_territory
-        ])->first();
-    }
-
-    public function soldiers()
-    {
-        return $this->hasMany(Soldier::class);
-    }
-
+    // building relationships
     public function buildings()
     {
         return $this->hasMany(Building::class);
     }
 
-    public function buildingsHere()
+   /**
+    * Check if this village already has this building.
+    *
+    * @params "mill" || "castle" || "city"
+    */
+    public function hasBuilding(string $type) : bool
+    {
+        return $this->buildings()->where('type', $type)->get()->isNotEmpty();
+    }
+
+   /**
+    * Return all buildings on this village.
+    */
+    public function buildingsHere() : Collection
     {
         return $this->buildings()
             ->where([
@@ -77,50 +74,62 @@ class Village extends Model
             ->get();
     }
 
-    public function lords()
+
+
+    // cards relationships
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
+    }
+
+   /**
+    * Check if this village is affected by calamity.
+    *
+    * @params "starvation" || "storm" || "plague" || "harvest" || "wealth".
+    */
+    public function isModifiedBy(string $name) : bool
     {
         return Card::where([
-            'game_id' => Game::current()->id,
-            'village_id' => $this->id
-        ]);
-    }
-
-    public function hasMill()
-    {
-        return Building::where([
-            'game_id' => Game::current()->id,
-            'village_id' => $this->id,
-            'name' => 'moulin'
-        ])->exists();
-    }
-
-    public function hasArmy()
-    {
-        return $this->soldiers ? true : false;
-    }
-
-    public function hasOwner()
-    {
-        return !$this->player;
-    }
-
-
-
-    /////
-
-
-
-    public function game()
-    {
-        return $this->belongsTo(Game::class);
-    }
-
-    public function owner()
-    {
-        return Player::where([
             'game_id'=>Game::current()->id,
-            'id'=>$this->player_id
+            'cross_id'=>$this->cross_zone,
+            'name'=>$name
+        ])
+        ->exists();
+    }
+
+
+
+    // title relationship
+    public function crownTitle() : Title
+    {
+        return Title::where([
+            'game_id'=>Game::current()->id,
+            'id'=>$this->crown_zone
         ])->first();
+    }
+    public function crossTitle() : Title
+    {
+        return Title::where([
+            'game_id'=>Game::current()->id,
+            'id'=>$this->cross_zone
+        ])->first();
+    }
+
+
+
+    // soldiers relationships
+    public function soldiers()
+    {
+        return $this->hasMany(Soldier::class);
+    }
+
+    public function lords() : Collection
+    {
+        return Soldier::where([
+            'game_id' => Game::current()->id,
+            'type' => 'lord',
+            'village_id' => $this->id
+        ])->get();
     }
 
 }

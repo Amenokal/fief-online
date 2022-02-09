@@ -19,7 +19,7 @@
 <div class='remaining-lords'>
     @foreach ($remnlords as $lord)
         @if($lord->name !== 'Cardinal' && $lord->name !== "d'Arc")
-            <span class='remaining-lord' id='waiting-{{$lord->name}}'></span>
+            <span class='{{$lord->name}}-token'></span>
         @endif
     @endforeach
 </div>

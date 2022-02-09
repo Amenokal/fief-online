@@ -15,6 +15,9 @@
     <div class='game-container'>
 
         <x-game-content
+            :game="$game"
+            :users="$users"
+
             :phases="$phases"
             :turn="$turn"
             :currentplayer="$current_player"

@@ -11,14 +11,17 @@ class Building extends Model
 
     public $timestamps = false;
     public $fillable = [
-        'name',
+        'type',
         'price',
         'income',
         'defense',
+        'village_id',
         'game_id',
-        'village_id'
     ];
 
+
+
+    // relationships
     public function game()
     {
         return $this->belongsTo(Game::class);
@@ -33,5 +36,36 @@ class Building extends Model
     {
         return $this->belongsTo(Village::class);
     }
-    
+
+
+
+    // methods
+    /**
+     * Return a Building wich is still available.
+     *
+     * @params "mill" || "castle" || "city"
+     */
+    public static function get(string $type) : Building
+    {
+        return Building::where([
+            'village_id'=>null,
+            'type'=>$type,
+            'game_id'=>Game::current()->id
+        ]);
+    }
+
+    /**
+     * Return true if a building is still available to purchase.
+     *
+     * @params "mill" || "castle" || "city"
+     */
+    public static function isStillAvailable(string $type) : bool
+    {
+        return Building::where([
+            'village_id'=>null,
+            'type'=>$type,
+            'game_id'=>Game::current()->id
+        ])->exists();
+    }
+
 }

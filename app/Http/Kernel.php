@@ -65,6 +65,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-        'check.connecting.players' => \App\Http\Middleware\GameConnect\CheckConnectingPlayers::class,
+        'connect.to.game' => \App\Http\Middleware\ConnectingPlayerToGame::class,
+        'create.game' => \App\Http\Middleware\ShouldCreateGame::class,
+        'allowed.to.play' => \App\Http\Middleware\IsUserAllowedToPlay::class
     ];
 }

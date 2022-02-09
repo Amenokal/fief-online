@@ -1,10 +1,17 @@
-@use 'token';
 @use 'dice';
-@use 'card';
-@use 'villages';
-@use 'buildings';
-@use 'army';
 @use 'player-board';
-@use 'army-manager';
 @use 'titles';
 @use 'modal';
+
+@use 'cards/card';
+@use 'cards/lords/lords';
+@use 'cards/events/events';
+@use 'cards/versos/versos';
+
+@use 'villages/villages.scss';
+@use 'villages/buildings';
+
+@use 'army/army';
+@use 'army/army-manager';
+@use 'army/tokens/lords-token';
+@use 'army/tokens/soldiers-token';

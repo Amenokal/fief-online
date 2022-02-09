@@ -3,49 +3,57 @@
         "type": "crown",
         "zone": 1,
         "title_m": "Duc",
-        "title_f": "Duchesse"
+        "title_f": "Duchesse",
+        "card_img": "storage/tokens/titles/crown-1.png"
     },
     {
         "type": "crown",
         "zone": 2,
         "title_m": "Comte",
-        "title_f": "Comtesse"
+        "title_f": "Comtesse",
+        "card_img": "storage/tokens/titles/crown-2.png"
     },
     {
         "type": "crown",
         "zone": 3,
         "title_m": "Baron",
-        "title_f": "Baronne"
+        "title_f": "Baronne",
+        "card_img": "storage/tokens/titles/crown-3.png"
     },
     {
         "type": "crown",
         "zone": 4,
         "title_m": "Comte",
-        "title_f": "Comtesse"
+        "title_f": "Comtesse",
+        "card_img": "storage/tokens/titles/crown-4.png"
     },
     {
         "type": "crown",
         "zone": 5,
         "title_m": "Comte",
-        "title_f": "Comtesse"
+        "title_f": "Comtesse",
+        "card_img": "storage/tokens/titles/crown-5.png"
     },
     {
         "type": "crown",
         "zone": 6,
         "title_m": "Duc",
-        "title_f": "Duchesse"
+        "title_f": "Duchesse",
+        "card_img": "storage/tokens/titles/crown-6.png"
     },
     {
         "type": "crown",
         "zone": 7,
         "title_m": "Baron",
-        "title_f": "Baronne"
+        "title_f": "Baronne",
+        "card_img": "storage/tokens/titles/crown-7.png"
     },
     {
         "type": "crown",
         "zone": 8,
         "title_m": "Comte",
-        "title_f": "Comtesse"
+        "title_f": "Comtesse",
+        "card_img": "storage/tokens/titles/crown-8.png"
     },
 
 
@@ -53,68 +61,82 @@
     {
         "type": "cross",
         "zone": 1,
-        "title_m": "Évêque"
+        "title_m": "Évêque",
+        "card_img": "storage/tokens/titles/cross-1.png"
     },
     {
         "type": "cross",
         "zone": 2,
-        "title_m": "Évêque"
+        "title_m": "Évêque",
+        "card_img": "storage/tokens/titles/cross-2.png"
     },
     {
         "type": "cross",
         "zone": 3,
-        "title_m": "Évêque"
+        "title_m": "Évêque",
+        "card_img": "storage/tokens/titles/cross-3.png"
     },
     {
         "type": "cross",
         "zone": 4,
-        "title_m": "Évêque"
+        "title_m": "Évêque",
+        "card_img": "storage/tokens/titles/cross-4.png"
     },
     {
         "type": "cross",
         "zone": 5,
-        "title_m": "Évêque"
+        "title_m": "Évêque",
+        "card_img": "storage/tokens/titles/cross-5.png"
     },
 
 
 
     {
         "type": "cross",
-        "title_m": "Cardinal"
+        "title_m": "Cardinal",
+        "card_img": "storage/tokens/titles/cardinal-free.png"
     },
     {
         "type": "cross",
-        "title_m": "Cardinal"
+        "title_m": "Cardinal",
+        "card_img": "storage/tokens/titles/cardinal-free.png"
     },
     {
         "type": "cross",
-        "title_m": "Cardinal"
+        "title_m": "Cardinal",
+        "card_img": "storage/tokens/titles/cardinal-free.png"
     },
     {
         "type": "payed-cross",
-        "title_m": "Cardinal"
+        "title_m": "Cardinal",
+        "card_img": "storage/tokens/titles/cardinal-pay.png"
     },
 
 
 
     {
         "type": "king",
-        "title_m": "Roi"
+        "title_m": "Roi",
+        "card_img": "storage/tokens/titles/king.png"
     },
     {
         "type": "queen",
-        "title_f": "Reine"
+        "title_f": "Reine",
+        "card_img": "storage/tokens/titles/queen.png"
     },
     {
         "type": "prince",
-        "title_m": "Prince"
+        "title_m": "Prince",
+        "card_img": "storage/tokens/titles/prince.png"
     },
     {
         "type": "pape",
-        "title_m": "Pape"
+        "title_m": "Pape",
+        "card_img": "storage/tokens/titles/pope.png"
     },
     {
         "type": "d'Arc",
-        "title_f": "d'Arc"
+        "title_f": "d'Arc",
+        "card_img": "storage/tokens/titles/arc.png"
     }
 ]

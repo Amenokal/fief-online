@@ -21,31 +21,21 @@ class Marechal {
 
     public static $moving;
 
-    public static function newLord(Card $lord, Village $to)
+    public static function newLord(Card $lord, Village $to) : void
     {
-        $lord->update([
-            'village_id' => $to->id,
-            'on_board' => true
-        ]);
-        return $lord;
+        $lord->update(['on_board' => true]);
+        $lord->asSoldier()->update(['village_id'=>$to->id, 'player_id'=>Local::player()->id]);
     }
 
     public static function moveLord(Card $lord, Village $to)
     {
-        $lord->update([
-            'village_id' => $to->id
-        ]);
-        return $lord;
+        $lord->asSoldier()->update(['village_id' => $to->id]);
     }
 
     public static function removeLord(Card $lord)
     {
-        $lord->update([
-            'player_id' => null,
-            'village_id' => null,
-            'on_board' => false
-        ]);
         $lord->delete();
+        $lord->asSoldier()->update(['village_id'=>null, 'player_id'=>null]);
     }
 
 
@@ -61,7 +51,7 @@ class Marechal {
  */
 
 
-    public static function recruit(array $army, Village $village)
+    public static function recruit(array $army, Village $village) : void
     {
         for($i=0; $i<count($army); $i+=2){
             Soldier::where([
@@ -78,7 +68,7 @@ class Marechal {
         }
     }
 
-    public function disband(array $army)
+    public function disband(array $army) : void
     {
         for($i=0; $i<count($army); $i+=2){
             Soldier::where([

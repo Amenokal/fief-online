@@ -21,9 +21,6 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'is_logged',
-        'is_ready',
-        'connecting',
         'in_game'
     ];
 
@@ -51,9 +48,9 @@ class User extends Authenticatable
         return $this->hasMany(Game::class);
     }
 
-    public function players()
+    public function player()
     {
-        return $this->hasMany(Players::class);
+        return $this->hasOne(Player::class);
     }
 
 }

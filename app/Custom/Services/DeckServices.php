@@ -18,21 +18,32 @@ class DeckServices {
         foreach($cards as $card){
             for($i=0; $i<$card['nb']; $i++){
                 Card::create([
+                    'game_id' => Game::current()->id,
                     'name' => $card['name'],
                     'deck' => $card['deck'],
-                    'gender' => $card['gender'] ?? null,
-                    'move' => $card['move'] ?? null,
                     'disaster' => $card['disaster'] ?? false,
-                    'img_src' => $card['img_src'],
-                    'game_id' => Game::current()->id,
+                    'card_img' => $card['card_img'],
+                    'verso_img' => $card['verso_img']
                 ]);
             }
+        }
+
+        $lords = Librarian::decipherJson('meta/lords.json');
+        foreach($lords as $lord){
+            Card::create([
+                'game_id' => Game::current()->id,
+                'name' => $lord['name'],
+                'deck' => 'lord',
+                'gender' => $lord['gender'],
+                'card_img' => $card['card_img'],
+                'verso_img' => $card['verso_img']
+            ]);
         }
         Gipsy::shuffleDeck('lord');
         Gipsy::shuffleDeck('event');
     }
 
-    public static function draw(string $deck, bool $isDisaster)
+    public static function draw(string $deck, bool $isDisaster) : array
     {
         // if drawn card is a disaster
         // either put on waiting line

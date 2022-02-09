@@ -4,20 +4,28 @@ namespace App\Http\Controllers\Web;
 
 use App\Models\Card;
 use App\Models\Game;
+use App\Models\User;
+use App\Config\Config;
 use App\Models\Soldier;
 use App\Models\Village;
 use App\Models\Building;
-use App\Models\Soldiers;
 use App\Models\Villages;
 use Illuminate\Http\Request;
+use App\Config\Soldiers\Lord;
 use App\Custom\Helpers\Gipsy;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
+use App\Config\Soldiers\Lords;
+use App\Config\Soldiers\Knight;
+use App\Custom\GameObjects\Army;
 use App\Custom\Helpers\Marechal;
+use App\Config\Elements\Soldiers;
+use App\Config\Soldiers\Sergeant;
 use App\Custom\Helpers\Architect;
 use App\Custom\Helpers\Librarian;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Custom\Services\ArmyServices;
 use App\Custom\Services\BankServices;
 use App\Custom\Services\BootServices;
@@ -26,26 +34,22 @@ use App\Custom\Services\TurnServices;
 
 class GameController extends Controller
 {
-
-
     public function index()
     {
-        // dd(
-        //     Soldier::where([
-        //         'game_id'=>Game::current()->id,
-        //         'type'=>'sergeant',
-        //         'player_id'=>Local::player()->id,
-        //         'village_id'=>Mayor::find('tournus')->id,
-        //     ])->first()
-        // );
+        // dd(Realm::currentPlayer());
+        // dd(Army::from(Village::get('blaye'), Local::player()));
 
-        BootServices::init('vanilla');
 
         return view('layouts.game', [
-            'player' => Local::player(),
-            'player_cards' => Local::cards(),
 
+            'game' => Game::current(),
+
+            'users' => User::where('in_game', true)->get(),
             'families' => Realm::families(),
+
+            'player' => Local::player(),
+            'player_cards' => Local::player()->inHandCards(),
+
             'turn' => Realm::year(),
             'phases' => TurnServices::phaseNames(),
             'current_player' => Realm::currentPlayer(),
@@ -65,9 +69,21 @@ class GameController extends Controller
         ]);
     }
 
+    public function start()
+    {
+        Game::current()->update([
+            'is_started'=>true,
+            'current_phase'=>0
+        ]);
+    }
+
     public function update()
     {
         return view('components.game-content', [
+
+            'game' => Game::current(),
+            'users' => User::where('in_game', true)->get(),
+
             'player' => Local::player(),
             'playercards' => Local::cards(),
 

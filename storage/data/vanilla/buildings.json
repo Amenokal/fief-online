@@ -1,5 +1,5 @@
 [
-    {"nb": 15,"name": "moulin","price": 3,"income": 2,"defense": 0},
-    {"nb": 12,"name": "chateau","price": 10,"income": 0,"defense": 1},
-    {"nb": 6,"name": "cite","price": 0,"income": 0,"defense": 2}
+    {"nb": 15,"type": "mill","price": 3,"income": 2,"defense": 0},
+    {"nb": 12,"type": "castle","price": 10,"income": 0,"defense": 1},
+    {"nb": 8,"type": "city","price": 0,"income": 0,"defense": 1}
 ]

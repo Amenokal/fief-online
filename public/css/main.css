@@ -159,1084 +159,75 @@
   border: 3px solid var(--black);
 }
 
+.main-btn {
+  width: 100%;
+  height: 2em;
+  box-sizing: border-box;
+  border: 2px solid #868686;
+  border-radius: 0.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: radial-gradient(circle, #bbbbbb 2%, #555555 79%);
+}
+.main-btn .btn-content {
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  border: none;
+  color: lightgray;
+  background: none;
+  text-shadow: 1px 1px #262626, -1px -1px #525252;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.1em;
+}
+.main-btn .texture {
+  width: 100%;
+  height: 100%;
+  background: url("/fief/public/storage/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+}
+.main-btn .texture2 {
+  width: 100%;
+  height: 100%;
+  background: url("/fief/public/storage/textures/subtle-grunge.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  opacity: 0.7;
+}
+.main-btn .texture3 {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(158deg, white 0%, #d4d3d3 3%, #bbbbbb 8%, #797979 39%, #555555 65%, #656565 68%, #6b6b6b 75%, #525252 83%, black 100%);
+  box-shadow: 0px 0px 15px 0px #000000, inset 2px -5px 18px -4px #000000;
+  position: absolute;
+  top: 0;
+  opacity: 0.7;
+}
+
 .token {
   height: 27px;
   width: 27px;
   padding: 0.1em;
   border-radius: 0.2em;
   background-color: papayawhip;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
   position: absolute;
   box-shadow: 0px 0px 4px 1px black;
   top: 0%;
   bottom: 0%;
-  transition: 0.5s ease;
 }
 .token.none {
   opacity: 0.5;
-}
-.token.sergeant {
-  background-image: url("/fief/storage/app/public/images/soldier.png");
-}
-.token.knight {
-  background-image: url("/fief/storage/app/public/images/knight.png");
-}
-.token.trebuchet {
-  background-image: url("/fief/storage/app/public/images/trebuchet.png");
-}
-.token.ring {
-  background-image: url("/fief/storage/app/public/images/ring.png");
-}
-.token.ambassy {
-  background-image: url("/fief/storage/app/public/images/ambassy.png");
-}
-.token.treasure {
-  background-image: url("/fief/storage/app/public/images/treasure.png");
-}
-
-/**
-  * DICES
-  * -----
-  *
-  */
-.dice-b,
-.dice-w,
-.dice-n {
-  border-radius: 0.5em;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0.2em;
-}
-.dice-b img,
-.dice-w img,
-.dice-n img {
-  width: auto;
-  height: 80%;
-  position: relative;
-}
-.dice-b .dice-dot,
-.dice-w .dice-dot,
-.dice-n .dice-dot {
-  border: 3px solid black;
-  border-radius: 100%;
-  position: relative;
-}
-
-.dice-w {
-  border: 1px solid #e2dcd5;
-  background-color: #fffaf4;
-}
-
-.dice-b {
-  border: 1px solid #424242;
-  background-color: #272727;
-}
-
-.dice-n {
-  border: 1px solid #d8c689;
-  background-color: #f8eabb;
-}
-
-.d-f2 img:first-child {
-  left: 23%;
-}
-.d-f2 img:last-child {
-  right: 23%;
-}
-
-.d-f3 img:first-child {
-  left: 49%;
-}
-.d-f3 img:last-child {
-  right: 53%;
-}
-
-.d-n-2 span:first-child {
-  left: 30%;
-  bottom: 20%;
-}
-.d-n-2 span:last-child {
-  right: 30%;
-  top: 20%;
-}
-
-.d-n-3 span:first-child {
-  left: 40%;
-  bottom: 20%;
-}
-.d-n-3 span:last-child {
-  right: 40%;
-  top: 20%;
-}
-
-.d-n-4 span:nth-child(odd) {
-  left: 10%;
-  bottom: 20%;
-}
-.d-n-4 span:nth-child(even) {
-  right: 10%;
-  top: 20%;
-}
-
-.d-n-5 span:nth-child(odd) {
-  left: 20%;
-  bottom: 20%;
-}
-.d-n-5 span:nth-child(even) {
-  right: 0;
-  top: 20%;
-}
-.d-n-5 span:nth-child(5) {
-  left: -40%;
-  top: 0;
-}
-
-.d-n-6 span:nth-child(1) {
-  left: 30%;
-  bottom: 25%;
-}
-.d-n-6 span:nth-child(2) {
-  left: 10%;
-  bottom: 0;
-}
-.d-n-6 span:nth-child(3) {
-  left: -10%;
-  top: 24%;
-}
-.d-n-6 span:nth-child(4) {
-  left: 10%;
-  bottom: 25%;
-}
-.d-n-6 span:nth-child(5) {
-  left: -10%;
-  bottom: 0;
-}
-.d-n-6 span:nth-child(6) {
-  left: -30%;
-  top: 24%;
-}
-
-.lord-verso {
-  height: 55px;
-  width: 80px;
-  border-radius: 0.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  background-image: url("/fief/storage/app/public/images/lord-card-verso-90.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.event-verso {
-  height: 55px;
-  width: 80px;
-  border-radius: 0.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  background-image: url("/fief/storage/app/public/images/event-card-verso-90.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.disaster-verso {
-  height: 55px;
-  width: 80px;
-  border-radius: 0.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  background-image: url("/fief/storage/app/public/images/disaster-card-verso-90.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.disaster-recto {
-  height: 80px;
-  width: 55px;
-  transform: rotate(90deg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.card-pile {
-  height: 55px;
-  width: 80px;
-  border-radius: 0.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  border: 1px solid white;
-}
-.card-pile .card {
-  position: absolute;
-}
-
-.player-hand .card {
-  height: 120px;
-  width: 80px;
-  position: relative;
-  bottom: 40%;
-  background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transition: 0.2s ease;
-}
-.player-hand .card:hover {
-  transform: scale(1.5) translateY(-3em);
-}
-.player-hand .to-be-played {
-  box-sizing: border-box;
-  border: 3px solid goldenrod;
-  box-shadow: 0px 0px 4px 4px gold;
-}
-
-.locations .empty {
-  border: 1px solid #7e7e7e;
-}
-.locations .empty:hover {
-  border: 1px solid #cfcfcf;
-  transform: scale(1.1);
-}
-.locations .icons {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-}
-.locations .icons i {
-  color: #eeeeee;
-  z-index: 5;
-  text-shadow: black 0px 0px 5px;
-}
-.locations .wealth {
-  box-shadow: 0px 0px 5px 2px rgba(255, 217, 0, 0.774);
-}
-.locations .village {
-  position: absolute;
-  height: 8%;
-  width: 6%;
-  display: block;
-  border-radius: 0.3em;
-  transition: 0.3s ease;
-}
-.locations .village:hover {
-  transform: scale(1.4);
-  z-index: 4;
-}
-.locations .village:hover > .army:nth-of-type(1) {
-  transform: translateX(-30%);
-  transform: translateY(-30%);
-}
-.locations .village > .army:nth-of-type(1) {
-  left: -60%;
-  top: -80%;
-}
-.locations .village > .army:nth-of-type(2) {
-  left: -90%;
-  top: 0%;
-}
-.locations .village > .army:nth-of-type(3) {
-  left: -60%;
-  top: 60%;
-}
-.locations .village > .army:nth-of-type(4) {
-  left: 60%;
-  top: -80%;
-}
-.locations .village > .army:nth-of-type(5) {
-  left: 90%;
-  top: 0%;
-}
-.locations .village > .army:nth-of-type(6) {
-  left: 60%;
-  top: 60%;
-}
-.locations #tournus {
-  left: 77%;
-  top: 20%;
-}
-.locations #belleville {
-  left: 86.5%;
-  top: 6%;
-}
-.locations #pugnac {
-  left: 88%;
-  top: 36%;
-}
-.locations #st-gérôme {
-  left: 85.5%;
-  top: 58.5%;
-}
-.locations #st-médard {
-  left: 63.5%;
-  top: 56%;
-}
-.locations #st-andré {
-  left: 88.5%;
-  top: 79.5%;
-}
-.locations #bourg {
-  left: 53%;
-  top: 80.5%;
-}
-.locations #villeneuve {
-  left: 44%;
-  top: 56%;
-}
-.locations #st-vivien {
-  left: 37.5%;
-  top: 80%;
-}
-.locations #la-buissière {
-  left: 71.5%;
-  top: 82.5%;
-}
-.locations #les-essarts {
-  left: 29.5%;
-  top: 59%;
-}
-.locations #st-paul {
-  left: 14%;
-  top: 81%;
-}
-.locations #sigy {
-  left: 5%;
-  top: 63%;
-}
-.locations #marcamps {
-  left: 14.5%;
-  top: 48.5%;
-}
-.locations #st-ciers-d-abzac {
-  left: 7%;
-  top: 32%;
-}
-.locations #blaye {
-  left: 25%;
-  top: 26%;
-}
-.locations #beaujeu {
-  left: 6%;
-  top: 11%;
-}
-.locations #la-salle {
-  left: 22%;
-  top: 4%;
-}
-.locations #charolles {
-  left: 36%;
-  top: 37%;
-}
-.locations #sennecy {
-  left: 37%;
-  top: 12%;
-}
-.locations #l-épervier {
-  left: 50%;
-  top: 28%;
-}
-.locations #château-neuf {
-  left: 51%;
-  top: 8%;
-}
-.locations #mazilles {
-  left: 63%;
-  top: 13%;
-}
-.locations #st-andromy {
-  left: 71.5%;
-  top: 40%;
-}
-
-.chateau {
-  height: 100% !important;
-  width: 100% !important;
-  position: absolute;
-  opacity: 1 !important;
-  background-image: url("/fief/storage/app/public/images/chateau.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.cite {
-  height: 100% !important;
-  width: 100% !important;
-  position: absolute;
-  opacity: 1 !important;
-  background-image: url("/fief/storage/app/public/images/cite.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.moulin {
-  height: 100% !important;
-  width: 100% !important;
-  position: absolute;
-  opacity: 1 !important;
-  background-image: url("/fief/storage/app/public/images/moulin.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  transform: translateX(-10px) translateY(10px) scale(0.6);
-  z-index: 2;
-}
-
-.remaining-chateau,
-.remaining-cite,
-.remaining-moulin {
-  height: 40px;
-  width: 40px;
-  position: absolute;
-}
-
-.remaining-chateau {
-  background-image: url("/fief/storage/app/public/images/chateau.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.remaining-cite {
-  background-image: url("/fief/storage/app/public/images/cite.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.remaining-moulin {
-  background-image: url("/fief/storage/app/public/images/moulin.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.armies {
-  height: 100%;
-  width: 100%;
-}
-
-.army {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  z-index: 3;
-  display: flex;
-  transition: 0.3s ease;
-}
-.army .lord {
-  height: 100%;
-  width: 100%;
-  background-image: url("/fief/storage/app/public/images/charles.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: absolute;
-  transition: 0.5s ease;
-  box-shadow: 0px 0px 15px -5px #000000;
-}
-.army .lord-forces {
-  height: 100%;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-.army .lord-forces .lord:nth-child(1) {
-  z-index: 4;
-}
-.army .lord-forces .lord:nth-child(2) {
-  z-index: 3;
-  left: -40%;
-}
-.army .lord-forces .lord:nth-child(3) {
-  z-index: 2;
-  left: -80%;
-}
-.army .lord-forces .lord:nth-child(4) {
-  z-index: 1;
-  left: -120%;
-}
-.army .lord-forces:hover .lord:nth-child(2) {
-  left: -80%;
-}
-.army .lord-forces:hover .lord:nth-child(3) {
-  z-index: 2;
-  left: -160%;
-}
-.army .lord-forces:hover .lord:nth-child(4) {
-  z-index: 1;
-  left: -240%;
-}
-.army .army-forces {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition: 0.3s ease;
-  width: 50%;
-  top: 20%;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(2), .army .army-forces > .remaining-chateau:nth-of-type(2), .army .army-forces > .remaining-cite:nth-of-type(2), .army .army-forces > .sergeant:nth-of-type(2), .army .army-forces > .knight:nth-of-type(2) {
-  left: 2px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(3), .army .army-forces > .remaining-chateau:nth-of-type(3), .army .army-forces > .remaining-cite:nth-of-type(3), .army .army-forces > .sergeant:nth-of-type(3), .army .army-forces > .knight:nth-of-type(3) {
-  left: 4px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(4), .army .army-forces > .remaining-chateau:nth-of-type(4), .army .army-forces > .remaining-cite:nth-of-type(4), .army .army-forces > .sergeant:nth-of-type(4), .army .army-forces > .knight:nth-of-type(4) {
-  left: 6px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(5), .army .army-forces > .remaining-chateau:nth-of-type(5), .army .army-forces > .remaining-cite:nth-of-type(5), .army .army-forces > .sergeant:nth-of-type(5), .army .army-forces > .knight:nth-of-type(5) {
-  left: 8px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(6), .army .army-forces > .remaining-chateau:nth-of-type(6), .army .army-forces > .remaining-cite:nth-of-type(6), .army .army-forces > .sergeant:nth-of-type(6), .army .army-forces > .knight:nth-of-type(6) {
-  left: 10px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(7), .army .army-forces > .remaining-chateau:nth-of-type(7), .army .army-forces > .remaining-cite:nth-of-type(7), .army .army-forces > .sergeant:nth-of-type(7), .army .army-forces > .knight:nth-of-type(7) {
-  left: 12px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(8), .army .army-forces > .remaining-chateau:nth-of-type(8), .army .army-forces > .remaining-cite:nth-of-type(8), .army .army-forces > .sergeant:nth-of-type(8), .army .army-forces > .knight:nth-of-type(8) {
-  left: 14px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(9), .army .army-forces > .remaining-chateau:nth-of-type(9), .army .army-forces > .remaining-cite:nth-of-type(9), .army .army-forces > .sergeant:nth-of-type(9), .army .army-forces > .knight:nth-of-type(9) {
-  left: 16px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(10), .army .army-forces > .remaining-chateau:nth-of-type(10), .army .army-forces > .remaining-cite:nth-of-type(10), .army .army-forces > .sergeant:nth-of-type(10), .army .army-forces > .knight:nth-of-type(10) {
-  left: 18px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(11), .army .army-forces > .remaining-chateau:nth-of-type(11), .army .army-forces > .remaining-cite:nth-of-type(11), .army .army-forces > .sergeant:nth-of-type(11), .army .army-forces > .knight:nth-of-type(11) {
-  left: 20px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(12), .army .army-forces > .remaining-chateau:nth-of-type(12), .army .army-forces > .remaining-cite:nth-of-type(12), .army .army-forces > .sergeant:nth-of-type(12), .army .army-forces > .knight:nth-of-type(12) {
-  left: 22px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(13), .army .army-forces > .remaining-chateau:nth-of-type(13), .army .army-forces > .remaining-cite:nth-of-type(13), .army .army-forces > .sergeant:nth-of-type(13), .army .army-forces > .knight:nth-of-type(13) {
-  left: 24px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(14), .army .army-forces > .remaining-chateau:nth-of-type(14), .army .army-forces > .remaining-cite:nth-of-type(14), .army .army-forces > .sergeant:nth-of-type(14), .army .army-forces > .knight:nth-of-type(14) {
-  left: 26px;
-}
-.army .army-forces > .remaining-moulin:nth-of-type(15), .army .army-forces > .remaining-chateau:nth-of-type(15), .army .army-forces > .remaining-cite:nth-of-type(15), .army .army-forces > .sergeant:nth-of-type(15), .army .army-forces > .knight:nth-of-type(15) {
-  left: 28px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(2), .army .army-forces:hover > .knight:nth-of-type(2) {
-  left: 5px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(3), .army .army-forces:hover > .knight:nth-of-type(3) {
-  left: 10px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(4), .army .army-forces:hover > .knight:nth-of-type(4) {
-  left: 15px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(5), .army .army-forces:hover > .knight:nth-of-type(5) {
-  left: 20px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(6), .army .army-forces:hover > .knight:nth-of-type(6) {
-  left: 25px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(7), .army .army-forces:hover > .knight:nth-of-type(7) {
-  left: 30px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(8), .army .army-forces:hover > .knight:nth-of-type(8) {
-  left: 35px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(9), .army .army-forces:hover > .knight:nth-of-type(9) {
-  left: 40px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(10), .army .army-forces:hover > .knight:nth-of-type(10) {
-  left: 45px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(11), .army .army-forces:hover > .knight:nth-of-type(11) {
-  left: 50px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(12), .army .army-forces:hover > .knight:nth-of-type(12) {
-  left: 55px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(13), .army .army-forces:hover > .knight:nth-of-type(13) {
-  left: 60px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(14), .army .army-forces:hover > .knight:nth-of-type(14) {
-  left: 65px;
-}
-.army .army-forces:hover > .sergeant:nth-of-type(15), .army .army-forces:hover > .knight:nth-of-type(15) {
-  left: 70px;
-}
-.army .army-forces:hover > .sergeant {
-  top: -35%;
-  z-index: 5;
-}
-.army .army-forces:hover > .knight {
-  top: 35%;
-  z-index: 5;
-}
-.army .move-menu {
-  position: relative;
-  height: 0px;
-  width: 0px;
-  top: -10%;
-  left: -40%;
-}
-.army .move-menu i {
-  height: 0px;
-  width: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 0px;
-  color: transparent;
-  background-color: goldenrod;
-  transition: 0.3s ease;
-}
-.army .move-menu i:hover {
-  box-shadow: inset 0px 0px 5px 1px rgba(75, 43, 16, 0.8);
-  color: white;
-}
-.army .move-menu.show {
-  height: auto;
-  width: auto;
-  z-index: 4;
-}
-.army .move-menu.show i {
-  font-size: 1rem;
-  height: 25px;
-  width: 25px;
-  color: #442906;
-}
-.army .move-menu.show i:first-child {
-  transform: translateY(160%) translateX(-100%);
-}
-.army .move-menu.show i:nth-child(2) {
-  transform: translateY(160%);
-}
-.army .move-menu.show i:nth-child(3) {
-  transform: translateY(160%) translateX(100%);
-}
-.army .move-menu.show i:nth-child(4) {
-  border-radius: 10em;
-  height: 20px;
-  width: 20px;
-  transform: translateY(150%) translateX(200%) scale(0.7);
-}
-.army .move-menu.show i.active {
-  background-color: #f5c64f;
-  color: white;
-}
-.army .banner {
-  border: 1px solid white;
-  height: 85%;
-  width: auto;
-  position: absolute;
-  right: -50%;
-  z-index: 5;
-}
-
-.player-board {
-  width: 900px;
-  height: 420px;
-  top: 15%;
-  flex-direction: column;
-}
-.player-board.open {
-  -webkit-animation: "openPlayerBoard" 1.5s ease-out forwards;
-          animation: "openPlayerBoard" 1.5s ease-out forwards;
-}
-.player-board.close {
-  -webkit-animation: "closePlayerBoard" 1.5s ease-out forwards;
-          animation: "closePlayerBoard" 1.5s ease-out forwards;
-}
-
-.family-info {
-  width: 100%;
-  height: 20%;
-  border-bottom: 5px solid;
-  border-color: inherit;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.family-info div {
-  width: 70px;
-  height: 70px;
-  display: flex;
-  position: relative;
-}
-.family-info .token {
-  height: 70px;
-  width: 70px;
-  border-radius: 0.5em;
-  border-width: 5px;
-}
-
-.family-lords {
-  width: 100%;
-  height: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.lord-slot {
-  height: 90%;
-  width: 25%;
-  box-sizing: border-box;
-  border: 2px solid;
-  border-radius: inherit;
-  border-color: inherit;
-  margin: 0.7em;
-  position: relative;
-  display: grid;
-  grid-gap: 0.1em;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.lord-slot * {
-  box-sizing: border-box;
-  border: 1px solid white;
-  border-radius: 0.5em;
-}
-.lord-slot:nth-of-type(1) {
-  background-image: url("/fief/storage/app/public/images/oldpaper1.jpg");
-}
-.lord-slot:nth-of-type(2) {
-  background-image: url("/fief/storage/app/public/images/oldpaper2.jpg");
-}
-.lord-slot:nth-of-type(3) {
-  background-image: url("/fief/storage/app/public/images/oldpaper3.jpg");
-}
-.lord-slot:nth-of-type(4) {
-  background-image: url("/fief/storage/app/public/images/oldpaper4.png");
-  background-size: 120% 130%;
-}
-
-.crown-slot:first-child {
-  grid-column: 1/6;
-  grid-row: 1/2;
-}
-.crown-slot:nth-child(2) {
-  grid-column: 1/6;
-  grid-row: 2/3;
-}
-.crown-slot:nth-child(3) {
-  grid-column: 1/6;
-  grid-row: 3/4;
-}
-
-.ring {
-  grid-column: 6/8;
-  grid-row: 2/4;
-}
-
-.slot {
-  grid-column: 1/6;
-  grid-row: 4/11;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-.slot .slot-name {
-  position: absolute;
-  top: 80%;
-  background-color: #ccccb4;
-  height: 1em;
-  display: flex;
-  align-items: center;
-  color: #593814;
-}
-
-.cross-slot:nth-child(5) {
-  grid-column: 6/7;
-  grid-row: 4/11;
-}
-.cross-slot:nth-child(6) {
-  grid-column: 7/8;
-  grid-row: 4/11;
-}
-
-.army-manager {
-  height: 500px;
-  width: 735px;
-  background-color: #031c35;
-  background-image: url("/fief/storage/app/public/textures/grunge2.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border: 5px solid #010c16;
-  box-shadow: inset 0px 0px 10px 5px rgba(1, 12, 22, 0.712);
-  display: flex;
-}
-.army-manager > * {
-  box-sizing: border-box;
-  border: 1px solid whitesmoke;
-}
-.army-manager > section {
-  height: 100%;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.army-manager > section > * {
-  box-sizing: border-box;
-  border: 1px solid whitesmoke;
-}
-.army-manager > section > h1 {
-  height: 15%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.army-manager > section > div {
-  height: 85%;
-  width: 100%;
-}
-.army-manager .a-m-move-btns {
-  width: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.army-manager .a-m-move-btns button {
-  color: orange;
-  background-color: orangered;
-  border: 1px solid orange;
-  border-radius: 0.3em;
-  margin: 1em 0;
-  font-size: 1.5rem;
-  padding: 0.3em;
-}
-.army-manager .token {
-  position: unset;
-  height: 45px;
-  width: 45px;
-}
-.army-manager .lord {
-  width: 25%;
-  background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.army-manager .a-m-staying-lords,
-.army-manager .a-m-moving-lords {
-  height: 33%;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-}
-.army-manager .a-m-staying-army,
-.army-manager .a-m-moving-army {
-  height: 66%;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  padding: 1em;
-}
-.army-manager .selected-to-move,
-.army-manager .selected-to-stay {
-  transform: scale(0.8);
-}
-
-.game-board-titles {
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-
-.crown,
-.cross,
-.arc {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.crown {
-  height: 3%;
-  width: 8%;
-  background-image: url("/fief/storage/app/public/images/crown.png");
-}
-
-.crown-slot {
-  height: 100%;
-  width: 100%;
-}
-
-.crown-1 {
-  transform: rotate(90deg);
-  left: -2.5%;
-  top: 10%;
-}
-
-.crown-2 {
-  transform: rotate(180deg);
-  left: 44%;
-}
-
-.crown-3 {
-  transform: rotate(180deg);
-  left: 70%;
-}
-
-.crown-4 {
-  transform: rotate(-90deg);
-  right: -1.5%;
-  top: 25%;
-}
-
-.crown-5 {
-  transform: rotate(-90deg);
-  right: -1.5%;
-  top: 72%;
-}
-
-.crown-6 {
-  bottom: 0;
-  left: 30%;
-}
-
-.crown-7 {
-  bottom: 0;
-  left: 8%;
-}
-
-.crown-8 {
-  transform: rotate(90deg);
-  left: -2.8%;
-  top: 62%;
-}
-
-.cross {
-  height: 15%;
-  width: 2%;
-  background-image: url("/fief/storage/app/public/images/cross.png");
-}
-
-#cross-1 {
-  transform: rotate(90deg);
-  left: 32%;
-  top: -6%;
-}
-
-#cross-2 {
-  transform: rotate(90deg);
-  left: 62%;
-  top: -6%;
-}
-
-#cross-3 {
-  transform: rotate(180deg);
-  right: 2%;
-  top: 42%;
-}
-
-#cross-4 {
-  transform: rotate(-90deg);
-  left: 45%;
-  bottom: -6%;
-}
-
-#cross-5 {
-  top: 40%;
-}
-
-.cardinal {
-  height: 18%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url("/fief/storage/app/public/images/free-cardinal.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.payed-cross {
-  background-image: url("/fief/storage/app/public/images/pay-cardinal.png");
-}
-
-.arc {
-  height: 18%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url("/fief/storage/app/public/images/arc.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.selected-title {
-  border: 2px solid gold;
-}
-
-.taken {
-  opacity: 0.5;
-}
-
-.parchemin {
-  min-height: 200px;
-  min-width: 400px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  z-index: 10;
-}
-.parchemin .modal-top {
-  height: 110px;
-  min-width: 600px;
-  background-image: url("/fief/storage/app/public/images/parchemin-top.png");
-  background-repeat: no-repeat;
-  transition: 1s ease;
-}
-.parchemin .modal-bottom {
-  height: 106px;
-  min-width: 600px;
-  background-image: url("/fief/storage/app/public/images/parchemin-bottom.png");
-  background-repeat: no-repeat;
-  background-position: bottom;
 }
 
 .game-container {
@@ -1414,47 +405,72 @@
   position: relative;
   right: 15%;
 }
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .lord {
+  width: 50%;
+  left: -1%;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .lord:nth-child(1) {
+  z-index: 4;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .lord:nth-child(2) {
+  z-index: 3;
+  left: -40%;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .lord:nth-child(3) {
+  z-index: 2;
+  left: -80%;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .lord:nth-child(4) {
+  z-index: 1;
+  left: -120%;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin, .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau, .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite, .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant, .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight {
+  top: 20%;
+}
+.game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(1), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(1), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(1), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(1), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(1) {
+  left: 45%;
+}
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(2), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(2), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(2), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(2), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(2) {
-  left: 2px;
+  left: 50%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(3), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(3), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(3), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(3), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(3) {
-  left: 4px;
+  left: 55%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(4), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(4), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(4), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(4), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(4) {
-  left: 6px;
+  left: 60%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(5), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(5), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(5), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(5), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(5) {
-  left: 8px;
+  left: 65%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(6), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(6), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(6), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(6), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(6) {
-  left: 10px;
+  left: 70%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(7), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(7), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(7), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(7), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(7) {
-  left: 12px;
+  left: 75%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(8), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(8), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(8), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(8), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(8) {
-  left: 14px;
+  left: 80%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(9), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(9), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(9), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(9), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(9) {
-  left: 16px;
+  left: 85%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(10), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(10), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(10), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(10), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(10) {
-  left: 18px;
+  left: 90%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(11), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(11), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(11), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(11), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(11) {
-  left: 20px;
+  left: 95%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(12), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(12), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(12), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(12), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(12) {
-  left: 22px;
+  left: 100%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(13), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(13), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(13), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(13), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(13) {
-  left: 24px;
+  left: 105%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(14), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(14), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(14), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(14), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(14) {
-  left: 26px;
+  left: 110%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-moulin:nth-of-type(15), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-chateau:nth-of-type(15), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .remaining-cite:nth-of-type(15), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .sergeant:nth-of-type(15), .game-container .game-view .game-board .game-board-info .remaining-buildings div > .knight:nth-of-type(15) {
-  left: 28px;
+  left: 115%;
 }
 .game-container .game-view .game-board .game-board-info .remaining-lords {
   grid-row: 2/3;
@@ -1465,7 +481,7 @@
 .game-container .game-view .game-board .game-board-info .remaining-lords .remaining-lord {
   height: 30px;
   width: 12%;
-  background-image: url("/fief/storage/app/public/images/charles.png");
+  background-image: url("/fief/public/storage/images/charles.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1545,69 +561,173 @@
   z-index: 5;
 }
 
+.animate-parchm {
+  -webkit-animation: "showParchm" 0.5s ease-out forwards;
+          animation: "showParchm" 0.5s ease-out forwards;
+}
+
+.open-parchm {
+  -webkit-animation: "openParchmContainer" 0.5s 0.5s ease-out forwards;
+          animation: "openParchmContainer" 0.5s 0.5s ease-out forwards;
+}
+.open-parchm form {
+  opacity: 0;
+  -webkit-animation: "showForm" 0.5s 0.5s forwards;
+          animation: "showForm" 0.5s 0.5s forwards;
+}
+
+.open-parchm-bottom {
+  -webkit-animation: "openParchmBottom" 0.5s 0.5s ease-out forwards;
+          animation: "openParchmBottom" 0.5s 0.5s ease-out forwards;
+}
+
+@-webkit-keyframes showParchm {
+  from {
+    transform: translateY(300%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes showParchm {
+  from {
+    transform: translateY(300%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+@-webkit-keyframes openParchmContainer {
+  from {
+    height: 75px;
+  }
+  to {
+    height: 280px;
+  }
+}
+@keyframes openParchmContainer {
+  from {
+    height: 75px;
+  }
+  to {
+    height: 280px;
+  }
+}
+@-webkit-keyframes openParchmBottom {
+  from {
+    top: -275px;
+  }
+  to {
+    top: -75px;
+  }
+}
+@keyframes openParchmBottom {
+  from {
+    top: -275px;
+  }
+  to {
+    top: -75px;
+  }
+}
+@-webkit-keyframes showForm {
+  from {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes showForm {
+  from {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .login-container {
-  background-image: url("/fief/public/storage/images/castle.jpg");
+  background-image: url("/fief/public/storage/images/home-background3.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
-}
-.login-container main {
-  height: 100%;
-  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
-.login-container .parchm {
-  width: 400px;
-  height: 500px;
-  box-shadow: black;
-  background-image: url("/fief/public/storage/images/parchemin2.png");
+.login-container .parchm-top {
+  position: absolute;
+  left: 2%;
+  top: 0px;
+  height: 75px;
+  width: 300px;
+  background-image: url("/fief/public/storage/images/parchemin-top.png");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.login-container .parchm-bottom {
+  position: absolute;
+  left: 2%;
+  top: -275px;
+  width: 300px;
+  height: 375px;
+  background-image: url("/fief/public/storage/images/parchemin-bottom.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.login-container .parchm form {
+.login-container form {
   width: 50%;
   height: 60%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  position: relative;
+  top: 5%;
+  z-index: 1;
 }
-.login-container .parchm form .input-wrapper {
+.login-container form .input-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.login-container .parchm input {
+.login-container input {
   outline: none;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid burlywood;
   text-align: center;
 }
-.login-container .parchm button {
+.login-container button {
   outline: none;
   background-color: transparent;
   border: none;
 }
-.login-container .parchm button:hover {
+.login-container button:hover {
   transition: 0.3s ease;
   transform: scale(1.2);
   cursor: pointer;
 }
-.login-container .parchm a {
+.login-container a {
   text-decoration: none;
 }
-.login-container .parchm a:visited {
+.login-container a:visited, .login-container a:active {
   color: black;
 }
-.login-container .parchm a:hover {
+.login-container a:hover {
   transition: 0.3s ease;
   transform: scale(1.2);
   cursor: pointer;
@@ -1726,6 +846,1747 @@
   outline: none;
   box-sizing: border-box;
   padding: 0.7em;
+}
+
+/**
+  * DICES
+  * -----
+  *
+  */
+.dice-b,
+.dice-w,
+.dice-n {
+  border-radius: 0.5em;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.2em;
+}
+.dice-b img,
+.dice-w img,
+.dice-n img {
+  width: auto;
+  height: 80%;
+  position: relative;
+}
+.dice-b .dice-dot,
+.dice-w .dice-dot,
+.dice-n .dice-dot {
+  border: 3px solid black;
+  border-radius: 100%;
+  position: relative;
+}
+
+.dice-w {
+  border: 1px solid #e2dcd5;
+  background-color: #fffaf4;
+}
+
+.dice-b {
+  border: 1px solid #424242;
+  background-color: #272727;
+}
+
+.dice-n {
+  border: 1px solid #d8c689;
+  background-color: #f8eabb;
+}
+
+.d-f2 img:first-child {
+  left: 23%;
+}
+.d-f2 img:last-child {
+  right: 23%;
+}
+
+.d-f3 img:first-child {
+  left: 49%;
+}
+.d-f3 img:last-child {
+  right: 53%;
+}
+
+.d-n-2 span:first-child {
+  left: 30%;
+  bottom: 20%;
+}
+.d-n-2 span:last-child {
+  right: 30%;
+  top: 20%;
+}
+
+.d-n-3 span:first-child {
+  left: 40%;
+  bottom: 20%;
+}
+.d-n-3 span:last-child {
+  right: 40%;
+  top: 20%;
+}
+
+.d-n-4 span:nth-child(odd) {
+  left: 10%;
+  bottom: 20%;
+}
+.d-n-4 span:nth-child(even) {
+  right: 10%;
+  top: 20%;
+}
+
+.d-n-5 span:nth-child(odd) {
+  left: 20%;
+  bottom: 20%;
+}
+.d-n-5 span:nth-child(even) {
+  right: 0;
+  top: 20%;
+}
+.d-n-5 span:nth-child(5) {
+  left: -40%;
+  top: 0;
+}
+
+.d-n-6 span:nth-child(1) {
+  left: 30%;
+  bottom: 25%;
+}
+.d-n-6 span:nth-child(2) {
+  left: 10%;
+  bottom: 0;
+}
+.d-n-6 span:nth-child(3) {
+  left: -10%;
+  top: 24%;
+}
+.d-n-6 span:nth-child(4) {
+  left: 10%;
+  bottom: 25%;
+}
+.d-n-6 span:nth-child(5) {
+  left: -10%;
+  bottom: 0;
+}
+.d-n-6 span:nth-child(6) {
+  left: -30%;
+  top: 24%;
+}
+
+.player-board {
+  width: 900px;
+  height: 420px;
+  top: 15%;
+  flex-direction: column;
+}
+.player-board.open {
+  -webkit-animation: "openPlayerBoard" 1.5s ease-out forwards;
+          animation: "openPlayerBoard" 1.5s ease-out forwards;
+}
+.player-board.close {
+  -webkit-animation: "closePlayerBoard" 1.5s ease-out forwards;
+          animation: "closePlayerBoard" 1.5s ease-out forwards;
+}
+
+.family-info {
+  width: 100%;
+  height: 20%;
+  border-bottom: 5px solid;
+  border-color: inherit;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.family-info div {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  position: relative;
+}
+.family-info .token {
+  height: 70px;
+  width: 70px;
+  border-radius: 0.5em;
+  border-width: 5px;
+}
+
+.family-lords {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lord-slot {
+  height: 90%;
+  width: 25%;
+  box-sizing: border-box;
+  border: 2px solid;
+  border-radius: inherit;
+  border-color: inherit;
+  margin: 0.7em;
+  position: relative;
+  display: grid;
+  grid-gap: 0.1em;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.lord-slot * {
+  box-sizing: border-box;
+  border: 1px solid white;
+  border-radius: 0.5em;
+}
+.lord-slot:nth-of-type(1) {
+  background-image: url("/fief/storage/app/public/images/oldpaper1.jpg");
+}
+.lord-slot:nth-of-type(2) {
+  background-image: url("/fief/storage/app/public/images/oldpaper2.jpg");
+}
+.lord-slot:nth-of-type(3) {
+  background-image: url("/fief/storage/app/public/images/oldpaper3.jpg");
+}
+.lord-slot:nth-of-type(4) {
+  background-image: url("/fief/storage/app/public/images/oldpaper4.png");
+  background-size: 120% 130%;
+}
+
+.crown-slot:first-child {
+  grid-column: 1/6;
+  grid-row: 1/2;
+}
+.crown-slot:nth-child(2) {
+  grid-column: 1/6;
+  grid-row: 2/3;
+}
+.crown-slot:nth-child(3) {
+  grid-column: 1/6;
+  grid-row: 3/4;
+}
+
+.ring {
+  grid-column: 6/8;
+  grid-row: 2/4;
+}
+
+.slot {
+  grid-column: 1/6;
+  grid-row: 4/11;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.slot .slot-name {
+  position: absolute;
+  top: 80%;
+  background-color: #ccccb4;
+  height: 1em;
+  display: flex;
+  align-items: center;
+  color: #593814;
+}
+
+.cross-slot:nth-child(5) {
+  grid-column: 6/7;
+  grid-row: 4/11;
+}
+.cross-slot:nth-child(6) {
+  grid-column: 7/8;
+  grid-row: 4/11;
+}
+
+.game-board-titles {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.crown,
+.cross,
+.arc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.crown {
+  height: 3%;
+  width: 8%;
+}
+
+.crown-slot {
+  height: 100%;
+  width: 100%;
+}
+
+.crown-1 {
+  transform: rotate(90deg);
+  left: -2.5%;
+  top: 10%;
+  background-image: url("/fief/public/storage/tokens/titles/crown-1.png");
+}
+
+.crown-2 {
+  transform: rotate(180deg);
+  left: 44%;
+  background-image: url("/fief/public/storage/tokens/titles/crown-2.png");
+}
+
+.crown-3 {
+  transform: rotate(180deg);
+  left: 70%;
+  background-image: url("/fief/public/storage/tokens/titles/crown-3.png");
+}
+
+.crown-4 {
+  transform: rotate(-90deg);
+  right: -1.5%;
+  top: 25%;
+  background-image: url("/fief/public/storage/tokens/titles/crown-4.png");
+}
+
+.crown-5 {
+  transform: rotate(-90deg);
+  right: -1.5%;
+  top: 72%;
+  background-image: url("/fief/public/storage/tokens/titles/crown-5.png");
+}
+
+.crown-6 {
+  bottom: 0;
+  left: 30%;
+  background-image: url("/fief/public/storage/tokens/titles/crown-6.png");
+}
+
+.crown-7 {
+  bottom: 0;
+  left: 8%;
+  background-image: url("/fief/public/storage/tokens/titles/crown-7.png");
+}
+
+.crown-8 {
+  transform: rotate(90deg);
+  left: -2.8%;
+  top: 62%;
+  background-image: url("/fief/public/storage/tokens/titles/crown-8.png");
+}
+
+.cross {
+  height: 15%;
+  width: 2%;
+}
+
+#cross-1 {
+  transform: rotate(90deg);
+  left: 32%;
+  top: -6%;
+  background-image: url("/fief/public/storage/tokens/titles/cross-1.png");
+}
+
+#cross-2 {
+  transform: rotate(90deg);
+  left: 62%;
+  top: -6%;
+  background-image: url("/fief/public/storage/tokens/titles/cross-2.png");
+}
+
+#cross-3 {
+  transform: rotate(180deg);
+  right: 2%;
+  top: 42%;
+  background-image: url("/fief/public/storage/tokens/titles/cross-3.png");
+}
+
+#cross-4 {
+  transform: rotate(-90deg);
+  left: 45%;
+  bottom: -6%;
+  background-image: url("/fief/public/storage/tokens/titles/cross-4.png");
+}
+
+#cross-5 {
+  top: 40%;
+  background-image: url("/fief/public/storage/tokens/titles/cross-5.png");
+}
+
+.cardinal {
+  height: 18%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/fief/public/storage/tokens/titles/cardinal-free.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.payed-cross {
+  background-image: url("/fief/public/storage/tokens/titles/cardinal-pay.png");
+}
+
+.arc {
+  height: 18%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/fief/public/storage/tokens/titles/arc.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.selected-title {
+  border: 2px solid gold;
+}
+
+.taken {
+  opacity: 0.5;
+}
+
+.parchemin {
+  min-height: 200px;
+  min-width: 400px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+}
+.parchemin .modal-top {
+  height: 110px;
+  min-width: 600px;
+  background-image: url("/fief/storage/app/public/images/parchemin-top.png");
+  background-repeat: no-repeat;
+  transition: 1s ease;
+}
+.parchemin .modal-bottom {
+  height: 106px;
+  min-width: 600px;
+  background-image: url("/fief/storage/app/public/images/parchemin-bottom.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.disaster-recto {
+  height: 55px;
+  width: 80px;
+  transform: rotate(90deg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.player-hand .card {
+  height: 120px;
+  width: 80px;
+  position: relative;
+  bottom: 40%;
+  background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.2s ease;
+}
+.player-hand .card:hover {
+  transform: scale(1.5) translateY(-3em);
+}
+.player-hand .to-be-played {
+  box-sizing: border-box;
+  border: 3px solid goldenrod;
+  box-shadow: 0px 0px 4px 4px gold;
+}
+
+.disaster-recto {
+  height: 55px;
+  width: 80px;
+  transform: rotate(90deg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.player-hand .card {
+  height: 120px;
+  width: 80px;
+  position: relative;
+  bottom: 40%;
+  background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.2s ease;
+}
+.player-hand .card:hover {
+  transform: scale(1.5) translateY(-3em);
+}
+.player-hand .to-be-played {
+  box-sizing: border-box;
+  border: 3px solid goldenrod;
+  box-shadow: 0px 0px 4px 4px gold;
+}
+
+.alienor-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/alienor-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.arc-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/arc-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.blanche-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/blanche-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.cardinal-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/cardinal-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.charles-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/charles-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.eric-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/eric-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.eric-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/eric-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.francois-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/francois-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.gauvain-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/gauvain-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.guenievre-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/guenievre-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.henri-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/henri-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.isabelle-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/isabelle-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.jeanne-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/jeanne-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.lambert-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/lambert-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.mireille-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/mireille-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.othon-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/othon-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.philippe-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/philippe-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.quentin-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/quentin-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.thierry-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/public/storage/cards/lords/thierry-card.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.disaster-recto {
+  height: 55px;
+  width: 80px;
+  transform: rotate(90deg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.player-hand .card {
+  height: 120px;
+  width: 80px;
+  position: relative;
+  bottom: 40%;
+  background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.2s ease;
+}
+.player-hand .card:hover {
+  transform: scale(1.5) translateY(-3em);
+}
+.player-hand .to-be-played {
+  box-sizing: border-box;
+  border: 3px solid goldenrod;
+  box-shadow: 0px 0px 4px 4px gold;
+}
+
+.ambush-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/storage/app/public/images/cards/events/ambush.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.harvest-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/storage/app/public/images/cards/events/harvest.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.justice-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/storage/app/public/images/cards/events/justice.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.murder-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/storage/app/public/images/cards/events/murder.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.plague-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/storage/app/public/images/cards/events/plague.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.plague-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/storage/app/public/images/cards/events/plague.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.revolt-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/storage/app/public/images/cards/events/revolt.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.starvation-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/storage/app/public/images/cards/events/starvation.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.storm-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/storage/app/public/images/cards/events/storm.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.tax-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/storage/app/public/images/cards/events/tax.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.tunnel-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/storage/app/public/images/cards/events/tunnel.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.wealth-card {
+  height: 200px;
+  width: 130px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  background-image: url("/fief/storage/app/public/images/cards/events/wealth.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.card-pile {
+  height: 55px;
+  width: 80px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid white;
+}
+.card-pile .card {
+  position: absolute;
+}
+
+.lord-verso {
+  height: 55px;
+  width: 80px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-image: url("/fief/public/storage/cards/versos/lord-90.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.event-verso {
+  height: 55px;
+  width: 80px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-image: url("/fief/public/storage/cards/versos/event-90.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.disaster-verso {
+  height: 55px;
+  width: 80px;
+  border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-image: url("/fief/public/storage/cards/versos/disaster-90.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.locations .empty {
+  border: 1px solid #7e7e7e;
+}
+.locations .empty:hover {
+  border: 1px solid #cfcfcf;
+  transform: scale(1.1);
+}
+.locations .icons {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+.locations .icons i {
+  color: #eeeeee;
+  z-index: 5;
+  text-shadow: black 0px 0px 5px;
+}
+.locations .wealth {
+  box-shadow: 0px 0px 5px 2px rgba(255, 217, 0, 0.774);
+}
+.locations .village {
+  position: absolute;
+  height: 8%;
+  width: 6%;
+  display: block;
+  border-radius: 0.3em;
+  transition: 0.3s ease;
+}
+.locations .village:hover {
+  transform: scale(1.3);
+  z-index: 4;
+}
+.locations .village:hover > .army:nth-of-type(1) {
+  transform: translateX(-30%);
+  transform: translateY(-30%);
+}
+.locations .village > .army:nth-of-type(1) {
+  left: -60%;
+  top: -80%;
+}
+.locations .village > .army:nth-of-type(2) {
+  left: -90%;
+  top: 0%;
+}
+.locations .village > .army:nth-of-type(3) {
+  left: -60%;
+  top: 60%;
+}
+.locations .village > .army:nth-of-type(4) {
+  left: 60%;
+  top: -80%;
+}
+.locations .village > .army:nth-of-type(5) {
+  left: 90%;
+  top: 0%;
+}
+.locations .village > .army:nth-of-type(6) {
+  left: 60%;
+  top: 60%;
+}
+.locations #tournus {
+  left: 77%;
+  top: 20%;
+}
+.locations #belleville {
+  left: 86.5%;
+  top: 6%;
+}
+.locations #pugnac {
+  left: 88%;
+  top: 36%;
+}
+.locations #st-gérôme {
+  left: 85.5%;
+  top: 58.5%;
+}
+.locations #st-médard {
+  left: 63.5%;
+  top: 56%;
+}
+.locations #st-andré {
+  left: 88.5%;
+  top: 79.5%;
+}
+.locations #bourg {
+  left: 53%;
+  top: 80.5%;
+}
+.locations #villeneuve {
+  left: 44%;
+  top: 56%;
+}
+.locations #st-vivien {
+  left: 37.5%;
+  top: 80%;
+}
+.locations #la-buissière {
+  left: 71.5%;
+  top: 82.5%;
+}
+.locations #les-essarts {
+  left: 29.5%;
+  top: 59%;
+}
+.locations #st-paul {
+  left: 14%;
+  top: 81%;
+}
+.locations #sigy {
+  left: 5%;
+  top: 63%;
+}
+.locations #marcamps {
+  left: 14.5%;
+  top: 48.5%;
+}
+.locations #st-ciers-d-abzac {
+  left: 7%;
+  top: 32%;
+}
+.locations #blaye {
+  left: 25%;
+  top: 26%;
+}
+.locations #beaujeu {
+  left: 6%;
+  top: 11%;
+}
+.locations #la-salle {
+  left: 22%;
+  top: 4%;
+}
+.locations #charolles {
+  left: 36%;
+  top: 37%;
+}
+.locations #sennecy {
+  left: 37%;
+  top: 12%;
+}
+.locations #l-épervier {
+  left: 50%;
+  top: 28%;
+}
+.locations #château-neuf {
+  left: 51%;
+  top: 8%;
+}
+.locations #mazilles {
+  left: 63%;
+  top: 13%;
+}
+.locations #st-andromy {
+  left: 71.5%;
+  top: 40%;
+}
+
+.chateau {
+  height: 100% !important;
+  width: 100% !important;
+  position: absolute;
+  opacity: 1 !important;
+  background-image: url("/fief/public/storage/tokens/buildings/castle.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.cite {
+  height: 100% !important;
+  width: 100% !important;
+  position: absolute;
+  opacity: 1 !important;
+  background-image: url("/fief/public/storage/tokens/buildings/city.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.moulin {
+  height: 100% !important;
+  width: 100% !important;
+  position: absolute;
+  opacity: 1 !important;
+  background-image: url("/fief/public/storage/tokens/buildings/mill.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transform: translateX(-10px) translateY(10px) scale(0.6);
+  z-index: 2;
+}
+
+.remaining-chateau {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  background-image: url("/fief/public/storage/tokens/buildings/castle.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.remaining-cite {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  background-image: url("/fief/public/storage/tokens/buildings/city.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.remaining-moulin {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  background-image: url("/fief/public/storage/tokens/buildings/mill.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.armies {
+  height: 100%;
+  width: 100%;
+}
+
+.army {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  transition: 0.3s ease;
+}
+.army .moving-lord {
+  border: 2px solid gold;
+}
+.army .army-forces {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 0.3s ease;
+  height: 100%;
+  width: 100%;
+}
+.army .army-forces > .lord {
+  width: 50%;
+  left: -1%;
+}
+.army .army-forces > .lord:nth-child(1) {
+  z-index: 4;
+}
+.army .army-forces > .lord:nth-child(2) {
+  z-index: 3;
+  left: -40%;
+}
+.army .army-forces > .lord:nth-child(3) {
+  z-index: 2;
+  left: -80%;
+}
+.army .army-forces > .lord:nth-child(4) {
+  z-index: 1;
+  left: -120%;
+}
+.army .army-forces > .remaining-moulin, .army .army-forces > .remaining-chateau, .army .army-forces > .remaining-cite, .army .army-forces > .sergeant, .army .army-forces > .knight {
+  top: 20%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(1), .army .army-forces > .remaining-chateau:nth-of-type(1), .army .army-forces > .remaining-cite:nth-of-type(1), .army .army-forces > .sergeant:nth-of-type(1), .army .army-forces > .knight:nth-of-type(1) {
+  left: 45%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(2), .army .army-forces > .remaining-chateau:nth-of-type(2), .army .army-forces > .remaining-cite:nth-of-type(2), .army .army-forces > .sergeant:nth-of-type(2), .army .army-forces > .knight:nth-of-type(2) {
+  left: 50%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(3), .army .army-forces > .remaining-chateau:nth-of-type(3), .army .army-forces > .remaining-cite:nth-of-type(3), .army .army-forces > .sergeant:nth-of-type(3), .army .army-forces > .knight:nth-of-type(3) {
+  left: 55%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(4), .army .army-forces > .remaining-chateau:nth-of-type(4), .army .army-forces > .remaining-cite:nth-of-type(4), .army .army-forces > .sergeant:nth-of-type(4), .army .army-forces > .knight:nth-of-type(4) {
+  left: 60%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(5), .army .army-forces > .remaining-chateau:nth-of-type(5), .army .army-forces > .remaining-cite:nth-of-type(5), .army .army-forces > .sergeant:nth-of-type(5), .army .army-forces > .knight:nth-of-type(5) {
+  left: 65%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(6), .army .army-forces > .remaining-chateau:nth-of-type(6), .army .army-forces > .remaining-cite:nth-of-type(6), .army .army-forces > .sergeant:nth-of-type(6), .army .army-forces > .knight:nth-of-type(6) {
+  left: 70%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(7), .army .army-forces > .remaining-chateau:nth-of-type(7), .army .army-forces > .remaining-cite:nth-of-type(7), .army .army-forces > .sergeant:nth-of-type(7), .army .army-forces > .knight:nth-of-type(7) {
+  left: 75%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(8), .army .army-forces > .remaining-chateau:nth-of-type(8), .army .army-forces > .remaining-cite:nth-of-type(8), .army .army-forces > .sergeant:nth-of-type(8), .army .army-forces > .knight:nth-of-type(8) {
+  left: 80%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(9), .army .army-forces > .remaining-chateau:nth-of-type(9), .army .army-forces > .remaining-cite:nth-of-type(9), .army .army-forces > .sergeant:nth-of-type(9), .army .army-forces > .knight:nth-of-type(9) {
+  left: 85%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(10), .army .army-forces > .remaining-chateau:nth-of-type(10), .army .army-forces > .remaining-cite:nth-of-type(10), .army .army-forces > .sergeant:nth-of-type(10), .army .army-forces > .knight:nth-of-type(10) {
+  left: 90%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(11), .army .army-forces > .remaining-chateau:nth-of-type(11), .army .army-forces > .remaining-cite:nth-of-type(11), .army .army-forces > .sergeant:nth-of-type(11), .army .army-forces > .knight:nth-of-type(11) {
+  left: 95%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(12), .army .army-forces > .remaining-chateau:nth-of-type(12), .army .army-forces > .remaining-cite:nth-of-type(12), .army .army-forces > .sergeant:nth-of-type(12), .army .army-forces > .knight:nth-of-type(12) {
+  left: 100%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(13), .army .army-forces > .remaining-chateau:nth-of-type(13), .army .army-forces > .remaining-cite:nth-of-type(13), .army .army-forces > .sergeant:nth-of-type(13), .army .army-forces > .knight:nth-of-type(13) {
+  left: 105%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(14), .army .army-forces > .remaining-chateau:nth-of-type(14), .army .army-forces > .remaining-cite:nth-of-type(14), .army .army-forces > .sergeant:nth-of-type(14), .army .army-forces > .knight:nth-of-type(14) {
+  left: 110%;
+}
+.army .army-forces > .remaining-moulin:nth-of-type(15), .army .army-forces > .remaining-chateau:nth-of-type(15), .army .army-forces > .remaining-cite:nth-of-type(15), .army .army-forces > .sergeant:nth-of-type(15), .army .army-forces > .knight:nth-of-type(15) {
+  left: 115%;
+}
+.army .army-forces:hover > .sergeant {
+  top: -35%;
+  z-index: 5;
+}
+.army .army-forces:hover > .knight {
+  top: 35%;
+  z-index: 5;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(1), .army .army-forces:hover > .knight:nth-of-type(1) {
+  left: 40%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(2), .army .army-forces:hover > .knight:nth-of-type(2) {
+  left: 50%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(3), .army .army-forces:hover > .knight:nth-of-type(3) {
+  left: 60%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(4), .army .army-forces:hover > .knight:nth-of-type(4) {
+  left: 70%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(5), .army .army-forces:hover > .knight:nth-of-type(5) {
+  left: 80%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(6), .army .army-forces:hover > .knight:nth-of-type(6) {
+  left: 90%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(7), .army .army-forces:hover > .knight:nth-of-type(7) {
+  left: 100%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(8), .army .army-forces:hover > .knight:nth-of-type(8) {
+  left: 110%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(9), .army .army-forces:hover > .knight:nth-of-type(9) {
+  left: 120%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(10), .army .army-forces:hover > .knight:nth-of-type(10) {
+  left: 130%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(11), .army .army-forces:hover > .knight:nth-of-type(11) {
+  left: 140%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(12), .army .army-forces:hover > .knight:nth-of-type(12) {
+  left: 150%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(13), .army .army-forces:hover > .knight:nth-of-type(13) {
+  left: 160%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(14), .army .army-forces:hover > .knight:nth-of-type(14) {
+  left: 170%;
+}
+.army .army-forces:hover > .sergeant:nth-of-type(15), .army .army-forces:hover > .knight:nth-of-type(15) {
+  left: 180%;
+}
+.army .move-menu {
+  position: relative;
+  height: 0px;
+  width: 0px;
+  top: -10%;
+  left: -40%;
+}
+.army .move-menu i {
+  height: 0px;
+  width: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 0px;
+  color: transparent;
+  background-color: goldenrod;
+  transition: 0.3s ease;
+}
+.army .move-menu i:hover {
+  box-shadow: inset 0px 0px 5px 1px rgba(75, 43, 16, 0.8);
+  color: white;
+}
+.army .move-menu.show {
+  height: auto;
+  width: auto;
+  z-index: 4;
+}
+.army .move-menu.show i {
+  font-size: 1rem;
+  height: 25px;
+  width: 25px;
+  color: #442906;
+}
+.army .move-menu.show i:first-child {
+  transform: translateY(160%) translateX(-100%);
+}
+.army .move-menu.show i:nth-child(2) {
+  transform: translateY(160%);
+}
+.army .move-menu.show i:nth-child(3) {
+  transform: translateY(160%) translateX(100%);
+}
+.army .move-menu.show i:nth-child(4) {
+  border-radius: 10em;
+  height: 20px;
+  width: 20px;
+  transform: translateY(150%) translateX(200%) scale(0.7);
+}
+.army .move-menu.show i.active {
+  background-color: #f5c64f;
+  color: white;
+}
+
+.army-manager {
+  height: 500px;
+  width: 735px;
+  background-color: #031c35;
+  background-image: url("/fief/storage/app/public/textures/grunge2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 5px solid #010c16;
+  box-shadow: inset 0px 0px 10px 5px rgba(1, 12, 22, 0.712);
+  display: flex;
+}
+.army-manager > * {
+  box-sizing: border-box;
+  border: 1px solid whitesmoke;
+}
+.army-manager > section {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.army-manager > section > * {
+  box-sizing: border-box;
+  border: 1px solid whitesmoke;
+}
+.army-manager > section > h1 {
+  height: 15%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.army-manager > section > div {
+  height: 85%;
+  width: 100%;
+}
+.army-manager .a-m-move-btns {
+  width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.army-manager .a-m-move-btns button {
+  color: orange;
+  background-color: orangered;
+  border: 1px solid orange;
+  border-radius: 0.3em;
+  margin: 1em 0;
+  font-size: 1.5rem;
+  padding: 0.3em;
+}
+.army-manager .token {
+  position: unset;
+  height: 45px;
+  width: 45px;
+}
+.army-manager .lord {
+  width: 25%;
+  background-image: url("/fief/storage/app/public/cards/lords/Eric.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.army-manager .a-m-staying-lords,
+.army-manager .a-m-moving-lords {
+  height: 33%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.army-manager .a-m-staying-army,
+.army-manager .a-m-moving-army {
+  height: 66%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: 1em;
+}
+.army-manager .selected-to-move,
+.army-manager .selected-to-stay {
+  transform: scale(0.8);
+}
+
+.alienor-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/alienor-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.arthur-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/arthur-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.blanche-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/blanche-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.charles-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/charles-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.eric-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/eric-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.francois-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/francois-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.gauvain-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/gauvain-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.guenievre-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/guenievre-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.henri-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/henri-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.isabelle-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/isabelle-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.jeanne-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/jeanne-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.lambert-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/lambert-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.mireille-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/mireille-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.othon-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/othon-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.philippe-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/philippe-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.quentin-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/quentin-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.thierry-token {
+  height: 30px;
+  width: 10%;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-image: url("/fief/public/storage/tokens/lords/thierry-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.sergeant {
+  background-image: url("/fief/public/storage/tokens/armies/soldier.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.knight {
+  background-image: url("/fief/public/storage/tokens/armies/knight.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .draw-first-lord {

@@ -15,12 +15,12 @@ class CreateBuildingsTable extends Migration
     {
         Schema::create('buildings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('type');
             $table->integer('price');
             $table->integer('income');
             $table->integer('defense');
             $table->foreignId('game_id')->constrained();
-            $table->foreignId('village_id')->nullable()->constrained('villages')->default(null);
+            $table->foreignId('village_id')->nullable()->constrained()->default(null);
         });
     }
 

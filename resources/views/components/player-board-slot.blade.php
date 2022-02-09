@@ -18,7 +18,7 @@
         </span>
     @endfor
 
-    @if($lord))
+    @if($lord && $lord->on_board))
         <span
             class="slot player-board-{{$lord->name}}"
             style="background-image: url('/fief/storage/app/public/cards/lords/Eric.png')"

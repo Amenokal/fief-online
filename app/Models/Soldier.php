@@ -14,6 +14,8 @@ class Soldier extends Model
     public $timestamps = false;
     public $fillable = [
         'type',
+        'name',
+        'gender',
         'price',
         'power',
         'pv',

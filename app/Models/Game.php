@@ -10,29 +10,42 @@ use App\Models\Village;
 use App\Models\Building;
 use App\Models\GameTurn;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Game extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public $fillable = [
         'mod',
+        'is_started',
         'is_over',
-        'player',
-        'phase',
-        'turn',
+        'current_player',
+        'current_phase',
+        'current_turn',
     ];
+
+
 
     public static function current()
     {
         return Game::latest()->first();
     }
 
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function players()
     {
         return $this->hasMany(Player::class);
     }
+
 
 
     public function cards()
@@ -62,16 +75,4 @@ class Game extends Model
     {
         return $this->hasMany(Title::class);
     }
-
-
-
-    /////
-
-
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
 }

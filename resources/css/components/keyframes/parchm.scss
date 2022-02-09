@@ -1,0 +1,55 @@
+// LOGIN PARCHM
+
+.animate-parchm {
+    animation: 'showParchm' .5s ease-out forwards;
+}
+.open-parchm {
+    animation: 'openParchmContainer' .5s .5s ease-out forwards;
+
+    form {
+        opacity: 0;
+        animation: 'showForm' .5s .5s forwards;
+    }
+}
+
+.open-parchm-bottom {
+    animation: 'openParchmBottom' .5s .5s ease-out forwards;
+}
+
+@keyframes showParchm {
+    from {
+        transform: translateY(300%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes openParchmContainer {
+    from {
+        height: 75px;
+    }
+    to {
+        height: 280px;
+    }
+}
+@keyframes openParchmBottom {
+    from{
+        top: -275px;
+    }
+    to {
+        top: -75px;
+    }
+
+}
+@keyframes showForm {
+    from {
+        opacity: 0;
+    }
+    70% {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

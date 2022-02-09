@@ -1,0 +1,122 @@
+[
+    {
+        "name": "alienor",
+        "gender": "M",
+        "card_img": "storage/cards/lords/alienor-card.png",
+        "token_img": "storage/tokens/lords/alienor-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "arthur",
+        "gender": "M",
+        "card_img": "storage/cards/lords/arthur-card.png",
+        "token_img": "storage/tokens/lords/arthur-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "blanche",
+        "gender": "F",
+        "card_img": "storage/cards/lords/blanche-card.png",
+        "token_img": "storage/tokens/lords/blanche-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "charles",
+        "gender": "M",
+        "card_img": "storage/cards/lords/charles-card.png",
+        "token_img": "storage/tokens/lords/charles-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "eric",
+        "gender": "M",
+        "card_img": "storage/cards/lords/eric-card.png",
+        "token_img": "storage/tokens/lords/eric-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "francois",
+        "gender": "M",
+        "card_img": "storage/cards/lords/francois-card.png",
+        "token_img": "storage/tokens/lords/francois-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "gauvain",
+        "gender": "M",
+        "card_img": "storage/cards/lords/gauvain-card.png",
+        "token_img": "storage/tokens/lords/gauvain-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "guenievre",
+        "gender": "F",
+        "card_img": "storage/cards/lords/guenievre-card.png",
+        "token_img": "storage/tokens/lords/guenievre-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "henri",
+        "gender": "M",
+        "card_img": "storage/cards/lords/henri-card.png",
+        "token_img": "storage/tokens/lords/henri-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "isabelle",
+        "gender": "F",
+        "card_img": "storage/cards/lords/isabelle-card.png",
+        "token_img": "storage/tokens/lords/isabelle-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "jeanne",
+        "gender": "F",
+        "card_img": "storage/cards/lords/jeanne-card.png",
+        "token_img": "storage/tokens/lords/jeanne-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "lambert",
+        "gender": "M",
+        "card_img": "storage/cards/lords/lambert-card.png",
+        "token_img": "storage/tokens/lords/lambert-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "mireille",
+        "gender": "F",
+        "card_img": "storage/cards/lords/mireille-card.png",
+        "token_img": "storage/tokens/lords/mireille-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "othon",
+        "gender": "M",
+        "card_img": "storage/cards/lords/othon-card.png",
+        "token_img": "storage/tokens/lords/othon-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "philippe",
+        "gender": "M",
+        "card_img": "storage/cards/lords/philippe-card.png",
+        "token_img": "storage/tokens/lords/philippe-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "quentin",
+        "gender": "M",
+        "card_img": "storage/cards/lords/quentin-card.png",
+        "token_img": "storage/tokens/lords/quentin-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    },
+    {
+        "name": "thierry",
+        "gender": "M",
+        "card_img": "storage/cards/lords/thierry-card.png",
+        "token_img": "storage/tokens/lords/thierry-token.png",
+        "verso_img": "storage/cards/versos/lord.png"
+    }
+
+]

@@ -1,0 +1,57 @@
+@import '../card.scss';
+
+@mixin event-img($card){
+    background-image: url('/fief/storage/app/public/images/cards/events/'+$card+'.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.ambush-card{
+    @include card;
+    @include event-img('ambush');
+}
+.harvest-card{
+    @include card;
+    @include event-img('harvest');
+}
+.justice-card{
+    @include card;
+    @include event-img('justice');
+}
+.murder-card{
+    @include card;
+    @include event-img('murder');
+}
+.plague-card{
+    @include card;
+    @include event-img('plague');
+}
+.plague-card{
+    @include card;
+    @include event-img('plague');
+}
+.revolt-card{
+    @include card;
+    @include event-img('revolt');
+}
+.starvation-card{
+    @include card;
+    @include event-img('starvation');
+}
+.storm-card{
+    @include card;
+    @include event-img('storm');
+}
+.tax-card{
+    @include card;
+    @include event-img('tax');
+}
+.tunnel-card{
+    @include card;
+    @include event-img('tunnel');
+}
+.wealth-card{
+    @include card;
+    @include event-img('wealth');
+}

@@ -2305,8 +2305,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
     axios = _require["default"];
 
@@ -2328,9 +2326,9 @@ var Game = /*#__PURE__*/function () {
     value: function update() {
       var _this = this;
 
-      axios.post('./update/game').then(function (res) {
+      axios.post('./game/update').then(function (res) {
         document.querySelector('.game-container').innerHTML = res.data;
-      }).then(function (res) {
+      }).then(function () {
         _this.setListeners();
       });
     }
@@ -2341,6 +2339,13 @@ var Game = /*#__PURE__*/function () {
       this.addPermanentListeners();
     }
   }, {
+    key: "addPhaseListeners",
+    value: function addPhaseListeners() {
+      axios.post('./check/phase').then(function (res) {
+        Phases.addListeners(res.data.turn.phase);
+      });
+    }
+  }, {
     key: "addPermanentListeners",
     value: function addPermanentListeners() {
       // player-boards
@@ -2348,12 +2353,11 @@ var Game = /*#__PURE__*/function () {
         el.addEventListener('click', showBoard);
       }); // turns
 
-      document.getElementById('turn-indicator').addEventListener('click', chooseTurn);
-      document.getElementById('end-turn').addEventListener('click', endTurn); // options
-
-      document.getElementById('fullScreen').addEventListener('click', toggleFullScreen); //reset
-
-      document.getElementById('resetAll').addEventListener('click', reset);
+      document.getElementById('turn-indicator').addEventListener('click', chooseTurn); // document.getElementById('end-turn').addEventListener('click',endTurn);
+      // options
+      // document.getElementById('fullScreen').addEventListener('click', toggleFullScreen);
+      //reset
+      // document.getElementById('resetAll').addEventListener('click', reset)
     }
   }]);
 
@@ -2363,12 +2367,6 @@ var Game = /*#__PURE__*/function () {
 // ::::: SHOW PLAYER BOARDS :::::
 // ------------------------------
 // ///
-
-_defineProperty(Game, "addPhaseListeners", function () {
-  axios.post('./check/phase').then(function (res) {
-    Phases.addListeners(res.data.turn.phase);
-  });
-});
 
 function showBoard(e) {
   if (!document.querySelector('.player-board.open')) {
@@ -2503,15 +2501,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Phases": () => (/* binding */ Phases)
 /* harmony export */ });
-/* harmony import */ var _phases_00_start__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../phases/00_start */ "./resources/js/phases/00_start.js");
-/* harmony import */ var _phases_02_cards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../phases/02_cards */ "./resources/js/phases/02_cards.js");
-/* harmony import */ var _phases_03_gold__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../phases/03_gold */ "./resources/js/phases/03_gold.js");
-/* harmony import */ var _phases_04_armies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../phases/04_armies */ "./resources/js/phases/04_armies.js");
+/* harmony import */ var _phases_startGame__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../phases/__startGame */ "./resources/js/phases/__startGame.js");
+/* harmony import */ var _phases_00_start__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../phases/00_start */ "./resources/js/phases/00_start.js");
+/* harmony import */ var _phases_02_cards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../phases/02_cards */ "./resources/js/phases/02_cards.js");
+/* harmony import */ var _phases_03_gold__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../phases/03_gold */ "./resources/js/phases/03_gold.js");
+/* harmony import */ var _phases_04_armies__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../phases/04_armies */ "./resources/js/phases/04_armies.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
 
 
 
@@ -2535,6 +2535,10 @@ var Phases = /*#__PURE__*/function () {
       game.replaceWith(game.cloneNode(true));
 
       switch (phase) {
+        case -1:
+          initStartGame();
+          break;
+
         case 0:
           initDrawFirstLord();
           break;
@@ -2570,6 +2574,9 @@ var Phases = /*#__PURE__*/function () {
         case 12:
           initMove();
           break;
+
+        default:
+          break;
       }
     }
   }]);
@@ -2578,12 +2585,18 @@ var Phases = /*#__PURE__*/function () {
 }(); // PHASE 00 ::::: GAME START
 // -------------------------
 
+function initStartGame() {
+  document.getElementById('startGameBtn').addEventListener('click', _phases_startGame__WEBPACK_IMPORTED_MODULE_0__.startGame);
+} // PHASE 00 ::::: GAME START
+// -------------------------
+
+
 function initDrawFirstLord() {
-  document.getElementById('step1').addEventListener('click', _phases_00_start__WEBPACK_IMPORTED_MODULE_0__.drawFirstLord);
+  document.getElementById('step1').addEventListener('click', _phases_00_start__WEBPACK_IMPORTED_MODULE_1__.drawFirstLord);
 }
 
 function initChooseStartLocation() {
-  document.getElementById('step2').addEventListener('click', _phases_00_start__WEBPACK_IMPORTED_MODULE_0__.chooseStartVillage);
+  document.getElementById('step2').addEventListener('click', _phases_00_start__WEBPACK_IMPORTED_MODULE_1__.chooseStartVillage);
 } // PHASE 02 ::::: CARDS
 // --------------------
 // DISCARD
@@ -2591,26 +2604,26 @@ function initChooseStartLocation() {
 
 function initDiscard() {
   document.querySelectorAll('.player-hand>.card').forEach(function (card) {
-    card.addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_1__.discard);
+    card.addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_2__.discard);
   });
 } // DRAW
 
 
 function initDraw() {
   document.querySelectorAll('#lordCardPile>span, #eventCardPile>span').forEach(function (pile) {
-    pile.addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_1__.draw);
+    pile.addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_2__.draw);
   });
 } // DISASTERS
 
 
 function initDisasters() {
-  document.getElementById('disasters-btn').addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_1__.showDisasters);
+  document.getElementById('disasters-btn').addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_2__.showDisasters);
 } // PLAY
 
 
 function initPlayCards() {
   document.querySelectorAll('.player-hand>.card').forEach(function (el) {
-    el.addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_1__.playCard);
+    el.addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_2__.playCard);
   });
 } // PHASE 03 ::::: GOLD
 // -------------------
@@ -2618,13 +2631,13 @@ function initPlayCards() {
 
 
 function initIncome() {
-  document.getElementById('income-btn').addEventListener('click', _phases_03_gold__WEBPACK_IMPORTED_MODULE_2__.getIncome);
+  document.getElementById('income-btn').addEventListener('click', _phases_03_gold__WEBPACK_IMPORTED_MODULE_3__.getIncome);
 } // BUY
 
 
 function initBuy() {
   document.querySelectorAll('#buyBtn-moulin, #buyBtn-chateau, #buyBtn-sergeant, #buyBtn-knight, #buyBtn-crown, #buyBtn-cardinal').forEach(function (el) {
-    el.addEventListener('click', _phases_03_gold__WEBPACK_IMPORTED_MODULE_2__.readyToBuy);
+    el.addEventListener('click', _phases_03_gold__WEBPACK_IMPORTED_MODULE_3__.readyToBuy);
   });
 } // PHASE 04 ::::: MOVEMENTS
 // ------------------------
@@ -2632,7 +2645,7 @@ function initBuy() {
 
 
 function initMove() {
-  document.querySelector('.game-view').addEventListener('click', _phases_04_armies__WEBPACK_IMPORTED_MODULE_3__.moveListeners);
+  document.querySelector('.game-view').addEventListener('click', _phases_04_armies__WEBPACK_IMPORTED_MODULE_4__.moveListeners);
 }
 
 /***/ }),
@@ -3066,7 +3079,7 @@ function buyHere(e) {
     } else if (document.querySelector('.buy-this').id.includes('crown') && document.querySelector('.selected-title') && document.querySelector('.selected-lord')) {
       axios.post('./gold/buy/crown', {
         village: village,
-        title: document.querySelector('.selected-title').id.split('-')[1],
+        title: document.querySelector('.selected-title').className.split(' ')[1].split('-')[1],
         lord: document.querySelector('.selected-lord').id
       }).then(function (res) {
         if (res.headers.gold) {
@@ -3139,21 +3152,32 @@ function moveListeners(e) {
     e.target.parentNode.parentNode.parentNode.parentNode.classList.add('village-from');
   } // MOVE OPTION TOGGLE "ACTIVE"
   else if (e.target.className.includes('move-option')) {
-    if (document.querySelector('.move-menu.show>.active')) {
-      document.querySelector('.move-menu.show>.active').classList.remove('active');
-    }
+    if (e.target.className.includes('close')) {
+      document.querySelector('.move-menu.show').classList.remove('show');
+      document.querySelector('.moving-lord').classList.remove('moving-lord');
+      document.querySelector('.moving-army').classList.remove('moving-army');
+      document.querySelector('.village-from').classList.remove('village-from');
 
-    if (!e.target.className.includes('active')) {
-      e.target.classList.add('active'); // INSPECT >> OPEN ARMY MANAGER MODAL
+      if (document.querySelector('active')) {
+        document.querySelector('active').classList.remove('active');
+      }
+    } else {
+      if (document.querySelector('.move-menu.show>.active')) {
+        document.querySelector('.move-menu.show>.active').classList.remove('active');
+      }
 
-      if (e.target.className.includes('inspect') && e.target.className.includes('active')) {
-        openArmyManager(e);
-      } // ON "ACTIVE" > ADD VILLAGE LISTENERS
+      if (!e.target.className.includes('active')) {
+        e.target.classList.add('active'); // INSPECT >> OPEN ARMY MANAGER MODAL
+
+        if (e.target.className.includes('inspect') && e.target.className.includes('active')) {
+          openArmyManager(e);
+        } // ON "ACTIVE" > ADD VILLAGE LISTENERS
 
 
-      document.querySelectorAll('.village').forEach(function (el) {
-        el.addEventListener('click', villageListeners, true);
-      });
+        document.querySelectorAll('.village').forEach(function (el) {
+          el.addEventListener('click', villageListeners, true);
+        });
+      }
     }
   }
 }
@@ -3261,6 +3285,28 @@ function armyManagerListeners(e) {
 //     document.querySelector('.village-from').classList.remove('from');
 //     document.querySelector('.village-to').classList.remove('to');
 // }
+
+/***/ }),
+
+/***/ "./resources/js/phases/__startGame.js":
+/*!********************************************!*\
+  !*** ./resources/js/phases/__startGame.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "startGame": () => (/* binding */ startGame)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _classes_Game_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../classes/Game.js */ "./resources/js/classes/Game.js");
+
+
+function startGame() {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post('./gamestart/0').then(_classes_Game_js__WEBPACK_IMPORTED_MODULE_1__.Game.update());
+}
 
 /***/ }),
 

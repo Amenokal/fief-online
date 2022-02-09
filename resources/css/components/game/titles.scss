@@ -21,7 +21,6 @@
 .crown {
     height: 3%;
     width: 8%;
-    background-image: url('/fief/storage/app/public/images/crown.png');
 }
 .crown-slot {
     height: 100%;
@@ -31,66 +30,78 @@
         transform: rotate(90deg);
         left: -2.5%;
         top: 10%;
+        background-image: url('/fief/public/storage/tokens/titles/crown-1.png');
     }
     .crown-2 {
         transform: rotate(180deg);
         left: 44%;
+        background-image: url('/fief/public/storage/tokens/titles/crown-2.png');
     }
     .crown-3 {
         transform: rotate(180deg);
         left: 70%;
+        background-image: url('/fief/public/storage/tokens/titles/crown-3.png');
     }
     .crown-4 {
         transform: rotate(-90deg);
         right: -1.5%;
         top: 25%;
+        background-image: url('/fief/public/storage/tokens/titles/crown-4.png');
     }
     .crown-5 {
         transform: rotate(-90deg);
         right: -1.5%;
         top: 72%;
+        background-image: url('/fief/public/storage/tokens/titles/crown-5.png');
     }
     .crown-6 {
         bottom: 0;
         left: 30%;
+        background-image: url('/fief/public/storage/tokens/titles/crown-6.png');
     }
     .crown-7 {
         bottom: 0;
         left: 8%;
+        background-image: url('/fief/public/storage/tokens/titles/crown-7.png');
     }
     .crown-8 {
         transform: rotate(90deg);
         left:-2.8%;
         top: 62%;
+        background-image: url('/fief/public/storage/tokens/titles/crown-8.png');
     }
 
 .cross {
     height: 15%;
     width: 2%;
-    background-image: url('/fief/storage/app/public/images/cross.png');
 }
     #cross-1{
         transform: rotate(90deg);
         left: 32%;
         top: -6%;
+        background-image: url('/fief/public/storage/tokens/titles/cross-1.png');
     }
     #cross-2{
         transform: rotate(90deg);
         left: 62%;
         top: -6%;
+        background-image: url('/fief/public/storage/tokens/titles/cross-2.png');
     }
     #cross-3{
         transform: rotate(180deg);
         right: 2%;
         top: 42%;
+        background-image: url('/fief/public/storage/tokens/titles/cross-3.png');
     }
     #cross-4{
         transform: rotate(-90deg);
         left: 45%;
         bottom: -6%;
+        background-image: url('/fief/public/storage/tokens/titles/cross-4.png');
     }
     #cross-5 {
         top: 40%;
+        background-image: url('/fief/public/storage/tokens/titles/cross-5.png');
     }
 
 .cardinal {
@@ -99,13 +110,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('/fief/storage/app/public/images/free-cardinal.png');
+    background-image: url('/fief/public/storage/tokens/titles/cardinal-free.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
 }
 .payed-cross {
-    background-image: url('/fief/storage/app/public/images/pay-cardinal.png');
+    background-image: url('/fief/public/storage/tokens/titles/cardinal-pay.png');
 }
 
 .arc {
@@ -114,7 +125,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('/fief/storage/app/public/images/arc.png');
+    background-image: url('/fief/public/storage/tokens/titles/arc.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

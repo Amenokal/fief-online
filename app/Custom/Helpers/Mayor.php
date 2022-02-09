@@ -24,6 +24,12 @@ class Mayor {
     public static $counter = 0;
     public static $power = 0;
 
+    /**
+     * Handles changes of ownership after army move.
+     * If a player enter an empty village, he'll get the ownership.
+     * If he leaves a village without guarrison, village will
+     * become without owner.
+     */
     public static function administrate()
     {
         foreach(Realm::villages() as $vilg){

@@ -1,0 +1,76 @@
+@import '../../../../meta/mixin.scss';
+
+@mixin waitingLord {
+    height: 30px;
+    width: 10%;
+    box-shadow: 0px 0px 15px -5px #000000;
+}
+
+.alienor-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/alienor-token.png');
+}
+.arthur-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/arthur-token.png');
+}
+.blanche-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/blanche-token.png');
+}
+.charles-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/charles-token.png');
+}
+.eric-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/eric-token.png');
+}
+.francois-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/francois-token.png');
+}
+.gauvain-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/gauvain-token.png');
+}
+.guenievre-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/guenievre-token.png');
+}
+.henri-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/henri-token.png');
+}
+.isabelle-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/isabelle-token.png');
+}
+.jeanne-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/jeanne-token.png');
+}
+.lambert-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/lambert-token.png');
+}
+.mireille-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/mireille-token.png');
+}
+.othon-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/othon-token.png');
+}
+.philippe-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/philippe-token.png');
+}
+.quentin-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/quentin-token.png');
+}
+.thierry-token {
+    @include waitingLord();
+    @include back-img('tokens/lords/thierry-token.png');
+}

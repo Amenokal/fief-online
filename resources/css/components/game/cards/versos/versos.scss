@@ -1,0 +1,33 @@
+@import '../../../../meta/mixin.scss';
+
+@mixin card-pile {
+    height: 55px;
+    width: 80px;
+    border-radius: .5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.card-pile{
+    @include card-pile;
+    border: 1px solid white;
+
+    .card{
+        position: absolute;
+    }
+}
+
+.lord-verso {
+    @include card-pile;
+    @include back-img('cards/versos/lord-90.png');
+}
+.event-verso {
+    @include card-pile;
+    @include back-img('cards/versos/event-90.png');
+}
+.disaster-verso {
+    @include card-pile;
+    @include back-img('cards/versos/disaster-90.png');
+}

@@ -1,5 +1,5 @@
 @mixin back-img($img){
-    background-image: url('/fief/storage/app/public/'+$img);
+    background-image: url('/fief/public/storage/'+$img);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -7,53 +7,78 @@
 
 @mixin spreadTokens {
 
+    &>.lord{
+        width: 50%;
+        left: -1%;
+
+        &:nth-child(1){
+            z-index: 4;
+        }
+        &:nth-child(2){
+            z-index: 3;
+            left: -40%;
+        }
+        &:nth-child(3){
+            z-index: 2;
+            left: -80%;
+        }
+        &:nth-child(4){
+            z-index: 1;
+            left: -120%;
+        }
+    }
+
     &>.remaining-moulin,
     &>.remaining-chateau,
     &>.remaining-cite,
     &>.sergeant,
     &>.knight {
+        top: 20%;
 
+        &:nth-of-type(1){
+            left: 45%;
+        }
         &:nth-of-type(2){
-            left: 2px;
+            left: 50%;
         }
         &:nth-of-type(3){
-            left: 4px;
+            left: 55%;
         }
         &:nth-of-type(4){
-            left: 6px;
+            left: 60%;
         }
         &:nth-of-type(5){
-            left: 8px;
+            left: 65%;
         }
         &:nth-of-type(6){
-            left: 10px;
+            left: 70%;
         }
         &:nth-of-type(7){
-            left: 12px;
+            left: 75%;
         }
         &:nth-of-type(8){
-            left: 14px;
+            left: 80%;
         }
         &:nth-of-type(9){
-            left: 16px;
+            left: 85%;
         }
         &:nth-of-type(10){
-            left: 18px;
+            left: 90%;
         }
         &:nth-of-type(11){
-            left: 20px;
+            left: 95%;
         }
         &:nth-of-type(12){
-            left: 22px;
+            left: 100%;
         }
         &:nth-of-type(13){
-            left: 24px;
+            left: 105%;
         }
         &:nth-of-type(14){
-            left: 26px;
+            left: 110%;
         }
         &:nth-of-type(15){
-            left: 28px;
+            left:115%;
         }
     }
 }
@@ -61,49 +86,62 @@
 @mixin spreadMoreOnHover{
     &:hover{
 
+        &>.sergeant{
+            top: -35%;
+            z-index: 5;
+        }
+
+        &>.knight{
+            top: 35%;
+            z-index: 5;
+        }
+
         &>.sergeant,
         &>.knight {
+            &:nth-of-type(1){
+                left: 40%;
+            }
             &:nth-of-type(2){
-                left: 5px;
+                left: 50%;
             }
             &:nth-of-type(3){
-                left: 10px;
+                left: 60%;
             }
             &:nth-of-type(4){
-                left: 15px;
+                left: 70%;
             }
             &:nth-of-type(5){
-                left: 20px;
+                left: 80%;
             }
             &:nth-of-type(6){
-                left: 25px;
+                left: 90%;
             }
             &:nth-of-type(7){
-                left: 30px;
+                left: 100%;
             }
             &:nth-of-type(8){
-                left: 35px;
+                left: 110%;
             }
             &:nth-of-type(9){
-                left: 40px;
+                left: 120%;
             }
             &:nth-of-type(10){
-                left: 45px;
+                left: 130%;
             }
             &:nth-of-type(11){
-                left: 50px;
+                left: 140%;
             }
             &:nth-of-type(12){
-                left: 55px;
+                left: 150%;
             }
             &:nth-of-type(13){
-                left: 60px;
+                left: 160%;
             }
             &:nth-of-type(14){
-                left: 65px;
+                left: 170%;
             }
             &:nth-of-type(15){
-                left: 70px;
+                left: 180%;
             }
         }
     }

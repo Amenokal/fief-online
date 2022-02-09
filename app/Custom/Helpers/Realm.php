@@ -19,7 +19,7 @@ class Realm {
     {
         return Player::where([
             'game_id'=>Game::current()->id,
-            'id'=>Game::current()->player
+            'id'=>Game::current()->current_player
         ])->first();
     }
 

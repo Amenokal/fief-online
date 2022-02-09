@@ -1,4 +1,4 @@
-@import '../../meta/mixin.scss';
+@import '../../../meta/mixin.scss';
 
 .armies {
     height: 100%;
@@ -13,59 +13,8 @@
     display: flex;
     transition: .3s ease;
 
-    .lord {
-        height: 100%;
-        width: 100%;
-        background-image: url('/fief/storage/app/public/images/charles.png');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        position: absolute;
-        transition: .5s ease;
-        box-shadow: 0px 0px 15px -5px #000000;
-    }
-
-    .lord-forces {
-        height: 100%;
-        width: 50%;
-        display: flex;
-        justify-content: center;
-        position: relative;
-
-        .lord{
-            &:nth-child(1){
-                z-index: 4;
-            }
-            &:nth-child(2){
-                z-index: 3;
-                left: -40%;
-            }
-            &:nth-child(3){
-                z-index: 2;
-                left: -80%;
-            }
-            &:nth-child(4){
-                z-index: 1;
-                left: -120%;
-            }
-        }
-
-        &:hover {
-            .lord {
-                &:nth-child(2){
-                    left: -80%;
-                }
-                &:nth-child(3){
-                    z-index: 2;
-                    left: -160%;
-                }
-                &:nth-child(4){
-                    z-index: 1;
-                    left: -240%;
-                }
-
-            }
-        }
+    .moving-lord {
+        border: 2px solid gold;
     }
 
     .army-forces{
@@ -74,25 +23,14 @@
         flex-direction: column;
         justify-content: center;
         transition: .3s ease;
-        width: 50%;
-        top: 20%;
+        height: 100%;
+        width: 100%;
         @include spreadTokens;
         @include spreadMoreOnHover;
-
-
-        &:hover>.sergeant{
-            top: -35%;
-            z-index: 5;
-        }
-
-        &:hover>.knight{
-            top: 35%;
-            z-index: 5;
-        }
     }
 
 
-    // ARMY MOVE OPTIONS
+    // ARMY MOVE MENU
     .move-menu {
         position: relative;
         height: 0px;
@@ -161,16 +99,6 @@
                 }
             }
         }
-    }
-
-    .banner {
-        // box-sizing: border-box;
-        border: 1px solid white;
-        height: 85%;
-        width: auto;
-        position: absolute;
-        right: -50%;
-        z-index: 5;
     }
 
 }
