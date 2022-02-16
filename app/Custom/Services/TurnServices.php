@@ -25,35 +25,29 @@ class TurnServices {
 
     public static function changeTurn(int $phase_index)
     {
-        Game::current()->update(["phase" => $phase_index]);
+        Game::current()->update(["current_phase" => $phase_index]);
     }
 
     public static function passTurn()
     {
         $phases = Librarian::decipherJson('meta/turn.json');
 
-        if(Game::current()->player < Realm::families()->count()){
-            Game::current()::increment('player');
-            $data = ['player' => true];
-        }else{
-            Game::current()->update(['player'=>1]);
-            $data = ['player' => true];
+        Game::current()::increment('current_player');
+
+        if(Game::current()->current_player > Realm::families()->count()){
+
+            Game::current()->update(['current_player'=>1]);
+            Game::current()::increment('current_phase');
+
+            if(Game::current()->current_phase > count($phases)){
+
+                Game::current()->update(['current_phase'=>2]);
+                Game::current()::increment('current_turn');
+            }
+
         }
 
-        if(Game::current()->phase < count($phases)){
-            Game::current()::increment('phase');
-            $data = ['phase' => true];
-        }else{
-            Game::current()->update(['phase'=>2]);
-            $data = ['turn' => true];
-        }
-
-        if(Game::current()->phase === count($phases)-1){
-            Game::current()::increment('turn');
-            ['turn' => true];
-        }
-
-        return Arr::add($data, 'color', Realm::currentPlayer()->color);
+        return response()->json(['color' => Realm::currentPlayer()->color]);
     }
 
 }

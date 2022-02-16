@@ -2076,7 +2076,7 @@ __webpack_require__.r(__webpack_exports__);
 // ---------------------
 // ///
 
-function firstLordAnimation(newCard) {
+function firstLordAnimation(cardName, player) {
   var pile = document.getElementById('lordCardPile');
   pile.innerHTML += '<span class="card lord-verso"></span>';
   console.log(pile);
@@ -2084,24 +2084,20 @@ function firstLordAnimation(newCard) {
   card.classList.add('draw-first-lord');
   console.log(card);
   setTimeout(function () {
-    card.addEventListener('click', function () {
-      card.classList.add('clicked', 'reveal-1');
+    card.classList.add('reveal-1');
+    setTimeout(function () {
+      card.classList.remove('reveal-1', 'lord-verso');
+      card.classList.add('reveal-2', cardName + '-card');
       setTimeout(function () {
-        card.classList.remove('reveal-1');
-        card.classList.add('reveal-2');
-        card.id = newCard.name;
-        card.style = "background-image: url(".concat(newCard.img_src, ")");
-        setTimeout(function () {
-          card.classList.remove('reveal-2');
-          card.classList.add('take-first-lord');
-        }, 1500);
-        setTimeout(function () {
-          document.querySelector('.player-hand').innerHTML += _classes_GameElements__WEBPACK_IMPORTED_MODULE_0__.GameElements.lordCardRecto(newCard.name, newCard.img_src);
-          document.querySelector('.player-hand>.card').classList.add('drawn');
-          card.remove();
-        }, 2000);
-      }, 500);
-    });
+        card.classList.remove('reveal-2');
+        card.classList.add('take-first-lord');
+      }, 1500);
+      setTimeout(function () {
+        document.querySelector('.player-hand').innerHTML += _classes_GameElements__WEBPACK_IMPORTED_MODULE_0__.GameElements.lordCardRecto(cardName);
+        document.querySelector('.player-hand>.card').classList.add('drawn');
+        card.remove();
+      }, 2000);
+    }, 500);
   }, 1000);
 }
 function drawAnimation(newCard, nextCardType) {
@@ -2322,62 +2318,54 @@ var Game = /*#__PURE__*/function () {
   }
 
   _createClass(Game, null, [{
-    key: "getData",
-    value: function getData() {
-      axios.post('./game/get/data').then(function (res) {
-        console.log(res);
-      });
-    }
-  }, {
     key: "update",
     value: function update() {
-      var _this = this;
-
+      console.log('updating...');
       axios.post('./game/update').then(function (res) {
         document.querySelector('.game-container').innerHTML = res.data;
       }).then(function () {
-        _this.setListeners();
+        setListeners();
       });
-    }
-  }, {
-    key: "setListeners",
-    value: function setListeners() {
-      this.addPhaseListeners();
-      this.addPermanentListeners();
-    }
-  }, {
-    key: "addPhaseListeners",
-    value: function addPhaseListeners() {
-      axios.post('./check/phase').then(function (res) {
-        Phases.addListeners(res.data.turn.phase);
-      });
-    }
-  }, {
-    key: "addPermanentListeners",
-    value: function addPermanentListeners() {
-      // player-boards
-      document.querySelectorAll('.player-name').forEach(function (el) {
-        el.addEventListener('click', showBoard);
-      }); // turns
-
-      document.getElementById('turn-indicator').addEventListener('click', chooseTurn);
-
-      if (document.getElementById('end-turn')) {
-        document.getElementById('end-turn').addEventListener('click', endTurn); // options
-
-        document.getElementById('fullScreen').addEventListener('click', toggleFullScreen); //reset
-
-        document.getElementById('resetAll').addEventListener('click', reset);
-      }
     }
   }]);
 
   return Game;
-}(); // \\\
+}();
+
+function setListeners() {
+  preparePhase();
+  addPermanentListeners();
+}
+
+function preparePhase() {
+  console.log('checking server for current phase...');
+  axios.post('./check/phase').then(function (res) {
+    Phases.prepare(res.data.turn.phase);
+  });
+}
+
+function addPermanentListeners() {
+  console.log('adding permanent listeners...'); // player-boards
+
+  document.querySelectorAll('.player-name').forEach(function (el) {
+    el.addEventListener('click', showBoard);
+  }); // turns
+
+  document.getElementById('turn-indicator').addEventListener('click', chooseTurn);
+
+  if (document.getElementById('end-turn')) {
+    document.getElementById('end-turn').addEventListener('click', endTurn); // options
+
+    document.getElementById('fullScreen').addEventListener('click', toggleFullScreen); //reset
+
+    document.getElementById('resetAll').addEventListener('click', reset);
+  }
+} // \\\
 // ------------------------------
 // ::::: SHOW PLAYER BOARDS :::::
 // ------------------------------
 // ///
+
 
 function showBoard(e) {
   if (!document.querySelector('.player-board.open')) {
@@ -2485,8 +2473,8 @@ var GameElements = /*#__PURE__*/function () {
 
   _createClass(GameElements, null, [{
     key: "lordCardRecto",
-    value: function lordCardRecto(name, src) {
-      return "<span\n            id=".concat(name, "\n            class='card'\n            style='background-image: url(").concat(src, ")'\n        ></span>");
+    value: function lordCardRecto(name) {
+      return "<span\n            class='card ".concat(name, "-card'\n        ></span>");
     }
   }]);
 
@@ -2512,7 +2500,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Phases": () => (/* binding */ Phases)
 /* harmony export */ });
-/* harmony import */ var _phases_startGame__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../phases/__startGame */ "./resources/js/phases/__startGame.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _phases_00_start__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../phases/00_start */ "./resources/js/phases/00_start.js");
 /* harmony import */ var _phases_02_cards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../phases/02_cards */ "./resources/js/phases/02_cards.js");
 /* harmony import */ var _phases_03_gold__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../phases/03_gold */ "./resources/js/phases/03_gold.js");
@@ -2534,22 +2523,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 var Phases = /*#__PURE__*/function () {
   function Phases() {
     _classCallCheck(this, Phases);
   }
 
   _createClass(Phases, null, [{
-    key: "addListeners",
-    value: function addListeners(phase) {
-      var game = document.querySelector('.game-view');
-      game.replaceWith(game.cloneNode(true));
+    key: "prepare",
+    value: function prepare(phase) {
+      console.log('current phases detected : ' + phase); // let game = document.querySelector('.game-view');
+      // game.replaceWith(game.cloneNode(true));
 
       switch (phase) {
-        case -1:
-          initStartGame();
-          break;
-
         case 0:
           initDrawFirstLord();
           break;
@@ -2596,18 +2582,14 @@ var Phases = /*#__PURE__*/function () {
 }(); // PHASE 00 ::::: GAME START
 // -------------------------
 
-function initStartGame() {
-  document.getElementById('startGameBtn').addEventListener('click', _phases_startGame__WEBPACK_IMPORTED_MODULE_0__.startGame);
-} // PHASE 00 ::::: GAME START
-// -------------------------
-
-
 function initDrawFirstLord() {
-  document.getElementById('step1').addEventListener('click', _phases_00_start__WEBPACK_IMPORTED_MODULE_1__.drawFirstLord);
+  // document.getElementById('step1').addEventListener('click', drawFirstLord)
+  (0,_phases_00_start__WEBPACK_IMPORTED_MODULE_1__.drawFirstLord)();
 }
 
 function initChooseStartLocation() {
-  document.getElementById('step2').addEventListener('click', _phases_00_start__WEBPACK_IMPORTED_MODULE_1__.chooseStartVillage);
+  // document.getElementById('step2').addEventListener('click', chooseStartVillage)
+  (0,_phases_00_start__WEBPACK_IMPORTED_MODULE_1__.chooseStartVillage)();
 } // PHASE 02 ::::: CARDS
 // --------------------
 // DISCARD
@@ -2739,6 +2721,7 @@ var Village = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "startGame": () => (/* binding */ startGame),
 /* harmony export */   "drawFirstLord": () => (/* binding */ drawFirstLord),
 /* harmony export */   "chooseStartVillage": () => (/* binding */ chooseStartVillage)
 /* harmony export */ });
@@ -2753,13 +2736,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // \\\
+// ----------------------------
+// GAME START ::::: CREATE GAME
+// ----------------------------
+// ///
+
+function startGame() {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post('./gamestart/0').then(function () {
+    _classes_Game_js__WEBPACK_IMPORTED_MODULE_1__.Game.update();
+  });
+} // \\\
 // -----------------------------------
 // GAME START ::::: STEP 1 = DRAW LORD
 // -----------------------------------
 // ///
 
 function drawFirstLord() {
-  axios__WEBPACK_IMPORTED_MODULE_0___default().post('./gamestart/1').then(function (res) {
+  console.log('telling server to draw first lord...');
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post('./game/phase').then(function (res) {
+    console.log('server answers : ' + res);
+
     if (!res.data.error) {
       (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_4__.firstLordAnimation)(res.data.drawnCard);
     } else {
@@ -3296,28 +3292,6 @@ function armyManagerListeners(e) {
 //     document.querySelector('.village-from').classList.remove('from');
 //     document.querySelector('.village-to').classList.remove('to');
 // }
-
-/***/ }),
-
-/***/ "./resources/js/phases/__startGame.js":
-/*!********************************************!*\
-  !*** ./resources/js/phases/__startGame.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "startGame": () => (/* binding */ startGame)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _classes_Game_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../classes/Game.js */ "./resources/js/classes/Game.js");
-
-
-function startGame() {
-  axios__WEBPACK_IMPORTED_MODULE_0___default().post('./gamestart/0').then(_classes_Game_js__WEBPACK_IMPORTED_MODULE_1__.Game.update());
-}
 
 /***/ }),
 
@@ -22318,7 +22292,7 @@ process.umask = function() { return 0; };
 /***/ ((module) => {
 
 /*!
- * Pusher JavaScript Library v7.0.3
+ * Pusher JavaScript Library v7.0.6
  * https://pusher.com/
  *
  * Copyright 2020, Pusher
@@ -22702,7 +22676,7 @@ exports.maxDecodedLength = function (length) {
 exports.decodedLength = function (s) {
     return stdCoder.decodedLength(s);
 };
-//# sourceMappingURL=base64.js.map
+
 
 /***/ }),
 /* 1 */
@@ -22857,22 +22831,23 @@ function decode(arr) {
     return chars.join("");
 }
 exports.decode = decode;
-//# sourceMappingURL=utf8.js.map
+
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __nested_webpack_require_19967__) {
+/***/ (function(module, exports, __nested_webpack_require_19901__) {
 
 // required so we don't have to do require('pusher').default etc.
-module.exports = __nested_webpack_require_19967__(3).default;
+module.exports = __nested_webpack_require_19901__(3).default;
 
 
 /***/ }),
 /* 3 */
-/***/ (function(module, __webpack_exports__, __nested_webpack_require_20171__) {
+/***/ (function(module, __webpack_exports__, __nested_webpack_require_20105__) {
 
 "use strict";
-__nested_webpack_require_20171__.r(__webpack_exports__);
+// ESM COMPAT FLAG
+__nested_webpack_require_20105__.r(__webpack_exports__);
 
 // CONCATENATED MODULE: ./src/runtimes/web/dom/script_receiver_factory.ts
 var ScriptReceiverFactory = (function () {
@@ -22906,7 +22881,7 @@ var ScriptReceivers = new ScriptReceiverFactory('_pusher_script_', 'Pusher.Scrip
 
 // CONCATENATED MODULE: ./src/core/defaults.ts
 var Defaults = {
-    VERSION: "7.0.3",
+    VERSION: "7.0.6",
     PROTOCOL: 7,
     wsPort: 80,
     wssPort: 443,
@@ -24859,10 +24834,10 @@ var presence_channel_PresenceChannel = (function (_super) {
 /* harmony default export */ var presence_channel = (presence_channel_PresenceChannel);
 
 // EXTERNAL MODULE: ./node_modules/@stablelib/utf8/lib/utf8.js
-var utf8 = __nested_webpack_require_20171__(1);
+var utf8 = __nested_webpack_require_20105__(1);
 
 // EXTERNAL MODULE: ./node_modules/@stablelib/base64/lib/base64.js
-var base64 = __nested_webpack_require_20171__(0);
+var base64 = __nested_webpack_require_20105__(0);
 
 // CONCATENATED MODULE: ./src/core/channels/encrypted_channel.ts
 var encrypted_channel_extends = ( false) || (function () {
@@ -26878,6 +26853,7 @@ runtime.setup(pusher_Pusher);
 /***/ })
 /******/ ]);
 });
+//# sourceMappingURL=pusher.js.map
 
 /***/ }),
 
@@ -26985,17 +26961,49 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
 /*!******************************!*\
   !*** ./resources/js/game.js ***!
   \******************************/
-var _require = __webpack_require__(/*! ./classes/Game */ "./resources/js/classes/Game.js"),
-    Game = _require.Game;
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _animations_cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animations/cards */ "./resources/js/animations/cards.js");
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
+
+var _require2 = __webpack_require__(/*! ./classes/Game */ "./resources/js/classes/Game.js"),
+    Game = _require2.Game;
+
+
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-document.onload = Game.getData(); // document.onload = Game.setListeners();
+document.onload = Game.update();
+window.Echo.channel('starter-phase').listen('.draw-first-lord-event', function (e) {
+  console.log('channel received = ', e);
+  (0,_animations_cards__WEBPACK_IMPORTED_MODULE_0__.firstLordAnimation)(e.cardName, e.player);
+}); // if(document.getElementById('startGameBtn')){
+//     document.getElementById('startGameBtn').addEventListener('click', ()=>{
+//         axios.post('./gamestart/0')
+//             .then(()=>{
+//                 Game.update();
+//             })
+//     })
+// }
+// if(document.getElementById('lunchGame')){
+//     document.getElementById('lunchGame').addEventListener('click', ()=>{
+//         Game.update()
+//     })
+// }
+// if(document.getElementById('startSeq')){
+//     document.getElementById('startSeq').addEventListener('click', ()=>{
+//         axios.post('./gamestart/1')
+//         .then((res)=>{
+//             console.log(res);
+//         })
+//     })
+// }
 // document.querySelectorAll('.village').forEach(el=>{
 //     el.addEventListener('click', e=>{
 //         if(!e.currentTarget.className.includes('empty')){

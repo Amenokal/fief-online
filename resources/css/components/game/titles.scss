@@ -19,7 +19,7 @@
     // background-position: center;
     // background-repeat: no-repeat;
     // background-size: contain;
-    animation: 'scaleGlow' 1s ease infinite;
+    // animation: 'scaleGlow' 1s ease infinite;
 }
 
 .crown {
@@ -35,49 +35,59 @@
         left: -2.5%;
         top: 10%;
         @include back-img('tokens/titles/crown-1.png');
+        border-color: rgb(190, 102, 66) !important;
     }
     .crown-2 {
         transform: rotate(180deg);
         left: 44%;
         @include back-img('tokens/titles/crown-2.png');
+        border-color: rgb(214, 174, 148) !important;
+
     }
     .crown-3 {
         transform: rotate(180deg);
         left: 70%;
         @include back-img('tokens/titles/crown-3.png');
+        border-color: rgb(143, 121, 118) !important;
     }
     .crown-4 {
         transform: rotate(-90deg);
         right: -1.5%;
         top: 25%;
         @include back-img('tokens/titles/crown-4.png');
+        border-color: rgb(145, 160, 120) !important;
     }
     .crown-5 {
         transform: rotate(-90deg);
         right: -1.5%;
         top: 72%;
         @include back-img('tokens/titles/crown-5.png');
+        border-color: rgb(185, 154, 95) !important;
     }
     .crown-6 {
         bottom: 0;
         left: 30%;
         @include back-img('tokens/titles/crown-6.png');
+        border-color: rgb(214, 155, 115) !important;
     }
     .crown-7 {
         bottom: 0;
         left: 8%;
         @include back-img('tokens/titles/crown-7.png');
+        border-color: rgb(214, 174, 148) !important;
     }
     .crown-8 {
         transform: rotate(90deg);
         left:-2.8%;
         top: 62%;
         @include back-img('tokens/titles/crown-8.png');
+        border-color: rgb(91, 145, 137) !important;
     }
 
 .cross {
     height: 14%;
     width: 2%;
+    border-color: rgb(240, 210, 173);
 }
     #cross-1{
         transform: rotate(90deg);

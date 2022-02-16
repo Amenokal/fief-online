@@ -4,39 +4,37 @@ namespace App\Custom\Phases;
 
 use App\Models\Card;
 use App\Models\Game;
+use App\Models\Player;
 use App\Models\Village;
+use Illuminate\Http\Request;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Marechal;
 use App\Custom\Helpers\Architect;
+use App\Events\drawFirstLordEvent;
 use App\Custom\Services\DeckServices;
+use App\Custom\Services\TurnServices;
 
 class StarterPhase {
 
-    public static function drawFirstLord()
+    public static function drawFirstLord(Player $player)
     {
-        if(Local::cards()->isEmpty()){
-            Game::current()->cards()
-            ->where(['deck' => 'lord'])
-            ->update(['is_next'=>false]);
+        Card::getNext('lord')->update(['is_next'=>false]); // needed to avoid messing with next card index.
 
-            Card::where([
-                'deck' => 'lord',
-                'player_id' => null,
-                'village_id' => null,
-                'on_board' => false
-            ])
-            ->where('gender', '!=', 'O')
-            ->inRandomOrder()
-            ->first()
-            ->update(['is_next'=>true]);
+        $card = Card::where([
+            'deck' => 'lord',
+            'player_id' => null,
+        ])
+        ->where('gender', '!=', 'O')
+        ->inRandomOrder()
+        ->first();
 
-            return DeckServices::draw('lord', false);
-        }
-        else{
-            return response(['error' => 'ERROR: lord already drawn']);
-        }
+        $player->draw($card);
+
+        broadcast(new drawFirstLordEvent($card, $player))->toOthers();
+
+        TurnServices::passTurn();
     }
 
     public static function chooseVillage(Village $village)

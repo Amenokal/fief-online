@@ -17,7 +17,7 @@ class ConnectingPlayerToGame
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Game::current() && !$request->user()->in_game)
+        if(!$request->user()->in_game)
         {
             $request->user()->update(['in_game' => true]);
         }

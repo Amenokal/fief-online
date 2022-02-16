@@ -1,5 +1,5 @@
-import { startGame } from '../phases/__startGame';
-
+import axios from 'axios';
+import { startGame } from '../phases/00_start';
 import { drawFirstLord } from '../phases/00_start';
 import { chooseStartVillage } from '../phases/00_start';
 
@@ -16,15 +16,13 @@ import { moveListeners } from '../phases/04_armies';
 
 export class Phases {
 
-    static addListeners(phase){
+    static prepare(phase){
 
-        let game = document.querySelector('.game-view');
-        game.replaceWith(game.cloneNode(true));
+        console.log('current phases detected : '+phase);
+        // let game = document.querySelector('.game-view');
+        // game.replaceWith(game.cloneNode(true));
 
         switch(phase){
-
-            case -1: initStartGame();
-            break;
 
             case 0: initDrawFirstLord();
             break;
@@ -54,23 +52,17 @@ export class Phases {
 }
 
 
-// PHASE 00 ::::: GAME START
-// -------------------------
-
-    function initStartGame(){
-        document.getElementById('startGameBtn').addEventListener('click', startGame)
-    }
-
-
 
 // PHASE 00 ::::: GAME START
 // -------------------------
 
     function initDrawFirstLord(){
-        document.getElementById('step1').addEventListener('click', drawFirstLord)
+        // document.getElementById('step1').addEventListener('click', drawFirstLord)
+        drawFirstLord();
     }
     function initChooseStartLocation(){
-        document.getElementById('step2').addEventListener('click', chooseStartVillage)
+        // document.getElementById('step2').addEventListener('click', chooseStartVillage)
+        chooseStartVillage();
     }
 
 

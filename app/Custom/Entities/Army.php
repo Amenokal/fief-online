@@ -11,6 +11,7 @@ class Army {
 
     public static $army = [];
 
+    // dd(Army::from(Village::get('blaye'), Local::player()));
     public static function from(Village $village, Player $player) : Collection
     {
         foreach($village->soldiers as $soldier){

@@ -7,25 +7,29 @@
         <section class='players'>
             @if (!$game->is_started)
 
-                @foreach ($users as $user)
-                    <div class='waiting-lobby-user'>
-                        <span>{{$user->username}}</span>
-                        <i class="far fa-check-square readyBtn"></i>
-                    </div>
-                @endforeach
+                <div class='waiting-lobby'>
 
-                <span class="main-btn">
-                    <span class='texture3'></span>
-                    <span class='texture2'></span>
-                    <span class='texture'></span>
-                    <button class='btn-content' id='startGameBtn'>
-                        COMMENCER
-                    </button>
-                </span>
+                    @foreach ($users as $user)
+                        <div class='lobby-users'>
+                            <span>{{$user->username}}</span>
+                            <i class="far fa-check-square readyBtn"></i>
+                        </div>
+                    @endforeach
+
+                    <span class="main-btn">
+                        <span class='texture3'></span>
+                        <span class='texture2'></span>
+                        <span class='texture'></span>
+                        <span class='btn-content' id='startGameBtn'>
+                            COMMENCER
+                        </span>
+                    </span>
+
+                </div>
 
             @else
 
-                @foreach ($families as $fam)
+                @foreach ($families->sortBy('turn_order')->all() as $fam)
                     <x-player-info
                         :fam="$fam"
                         :currentplayer="$currentplayer"
@@ -64,6 +68,7 @@
                         <h2>OPTIONS</h2>
                         <div>
                             <button id='lunchGame'>Start Game</button>
+                            <button id='startSeq'>gamestart sequence</button>
                             <button id='fullScreen'>FullScreen</button>
                             <button id='resetAll'>Reset</button>
                         </div>
@@ -73,7 +78,7 @@
             @endif
         </section>
 
-        <section class='game-view {{ $currentplayer->color }}-theme'>
+        <section class='game-view {{ $player->color }}-theme'>
             <div class='game-board'>
 
                 <x-villages

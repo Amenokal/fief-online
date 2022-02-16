@@ -57,24 +57,17 @@ class Card extends Model
 
 
 
-    // lord relationships
-    public static function lord(string $name) : Card
+    // methods
+    public static function getNext(string $deck) : self
     {
         return Card::where([
-            'game_id' => Game::current()->id,
-            'name' => $name
+            'deck' => $deck,
+            'is_next' => true
         ])
         ->first();
     }
 
 
-
-    // methods
-    public function draw()
-    {
-        $this->update(['player_id' => Local::player()->id]);
-        return $this;
-    }
 
     public function play()
     {

@@ -39,8 +39,9 @@ class BootServices {
         self::createVillages();
         self::createBuildings();
         self::createSoldiers();
+        self::setPlayerOrder();
 
-        return response('Game created successfully', 201);
+        return response('Game created', 201);
     }
 
     private static function createGame() : void
@@ -175,6 +176,19 @@ class BootServices {
                     'gender' => $lord->gender
                 ]);
             }
+        }
+    }
+
+    private static function setPlayerOrder()
+    {
+        $i=1;
+        $players = Game::current()->players
+            ->random()
+            ->get();
+
+        foreach($players as $player)
+        {
+            $player->update(['turn_order' => $i++]);
         }
     }
 

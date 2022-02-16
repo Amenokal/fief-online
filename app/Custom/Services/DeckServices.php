@@ -4,6 +4,7 @@ namespace App\Custom\Services;
 
 use App\Models\Card;
 use App\Models\Game;
+use App\Models\Player;
 use App\Models\Village;
 use App\Custom\Helpers\Gipsy;
 use App\Custom\Helpers\Local;
@@ -35,8 +36,8 @@ class DeckServices {
                 'name' => $lord['name'],
                 'deck' => 'lord',
                 'gender' => $lord['gender'],
-                'card_img' => $card['card_img'],
-                'verso_img' => $card['verso_img']
+                'card_img' => $lord['card_img'],
+                'verso_img' => $lord['verso_img']
             ]);
         }
         Gipsy::shuffleDeck('lord');

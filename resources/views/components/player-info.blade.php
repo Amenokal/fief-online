@@ -1,7 +1,7 @@
-<div class='player-info-wrapper {{$fam->color}}-bordered'>
+<div id="player-{{$fam->turn_order}}" class='player-info-wrapper {{$fam->color}}-bordered'>
     <span @class([
-        'player-name',
-        'current-player' => $currentplayer->id === $fam->id
+            'player-name',
+            'current-player' => $currentplayer->id === $fam->id
     ])>
         {{-- <i class="fas fa-crown"></i> --}}
         {{$fam->family_name}}

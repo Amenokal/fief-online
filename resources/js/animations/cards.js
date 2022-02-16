@@ -8,7 +8,7 @@ import { Game } from '../classes/Game.js';
 // ---------------------
 // ///
 
-export function firstLordAnimation(newCard){
+export function firstLordAnimation(cardName, player){
     let pile = document.getElementById('lordCardPile');
     pile.innerHTML += '<span class="card lord-verso"></span>';
     console.log(pile);
@@ -19,15 +19,12 @@ export function firstLordAnimation(newCard){
 
     setTimeout(() => {
 
-        card.addEventListener('click',()=>{
-            card.classList.add('clicked', 'reveal-1');
+            card.classList.add('reveal-1');
 
             setTimeout(() => {
 
-                card.classList.remove('reveal-1');
-                card.classList.add('reveal-2');
-                card.id = newCard.name;
-                card.style = `background-image: url(${newCard.img_src})`;
+                card.classList.remove('reveal-1', 'lord-verso');
+                card.classList.add('reveal-2', cardName+'-card');
 
                 setTimeout(() => {
                     card.classList.remove('reveal-2');
@@ -36,7 +33,7 @@ export function firstLordAnimation(newCard){
 
                 setTimeout(() => {
                     document.querySelector('.player-hand').innerHTML +=
-                        GameElements.lordCardRecto(newCard.name, newCard.img_src);
+                        GameElements.lordCardRecto(cardName);
 
                     document.querySelector('.player-hand>.card').classList.add('drawn');
 
@@ -44,7 +41,6 @@ export function firstLordAnimation(newCard){
                 }, 2000);
 
             }, 500);
-        })
 
     }, 1000);
 }

@@ -2,13 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
-use App\Http\Controllers\Game\CardsController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\Web\GameController;
 use App\Http\Controllers\Game\TurnController;
 use App\Http\Controllers\Web\LobbyController;
+use App\Http\Controllers\Web\LoginController;
+use App\Http\Controllers\Game\CardsController;
 use App\Http\Controllers\Game\PhaseController;
 use App\Http\Controllers\Event\LogEventController;
-use App\Http\Controllers\Web\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,15 +42,7 @@ Route::get('/game', [GameController::class, 'index'])
     ])
     ->name('game');
 
-Route::post('/gamestart/0', [GameController::class, 'start'])->middleware(['auth']);
 Route::post('/game/update', [GameController::class, 'update'])->middleware(['auth'])->name('update');
-Route::post('/game/get/data', [GameController::class, 'getData'])
-    // ->middleware([
-    //     'auth',
-    //     'connect.to.game',
-    //     'create.game'
-    // ])
-    ->name('get.data');
 
 
 
@@ -98,9 +91,12 @@ Route::get('/show/board', [GameController::class, 'showBoard']);
 // PHASES
 // ======
 
+Route::post('/game/phase', [PhaseController::class, 'index']);
+
     // PHASE 0 ::::: GAME START
     // ------------------------
 
+Route::post('/gamestart/0', [GameController::class, 'start'])->name('game-start');
 Route::post('/gamestart/1', [PhaseController::class, 'drawFirstLord']);
 Route::post('/gamestart/2', [PhaseController::class, 'chooseVillage']);
 

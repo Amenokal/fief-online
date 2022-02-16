@@ -9,14 +9,32 @@ import { firstLordAnimation } from '../animations/cards.js';
 
 
 // \\\
+// ----------------------------
+// GAME START ::::: CREATE GAME
+// ----------------------------
+// ///
+
+export function startGame(){
+    axios.post('./gamestart/0')
+    .then(()=>{
+        Game.update();
+    });
+}
+
+
+
+// \\\
 // -----------------------------------
 // GAME START ::::: STEP 1 = DRAW LORD
 // -----------------------------------
 // ///
 
 export function drawFirstLord(){
-    axios.post('./gamestart/1')
+    console.log('telling server to draw first lord...')
+    axios.post('./game/phase')
     .then(res => {
+        console.log('server answers : '+res);
+
         if(!res.data.error){
             firstLordAnimation(res.data.drawnCard);
         }

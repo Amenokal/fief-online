@@ -24,21 +24,23 @@ use App\Config\Elements\Soldiers;
 use App\Config\Soldiers\Sergeant;
 use App\Custom\Helpers\Architect;
 use App\Custom\Helpers\Librarian;
+use App\Custom\Phases\StarterPhase;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Custom\Services\ArmyServices;
 use App\Custom\Services\BankServices;
 use App\Custom\Services\BootServices;
 use App\Custom\Services\DeckServices;
+use App\Custom\Services\GameStartServices;
 use App\Custom\Services\TurnServices;
+use App\Events\CurrentPlayerEvent;
 
 class GameController extends Controller
 {
     public function index()
     {
-        // dd(Realm::currentPlayer());
-        // dd(Army::from(Village::get('blaye'), Local::player()));
-        // dd(Game::current()->is_started);
+        // $players = Game::current()->players->sortBy('turn_order')->all();
+        // dd($players);
 
         return view('layouts.game', [
 
@@ -75,17 +77,6 @@ class GameController extends Controller
             'is_started'=>true,
             'current_phase'=>0
         ]);
-        return response()->json([
-            'currentPlayer' => Realm::currentPlayer()->makeHidden(['user_id', 'game_id', 'id'])
-        ]);
-    }
-
-    public function getData()
-    {
-        return response()->json([
-            'currentPlayer' => Realm::currentPlayer()->makeHidden(['user_id', 'game_id', 'id']),
-            'turn' => Game::current()->turn()
-        ]);
     }
 
     public function update()
@@ -99,7 +90,7 @@ class GameController extends Controller
             'playercards' => Local::cards(),
 
             'families' => Realm::families(),
-            'turn' => Realm::year(),
+            'turn' => Game::turn(),
             'phases' => TurnServices::phaseNames(),
             'currentplayer' => Realm::currentPlayer(),
 

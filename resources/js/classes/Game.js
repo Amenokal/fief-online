@@ -10,56 +10,51 @@ const { Phases } = require('./Phases');
 
 export class Game {
 
-    static getData(){
-        axios.post('./game/get/data')
-        .then(res=>{
-            console.log(res);
-        })
-    }
-
     static update(){
+        console.log('updating...')
         axios.post('./game/update')
         .then(res=>{
             document.querySelector('.game-container').innerHTML = res.data;
         })
         .then(()=>{
-            this.setListeners();
+            setListeners();
         })
     }
 
-    static setListeners(){
-        this.addPhaseListeners();
-        this.addPermanentListeners();
-    }
+}
 
-    static addPhaseListeners(){
-        axios.post('./check/phase')
-        .then(res=>{
-            Phases.addListeners(res.data.turn.phase);
-        })
-    }
+function setListeners(){
+    preparePhase();
+    addPermanentListeners();
+}
 
-    static addPermanentListeners(){
+function preparePhase(){
+    console.log('checking server for current phase...')
+    axios.post('./check/phase')
+    .then(res=>{
+        Phases.prepare(res.data.turn.phase);
+    })
+}
 
-        // player-boards
-        document.querySelectorAll('.player-name').forEach(el=>{
-            el.addEventListener('click', showBoard);
-        })
+function addPermanentListeners(){
 
-        // turns
-        document.getElementById('turn-indicator').addEventListener('click', chooseTurn);
+    console.log('adding permanent listeners...')
+    // player-boards
+    document.querySelectorAll('.player-name').forEach(el=>{
+        el.addEventListener('click', showBoard);
+    })
 
-        if(document.getElementById('end-turn')){
-            document.getElementById('end-turn').addEventListener('click',endTurn);
+    // turns
+    document.getElementById('turn-indicator').addEventListener('click', chooseTurn);
 
-            // options
-            document.getElementById('fullScreen').addEventListener('click', toggleFullScreen);
+    if(document.getElementById('end-turn')){
+        document.getElementById('end-turn').addEventListener('click',endTurn);
 
-            //reset
-            document.getElementById('resetAll').addEventListener('click', reset)
-        }
+        // options
+        document.getElementById('fullScreen').addEventListener('click', toggleFullScreen);
 
-
+        //reset
+        document.getElementById('resetAll').addEventListener('click', reset)
     }
 }
 

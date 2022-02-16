@@ -21,6 +21,7 @@ class Player extends Model
         'color',
         'gold',
         'married_to',
+        'turn_order',
         'user_id',
         'game_id',
     ];
@@ -99,6 +100,29 @@ class Player extends Model
     public function canBuy(Building $building) : bool
     {
         return $this->gold >= $building->price;
+    }
+
+
+
+    // METHODS
+
+    public function draw(Card $card) : Card
+    {
+        $card->update([
+            'is_next' => false,
+            'player_id' => $this->id
+        ]);
+
+        Card::where([
+            'deck' => $card->deck,
+            'player_id' => null,
+            'on_board' => false
+        ])
+        ->inRandomOrder()
+        ->first()
+        ->update(['is_next'=>true]);
+
+        return $card;
     }
 
 }

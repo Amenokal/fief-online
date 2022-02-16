@@ -2,12 +2,13 @@
 
 namespace App\Http\Middleware;
 
-use App\Custom\Services\BootServices;
 use Closure;
 use App\Models\Game;
+use App\Models\Player;
 use Illuminate\Http\Request;
+use App\Custom\Services\BootServices;
 
-class ShouldCreateGame
+class GoingThroughBootServices
 {
     /**
      * Handle an incoming request.
@@ -18,7 +19,7 @@ class ShouldCreateGame
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Game::current()){
+        if(!$request->user()->player){
             BootServices::init('vanilla');
         }
         return $next($request);

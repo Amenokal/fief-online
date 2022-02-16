@@ -1,5 +1,7 @@
 // FIRST LORD DRAW ANIMATION
 .draw-first-lord{
+    height: 50px;
+    width: 80px;
     z-index: 2;
     animation: 'firstLordDraw' 1s forwards ease-out;
     transition: .3s ease-out;
@@ -7,10 +9,10 @@
         cursor: pointer;
     }
 }
-.clicked.reveal-1{
+.reveal-1{
     animation: 'reveal-1' .5s ease-out;
 }
-.clicked.reveal-2{
+.reveal-2{
     animation: 'reveal-2' .5s forwards ease-out;
 }
 .take-first-lord{
@@ -29,23 +31,23 @@
        transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3) rotateX(0deg);
     }
     to {
-       transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3.5) rotateX(90deg);
+       transform: translateX(-600%) translateY(20%) rotate(-90deg) scale(3) rotateX(90deg);
     }
 }
 @keyframes reveal-2 {
     from {
-       transform: translateX(-600%) translateY(20%) scale(5) rotateY(-90deg);
+       transform: translateX(-600%) translateY(20%) scale(4) rotateY(-90deg);
     }
     to {
-       transform: translateX(-600%) translateY(20%) scale(5.5) rotateY(0deg);
+       transform: translateX(-600%) translateY(20%) scale(4.5) rotateY(0deg);
     }
 }
 @keyframes take-first-lord{
     from {
-        transform: translateX(-600%) translateY(20%) scale(5.5);
+        transform: translateX(-600%) translateY(20%) scale(4.5) rotate(0deg);
     }
     to {
-        transform: translateX(-600%) translateY(1000%) scale(3);
+        transform: translateX(-600%) translateY(20%) scale(2) rotate(-20deg);
     }
 }
 

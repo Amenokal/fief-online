@@ -20,11 +20,27 @@ use App\Custom\Services\BankServices;
 
 class PhaseController extends Controller
 {
-    // PHASE 0 ::::: START GAME
-    public function drawFirstLord()
+
+    public function index(Request $request)
     {
-        return StarterPhase::drawFirstLord();
+        $phase = Game::current()->current_phase;
+        $players = Game::current()->players->sortBy('turn_order')->all();
+
+        // draw 1st lord sequence
+        if($phase === 0){
+            foreach($players as $player){
+                if($player->inHandCards()->isEmpty()){
+                    return 'ok ???';
+                    return StarterPhase::drawFirstLord($player);
+                }
+            }
+        }
+        // choose starting village
     }
+
+
+
+    // PHASE 0 ::::: START GAME
     public function chooseVillage(Request $request)
     {
         $village = Village::get($request->village);

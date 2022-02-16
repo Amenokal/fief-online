@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" autocomplete="off">
         @csrf
 
         <div class='input-wrapper'>
@@ -12,7 +12,8 @@
             type="text"
             name="username"
             placeholder='Username...'
-            required />
+            required
+            />
 
         </div>
 

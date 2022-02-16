@@ -66,7 +66,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'connect.to.game' => \App\Http\Middleware\ConnectingPlayerToGame::class,
-        'create.game' => \App\Http\Middleware\ShouldCreateGame::class,
+        'create.game' => \App\Http\Middleware\GoingThroughBootServices::class,
         'allowed.to.play' => \App\Http\Middleware\IsUserAllowedToPlay::class
     ];
 }

@@ -9,7 +9,7 @@ class Gipsy {
 
     public static $deck;
 
-    public static function nextCard(string $deck)
+    public static function nextCard(string $deck) : Card
     {
         return Card::where([
             'game_id' => Game::current()->id,
@@ -53,9 +53,9 @@ class Gipsy {
         ->orderBy('deleted_at', 'desc')
         ->get();
     }
-    
+
     public static function shuffleDeck(string $type)
-    {   
+    {
         self::$deck = Card::withTrashed()
         ->where([
             'game_id' => Game::current()->id,
@@ -68,7 +68,7 @@ class Gipsy {
             'player_id' => null,
             'village_id' => null,
         ]);
-        self::$deck->restore(); 
+        self::$deck->restore();
 
         self::makeNewNextCard($type);
 

@@ -37,7 +37,6 @@
         display: block;
         border-radius: .3em;
         transition: .3s ease;
-        animation: 'scaleGlow' 1s ease infinite;
 
         &:hover{
             transform: scale(1.3);

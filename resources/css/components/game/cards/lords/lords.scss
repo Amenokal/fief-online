@@ -15,6 +15,10 @@
     @include card;
     @include lord-img('arc');
 }
+.arthur-card{
+    @include card;
+    @include lord-img('arthur');
+}
 .blanche-card{
     @include card;
     @include lord-img('blanche');

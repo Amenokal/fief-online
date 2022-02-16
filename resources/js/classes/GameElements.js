@@ -1,10 +1,8 @@
 export class GameElements {
 
-    static lordCardRecto(name, src){
+    static lordCardRecto(name){
         return `<span
-            id=${name}
-            class='card'
-            style='background-image: url(${src})'
+            class='card ${name}-card'
         ></span>`
     };
 
