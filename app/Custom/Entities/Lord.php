@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Custom\GameObjects;
+namespace App\Custom\Entities;
 
 use App\Models\Card;
 use App\Models\Game;

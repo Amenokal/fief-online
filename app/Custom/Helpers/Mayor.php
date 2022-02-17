@@ -4,6 +4,7 @@ namespace App\Custom\Helpers;
 
 use App\Models\Game;
 use App\Models\Player;
+use App\Models\Village;
 use App\Models\Soldiers;
 use App\Models\Villages;
 use App\Models\LordCards;
@@ -32,18 +33,11 @@ class Mayor {
      */
     public static function administrate()
     {
-        foreach(Realm::villages() as $vilg){
-            if(!$vilg->lords()->exists() && !$vilg->soldiers()->exists()){
+        foreach(Village::all() as $vilg){
+            if(!$vilg->hasArmy()){
                 $vilg->update(['player_id' => null]);
-            }else{
-                foreach(Realm::families() as $fam){
-                    self::$power = Marechal::evaluate($vilg, $fam);
-                    if(self::$power>self::$counter){
-                        self::$counter = self::$power;
-                        self::$new_owner = $fam;
-                    }
-                }
-                $vilg->update(['player_id' => self::$new_owner->id]);
+            }else if($vilg->hasArmy() && !$vilg->hasOwner()){
+                $vilg->update(['player_id' => $vilg->soldiers()->first()->player->id]);
             }
         }
     }

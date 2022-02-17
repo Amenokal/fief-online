@@ -13,32 +13,26 @@
     position: absolute;
 }
 
-.chateau{
+.castle{
     @include building;
     @include back-img('tokens/buildings/castle.png');
 }
-.cite{
+.city{
     @include building;
     @include back-img('tokens/buildings/city.png');
 }
-.moulin{
+.mill{
     @include building;
     @include back-img('tokens/buildings/mill.png');
     transform: translateX(-10px) translateY(10px) scale(.6);
     z-index: 2;
 }
 
-.remaining-chateau{
-    @include remaining;
-    @include back-img('tokens/buildings/castle.png');
-}
-.remaining-cite{
-    @include remaining;
-    @include back-img('tokens/buildings/city.png');
-}
-.remaining-moulin {
+.remaining-mill {
     @include remaining;
     @include back-img('tokens/buildings/mill.png');
 }
-
-
+.remaining-castle{
+    @include remaining;
+    @include back-img('tokens/buildings/castle.png');
+}

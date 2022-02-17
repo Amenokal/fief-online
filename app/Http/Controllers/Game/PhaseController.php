@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Game;
 
+use App\Models\Card;
 use App\Models\Game;
 use App\Models\Player;
 use App\Models\Village;
@@ -17,37 +18,25 @@ use App\Http\Controllers\Controller;
 use App\Custom\Phases\FirstLordPhase;
 use App\Custom\Services\ArmyServices;
 use App\Custom\Services\BankServices;
+use App\Custom\Services\TurnServices;
 
 class PhaseController extends Controller
 {
-
-    public function index(Request $request)
+    // PHASE 0 ::::: START GAME
+    public function getFirstLordsData(Request $request)
     {
-        $phase = Game::current()->current_phase;
-        $players = Game::current()->players->sortBy('turn_order')->all();
-
-        // draw 1st lord sequence
-        if($phase === 0){
-            foreach($players as $player){
-                if($player->inHandCards()->isEmpty()){
-                    return 'ok ???';
-                    return StarterPhase::drawFirstLord($player);
-                }
-            }
-        }
-        // choose starting village
+        return StarterPhase::getFirstLordsData($request);
     }
 
+    public function isItMyTurnToChooseVillage(Request $request)
+    {
+        return response()->json(['allowed'=>StarterPhase::isItMyTurnToChooseVillage($request)]);
+    }
 
-
-    // PHASE 0 ::::: START GAME
     public function chooseVillage(Request $request)
     {
-        $village = Village::get($request->village);
-        return StarterPhase::chooseVillage($village);
+        StarterPhase::chooseVillage($request, Village::get($request->village));
     }
-
-
 
 
 

@@ -282,3 +282,10 @@
     z-index: 5;
 }
 
+.not-started {
+    @include back-img('/textures/dark-wood.png');
+    background-color: rgb(100, 51, 16);
+    background-size: contain;
+    background-repeat: repeat;
+    filter: blur(2px);
+}

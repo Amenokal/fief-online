@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { startGame } from '../phases/00_start';
+import { playerReady } from '../phases/00_start';
+import { createGame } from '../phases/00_start';
 import { drawFirstLord } from '../phases/00_start';
-import { chooseStartVillage } from '../phases/00_start';
+import { checkForChooseVillage } from '../phases/00_start';
 
 import { discard } from '../phases/02_cards';
 import { draw } from '../phases/02_cards';
@@ -18,15 +19,18 @@ export class Phases {
 
     static prepare(phase){
 
-        console.log('current phases detected : '+phase);
+        console.log('current phase : '+phase);
         // let game = document.querySelector('.game-view');
         // game.replaceWith(game.cloneNode(true));
 
         switch(phase){
 
-            case 0: initDrawFirstLord();
+            case -1: initPrepareGame();
             break;
-            case 1: initChooseStartLocation();
+
+            case 0: drawFirstLord();
+            break;
+            case 1: checkForChooseVillage();
             break;
 
             case 6: initDiscard();
@@ -56,13 +60,14 @@ export class Phases {
 // PHASE 00 ::::: GAME START
 // -------------------------
 
-    function initDrawFirstLord(){
-        // document.getElementById('step1').addEventListener('click', drawFirstLord)
-        drawFirstLord();
-    }
-    function initChooseStartLocation(){
-        // document.getElementById('step2').addEventListener('click', chooseStartVillage)
-        chooseStartVillage();
+    function initPrepareGame(){
+        if(document.getElementById('userReadyBtn')){
+            document.getElementById('userReadyBtn').addEventListener('click', playerReady);
+        }
+
+        if(document.getElementById('startGameBtn')){
+            document.getElementById('startGameBtn').addEventListener('click', createGame);
+        }
     }
 
 

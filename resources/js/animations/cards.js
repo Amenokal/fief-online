@@ -1,5 +1,6 @@
 import { GameElements } from '../classes/GameElements';
 import { Game } from '../classes/Game.js';
+import { drawFirstLord } from '../phases/00_start';
 
 
 // \\\
@@ -8,7 +9,7 @@ import { Game } from '../classes/Game.js';
 // ---------------------
 // ///
 
-export function firstLordAnimation(cardName, player){
+export function firstLordAnimation(cardName, player = false){
     let pile = document.getElementById('lordCardPile');
     pile.innerHTML += '<span class="card lord-verso"></span>';
     console.log(pile);
@@ -26,19 +27,34 @@ export function firstLordAnimation(cardName, player){
                 card.classList.remove('reveal-1', 'lord-verso');
                 card.classList.add('reveal-2', cardName+'-card');
 
-                setTimeout(() => {
-                    card.classList.remove('reveal-2');
-                    card.classList.add('take-first-lord');
-                }, 1500);
+                if(!player){
+                    setTimeout(() => {
+                        card.classList.remove('reveal-2');
+                        card.classList.add('take-first-lord');
+                    }, 1500);
 
-                setTimeout(() => {
-                    document.querySelector('.player-hand').innerHTML +=
-                        GameElements.lordCardRecto(cardName);
+                    setTimeout(() => {
+                        document.querySelector('.player-hand').innerHTML +=
+                            GameElements.lordCardRecto(cardName);
 
-                    document.querySelector('.player-hand>.card').classList.add('drawn');
+                        document.querySelector('.player-hand>.card').classList.add('drawn');
 
-                    card.remove();
-                }, 2000);
+                        card.remove();
+                    }, 2000);
+                }
+                else{
+                    setTimeout(() => {
+                        card.classList.remove('reveal-2');
+                        card.classList.add('take-to-player');
+                    }, 1500);
+                    setTimeout(() => {
+                        card.remove();
+                    }, 2000);
+                }
+
+                // setTimeout(() => {
+                //     Game.update();
+                // }, 1000);
 
             }, 500);
 

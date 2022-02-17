@@ -574,6 +574,17 @@
   z-index: 5;
 }
 
+.not-started {
+  background-image: url("../public/storage//textures/dark-wood.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: #643310;
+  background-size: contain;
+  background-repeat: repeat;
+  filter: blur(2px);
+}
+
 .animate-parchm {
   -webkit-animation: "showParchm" 0.5s ease-out forwards;
           animation: "showParchm" 0.5s ease-out forwards;
@@ -1034,6 +1045,11 @@
           animation: "take-first-lord" 0.5s forwards ease-out;
 }
 
+.take-to-player {
+  -webkit-animation: "take-to-player" 0.5s forwards ease-out;
+          animation: "take-to-player" 0.5s forwards ease-out;
+}
+
 @-webkit-keyframes firstLordDraw {
   from {
     transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
@@ -1085,18 +1101,34 @@
 }
 @-webkit-keyframes take-first-lord {
   from {
-    transform: translateX(-600%) translateY(20%) scale(4.5) rotate(0deg);
+    transform: translateX(-600%) translateY(400%) scale(4.5) rotate(0deg);
   }
   to {
-    transform: translateX(-600%) translateY(20%) scale(2) rotate(-20deg);
+    transform: translateX(-600%) translateY(400%) scale(2) rotate(0deg);
   }
 }
 @keyframes take-first-lord {
   from {
+    transform: translateX(-600%) translateY(400%) scale(4.5) rotate(0deg);
+  }
+  to {
+    transform: translateX(-600%) translateY(400%) scale(2) rotate(0deg);
+  }
+}
+@-webkit-keyframes take-to-player {
+  from {
     transform: translateX(-600%) translateY(20%) scale(4.5) rotate(0deg);
   }
   to {
-    transform: translateX(-600%) translateY(20%) scale(2) rotate(-20deg);
+    transform: translateX(-1200%) translateY(20%) scale(2) rotate(-20deg);
+  }
+}
+@keyframes take-to-player {
+  from {
+    transform: translateX(-600%) translateY(20%) scale(4.5) rotate(0deg);
+  }
+  to {
+    transform: translateX(-1200%) translateY(20%) scale(2) rotate(-20deg);
   }
 }
 .draw-animation {
@@ -2459,7 +2491,7 @@
   top: 40%;
 }
 
-.chateau {
+.castle {
   height: 100% !important;
   width: 100% !important;
   position: absolute;
@@ -2470,7 +2502,7 @@
   background-size: contain;
 }
 
-.cite {
+.city {
   height: 100% !important;
   width: 100% !important;
   position: absolute;
@@ -2481,7 +2513,7 @@
   background-size: contain;
 }
 
-.moulin {
+.mill {
   height: 100% !important;
   width: 100% !important;
   position: absolute;
@@ -2494,31 +2526,21 @@
   z-index: 2;
 }
 
-.remaining-chateau {
-  height: 40px;
-  width: 40px;
-  position: absolute;
-  background-image: url("../public/storage/tokens/buildings/castle.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.remaining-cite {
-  height: 40px;
-  width: 40px;
-  position: absolute;
-  background-image: url("../public/storage/tokens/buildings/city.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
-.remaining-moulin {
+.remaining-mill {
   height: 40px;
   width: 40px;
   position: absolute;
   background-image: url("../public/storage/tokens/buildings/mill.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.remaining-castle {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  background-image: url("../public/storage/tokens/buildings/castle.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -3024,6 +3046,11 @@
           animation: "take-first-lord" 0.5s forwards ease-out;
 }
 
+.take-to-player {
+  -webkit-animation: "take-to-player" 0.5s forwards ease-out;
+          animation: "take-to-player" 0.5s forwards ease-out;
+}
+
 @keyframes firstLordDraw {
   from {
     transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
@@ -3050,10 +3077,18 @@
 }
 @keyframes take-first-lord {
   from {
+    transform: translateX(-600%) translateY(400%) scale(4.5) rotate(0deg);
+  }
+  to {
+    transform: translateX(-600%) translateY(400%) scale(2) rotate(0deg);
+  }
+}
+@keyframes take-to-player {
+  from {
     transform: translateX(-600%) translateY(20%) scale(4.5) rotate(0deg);
   }
   to {
-    transform: translateX(-600%) translateY(20%) scale(2) rotate(-20deg);
+    transform: translateX(-1200%) translateY(20%) scale(2) rotate(-20deg);
   }
 }
 .draw-animation {

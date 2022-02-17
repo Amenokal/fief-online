@@ -3,7 +3,6 @@
             'player-name',
             'current-player' => $currentplayer->id === $fam->id
     ])>
-        {{-- <i class="fas fa-crown"></i> --}}
         {{$fam->family_name}}
     </span>
     <div class='player-info'>

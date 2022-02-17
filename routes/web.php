@@ -35,14 +35,11 @@ Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/register', [LoginController::class, 'createUser']);
 
 Route::get('/game', [GameController::class, 'index'])
-    ->middleware([
-        'auth',
-        'connect.to.game',
-        'create.game'
-    ])
+    ->middleware(['auth'])
     ->name('game');
 
 Route::post('/game/update', [GameController::class, 'update'])->middleware(['auth'])->name('update');
+Route::post('/player/ready', [GameController::class, 'playerReady'])->middleware(['auth']);
 
 
 
@@ -96,9 +93,10 @@ Route::post('/game/phase', [PhaseController::class, 'index']);
     // PHASE 0 ::::: GAME START
     // ------------------------
 
-Route::post('/gamestart/0', [GameController::class, 'start'])->name('game-start');
-Route::post('/gamestart/1', [PhaseController::class, 'drawFirstLord']);
-Route::post('/gamestart/2', [PhaseController::class, 'chooseVillage']);
+Route::post('/gamestart/0', [GameController::class, 'start']);
+Route::post('/gamestart/1', [PhaseController::class, 'getFirstLordsData']);
+Route::post('/gamestart/2', [PhaseController::class, 'isItMyTurnToChooseVillage']);
+Route::post('/gamestart/3', [PhaseController::class, 'chooseVillage']);
 
     // PHASE ::::: CARDS
     // -----------------

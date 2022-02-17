@@ -4,11 +4,13 @@ namespace App\Custom\Services;
 
 use App\Models\Card;
 use App\Models\Game;
+use App\Models\User;
 use App\Models\Title;
 use App\Models\Player;
 use App\Models\Soldier;
 use App\Models\Village;
 use App\Models\Building;
+use Illuminate\Support\Arr;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Librarian;
 
@@ -35,11 +37,13 @@ class BootServices {
         self::createGame();
         self::createDecks();
         self::createPlayers();
+        self::setPlayerIdentity();
         self::createTitles();
         self::createVillages();
         self::createBuildings();
         self::createSoldiers();
         self::setPlayerOrder();
+        self::drawLords();
 
         return response('Game created', 201);
     }
@@ -63,30 +67,32 @@ class BootServices {
 
     private static function createPlayers() : void
     {
-        if(!Local::player()){
+        $users = User::where('in_game', true)->get();
+        foreach($users as $user){
             Player::create([
                 'game_id' => Game::current()->id,
-                'user_id' => Local::user()->id,
-                'family_name' => self::setName(),
-                'color' => self::setColor(),
+                'user_id' => $user->id,
+                // 'family_name' => self::setName(),
+                // 'color' => self::setColor(),
                 'gold' => 5
             ]);
         }
     }
-        private static function setName() : string
-        {
-            foreach(Game::current()->players as $player){
-                self::$family_names->flip()->forget($player->family_name);
-            }
-            return self::$family_names->random();
+
+    private static function setPlayerIdentity()
+    {
+        $i = 1;
+        $colors = Librarian::decipherJson('meta/colors.json')->flatten()->shuffle();
+        $names = Librarian::decipherJson('meta/family_names.json')->flatten()->shuffle();
+        $players = Game::current()->players;
+        foreach($players as $player){
+            $player->update([
+                'color' => $colors[$i],
+                'family_name' => $names[$i]
+            ]);
+            $i++;
         }
-        private static function setColor() : string
-        {
-            foreach(Game::current()->players as $player){
-                self::$colors->flip()->forget($player->color);
-            }
-            return self::$colors->random();
-        }
+    }
 
     private static function createTitles()
     {
@@ -146,18 +152,21 @@ class BootServices {
     {
         if(Game::current()->soldiers->isEmpty()){
 
-            foreach(self::$armies as $a){
+            foreach(Game::current()->players as $player){
 
-                for($i=0; $i<$a['nb']; $i++){
-                    Soldier::create([
-                        'type' => $a['type'],
-                        'gender' => null,
-                        'price' => $a['price'],
-                        'power' => $a['power'],
-                        'pv' => $a['pv'],
-                        'game_id' => Game::current()->id,
-                        'player_id' => Local::player()->id,
-                    ]);
+                foreach(self::$armies as $a){
+
+                    for($i=0; $i<$a['nb']; $i++){
+                        Soldier::create([
+                            'type' => $a['type'],
+                            'gender' => null,
+                            'price' => $a['price'],
+                            'power' => $a['power'],
+                            'pv' => $a['pv'],
+                            'game_id' => Game::current()->id,
+                            'player_id' => $player->id,
+                        ]);
+                    }
                 }
             }
 
@@ -181,16 +190,32 @@ class BootServices {
 
     private static function setPlayerOrder()
     {
-        $i=1;
-        $players = Game::current()->players
-            ->random()
-            ->get();
-
-        foreach($players as $player)
-        {
-            $player->update(['turn_order' => $i++]);
+        $i = 1;
+        $players = Arr::shuffle(Game::current()->players->all());
+        foreach($players as $player){
+            $player->update(['turn_order'=>$i++]);
         }
     }
 
+    private static function drawLords()
+    {
+        $players = Game::current()->players->sortBy('turn_order')->all();
+        foreach($players as $player){
+            if($player->inHandCards()->isEmpty()){
+                Card::getNext('lord')->update(['is_next'=>false]); // needed to avoid messing with next card index.
+
+                $card = Card::where([
+                    'deck' => 'lord',
+                    'player_id' => null,
+                    'is_next' => false
+                ])
+                ->where('gender', '!=', 'O')
+                ->inRandomOrder()
+                ->first();
+
+                $player->draw($card);
+            }
+        }
+    }
 
 }

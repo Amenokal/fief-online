@@ -6,7 +6,7 @@
 
             <div class='army-forces'>
                 @foreach($fam->lordsHere($village) as $lord)
-                    <span id="{{$lord->name}}" class='lord'></span>
+                    <span class='lord {{$lord->name}}-token'></span>
                 @endforeach
 
                 @foreach($fam->soldiersHere($village) as $soldier)

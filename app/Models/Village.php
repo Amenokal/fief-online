@@ -42,8 +42,15 @@ class Village extends Model
     // owner relationship
     public function player()
     {
-        return Player::find($this->player_id);
+        return $this->belongsTo(Player::class);
     }
+
+    public function hasOwner() : bool
+    {
+        return !!$this->player;
+    }
+
+
 
     // building relationships
     public function buildings()
@@ -130,6 +137,11 @@ class Village extends Model
             'type' => 'lord',
             'village_id' => $this->id
         ])->get();
+    }
+
+    public function hasArmy() : bool
+    {
+        return Soldier::where('village_id',$this->id)->exists();
     }
 
 }

@@ -1,7 +1,7 @@
 [
     {
         "name": "alienor",
-        "gender": "M",
+        "gender": "F",
         "card_img": "storage/cards/lords/alienor-card.png",
         "token_img": "storage/tokens/lords/alienor-token.png",
         "verso_img": "storage/cards/versos/lord.png"

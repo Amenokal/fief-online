@@ -15,8 +15,8 @@ class CreatePlayersTable extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
-            $table->string('family_name');
-            $table->string('color');
+            $table->string('family_name')->nullable();
+            $table->string('color')->nullable();
             $table->integer('gold');
             $table->integer('married_to')->nullable();
             $table->integer('turn_order')->nullable();

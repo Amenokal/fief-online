@@ -2,14 +2,14 @@
     <div>
         @foreach ($remnbuildings as $b)
             @if($b->name === 'moulin')
-                <span class='remaining-{{$b->name}}'></span>
+                <span class='remaining-{{$b->type}}'></span>
             @endif
         @endforeach
     </div>
     <div>
         @foreach ($remnbuildings as $b)
             @if($b->name === 'chateau')
-                <span class='remaining-{{$b->name}}'></span>
+                <span class='remaining-{{$b->type}}'></span>
             @endif
         @endforeach
 

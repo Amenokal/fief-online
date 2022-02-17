@@ -1,15 +1,28 @@
 const { default: axios } = require('axios');
 const { Game } = require('./classes/Game');
-import { firstLordAnimation } from './animations/cards';
 
 require('./bootstrap');
 
 document.onload = Game.update();
 
-window.Echo.channel('starter-phase')
-    .listen('.draw-first-lord-event', e=>{
+window.Echo.channel('lobby')
+    .listen('.newUserJoin', e=>{
         console.log('channel received = ', e);
-        firstLordAnimation(e.cardName, e.player);
+        document.querySelector('.waiting-lobby').innerHTML += `
+        <div class='lobby-users'>
+            <span>${e.username}</span>
+        </div>`
+    })
+    .listen('.createGame', ()=>{
+        Game.update();
+    })
+
+
+
+window.Echo.channel('game')
+    .listen('.shouldUpdate', e=>{
+        console.log('i shall update !')
+        Game.update();
     })
 
 

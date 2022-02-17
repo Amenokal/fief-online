@@ -20,14 +20,13 @@
     @foreach($villages as $vilg)
 
     <?php
-        $color = $vilg->player() ? $vilg->player()->color."-bordered" : '';
+        $color = $vilg->hasOwner() ? $vilg->player->color."-bordered" : 'empty';
     ?>
 
         <span id='{{$vilg->name}}' @class([
             'village',
             "cross-zone-$vilg->cross_zone",
-            "$color" => $vilg->player(),
-            "empty" => !$vilg->player()
+            "$color"
         ])>
 
             <div class='icons'>
@@ -45,13 +44,15 @@
             </div>
 
             <div class='buildings'>
-                @foreach($vilg->buildingsHere() as $b)
-                    <x-buildings :building="$b" :village="$vilg"/>
+                @foreach($vilg->buildingsHere() as $building)
+                    @if($building->village_id === $vilg->id)
+                        <span class="{{$building->type}}"></span>
+                    @endif
                 @endforeach
             </div>
 
             <div class='armies'>
-                @if($vilg->soldiers)
+                @if($vilg->soldiers()->exists())
                     <x-army :village="$vilg" :families="$families" />
                 @endif
             </div>

@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Librarian;
+use App\Events\UpdateGameEvent;
 
 class TurnServices {
 
@@ -26,6 +27,7 @@ class TurnServices {
     public static function changeTurn(int $phase_index)
     {
         Game::current()->update(["current_phase" => $phase_index]);
+        event(new UpdateGameEvent());
     }
 
     public static function passTurn()

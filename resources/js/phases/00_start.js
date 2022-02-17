@@ -3,9 +3,7 @@ import axios from "axios";
 import { Game } from '../classes/Game.js';
 import { Builder } from '../classes/Builder.js';
 import { Army } from '../classes/Army.js';
-
-import { firstLordAnimation } from '../animations/cards.js';
-
+import { firstLordAnimation } from "../animations/cards.js";
 
 
 // \\\
@@ -14,7 +12,14 @@ import { firstLordAnimation } from '../animations/cards.js';
 // ----------------------------
 // ///
 
-export function startGame(){
+export function playerReady(){
+    axios.post('./player/ready')
+    .then(()=>{
+        Game.update();
+    });
+}
+
+export function createGame(){
     axios.post('./gamestart/0')
     .then(()=>{
         Game.update();
@@ -30,18 +35,32 @@ export function startGame(){
 // ///
 
 export function drawFirstLord(){
-    console.log('telling server to draw first lord...')
-    axios.post('./game/phase')
+    axios.post('./gamestart/1')
     .then(res => {
-        console.log('server answers : '+res);
+        let cards = res.data.cards;
+        let amount = cards[0].length
+        for(let i=0; i<amount; i++){
+            setTimeout(() => {
+                if(cards[2][i]){
+                    firstLordAnimation(cards[0][i]);
+                }
+                else {
+                    firstLordAnimation(cards[0][i], cards[1][i]);
+                }
 
-        if(!res.data.error){
-            firstLordAnimation(res.data.drawnCard);
+                if(i==amount-1){
+                    setTimeout(() => {
+                        axios.post('./gamestart/2')
+                        .then(res=>{
+                            if(res.data.allowed){
+                                setStartVillageListeners();
+                            }
+                        })
+                    }, 5000);
+                }
+            }, i*5000);
         }
-        else{
-            console.log(res.data.error);
-        }
-    });
+    })
 };
 
 
@@ -52,7 +71,16 @@ export function drawFirstLord(){
 // ----------------------------------------
 // ///
 
-export function chooseStartVillage(e){
+export function checkForChooseVillage(){
+    axios.post('./gamestart/2')
+    .then(res=>{
+        if(res.data.allowed){
+            setStartVillageListeners();
+        }
+    })
+}
+
+function setStartVillageListeners(){
     document.querySelectorAll('.village.empty').forEach(el=>{
         el.classList.add('to-choose');
         el.addEventListener('click', chooseVillage, true);
@@ -60,22 +88,22 @@ export function chooseStartVillage(e){
 };
 
 function chooseVillage(e){
-    let village = e.currentTarget;
+    // let village = e.currentTarget;
     let villageName = e.currentTarget.id;
-    axios.post('./gamestart/2', {
+    axios.post('./gamestart/3', {
         village: villageName
     })
-    .then(res => {
-        if(!res.data.error){
-            Builder.newCastle(villageName);
-            Army.firstArmyTo(villageName, res.headers.playercolor, res.data);
-            village.classList.add(res.headers.playercolor+'-bordered');
-            document.querySelectorAll('.village').forEach(el=>{
-                el.classList.remove('to-choose');
-            })
-        }
-        else {
-            console.log(res.data.error);
-        }
-    })
+    // .then(res => {
+    //     if(!res.data.error){
+    //         Builder.newCastle(villageName);
+    //         Army.firstArmyTo(villageName, res.headers.playercolor, res.data);
+    //         village.classList.add(res.headers.playercolor+'-bordered');
+    //         document.querySelectorAll('.village').forEach(el=>{
+    //             el.classList.remove('to-choose');
+    //         })
+    //     }
+    //     else {
+    //         console.log(res.data.error);
+    //     }
+    // })
 };

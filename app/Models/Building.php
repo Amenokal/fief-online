@@ -51,7 +51,7 @@ class Building extends Model
             'village_id'=>null,
             'type'=>$type,
             'game_id'=>Game::current()->id
-        ]);
+        ])->first();
     }
 
     /**
@@ -66,6 +66,16 @@ class Building extends Model
             'type'=>$type,
             'game_id'=>Game::current()->id
         ])->exists();
+    }
+
+    /**
+     * Build this building at this village.
+     *
+     * @params Village
+     */
+    public function buildAt(Village $village) : void
+    {
+        $this->update(['village_id'=>$village->id]);
     }
 
 }

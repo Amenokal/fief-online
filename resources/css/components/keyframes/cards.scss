@@ -18,6 +18,9 @@
 .take-first-lord{
     animation: 'take-first-lord' .5s forwards ease-out;
 }
+.take-to-player{
+    animation: 'take-to-player' .5s forwards ease-out;
+}
 @keyframes firstLordDraw{
     from {
         transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
@@ -44,10 +47,19 @@
 }
 @keyframes take-first-lord{
     from {
+        transform: translateX(-600%) translateY(400%) scale(4.5) rotate(0deg);
+    }
+    to {
+        transform: translateX(-600%) translateY(400%) scale(2) rotate(0deg);
+    }
+}
+
+@keyframes take-to-player{
+    from {
         transform: translateX(-600%) translateY(20%) scale(4.5) rotate(0deg);
     }
     to {
-        transform: translateX(-600%) translateY(20%) scale(2) rotate(-20deg);
+        transform: translateX(-1200%) translateY(20%) scale(2) rotate(-20deg);
     }
 }
 

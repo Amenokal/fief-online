@@ -12,12 +12,15 @@ class TurnController extends Controller
 {
     public static function giveTurn()
     {
-        $turn = TurnServices::giveTurn();
-        $message = $turn['phase'] >= 0 ?
-            TurnServices::phaseNames()[$turn['phase']] :
-            "La partie n'a pas encore commencée";
+        if(!Game::current()){
+            return response(['phase' => -1]);
+        }
+        else{
+            $turn = TurnServices::giveTurn();
+            // $message = TurnServices::phaseNames()[$turn['phase']];
 
-        return response()->json(['turn'=>$turn, 'message'=>$message]);
+            return response()->json(['turn'=>$turn, 'phase'=>$turn['phase']]);
+        }
     }
 
     public static function changeTurn(Request $request)

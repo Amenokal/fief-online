@@ -17,22 +17,18 @@ export class Game {
             document.querySelector('.game-container').innerHTML = res.data;
         })
         .then(()=>{
-            setListeners();
+            preparePhase();
+            addPermanentListeners();
         })
     }
 
-}
-
-function setListeners(){
-    preparePhase();
-    addPermanentListeners();
 }
 
 function preparePhase(){
     console.log('checking server for current phase...')
     axios.post('./check/phase')
     .then(res=>{
-        Phases.prepare(res.data.turn.phase);
+        Phases.prepare(res.data.phase);
     })
 }
 
@@ -45,7 +41,9 @@ function addPermanentListeners(){
     })
 
     // turns
-    document.getElementById('turn-indicator').addEventListener('click', chooseTurn);
+    if(document.getElementById('turn-indicator')){
+        document.getElementById('turn-indicator').addEventListener('click', chooseTurn);
+    }
 
     if(document.getElementById('end-turn')){
         document.getElementById('end-turn').addEventListener('click',endTurn);

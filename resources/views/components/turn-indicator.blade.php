@@ -1,17 +1,16 @@
 <header id='turn-indicator'>
 
     @foreach($phases as $phase)
-        {{-- {{ $turn }} --}}
+        @if($phase['id']>1)
+            <section
+                id="phase-{{$phase['id']}}"
+                @class(["current-phase $currentplayer->color-bordered" => $phase['id'] === $turn['phase']])
+            >
 
-        <section
-            id="phase-{{$phase['id']}}"
-            @class(["current-phase $currentplayer->color-bordered" => $phase['id'] === $turn['phase']])
-        >
+                {{ $phase['name'] }}
 
-            {{ $phase['name'] }}
-
-        </section>
-
+            </section>
+        @endif
     @endforeach
 
 </header>
