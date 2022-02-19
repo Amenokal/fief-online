@@ -23,16 +23,18 @@ class Title extends Model
     ];
 
 
+
     /**
      * Return corresponding crown title.
      * $zone range => 1 to 8;
      */
-    public static function getCrown(int $zone) : self
+    public static function getCrown(int $zone) : Title
     {
         if($zone>0 && $zone<9){
             return Title::where([
                 'game_id' => Game::current()->id,
-                'crown_zone' => $zone
+                'type' => 'crown',
+                'zone' => $zone
             ])
             ->first();
         }
@@ -44,12 +46,13 @@ class Title extends Model
      * Return corresponding cross title.
      * $zone range => 1 to 5;
      */
-    public static function getCross(int $zone) : self
+    public static function getCross(int $zone) : Title
     {
         if($zone>0 && $zone<5){
             return Title::where([
                 'game_id' => Game::current()->id,
-                'cross_zone' => $zone
+                'type' => 'cross',
+                'zone' => $zone
             ])
             ->first();
         }
@@ -63,17 +66,38 @@ class Title extends Model
      */
     public function villages() : Collection
     {
-        if($this->crown_id){
+        if($this->type === 'crown'){
             return Village::where([
                 'game_id'=>Game::current()->id,
                 'crown_zone'=>$this->zone
             ])->get();
         }
-        else if($this->cross_id){
+        else if($this->type === 'cross'){
             return Village::where([
                 'game_id'=>Game::current()->id,
                 'cross_zone'=>$this->zone
             ])->get();
         }
+    }
+
+
+    public static function bishops() : Collection
+    {
+        return Title::where('title_m', 'Évêque')->get();
+    }
+
+    public function isAvailable() : bool
+    {
+        foreach($this->villages() as $vilg){
+            if(!$vilg->hasOwner()){
+                return false;
+            }
+        }
+
+        if(!!$this->lord_name){
+            return false;
+        }
+
+        return true;
     }
 }

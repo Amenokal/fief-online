@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { showBoard } from '../animations/playerBoard';
+import { Game } from '../classes/Game';
 
 import { playerReady, createGame, drawFirstLord, checkForChooseVillage } from '../phases/00_start';
-import { chooseMyMembers } from '../phases/01_diplomacy';
+import { chooseMyMembers, startBishopElection } from '../phases/01_diplomacy';
 import { discard, draw, showDisasters, playCard } from '../phases/02_cards';
 import { getIncome, prepareBuyPhase, readyToBuy } from '../phases/03_gold';
 import { moveListeners } from '../phases/04_armies';
@@ -26,6 +26,8 @@ export class Phases {
             break;
 
             case 2: initMarriage();
+            break;
+            case 3: initBishopElection();
             break;
 
             case 6: initDiscard();
@@ -76,6 +78,22 @@ export class Phases {
             if(res.data.allowed){
                 document.getElementById('marryMyself').classList.add('allowed');
                 document.getElementById('marryMyself').addEventListener('click', chooseMyMembers);
+
+                document.getElementById('end-turn').classList.add('allowed');
+                document.getElementById('end-turn').addEventListener('click', Game.endTurn);
+
+            }
+        })
+    }
+
+    function initBishopElection(){
+        axios.post('./diplo/bishop/init')
+        .then(res=>{
+            if(res.data.zone.length === 0){
+                console.log("Aucun évêché n'est disponible")
+            }
+            else {
+                startBishopElection(res.data.zone);
             }
         })
     }

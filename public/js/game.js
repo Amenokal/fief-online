@@ -2523,6 +2523,27 @@ var Game = /*#__PURE__*/function () {
         preparePhase();
       });
     }
+  }, {
+    key: "endTurn",
+    value: function endTurn() {
+      if (document.querySelector('.modal')) {
+        document.querySelector('.modal').remove();
+      }
+
+      if (document.querySelector('.blurred')) {
+        document.querySelector('.blurred').classList.remove('blurred');
+      }
+
+      if (document.querySelector('.allowed')) {
+        document.querySelectorAll('.allowed').forEach(function (el) {
+          el.classList.remove('allowed');
+        });
+      }
+
+      axios.post('./endturn').then(function () {
+        Game.update();
+      });
+    }
   }]);
 
   return Game;
@@ -2544,14 +2565,11 @@ function addPermanentListeners() {
 
   if (document.getElementById('turn-indicator')) {
     document.getElementById('turn-indicator').addEventListener('click', chooseTurn);
-  }
+  } // // options
+  // document.getElementById('fullScreen').addEventListener('click', toggleFullScreen);
+  // //reset
+  // document.getElementById('resetAll').addEventListener('click', reset)
 
-  if (document.getElementById('end-turn')) {
-    document.getElementById('end-turn').addEventListener('click', endTurn); // // options
-    // document.getElementById('fullScreen').addEventListener('click', toggleFullScreen);
-    // //reset
-    // document.getElementById('resetAll').addEventListener('click', reset)
-  }
 } // \\\
 // -------------------------------------------
 // TURNS ::::: PHASE SELECTOR & PASS TURNS BTN
@@ -2567,12 +2585,6 @@ function chooseTurn(e) {
       Game.update();
     });
   }
-}
-
-function endTurn() {
-  axios.post('./endturn').then(function (res) {
-    Game.update();
-  });
 } // \\\
 // --------------------
 //  ::::: OPTIONS :::::
@@ -2672,7 +2684,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _animations_playerBoard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../animations/playerBoard */ "./resources/js/animations/playerBoard.js");
+/* harmony import */ var _classes_Game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../classes/Game */ "./resources/js/classes/Game.js");
 /* harmony import */ var _phases_00_start__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../phases/00_start */ "./resources/js/phases/00_start.js");
 /* harmony import */ var _phases_01_diplomacy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../phases/01_diplomacy */ "./resources/js/phases/01_diplomacy.js");
 /* harmony import */ var _phases_02_cards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../phases/02_cards */ "./resources/js/phases/02_cards.js");
@@ -2717,6 +2729,10 @@ var Phases = /*#__PURE__*/function () {
 
         case 2:
           initMarriage();
+          break;
+
+        case 3:
+          initBishopElection();
           break;
 
         case 6:
@@ -2774,6 +2790,18 @@ function initMarriage() {
     if (res.data.allowed) {
       document.getElementById('marryMyself').classList.add('allowed');
       document.getElementById('marryMyself').addEventListener('click', _phases_01_diplomacy__WEBPACK_IMPORTED_MODULE_3__.chooseMyMembers);
+      document.getElementById('end-turn').classList.add('allowed');
+      document.getElementById('end-turn').addEventListener('click', _classes_Game__WEBPACK_IMPORTED_MODULE_1__.Game.endTurn);
+    }
+  });
+}
+
+function initBishopElection() {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post('./diplo/bishop/init').then(function (res) {
+    if (res.data.zone.length === 0) {
+      console.log("Aucun évêché n'est disponible");
+    } else {
+      (0,_phases_01_diplomacy__WEBPACK_IMPORTED_MODULE_3__.startBishopElection)(res.data.zone);
     }
   });
 } // PHASE 02 ::::: CARDS
@@ -3029,13 +3057,16 @@ function chooseVillage(e) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "chooseMyMembers": () => (/* binding */ chooseMyMembers)
+/* harmony export */   "chooseMyMembers": () => (/* binding */ chooseMyMembers),
+/* harmony export */   "startBishopElection": () => (/* binding */ startBishopElection)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _animations_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../animations/modal */ "./resources/js/animations/modal.js");
 /* harmony import */ var _animations_playerBoard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../animations/playerBoard */ "./resources/js/animations/playerBoard.js");
-/* harmony import */ var _classes_GameElements__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../classes/GameElements */ "./resources/js/classes/GameElements.js");
+/* harmony import */ var _classes_Game__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../classes/Game */ "./resources/js/classes/Game.js");
+/* harmony import */ var _classes_GameElements__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../classes/GameElements */ "./resources/js/classes/GameElements.js");
+
 
 
 
@@ -3049,15 +3080,14 @@ function chooseMyMembers() {
   document.querySelector('.game-view').classList.toggle('blurred');
   axios__WEBPACK_IMPORTED_MODULE_0___default().get('./show/modal').then(function (res) {
     document.querySelector('.game-container').innerHTML += res.data;
-  }).then(function () {
-    (0,_animations_modal__WEBPACK_IMPORTED_MODULE_1__.showModal)().then(function (res) {
-      document.querySelector('.modal').classList.add('showpacity');
-      document.querySelector('.close-modal-btn').addEventListener('click', _animations_modal__WEBPACK_IMPORTED_MODULE_1__.closeMarriageModal);
-      document.querySelectorAll('.player-name').forEach(function (el) {
-        if (el.innerText !== _classes_GameElements__WEBPACK_IMPORTED_MODULE_3__.GameElements.localPlayer.familyName()) {
-          el.addEventListener('click', getOtherLords);
-        }
-      });
+    document.getElementById('end-turn').addEventListener('click', _classes_Game__WEBPACK_IMPORTED_MODULE_3__.Game.endTurn);
+  }).then(function (res) {
+    document.querySelector('.modal').classList.add('showpacity');
+    document.querySelector('.close-modal-btn').addEventListener('click', _animations_modal__WEBPACK_IMPORTED_MODULE_1__.closeMarriageModal);
+    document.querySelectorAll('.player-name').forEach(function (el) {
+      if (el.innerText !== _classes_GameElements__WEBPACK_IMPORTED_MODULE_4__.GameElements.localPlayer.familyName()) {
+        el.addEventListener('click', getOtherLords);
+      }
     });
   });
 }
@@ -3077,7 +3107,7 @@ function getOtherLords(e) {
         if (!e.target.className.includes('selected')) {
           e.target.classList.add('selected');
           axios__WEBPACK_IMPORTED_MODULE_0___default().post('./diplo/marriage/1', {
-            lord: e.target.className.split('-card')[0],
+            lord: document.querySelector('.player-lords>.selected').className.split(' ')[1].split('-')[0],
             otherFamilyColor: document.querySelector('.other-player-lords').className.split(' ')[1].split('-')[0]
           }).then(function (res) {
             res.data.lords.forEach(function (el) {
@@ -3119,6 +3149,64 @@ function sendProposal(e) {
   axios__WEBPACK_IMPORTED_MODULE_0___default().post('./diplo/marriage/2', {
     'askingLord': document.querySelector('.player-lords>span.selected').className.split('-')[0],
     'askedLord': document.querySelector('.other-player-lords>.selected').className.split('-')[0]
+  });
+} // \\\
+// -------------------------------
+// DIPLOMACY ::::: BISHOP ELECTION
+// -------------------------------
+// ///
+
+
+function startBishopElection(zone) {
+  document.querySelector('.game-view').classList.toggle('blurred');
+  axios__WEBPACK_IMPORTED_MODULE_0___default().get('./show/modal').then(function (res) {
+    document.querySelector('.game-container').innerHTML += res.data;
+  }).then(function () {
+    document.querySelector('.modal').classList.add('showpacity');
+    document.querySelector('.modal-btn').classList.add('active');
+    document.querySelector('.modal-btn').addEventListener('click', validateBishopChoice);
+    document.querySelector('.cross-election').classList.add('cross-' + zone);
+
+    if (document.querySelector('.my-lords>span')) {
+      document.querySelectorAll('.my-lords>span').forEach(function (el) {
+        el.addEventListener('click', wantsToBeBishop);
+      });
+    }
+  });
+}
+
+function wantsToBeBishop(e) {
+  e.target.classList.toggle('selected');
+  console.log(e.target.className);
+
+  if (e.target.className.includes('selected')) {
+    document.querySelector('.modal-btn').innerText = "Valider";
+    axios__WEBPACK_IMPORTED_MODULE_0___default().post('./diplo/bishop/candidat', {
+      lord: e.target.className.split(' ')[1].split('-')[0],
+      event: 'add'
+    });
+  } else {
+    document.querySelector('.modal-btn').innerText = "Passer";
+    axios__WEBPACK_IMPORTED_MODULE_0___default().post('./diplo/bishop/candidat', {
+      lord: e.target.className.split(' ')[1].split('-')[0],
+      event: 'remove'
+    });
+  }
+}
+
+function validateBishopChoice(e) {
+  document.querySelector('.my-lords').parentNode.remove();
+  document.querySelector('.modal-btn').classList.remove('active');
+  document.querySelector('.modal-btn').removeEventListener('click', validateBishopChoice);
+  document.querySelector('.modal-btn').innerText = "En attente des autres joueurs...";
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post('./diplo/bishop/validate/choice').then(function () {
+    console.log(!document.querySelector('.not-decided'));
+
+    if (!document.querySelector('.not-decided')) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('./diplo/bishop/election', {
+        zone: document.querySelector('.cross-election').className.split(' ')[1].split('-')[1]
+      });
+    }
   });
 }
 
@@ -28068,18 +28156,24 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 document.onload = Game.update();
 window.Echo.channel('lobby').listen('.newUserJoin', function (e) {
   console.log('channel received = ', e);
-  document.querySelector('.waiting-lobby').innerHTML += "\n        <div class='lobby-users'>\n            <span>".concat(e.username, "</span>\n        </div>");
+  document.querySelector('.waiting-lobby').innerHTML += "\n            <div class='lobby-users'>\n                <span>".concat(e.username, "</span>\n            </div>");
 }).listen('.createGame', function () {
   Game.update();
 });
 window.Echo.channel('game').listen('.shouldUpdate', function (e) {
   Game.update();
 }).listen('.newMarriage', function (e) {
-  var askingLord = e.askingLord;
-  var askingFamily = e.askingFamily;
-  var askedLord = e.askedLord;
-  var askedFamily = e.askedFamily;
-  document.querySelector('.players').innerHTML += "<span class='message'>\n            ".concat(upCase(askingLord), ", de la ").concat(askingFamily, " se marie avec ").concat(upCase(askedLord), ", de la ").concat(askedFamily, " !\n        </span>");
+  document.querySelector('.players').innerHTML += "<span class='message'>\n                ".concat(upCase(e.askingLord), ", de la ").concat(e.askingFamily, " se marie avec ").concat(upCase(e.askedLord), ", de la ").concat(e.askedFamily, " !\n            </span>");
+}).listen('.newBishopCandidat', function (e) {
+  console.log(e.event);
+
+  if (e.event === 'add') {
+    document.querySelector('.other-lords>.' + e.familyColor + '-bordered').innerHTML += "<span class=\"modal-card ".concat(e.lord, "-card\"></span>");
+  } else if (e.event === 'remove') {
+    document.querySelector('.other-lords>.' + e.familyColor + '-bordered').innerHTML = "";
+  }
+}).listen('.validateChoice', function (e) {
+  document.querySelector('.other-lords>.' + e.color + '-bordered').classList.remove('not-decided');
 });
 window.Echo.channel('special-' + GameElements.localPlayer.order()).listen('.marryProposal', function (e) {
   displayMarriageProposal(e);

@@ -89,31 +89,31 @@
     width: 2%;
     border-color: rgb(240, 210, 173);
 }
-    #cross-1{
+    .cross-1{
         transform: rotate(90deg);
         left: 32%;
         top: -6%;
         @include back-img('tokens/titles/cross-1.png');
     }
-    #cross-2{
+    .cross-2{
         transform: rotate(90deg);
         left: 62%;
         top: -6%;
         @include back-img('tokens/titles/cross-2.png');
     }
-    #cross-3{
+    .cross-3{
         transform: rotate(180deg);
         right: 2%;
         top: 42%;
         @include back-img('tokens/titles/cross-3.png');
     }
-    #cross-4{
+    .cross-4{
         transform: rotate(-90deg);
         left: 45%;
         bottom: -6%;
         @include back-img('tokens/titles/cross-4.png');
     }
-    #cross-5 {
+    .cross-5 {
         top: 40%;
         @include back-img('tokens/titles/cross-5.png');
     }

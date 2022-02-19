@@ -77,6 +77,19 @@ class Player extends Model
         ->get();
     }
 
+    public function eligibleForBishopLords() : Collection
+    {
+        return Card::where([
+            'game_id'=>Game::current()->id,
+            'player_id'=>$this->id,
+            'on_board'=>true,
+            'deck'=>'lord',
+            'gender'=>'M',
+            'married'=>false
+        ])
+        ->get();
+    }
+
 
     public function lordsHere(Village $village) : Collection
     {

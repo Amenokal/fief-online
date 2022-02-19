@@ -29,12 +29,18 @@ class PhaseController extends Controller
     public function chooseVillage(Request $request)                 {StarterPhase::chooseVillage($request, Village::get($request->village));}
 
     // ::::: DIPLOMACY ::::::
-    public function canMarry(Request $request)         {return DiplomacyPhase::canMarry($request);}
+    // marriage
+    public function canMarry(Request $request)              {return DiplomacyPhase::canMarry($request);}
     public function getOtherLords(Request $request)         {return DiplomacyPhase::getOtherLords($request);}
-    public function whithWhoCanMarry(Request $request)     {return DiplomacyPhase::whithWhoCanMarry($request);}
+    public function whithWhoCanMarry(Request $request)      {return DiplomacyPhase::whithWhoCanMarry($request);}
     public function sendProposal(Request $request)          {return DiplomacyPhase::sendProposal($request);}
     public function acceptProposal(Request $request)        {return DiplomacyPhase::acceptProposal($request);}
 
+    // bishop election
+    public function initBishopElection(Request $request)        {return DiplomacyPhase::initBishopElection($request);}
+    public function newBishopCandidat(Request $request)         {return DiplomacyPhase::newBishopCandidat($request);}
+    public function validateChoice(Request $request)            {return DiplomacyPhase::validateChoice($request);}
+    public function startBishopElection(Request $request)      {return DiplomacyPhase::startBishopElection($request);}
 
     // PHASE ::::: REVENUS
     public function getIncome()

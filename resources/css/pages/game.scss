@@ -245,14 +245,6 @@
     }
 }
 
-.modal {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 5;
-}
-
 .not-started {
     @include back-img('/textures/dark-wood.png');
     background-color: rgb(100, 51, 16);
@@ -265,7 +257,7 @@
     filter: blur(2px);
 }
 
-#marryMyself {
+.main-btn {
     transition: .3s ease-out;
     filter: brightness(.5);
     &.allowed{

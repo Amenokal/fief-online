@@ -572,14 +572,6 @@
   color: var(--red);
 }
 
-.modal {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
-}
-
 .not-started {
   background-image: url("../public/storage//textures/dark-wood.png");
   background-repeat: no-repeat;
@@ -595,11 +587,11 @@
   filter: blur(2px);
 }
 
-#marryMyself {
+.main-btn {
   transition: 0.3s ease-out;
   filter: brightness(0.5);
 }
-#marryMyself.allowed {
+.main-btn.allowed {
   filter: brightness(1);
 }
 
@@ -658,18 +650,18 @@
 }
 @-webkit-keyframes openParchmBottom {
   from {
-    top: -275px;
+    top: 0px;
   }
   to {
-    top: -75px;
+    top: 250px;
   }
 }
 @keyframes openParchmBottom {
   from {
-    top: -275px;
+    top: 0px;
   }
   to {
-    top: -75px;
+    top: 250px;
   }
 }
 @-webkit-keyframes showForm {
@@ -747,6 +739,18 @@
   transition: 0.3s ease;
   transform: scale(1.2);
   cursor: pointer;
+}
+.login-container .parchm-top {
+  height: 130px;
+  width: 300px;
+  flex-direction: column;
+  filter: drop-shadow(0px 0px 5px black);
+}
+.login-container .parchm-bottom {
+  width: 300px;
+  height: 100px;
+  filter: drop-shadow(0px 0px 5px black);
+  background-size: contain;
 }
 
 /**
@@ -1615,7 +1619,7 @@
   border-color: #f0d2ad;
 }
 
-#cross-1 {
+.cross-1 {
   transform: rotate(90deg);
   left: 32%;
   top: -6%;
@@ -1625,7 +1629,7 @@
   background-size: contain;
 }
 
-#cross-2 {
+.cross-2 {
   transform: rotate(90deg);
   left: 62%;
   top: -6%;
@@ -1635,7 +1639,7 @@
   background-size: contain;
 }
 
-#cross-3 {
+.cross-3 {
   transform: rotate(180deg);
   right: 2%;
   top: 42%;
@@ -1645,7 +1649,7 @@
   background-size: contain;
 }
 
-#cross-4 {
+.cross-4 {
   transform: rotate(-90deg);
   left: 45%;
   bottom: -6%;
@@ -1655,7 +1659,7 @@
   background-size: contain;
 }
 
-#cross-5 {
+.cross-5 {
   top: 40%;
   background-image: url("../public/storage/tokens/titles/cross-5.png");
   background-repeat: no-repeat;
@@ -1718,6 +1722,27 @@
 .modal {
   opacity: 0;
   transition: 0.3s ease-out;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.modal-btn {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 25%;
+  transform: scale(0.8);
+  transition: 0.1s ease-out;
+}
+.modal-btn.active {
+  transform: scale(1);
+  color: #591800;
+}
+.modal-btn.active:hover {
+  transform: scale(1.3);
 }
 
 .close-modal-btn {
@@ -1747,32 +1772,20 @@
   top: 5%;
   margin-bottom: 1em;
 }
-.marriage-modal .parchm-top .player-lords {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.marriage-modal .parchm-top .player-lords > * {
-  transform: scale(0.7);
-}
-.marriage-modal .parchm-top .player-lords > *.selected {
-  transform: scale(0.9);
-  filter: drop-shadow(0px 0px 5px black);
-}
+.marriage-modal .parchm-top .player-lords,
 .marriage-modal .parchm-top .other-player-lords {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.marriage-modal .parchm-top .other-player-lords > * {
+.marriage-modal .parchm-top .player-lords > span,
+.marriage-modal .parchm-top .other-player-lords > span {
   transform: scale(0.7);
 }
-.marriage-modal .parchm-top .other-player-lords > *.selected {
+.marriage-modal .parchm-top .player-lords > span.selected,
+.marriage-modal .parchm-top .other-player-lords > span.selected {
   transform: scale(0.9);
   filter: drop-shadow(0px 0px 5px black);
-}
-.marriage-modal .parchm-top .other-player-lords > *.available {
-  filter: drop-shadow(0px 0px 5px goldenrod);
 }
 .marriage-modal .parchm-bottom {
   top: 500px;
@@ -1791,20 +1804,84 @@
   top: 500px;
 }
 
-.modal-btn {
-  border: none;
-  background-color: transparent;
-  position: absolute;
-  top: 25%;
-  transform: scale(0.8);
-  transition: 0.1s ease-out;
+.bishop-election {
+  top: 10%;
+  left: 25%;
 }
-.modal-btn.active {
+.bishop-election .parchm-top {
+  height: 130px;
+  width: 700px;
+  flex-direction: column;
+  filter: drop-shadow(0px 0px 5px black);
+}
+.bishop-election .parchm-bottom {
+  top: 500px;
+  width: 700px;
+  height: 100px;
+  background-position: bottom;
+  filter: drop-shadow(0px 0px 5px black);
+}
+.bishop-election.showpacity {
+  opacity: 1;
+}
+.bishop-election.showpacity .parchm-top {
+  height: 550px;
+}
+.bishop-election.showpacity .parchm-bottom {
+  top: 500px;
+}
+.bishop-election section {
+  height: 40%;
+  width: 95%;
+  position: relative;
+  top: 5%;
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
+}
+.bishop-election section > div {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: brightness(0.7);
+  transform: scale(0.9);
+}
+.bishop-election section > div.not-decided {
+  filter: brightness(1);
   transform: scale(1);
-  color: #591800;
 }
-.modal-btn.active:hover {
-  transform: scale(1.3);
+.bishop-election .cross-election {
+  height: 60%;
+  width: 10%;
+  transform: rotate(0deg);
+}
+.bishop-election .election-container {
+  height: 70%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 5%;
+}
+.bishop-election .election-container > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 90%;
+}
+
+.modal-card {
+  transform: scale(0.7);
+}
+.modal-card.selected {
+  transform: scale(0.9);
+  filter: drop-shadow(0px 0px 5px black);
+}
+.modal-card.available {
+  filter: drop-shadow(0px 0px 5px goldenrod);
 }
 
 header {

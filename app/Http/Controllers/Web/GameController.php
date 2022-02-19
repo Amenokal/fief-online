@@ -2,44 +2,21 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\Card;
 use App\Models\Game;
 use App\Models\User;
-use App\Config\Config;
+use App\Models\Title;
 use App\Models\Player;
 use App\Models\Soldier;
-use App\Models\Village;
-use App\Models\Building;
-use App\Models\Villages;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
-use App\Config\Soldiers\Lord;
 use App\Custom\Helpers\Gipsy;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
-use App\Config\Soldiers\Lords;
-use App\Events\GameStartEvent;
-use App\Config\Soldiers\Knight;
 use App\Events\CreateGameEvent;
 use App\Events\NewUserJoinGame;
-use App\Custom\GameObjects\Army;
-use App\Custom\Helpers\Marechal;
-use App\Config\Elements\Soldiers;
-use App\Config\Soldiers\Sergeant;
-use App\Custom\Helpers\Architect;
-use App\Custom\Helpers\Librarian;
-use App\Events\CurrentPlayerEvent;
-use App\Custom\Phases\StarterPhase;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Custom\Phases\DiplomacyPhase;
-use App\Custom\Services\ArmyServices;
-use App\Custom\Services\BankServices;
 use App\Custom\Services\BootServices;
-use App\Custom\Services\DeckServices;
 use App\Custom\Services\TurnServices;
-use App\Custom\Services\GameStartServices;
 
 class GameController extends Controller
 {
@@ -165,7 +142,9 @@ class GameController extends Controller
         return view('components.modal', [
             'phase' => Game::current()->current_phase,
             'localPlayer' => $request->user()->player,
-            'otherPlayer' => false
+            'otherPlayer' => false,
+            'players' => Player::all(),
+            'bishopLords' => $request->user()->player->eligibleForBishopLords()
         ]);
     }
 

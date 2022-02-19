@@ -23,6 +23,24 @@ export class Game {
         })
     }
 
+    static endTurn(){
+        if(document.querySelector('.modal')){
+            document.querySelector('.modal').remove();
+        }
+        if(document.querySelector('.blurred')){
+            document.querySelector('.blurred').classList.remove('blurred');
+        }
+        if(document.querySelector('.allowed')){
+            document.querySelectorAll('.allowed').forEach(el=>{
+                el.classList.remove('allowed');
+            })
+        }
+
+        axios.post('./endturn')
+        .then(() => {
+            Game.update();
+        })
+    }
 }
 
 function preparePhase(){
@@ -46,15 +64,11 @@ function addPermanentListeners(){
         document.getElementById('turn-indicator').addEventListener('click', chooseTurn);
     }
 
-    if(document.getElementById('end-turn')){
-        document.getElementById('end-turn').addEventListener('click',endTurn);
+    // // options
+    // document.getElementById('fullScreen').addEventListener('click', toggleFullScreen);
 
-        // // options
-        // document.getElementById('fullScreen').addEventListener('click', toggleFullScreen);
-
-        // //reset
-        // document.getElementById('resetAll').addEventListener('click', reset)
-    }
+    // //reset
+    // document.getElementById('resetAll').addEventListener('click', reset)
 }
 
 
@@ -74,13 +88,6 @@ function chooseTurn(e){
             Game.update();
         })
     }
-}
-
-function endTurn(){
-    axios.post('./endturn')
-    .then(res => {
-        Game.update();
-    })
 }
 
 

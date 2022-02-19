@@ -109,6 +109,11 @@ Route::post('/diplo/marriage/1', [PhaseController::class, 'whithWhoCanMarry']);
 Route::post('/diplo/marriage/2', [PhaseController::class, 'sendProposal']);
 Route::post('/diplo/marriage/accept', [PhaseController::class, 'acceptProposal']);
 
+Route::post('/diplo/bishop/init', [PhaseController::class, 'initBishopElection']);
+Route::post('/diplo/bishop/candidat', [PhaseController::class, 'newBishopCandidat']);
+Route::post('/diplo/bishop/validate/choice', [PhaseController::class, 'validateChoice']);
+Route::post('/diplo/bishop/election', [PhaseController::class, 'startBishopElection']);
+
 
     // PHASE ::::: CARDS
     // -----------------

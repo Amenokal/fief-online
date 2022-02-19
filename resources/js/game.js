@@ -14,9 +14,9 @@ window.Echo.channel('lobby')
     .listen('.newUserJoin', e=>{
         console.log('channel received = ', e);
         document.querySelector('.waiting-lobby').innerHTML += `
-        <div class='lobby-users'>
-            <span>${e.username}</span>
-        </div>`
+            <div class='lobby-users'>
+                <span>${e.username}</span>
+            </div>`
     })
     .listen('.createGame', ()=>{
         Game.update();
@@ -29,15 +29,23 @@ window.Echo.channel('game')
         Game.update();
     })
     .listen('.newMarriage', e=>{
-        let askingLord = e.askingLord;
-        let askingFamily = e.askingFamily;
-        let askedLord = e.askedLord;
-        let askedFamily = e.askedFamily;
-
         document.querySelector('.players').innerHTML+=
-        `<span class='message'>
-            ${upCase(askingLord)}, de la ${askingFamily} se marie avec ${upCase(askedLord)}, de la ${askedFamily} !
-        </span>`;
+            `<span class='message'>
+                ${upCase(e.askingLord)}, de la ${e.askingFamily} se marie avec ${upCase(e.askedLord)}, de la ${e.askedFamily} !
+            </span>`;
+    })
+    .listen('.newBishopCandidat', e=>{
+        console.log(e.event);
+        if(e.event === 'add'){
+            document.querySelector('.other-lords>.'+e.familyColor+'-bordered').innerHTML +=
+                `<span class="modal-card ${e.lord}-card"></span>`
+        }
+        else if (e.event === 'remove'){
+            document.querySelector('.other-lords>.'+e.familyColor+'-bordered').innerHTML = "";
+        }
+    })
+    .listen('.validateChoice', e=>{
+        document.querySelector('.other-lords>.'+e.color+'-bordered').classList.remove('not-decided');
     })
 
 
