@@ -66,6 +66,16 @@ class Player extends Model
         ->get();
     }
 
+    public function lords() : Collection
+    {
+        return Card::where([
+            'game_id'=>Game::current()->id,
+            'player_id'=>$this->id,
+            'on_board'=>true,
+            'deck'=>'lord'
+        ])
+        ->get();
+    }
 
 
     public function lordsHere(Village $village) : Collection

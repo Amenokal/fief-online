@@ -48,8 +48,7 @@ class TurnServices {
             }
 
         }
-
-        return response()->json(['color' => Realm::currentPlayer()->color]);
+        event(new UpdateGameEvent());
     }
 
 }

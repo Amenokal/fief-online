@@ -1,5 +1,6 @@
 <?php
 
+use App\Custom\Phases\DiplomacyPhase;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\EventController;
@@ -78,10 +79,11 @@ Route::post('/check/phase', [TurnController::class, 'giveTurn']);
 Route::post('/changeturn', [TurnController::class, 'changeTurn']);
 Route::post('/endturn', [TurnController::class, 'endTurn']);
 
-    // PLAYER BOARDS
-    // -------------
+    // SHOW
+    // -----
 
 Route::get('/show/board', [GameController::class, 'showBoard']);
+Route::get('/show/modal', [GameController::class, 'showModal']);
 
 
 
@@ -97,6 +99,16 @@ Route::post('/gamestart/0', [GameController::class, 'start']);
 Route::post('/gamestart/1', [PhaseController::class, 'getFirstLordsData']);
 Route::post('/gamestart/2', [PhaseController::class, 'isItMyTurnToChooseVillage']);
 Route::post('/gamestart/3', [PhaseController::class, 'chooseVillage']);
+
+    // PHASE ::::: DIPLOMACY
+    // ---------------------
+
+Route::post('/diplo/marriage/init', [PhaseController::class, 'canMarry']);
+Route::post('/diplo/marriage/0', [PhaseController::class, 'getOtherLords']);
+Route::post('/diplo/marriage/1', [PhaseController::class, 'whithWhoCanMarry']);
+Route::post('/diplo/marriage/2', [PhaseController::class, 'sendProposal']);
+Route::post('/diplo/marriage/accept', [PhaseController::class, 'acceptProposal']);
+
 
     // PHASE ::::: CARDS
     // -----------------

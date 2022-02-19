@@ -1,3 +1,5 @@
+@import '../../meta/mixin.scss';
+
 .player-board{
     width: 900px;
     height: 420px;
@@ -23,11 +25,12 @@
     justify-content: space-around;
     align-items: center;
 
-    div {
+    .token-pool {
         width: 70px;
         height: 70px;
         display: flex;
         position: relative;
+        @include spreadTokens;
     }
 
     .token {
@@ -70,16 +73,19 @@
     }
 
     &:nth-of-type(1){
-        background-image: url('../public/images/oldpaper1.jpg');
+        @include back-img("images/oldpaper1.jpg");
+        background-size: cover;
     }
     &:nth-of-type(2){
-        background-image: url('../public/images/oldpaper2.jpg');
+        @include back-img("images/oldpaper2.jpg");
+        background-size: cover;
     }
     &:nth-of-type(3){
-        background-image: url('../public/images/oldpaper3.jpg');
+        @include back-img("images/oldpaper3.jpg");
+        background-size: cover;
     }
     &:nth-of-type(4){
-        background-image: url('../public/images/oldpaper4.png');
+        @include back-img("images/oldpaper4.png");
         background-size: 120% 130%;
     }
 }
@@ -138,3 +144,8 @@
     }
 }
 
+.can-send-message {
+    &:hover{
+        cursor: url('../public/storage/cursors/sendmessage.png'), pointer;
+    }
+}

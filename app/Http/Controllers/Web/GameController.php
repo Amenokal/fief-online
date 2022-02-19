@@ -33,6 +33,7 @@ use App\Events\CurrentPlayerEvent;
 use App\Custom\Phases\StarterPhase;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Custom\Phases\DiplomacyPhase;
 use App\Custom\Services\ArmyServices;
 use App\Custom\Services\BankServices;
 use App\Custom\Services\BootServices;
@@ -44,9 +45,6 @@ class GameController extends Controller
 {
     public function index(Request $request)
     {
-        // dd($request->user()->player->soldiersHere(Village::get('marcamps')));
-        // dd(Mayor::administrate());
-
         if(!Game::current()){
             return view('partials.game.lobby', [
                 'game' => Game::current(),
@@ -59,14 +57,14 @@ class GameController extends Controller
                 'game' => Game::current(),
 
                 'users' => User::where('in_game', true)->get(),
-                'families' => Realm::families(),
+                'families' => Player::all(),
 
-                'player' => Local::player(),
+                'player' => $request->user()->player,
                 'player_cards' => $request->user()->player->inHandCards(),
 
                 'turn' => Game::turn(),
                 'phases' => TurnServices::phaseNames(),
-                'current_player' => Realm::currentPlayer(),
+                'current_player' => Player::where('turn_order', Game::current()->current_player)->first(),
 
                 'remaining_lords' => Realm::remainingLords(),
                 'remaining_buildings' => Realm::remainingBuildings(),
@@ -105,7 +103,7 @@ class GameController extends Controller
                 'families' => Realm::families(),
                 'turn' => Game::turn(),
                 'phases' => TurnServices::phaseNames(),
-                'currentplayer' => Realm::currentPlayer(),
+                'currentplayer' => Player::where('turn_order', Game::current()->current_player)->first(),
 
                 'remnlords' => Realm::remainingLords(),
                 'remnbuildings' => Realm::remainingBuildings(),
@@ -123,14 +121,6 @@ class GameController extends Controller
         }
     }
 
-    public function showBoard(Request $request)
-    {
-        $player = Realm::families()->where('familyname', $request->house)->first();
-        return view('components.player-board', [
-            'player' => $player
-        ]);
-    }
-
     public function playerReady(Request $request){
         $request->user()->update(['in_game'=>true]);
         event(new NewUserJoinGame($request->user()));
@@ -145,4 +135,39 @@ class GameController extends Controller
         ]);
         event(new CreateGameEvent());
     }
+
+    public function showBoard(Request $request)
+    {
+        $player = Player::where('family_name', $request->house)->first();
+        $sergLeft = Soldier::whereNull('village_id')
+            ->where([
+                'type' => 'sergeant',
+                'player_id' => $player->id
+            ])
+            ->get();
+
+        $knightLeft = Soldier::whereNull('village_id')
+            ->where([
+                'type' => 'knight',
+                'player_id' => $player->id
+            ])
+            ->get();
+
+        return view('components.player-board', [
+            'player' => $player,
+            'sergLeft' => $sergLeft,
+            'knightLeft' => $knightLeft
+        ]);
+    }
+
+    public function showModal(Request $request)
+    {
+        return view('components.modal', [
+            'phase' => Game::current()->current_phase,
+            'localPlayer' => $request->user()->player,
+            'otherPlayer' => false
+        ]);
+    }
+
+
 }

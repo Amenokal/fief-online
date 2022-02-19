@@ -1,0 +1,147 @@
+@import '../../meta/mixin.scss';
+
+header {
+    height: 5%;
+    box-sizing: border-box;
+    border: 2px solid rgb(63, 63, 63);
+    background-color: rgb(201, 201, 201);
+    display: flex;
+    justify-content: center;
+
+    section {
+        @include back-img('/textures/grunge2.png');
+        background-size: cover;
+        height: 100%;
+        box-sizing: border-box;
+        border-right: 2px solid rgb(63, 63, 63);
+        width: 100%;
+        font-size: .7rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:last-child {
+            border: none;
+        }
+    }
+}
+
+header section{
+    .turn-icon{
+        height: 100%;
+        width: 100%;
+    }
+
+    &:nth-of-type(1)>.turn-icon{
+        @include back-img('/images/ring.png');
+    }
+    &:nth-of-type(2)>.turn-icon{
+        @include back-img('/images/bishop.png');
+    }
+    &:nth-of-type(3)>.turn-icon{
+        @include back-img('/tokens/titles/pope.png');
+    }
+    &:nth-of-type(4)>.turn-icon{
+        @include back-img('/tokens/titles/king.png');
+    }
+    &:nth-of-type(5)>.turn-icon{
+        @include back-img('/cards/versos/event.png');
+        position: relative;
+
+        .fa-xmark {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: rotate(90deg);
+            color: firebrick;
+        }
+    }
+    &:nth-of-type(6)>.turn-icon{
+        @include back-img('/cards/versos/event.png');
+        position: relative;
+
+        .fa-plus {
+            position: absolute;
+            top: 40%;
+            left: 45%;
+            transform: rotate(90deg);
+            color: green;
+        }
+    }
+    &:nth-of-type(7)>.turn-icon{
+        @include back-img('/cards/versos/disaster.png');
+    }
+    &:nth-of-type(8)>.turn-icon{
+        @include back-img('/cards/versos/event.png');
+        position: relative;
+
+        .fa-share {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: rotate(35deg);
+            color: green;
+        }
+    }
+    &:nth-of-type(9)>.turn-icon{
+        @include back-img('/images/treasure.png');
+        position: relative;
+
+        .fa-share {
+            position: absolute;
+            top: 30%;
+            left: 60%;
+            transform: rotate(35deg) rotateY(.5turn);
+            color: green;
+        }
+    }
+    &:nth-of-type(10)>.turn-icon{
+        @include back-img('/images/treasure.png');
+        position: relative;
+
+        .fa-share {
+            position: absolute;
+            top: 30%;
+            left: 60%;
+            transform: rotate(35deg);
+            color: firebrick;
+        }
+    }
+    &:nth-of-type(11)>.turn-icon{
+        @include back-img('/images/move.png');
+        position: relative;
+
+        .fa-chevron-right {
+            position: absolute;
+            color: green;
+
+            &:nth-of-type(1){
+                top: 30%;
+                left: 60%;
+            }
+            &:nth-of-type(2){
+                top: 30%;
+                left: 70%;
+            }
+        }
+    }
+    &:nth-of-type(12)>.turn-icon{
+        @include back-img('/images/move.png');
+        position: relative;
+
+        .turn-dices {
+            @include back-img('/images/dices.png');
+            position: absolute;
+            height: 80%;
+            width: 90%;
+            top: 10%;
+            left: 30%;
+        }
+    }
+    &:nth-of-type(13)>.turn-icon{
+        @include back-img('/images/siege.png');
+    }
+    &:nth-of-type(14)>.turn-icon{
+        @include back-img('/tokens/titles/prince.png');
+    }
+}

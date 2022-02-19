@@ -18,7 +18,7 @@ class Title extends Model
         'title_m',
         'title_f',
         'player_id',
-        'lord_id',
+        'lord_name',
         'game_id'
     ];
 

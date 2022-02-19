@@ -13,6 +13,7 @@ use App\Custom\Helpers\Noble;
 use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Marechal;
 use App\Custom\Helpers\Architect;
+use App\Custom\Phases\DiplomacyPhase;
 use App\Custom\Phases\StarterPhase;
 use App\Http\Controllers\Controller;
 use App\Custom\Phases\FirstLordPhase;
@@ -22,22 +23,17 @@ use App\Custom\Services\TurnServices;
 
 class PhaseController extends Controller
 {
-    // PHASE 0 ::::: START GAME
-    public function getFirstLordsData(Request $request)
-    {
-        return StarterPhase::getFirstLordsData($request);
-    }
+    // ::::: START GAME :::::
+    public function getFirstLordsData(Request $request)             {return StarterPhase::getFirstLordsData($request);}
+    public function isItMyTurnToChooseVillage(Request $request)     {return response()->json(['allowed'=>StarterPhase::isItMyTurnToChooseVillage($request)]);}
+    public function chooseVillage(Request $request)                 {StarterPhase::chooseVillage($request, Village::get($request->village));}
 
-    public function isItMyTurnToChooseVillage(Request $request)
-    {
-        return response()->json(['allowed'=>StarterPhase::isItMyTurnToChooseVillage($request)]);
-    }
-
-    public function chooseVillage(Request $request)
-    {
-        StarterPhase::chooseVillage($request, Village::get($request->village));
-    }
-
+    // ::::: DIPLOMACY ::::::
+    public function canMarry(Request $request)         {return DiplomacyPhase::canMarry($request);}
+    public function getOtherLords(Request $request)         {return DiplomacyPhase::getOtherLords($request);}
+    public function whithWhoCanMarry(Request $request)     {return DiplomacyPhase::whithWhoCanMarry($request);}
+    public function sendProposal(Request $request)          {return DiplomacyPhase::sendProposal($request);}
+    public function acceptProposal(Request $request)        {return DiplomacyPhase::acceptProposal($request);}
 
 
     // PHASE ::::: REVENUS

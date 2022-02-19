@@ -5,36 +5,6 @@
     height: 100%;
     width: 100%;
 
-    header {
-        height: 5%;
-        box-sizing: border-box;
-        border: 2px solid rgb(63, 63, 63);
-        background-color: rgb(201, 201, 201);
-        display: flex;
-        justify-content: center;
-
-        section {
-            @include back-img('/textures/grunge2.png');
-            background-size: cover;
-            height: 100%;
-            box-sizing: border-box;
-            border-right: 2px solid rgb(63, 63, 63);
-            width: 10%;
-            font-size: .7rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            &:last-child {
-                border: none;
-            }
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-    }
-
     main {
         height: 95%;
         width: 100%;
@@ -68,8 +38,8 @@
                 border-color: inherit;
                 text-shadow: inherit 0px 0px 5px;
 
-                &:hover{
-                    cursor: pointer;
+                &:hover {
+                    cursor: url('../public/storage/cursors/info.png'), pointer;
                 }
             }
 
@@ -158,6 +128,7 @@
         box-sizing: border-box;
         padding: 1em;
         box-shadow: inset 0px 0px 43px 20px rgba(0,0,0,0.41);
+        transition: .3s ease-out;
 
         .game-board {
             height: 100%;
@@ -288,4 +259,16 @@
     background-size: contain;
     background-repeat: repeat;
     filter: blur(2px);
+}
+
+.blurred {
+    filter: blur(2px);
+}
+
+#marryMyself {
+    transition: .3s ease-out;
+    filter: brightness(.5);
+    &.allowed{
+        filter: brightness(1);
+    }
 }

@@ -262,39 +262,44 @@
   opacity: 0.5;
 }
 
-.game-container {
-  background-color: var(--background-black);
-  height: 100%;
-  width: 100%;
-}
-.game-container header {
-  height: 5%;
-  box-sizing: border-box;
-  border: 2px solid #3f3f3f;
-  background-color: #c9c9c9;
+.parchm-top {
+  position: absolute;
+  left: 2%;
+  top: 0px;
+  height: 75px;
+  width: 300px;
+  background-image: url("../public/storage/images/parchemin-top.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-position: unset;
+  background-size: cover;
   display: flex;
   justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
-.game-container header section {
-  background-image: url("../public/storage//textures/grunge2.png");
+
+.parchm-bottom {
+  position: absolute;
+  left: 2%;
+  top: -275px;
+  width: 300px;
+  height: 375px;
+  background-image: url("../public/storage/images/parchemin-bottom.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   background-size: cover;
-  height: 100%;
-  box-sizing: border-box;
-  border-right: 2px solid #3f3f3f;
-  width: 10%;
-  font-size: 0.7rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.game-container header section:last-child {
-  border: none;
-}
-.game-container header section:hover {
-  cursor: pointer;
+
+.game-container {
+  background-color: var(--background-black);
+  height: 100%;
+  width: 100%;
 }
 .game-container main {
   height: 95%;
@@ -332,7 +337,7 @@
   text-shadow: inherit 0px 0px 5px;
 }
 .game-container .players .player-info-wrapper .player-name:hover {
-  cursor: pointer;
+  cursor: url("../public/storage/cursors/info.png"), pointer;
 }
 .game-container .players .player-info-wrapper .player-info {
   display: flex;
@@ -400,6 +405,7 @@
   box-sizing: border-box;
   padding: 1em;
   box-shadow: inset 0px 0px 43px 20px rgba(0, 0, 0, 0.41);
+  transition: 0.3s ease-out;
 }
 .game-container .game-view .game-board {
   height: 100%;
@@ -585,6 +591,18 @@
   filter: blur(2px);
 }
 
+.blurred {
+  filter: blur(2px);
+}
+
+#marryMyself {
+  transition: 0.3s ease-out;
+  filter: brightness(0.5);
+}
+#marryMyself.allowed {
+  filter: brightness(1);
+}
+
 .animate-parchm {
   -webkit-animation: "showParchm" 0.5s ease-out forwards;
           animation: "showParchm" 0.5s ease-out forwards;
@@ -684,38 +702,6 @@
   background-size: cover;
   overflow: hidden;
   display: flex;
-}
-.login-container .parchm-top {
-  position: absolute;
-  left: 2%;
-  top: 0px;
-  height: 75px;
-  width: 300px;
-  background-image: url("../public/storage/images/parchemin-top.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  background-position: unset;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-.login-container .parchm-bottom {
-  position: absolute;
-  left: 2%;
-  top: -275px;
-  width: 300px;
-  height: 375px;
-  background-image: url("../public/storage/images/parchemin-bottom.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .login-container form {
   width: 50%;
@@ -913,11 +899,78 @@
   justify-content: space-around;
   align-items: center;
 }
-.family-info div {
+.family-info .token-pool {
   width: 70px;
   height: 70px;
   display: flex;
   position: relative;
+}
+.family-info .token-pool > .lord {
+  width: 50%;
+  left: -1%;
+}
+.family-info .token-pool > .lord:nth-child(1) {
+  z-index: 4;
+}
+.family-info .token-pool > .lord:nth-child(2) {
+  z-index: 3;
+  left: -40%;
+}
+.family-info .token-pool > .lord:nth-child(3) {
+  z-index: 2;
+  left: -80%;
+}
+.family-info .token-pool > .lord:nth-child(4) {
+  z-index: 1;
+  left: -120%;
+}
+.family-info .token-pool > .remaining-moulin, .family-info .token-pool > .remaining-chateau, .family-info .token-pool > .remaining-cite, .family-info .token-pool > .sergeant, .family-info .token-pool > .knight {
+  top: 20%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(1), .family-info .token-pool > .remaining-chateau:nth-of-type(1), .family-info .token-pool > .remaining-cite:nth-of-type(1), .family-info .token-pool > .sergeant:nth-of-type(1), .family-info .token-pool > .knight:nth-of-type(1) {
+  left: 45%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(2), .family-info .token-pool > .remaining-chateau:nth-of-type(2), .family-info .token-pool > .remaining-cite:nth-of-type(2), .family-info .token-pool > .sergeant:nth-of-type(2), .family-info .token-pool > .knight:nth-of-type(2) {
+  left: 50%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(3), .family-info .token-pool > .remaining-chateau:nth-of-type(3), .family-info .token-pool > .remaining-cite:nth-of-type(3), .family-info .token-pool > .sergeant:nth-of-type(3), .family-info .token-pool > .knight:nth-of-type(3) {
+  left: 55%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(4), .family-info .token-pool > .remaining-chateau:nth-of-type(4), .family-info .token-pool > .remaining-cite:nth-of-type(4), .family-info .token-pool > .sergeant:nth-of-type(4), .family-info .token-pool > .knight:nth-of-type(4) {
+  left: 60%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(5), .family-info .token-pool > .remaining-chateau:nth-of-type(5), .family-info .token-pool > .remaining-cite:nth-of-type(5), .family-info .token-pool > .sergeant:nth-of-type(5), .family-info .token-pool > .knight:nth-of-type(5) {
+  left: 65%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(6), .family-info .token-pool > .remaining-chateau:nth-of-type(6), .family-info .token-pool > .remaining-cite:nth-of-type(6), .family-info .token-pool > .sergeant:nth-of-type(6), .family-info .token-pool > .knight:nth-of-type(6) {
+  left: 70%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(7), .family-info .token-pool > .remaining-chateau:nth-of-type(7), .family-info .token-pool > .remaining-cite:nth-of-type(7), .family-info .token-pool > .sergeant:nth-of-type(7), .family-info .token-pool > .knight:nth-of-type(7) {
+  left: 75%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(8), .family-info .token-pool > .remaining-chateau:nth-of-type(8), .family-info .token-pool > .remaining-cite:nth-of-type(8), .family-info .token-pool > .sergeant:nth-of-type(8), .family-info .token-pool > .knight:nth-of-type(8) {
+  left: 80%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(9), .family-info .token-pool > .remaining-chateau:nth-of-type(9), .family-info .token-pool > .remaining-cite:nth-of-type(9), .family-info .token-pool > .sergeant:nth-of-type(9), .family-info .token-pool > .knight:nth-of-type(9) {
+  left: 85%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(10), .family-info .token-pool > .remaining-chateau:nth-of-type(10), .family-info .token-pool > .remaining-cite:nth-of-type(10), .family-info .token-pool > .sergeant:nth-of-type(10), .family-info .token-pool > .knight:nth-of-type(10) {
+  left: 90%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(11), .family-info .token-pool > .remaining-chateau:nth-of-type(11), .family-info .token-pool > .remaining-cite:nth-of-type(11), .family-info .token-pool > .sergeant:nth-of-type(11), .family-info .token-pool > .knight:nth-of-type(11) {
+  left: 95%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(12), .family-info .token-pool > .remaining-chateau:nth-of-type(12), .family-info .token-pool > .remaining-cite:nth-of-type(12), .family-info .token-pool > .sergeant:nth-of-type(12), .family-info .token-pool > .knight:nth-of-type(12) {
+  left: 100%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(13), .family-info .token-pool > .remaining-chateau:nth-of-type(13), .family-info .token-pool > .remaining-cite:nth-of-type(13), .family-info .token-pool > .sergeant:nth-of-type(13), .family-info .token-pool > .knight:nth-of-type(13) {
+  left: 105%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(14), .family-info .token-pool > .remaining-chateau:nth-of-type(14), .family-info .token-pool > .remaining-cite:nth-of-type(14), .family-info .token-pool > .sergeant:nth-of-type(14), .family-info .token-pool > .knight:nth-of-type(14) {
+  left: 110%;
+}
+.family-info .token-pool > .remaining-moulin:nth-of-type(15), .family-info .token-pool > .remaining-chateau:nth-of-type(15), .family-info .token-pool > .remaining-cite:nth-of-type(15), .family-info .token-pool > .sergeant:nth-of-type(15), .family-info .token-pool > .knight:nth-of-type(15) {
+  left: 115%;
 }
 .family-info .token {
   height: 70px;
@@ -957,16 +1010,31 @@
   border-radius: 0.5em;
 }
 .lord-slot:nth-of-type(1) {
-  background-image: url("../public/images/oldpaper1.jpg");
+  background-image: url("../public/storage/images/oldpaper1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-size: cover;
 }
 .lord-slot:nth-of-type(2) {
-  background-image: url("../public/images/oldpaper2.jpg");
+  background-image: url("../public/storage/images/oldpaper2.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-size: cover;
 }
 .lord-slot:nth-of-type(3) {
-  background-image: url("../public/images/oldpaper3.jpg");
+  background-image: url("../public/storage/images/oldpaper3.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-size: cover;
 }
 .lord-slot:nth-of-type(4) {
-  background-image: url("../public/images/oldpaper4.png");
+  background-image: url("../public/storage/images/oldpaper4.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   background-size: 120% 130%;
 }
 
@@ -1015,6 +1083,10 @@
 .cross-slot:nth-child(6) {
   grid-column: 7/8;
   grid-row: 4/11;
+}
+
+.can-send-message:hover {
+  cursor: url("../public/storage/cursors/sendmessage.png"), pointer;
 }
 
 .draw-first-lord {
@@ -1643,30 +1715,277 @@
   opacity: 0.5;
 }
 
-.parchemin {
-  min-height: 200px;
-  min-width: 400px;
-  overflow: hidden;
-  display: flex;
+.modal {
+  opacity: 0;
+  transition: 0.3s ease-out;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  transition: 0.1s ease-out;
+}
+.close-modal-btn:hover {
+  transform: scale(1.3);
+}
+
+.marriage-modal {
+  top: 10%;
+  left: 25%;
+}
+.marriage-modal .parchm-top {
+  height: 130px;
+  width: 700px;
   flex-direction: column;
+  filter: drop-shadow(0px 0px 5px black);
+}
+.marriage-modal .parchm-top section {
+  height: 28%;
+  width: 72%;
+  position: relative;
+  top: 5%;
+  margin-bottom: 1em;
+}
+.marriage-modal .parchm-top .player-lords {
+  display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  z-index: 10;
 }
-.parchemin .modal-top {
-  height: 110px;
-  min-width: 600px;
-  background-image: url("/fief/storage/app/public/images/parchemin-top.png");
-  background-repeat: no-repeat;
-  transition: 1s ease;
+.marriage-modal .parchm-top .player-lords > * {
+  transform: scale(0.7);
 }
-.parchemin .modal-bottom {
-  height: 106px;
-  min-width: 600px;
-  background-image: url("/fief/storage/app/public/images/parchemin-bottom.png");
-  background-repeat: no-repeat;
+.marriage-modal .parchm-top .player-lords > *.selected {
+  transform: scale(0.9);
+  filter: drop-shadow(0px 0px 5px black);
+}
+.marriage-modal .parchm-top .other-player-lords {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.marriage-modal .parchm-top .other-player-lords > * {
+  transform: scale(0.7);
+}
+.marriage-modal .parchm-top .other-player-lords > *.selected {
+  transform: scale(0.9);
+  filter: drop-shadow(0px 0px 5px black);
+}
+.marriage-modal .parchm-top .other-player-lords > *.available {
+  filter: drop-shadow(0px 0px 5px goldenrod);
+}
+.marriage-modal .parchm-bottom {
+  top: 500px;
+  width: 700px;
+  height: 100px;
   background-position: bottom;
+  filter: drop-shadow(0px 0px 5px black);
+}
+.marriage-modal.showpacity {
+  opacity: 1;
+}
+.marriage-modal.showpacity .parchm-top {
+  height: 550px;
+}
+.marriage-modal.showpacity .parchm-bottom {
+  top: 500px;
+}
+
+.modal-btn {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 25%;
+  transform: scale(0.8);
+  transition: 0.1s ease-out;
+}
+.modal-btn.active {
+  transform: scale(1);
+  color: #591800;
+}
+.modal-btn.active:hover {
+  transform: scale(1.3);
+}
+
+header {
+  height: 5%;
+  box-sizing: border-box;
+  border: 2px solid #3f3f3f;
+  background-color: #c9c9c9;
+  display: flex;
+  justify-content: center;
+}
+header section {
+  background-image: url("../public/storage//textures/grunge2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-size: cover;
+  height: 100%;
+  box-sizing: border-box;
+  border-right: 2px solid #3f3f3f;
+  width: 100%;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header section:last-child {
+  border: none;
+}
+
+header section .turn-icon {
+  height: 100%;
+  width: 100%;
+}
+header section:nth-of-type(1) > .turn-icon {
+  background-image: url("../public/storage//images/ring.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+header section:nth-of-type(2) > .turn-icon {
+  background-image: url("../public/storage//images/bishop.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+header section:nth-of-type(3) > .turn-icon {
+  background-image: url("../public/storage//tokens/titles/pope.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+header section:nth-of-type(4) > .turn-icon {
+  background-image: url("../public/storage//tokens/titles/king.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+header section:nth-of-type(5) > .turn-icon {
+  background-image: url("../public/storage//cards/versos/event.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: relative;
+}
+header section:nth-of-type(5) > .turn-icon .fa-xmark {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: rotate(90deg);
+  color: firebrick;
+}
+header section:nth-of-type(6) > .turn-icon {
+  background-image: url("../public/storage//cards/versos/event.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: relative;
+}
+header section:nth-of-type(6) > .turn-icon .fa-plus {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  transform: rotate(90deg);
+  color: green;
+}
+header section:nth-of-type(7) > .turn-icon {
+  background-image: url("../public/storage//cards/versos/disaster.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+header section:nth-of-type(8) > .turn-icon {
+  background-image: url("../public/storage//cards/versos/event.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: relative;
+}
+header section:nth-of-type(8) > .turn-icon .fa-share {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: rotate(35deg);
+  color: green;
+}
+header section:nth-of-type(9) > .turn-icon {
+  background-image: url("../public/storage//images/treasure.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: relative;
+}
+header section:nth-of-type(9) > .turn-icon .fa-share {
+  position: absolute;
+  top: 30%;
+  left: 60%;
+  transform: rotate(35deg) rotateY(0.5turn);
+  color: green;
+}
+header section:nth-of-type(10) > .turn-icon {
+  background-image: url("../public/storage//images/treasure.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: relative;
+}
+header section:nth-of-type(10) > .turn-icon .fa-share {
+  position: absolute;
+  top: 30%;
+  left: 60%;
+  transform: rotate(35deg);
+  color: firebrick;
+}
+header section:nth-of-type(11) > .turn-icon {
+  background-image: url("../public/storage//images/move.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: relative;
+}
+header section:nth-of-type(11) > .turn-icon .fa-chevron-right {
+  position: absolute;
+  color: green;
+}
+header section:nth-of-type(11) > .turn-icon .fa-chevron-right:nth-of-type(1) {
+  top: 30%;
+  left: 60%;
+}
+header section:nth-of-type(11) > .turn-icon .fa-chevron-right:nth-of-type(2) {
+  top: 30%;
+  left: 70%;
+}
+header section:nth-of-type(12) > .turn-icon {
+  background-image: url("../public/storage//images/move.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: relative;
+}
+header section:nth-of-type(12) > .turn-icon .turn-dices {
+  background-image: url("../public/storage//images/dices.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: absolute;
+  height: 80%;
+  width: 90%;
+  top: 10%;
+  left: 30%;
+}
+header section:nth-of-type(13) > .turn-icon {
+  background-image: url("../public/storage//images/siege.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+header section:nth-of-type(14) > .turn-icon {
+  background-image: url("../public/storage//tokens/titles/prince.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .disaster-recto {

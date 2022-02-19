@@ -28,9 +28,11 @@ class TurnController extends Controller
         TurnServices::changeTurn($request->phase);
     }
 
-    public static function endTurn()
+    public static function endTurn(Request $request)
     {
-        return TurnServices::passTurn();
+        if($request->user()->player->turn_order === Game::current()->current_player){
+            return TurnServices::passTurn();
+        }
     }
 
 }

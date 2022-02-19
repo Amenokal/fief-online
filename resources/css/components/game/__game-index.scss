@@ -2,6 +2,7 @@
 @use 'player-board';
 @use 'titles';
 @use 'modal';
+@use 'turn-indicator';
 
 @use 'cards/card';
 @use 'cards/lords/lords';
@@ -15,3 +16,4 @@
 @use 'army/army-manager';
 @use 'army/tokens/lords-token';
 @use 'army/tokens/soldiers-token';
+

@@ -1,3 +1,5 @@
+@import 'mixin';
+
 .main-btn {
     width: 100%;
     height: 2em;
@@ -73,4 +75,31 @@
     &.none {
         opacity: .5;
     }
+}
+
+.parchm-top {
+    position: absolute;
+    left: 2%;
+    top: 0px;
+    height: 75px;
+    width: 300px;
+    @include back-img('images/parchemin-top.png');
+    background-position: unset;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.parchm-bottom {
+    position: absolute;
+    left: 2%;
+    top: -275px;
+    width: 300px;
+    height: 375px;
+    @include back-img('images/parchemin-bottom.png');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

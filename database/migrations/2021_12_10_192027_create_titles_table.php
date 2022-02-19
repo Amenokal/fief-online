@@ -19,7 +19,7 @@ class CreateTitlesTable extends Migration
             $table->integer('zone')->nullable()->default(null);
             $table->string('title_m')->nullable()->default(null);
             $table->string('title_f')->nullable()->default(null);
-            $table->foreignId('lord_id')->nullable()->default(null);
+            $table->foreignId('lord_name')->nullable()->default(null);
             $table->foreignId('player_id')->nullable()->constrained()->default(null);
             $table->foreignId('game_id')->constrained();
         });

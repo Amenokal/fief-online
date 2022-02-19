@@ -18,6 +18,7 @@ class CreateCardsTable extends Migration
             $table->string('deck');
             $table->string('name');
             $table->string('gender')->nullable()->default(null);
+            $table->boolean('married')->default(false);
             $table->boolean('instant')->default(false);
             $table->boolean('disaster')->default(false);
             $table->boolean('on_board')->default(false);

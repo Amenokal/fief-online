@@ -22,6 +22,8 @@ class Card extends Model
         'deck',
         'name',
         'gender',
+        'married',
+
         'instant',
         'disaster',
 
@@ -55,10 +57,34 @@ class Card extends Model
         return $this->belongsTo(Village::class);
     }
 
+    // titles
+    public function titles()
+    {
+        return Title::where('lord_name', $this->name)->get();
+    }
+    public function isTitled() : bool
+    {
+        return Title::where('lord_name', $this->name)->exists();
+    }
 
+    /**
+     * Return true if target Lord has corresponding title.
+     *
+     * @params "Évêque"||"Cardinal"||"d'Arc"...
+     */
+    public function hasTitle(string $titleName) : bool
+    {
+        $output = false;
+        foreach($this->titles() as $title){
+            if($title->title_m === $titleName || $title->title_f === $titleName){
+                $output = true;
+            }
+        }
+        return $output;
+    }
 
     // methods
-    public static function getNext(string $deck) : self
+    public static function getNext(string $deck) : Card
     {
         return Card::where([
             'deck' => $deck,

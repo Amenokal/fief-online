@@ -13,6 +13,10 @@
     font-family: 'MedievalSharp', cursive;
     font-size: 1.1rem;
     cursor: url('../public/storage/cursors/simple.png'), pointer;
+
+    // &:active{
+    //     cursor: url('../public/storage/cursors/buildactive.png'), pointer;
+    // }
 }
 
 body {

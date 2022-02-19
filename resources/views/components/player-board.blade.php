@@ -3,21 +3,27 @@
     <section class="family-info">
 
         {{-- SERGEANTS --}}
-        <div>
-            @forelse ( $player->remainingSergeants() as $serg )
-            <span class="token sergeant {{$player->color}}-bordered"></span>
-            @empty
-            <span class="token sergeant {{$player->color}}-bordered none"></span>
-            @endforelse
+        <div class="token-pool">
+            @foreach($sergLeft as $serg)
+                <span @class([
+                    "token",
+                    "sergeant",
+                    $player->color."-bordered",
+                    "none" => $sergLeft->count() === 0
+                ])></span>
+            @endforeach
         </div>
 
         {{-- KNIGHTS --}}
-        <div>
-            @forelse ( $player->remainingKnights() as $knight )
-            <span class="token knight {{$player->color}}-bordered"></span>
-            @empty
-            <span class="token knight {{$player->color}}-bordered none"></span>
-            @endforelse
+        <div class="token-pool">
+            @foreach($knightLeft as $knight)
+                <span @class([
+                    "token",
+                    "knight",
+                    $player->color."-bordered",
+                    "none" => $knightLeft->count() === 0
+                ])></span>
+            @endforeach
         </div>
 
         <div>

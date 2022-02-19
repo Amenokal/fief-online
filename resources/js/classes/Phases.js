@@ -1,18 +1,10 @@
 import axios from 'axios';
-import { playerReady } from '../phases/00_start';
-import { createGame } from '../phases/00_start';
-import { drawFirstLord } from '../phases/00_start';
-import { checkForChooseVillage } from '../phases/00_start';
+import { showBoard } from '../animations/playerBoard';
 
-import { discard } from '../phases/02_cards';
-import { draw } from '../phases/02_cards';
-import { showDisasters } from '../phases/02_cards';
-import { playCard } from '../phases/02_cards';
-
-import { getIncome } from '../phases/03_gold';
-import { prepareBuyPhase } from '../phases/03_gold';
-import { readyToBuy } from '../phases/03_gold';
-
+import { playerReady, createGame, drawFirstLord, checkForChooseVillage } from '../phases/00_start';
+import { chooseMyMembers } from '../phases/01_diplomacy';
+import { discard, draw, showDisasters, playCard } from '../phases/02_cards';
+import { getIncome, prepareBuyPhase, readyToBuy } from '../phases/03_gold';
 import { moveListeners } from '../phases/04_armies';
 
 export class Phases {
@@ -31,6 +23,9 @@ export class Phases {
             case 0: drawFirstLord();
             break;
             case 1: checkForChooseVillage();
+            break;
+
+            case 2: initMarriage();
             break;
 
             case 6: initDiscard();
@@ -68,6 +63,21 @@ export class Phases {
         if(document.getElementById('startGameBtn')){
             document.getElementById('startGameBtn').addEventListener('click', createGame);
         }
+    }
+
+
+
+// PHASE 01 ::::: DIPLOMACY
+// ------------------------
+
+    function initMarriage(){
+        axios.post('./diplo/marriage/init')
+        .then(res=>{
+            if(res.data.allowed){
+                document.getElementById('marryMyself').classList.add('allowed');
+                document.getElementById('marryMyself').addEventListener('click', chooseMyMembers);
+            }
+        })
     }
 
 
