@@ -113,6 +113,11 @@ Route::post('/diplo/bishop/init', [PhaseController::class, 'initBishopElection']
 Route::post('/diplo/bishop/candidat', [PhaseController::class, 'newBishopCandidat']);
 Route::post('/diplo/bishop/validate/choice', [PhaseController::class, 'validateChoice']);
 Route::post('/diplo/bishop/election', [PhaseController::class, 'startBishopElection']);
+Route::post('/diplo/bishop/voted', [PhaseController::class, 'playerVoted']);
+Route::post('/diplo/bishop/vote/validated', [PhaseController::class, 'playerVoteValidated']);
+Route::post('/diplo/bishop/vote/count', [PhaseController::class, 'voteCount']);
+Route::post('/diplo/bishop/next', [PhaseController::class, 'nextBishopElection']);
+Route::post('/diplo/bishop/end', [PhaseController::class, 'endBishopElection']);
 
 
     // PHASE ::::: CARDS

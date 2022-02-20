@@ -219,20 +219,20 @@
 .main-btn .texture {
   width: 100%;
   height: 100%;
-  background: url("/fief-online.com/public/storage/textures/grunge2.png");
-  background-position: center;
+  background-image: url("../public/storage/textures/grunge2.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: center;
+  background-size: contain;
   position: absolute;
   top: 0;
 }
 .main-btn .texture2 {
   width: 100%;
   height: 100%;
-  background: url("/fief-online.com/public/storage/textures/subtle-grunge.png");
-  background-position: center;
+  background-image: url("../public/storage/textures/subtle-grunge.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: center;
+  background-size: contain;
   position: absolute;
   top: 0;
   opacity: 0.7;
@@ -1844,10 +1844,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.bishop-election section > div:not(.votes) {
   filter: brightness(0.7);
   transform: scale(0.9);
 }
-.bishop-election section > div.not-decided {
+.bishop-election section > div:not(.votes).not-decided {
   filter: brightness(1);
   transform: scale(1);
 }
@@ -1872,16 +1874,51 @@
   height: 100%;
   width: 90%;
 }
+.bishop-election .election-container .full-vote-token {
+  bottom: -50%;
+  left: 35%;
+}
+.bishop-election .election-container .null-vote-token {
+  bottom: -50%;
+  right: 35%;
+}
+.bishop-election .voted {
+  bottom: 30% !important;
+  left: 20% !important;
+  right: 0 !important;
+  z-index: 10;
+}
+.bishop-election .vote-container {
+  height: 15% !important;
+}
+.bishop-election .vote-container .votes {
+  position: relative;
+}
+.bishop-election .vote-container > .votes > .full-vote-token {
+  left: 50% !important;
+  bottom: 0% !important;
+}
+.bishop-election .vote-container > .votes > .null-vote-token {
+  right: 50% !important;
+  bottom: 0% !important;
+}
+.bishop-election .vote-container > .votes > .hidden-vote-token:nth-of-type(1) {
+  left: 50%;
+}
+.bishop-election .vote-container > .votes > .hidden-vote-token:nth-of-type(1) {
+  right: 50%;
+}
 
 .modal-card {
   transform: scale(0.7);
 }
-.modal-card.selected {
-  transform: scale(0.9);
-  filter: drop-shadow(0px 0px 5px black);
-}
 .modal-card.available {
   filter: drop-shadow(0px 0px 5px goldenrod);
+}
+
+.selected {
+  transform: scale(0.9);
+  filter: drop-shadow(0px 0px 5px black);
 }
 
 header {
@@ -3410,6 +3447,39 @@ header section:nth-of-type(14) > .turn-icon {
 
 .knight {
   background-image: url("../public/storage/tokens/armies/knight.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.hidden-vote-token {
+  height: 50px;
+  width: 50px;
+  border-radius: 0.2em;
+  position: absolute;
+  background-image: url("../public/storage/tokens/others/hidden-vote-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.full-vote-token {
+  height: 50px;
+  width: 50px;
+  border-radius: 0.2em;
+  position: absolute;
+  background-image: url("../public/storage/tokens/others/full-vote-token.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.null-vote-token {
+  height: 50px;
+  width: 50px;
+  border-radius: 0.2em;
+  position: absolute;
+  background-image: url("../public/storage/tokens/others/null-vote-token.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

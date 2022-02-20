@@ -1,0 +1,21 @@
+@import '../../../meta/mixin';
+
+@mixin voteToken(){
+    height: 50px;
+    width: 50px;
+    border-radius: .2em;
+    position: absolute;
+}
+
+.hidden-vote-token{
+    @include voteToken;
+    @include back-img('tokens/others/hidden-vote-token.png');
+}
+.full-vote-token{
+    @include voteToken;
+    @include back-img('tokens/others/full-vote-token.png');
+}
+.null-vote-token{
+    @include voteToken;
+    @include back-img('tokens/others/null-vote-token.png');
+}

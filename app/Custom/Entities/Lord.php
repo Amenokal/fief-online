@@ -44,7 +44,7 @@ class Lord {
     {
         return Title::where([
             'game_id' => Game::current()->id,
-            'lord_id' => $this->id,
+            'lord_name' => $this->name,
         ])
         ->get();
 
@@ -58,8 +58,10 @@ class Lord {
     {
         return Title::where([
             'game_id' => Game::current()->id,
-            'lord_id' => $this->id,
+            'lord_name' => $this->name,
         ])
         ->exists();
     }
+
+
 }

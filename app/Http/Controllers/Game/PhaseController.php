@@ -40,7 +40,12 @@ class PhaseController extends Controller
     public function initBishopElection(Request $request)        {return DiplomacyPhase::initBishopElection($request);}
     public function newBishopCandidat(Request $request)         {return DiplomacyPhase::newBishopCandidat($request);}
     public function validateChoice(Request $request)            {return DiplomacyPhase::validateChoice($request);}
-    public function startBishopElection(Request $request)      {return DiplomacyPhase::startBishopElection($request);}
+    public function startBishopElection(Request $request)       {return DiplomacyPhase::startBishopElection($request);}
+    public function playerVoted(Request $request)               {return DiplomacyPhase::playerVoted($request);}
+    public function playerVoteValidated(Request $request)       {return DiplomacyPhase::playerVoteValidated($request);}
+    public function voteCount(Request $request)                 {return DiplomacyPhase::voteCount($request);}
+    public function nextBishopElection(Request $request)         {return DiplomacyPhase::nextBishopElection($request);}
+    public function endBishopElection(Request $request)         {return DiplomacyPhase::endBishopElection($request);}
 
     // PHASE ::::: REVENUS
     public function getIncome()

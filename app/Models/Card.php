@@ -22,6 +22,7 @@ class Card extends Model
         'deck',
         'name',
         'gender',
+        'votes',
         'married',
 
         'instant',
@@ -81,6 +82,14 @@ class Card extends Model
             }
         }
         return $output;
+    }
+
+   /**
+    * Gives @param $title to this lord.
+    */
+    public function getTitle(Title $title) : void
+    {
+        $title->update(['lord_name' => $this->name]);
     }
 
     // methods

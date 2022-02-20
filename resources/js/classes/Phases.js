@@ -60,10 +60,12 @@ export class Phases {
     function initPrepareGame(){
         if(document.getElementById('userReadyBtn')){
             document.getElementById('userReadyBtn').addEventListener('click', playerReady);
+            document.getElementById('userReadyBtn').classList.add('allowed');
         }
 
         if(document.getElementById('startGameBtn')){
             document.getElementById('startGameBtn').addEventListener('click', createGame);
+            document.getElementById('startGameBtn').classList.add('allowed');
         }
     }
 
@@ -89,8 +91,8 @@ export class Phases {
     function initBishopElection(){
         axios.post('./diplo/bishop/init')
         .then(res=>{
-            if(res.data.zone.length === 0){
-                console.log("Aucun évêché n'est disponible")
+            if(res.data.error){
+                axios.post('./diplo/bishop/end')
             }
             else {
                 startBishopElection(res.data.zone);

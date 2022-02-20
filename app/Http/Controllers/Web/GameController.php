@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Card;
 use App\Models\Game;
 use App\Models\User;
-use App\Models\Title;
 use App\Models\Player;
 use App\Models\Soldier;
 use Illuminate\Http\Request;
+use App\Custom\Entities\Lord;
 use App\Custom\Helpers\Gipsy;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
@@ -30,6 +31,8 @@ class GameController extends Controller
             ]);
         }
         else {
+            Mayor::administrate();
+
             return view('partials.game.main', [
                 'game' => Game::current(),
 
@@ -69,6 +72,8 @@ class GameController extends Controller
                 'phases' => TurnServices::phaseNames(),
             ]);
         }else{
+            Mayor::administrate();
+
             return view('components.game-content', [
 
                 'game' => Game::current(),

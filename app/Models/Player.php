@@ -77,9 +77,9 @@ class Player extends Model
         ->get();
     }
 
-    public function eligibleForBishopLords() : Collection
+    public function eligibleForBishopLords() : array
     {
-        return Card::where([
+        $lords = Card::where([
             'game_id'=>Game::current()->id,
             'player_id'=>$this->id,
             'on_board'=>true,
@@ -88,6 +88,37 @@ class Player extends Model
             'married'=>false
         ])
         ->get();
+
+        $lords2 = $lords->filter(function ($value, $key){
+            return !$value->hasTitle('Évêque');
+        });
+
+        return $lords2->all();
+    }
+
+    public function bishopVoteCount(Title $title) : int
+    {
+        $voteCount = 0;
+
+        foreach($this->villages as $village){
+            if($village->cross_zone === $title->zone){
+                $voteCount += 1;
+                if($village->capital){
+                    $voteCount += 1;
+                }
+            }
+        }
+
+        foreach($this->lords() as $lord){
+            if($lord->hasTitle('Évêque')){
+                $voteCount += 2;
+                if($lord->hasTitle('Cardinal')){
+                    $voteCount += 1;
+                }
+            }
+        }
+
+        return $voteCount;
     }
 
 

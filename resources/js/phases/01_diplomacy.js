@@ -1,6 +1,5 @@
 import axios from "axios";
 import { showModal, closeMarriageModal } from "../animations/modal";
-import { showBoard, closeBoard } from "../animations/playerBoard";
 import { Game } from "../classes/Game";
 import { GameElements } from "../classes/GameElements";
 
@@ -89,8 +88,8 @@ function sendProposal(e){
     closeMarriageModal();
     document.querySelector('.players').innerHTML+=`<span class='message'>La demande a bien été envoyée.</span>`;
     axios.post('./diplo/marriage/2', {
-        'askingLord': document.querySelector('.player-lords>span.selected').className.split('-')[0],
-        'askedLord': document.querySelector('.other-player-lords>.selected').className.split('-')[0],
+        askingLord: document.querySelector('.player-lords>span.selected').className.split(' ')[1].split('-')[0],
+        askedLord: document.querySelector('.other-player-lords>.selected').className.split(' ')[0].split('-')[0]
     })
 }
 
@@ -115,18 +114,16 @@ export function startBishopElection(zone){
         document.querySelector('.modal-btn').addEventListener('click', validateBishopChoice)
         document.querySelector('.cross-election').classList.add('cross-'+zone);
 
-        if(document.querySelector('.my-lords>span')){
-            document.querySelectorAll('.my-lords>span').forEach(el=>{
+        if(document.querySelector('.my-lords>.modal-card')){
+            document.querySelectorAll('.my-lords>.modal-card').forEach(el=>{
                 el.addEventListener('click', wantsToBeBishop)
             })
-
         }
     })
 }
 
 function wantsToBeBishop(e){
     e.target.classList.toggle('selected');
-    console.log(e.target.className);
     if(e.target.className.includes('selected')){
         document.querySelector('.modal-btn').innerText = "Valider";
         axios.post('./diplo/bishop/candidat', {
