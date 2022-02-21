@@ -75,7 +75,7 @@ Route::post('/reset/board', [TestController::class, 'resetBoard']);
     // TURNS
     // -----
 
-Route::post('/check/phase', [TurnController::class, 'giveTurn']);
+Route::post('/check/phase', [TurnController::class, 'giveTurn'])->middleware(['allowed.to.play']);
 Route::post('/changeturn', [TurnController::class, 'changeTurn']);
 Route::post('/endturn', [TurnController::class, 'endTurn']);
 
@@ -129,8 +129,11 @@ Route::post('/diplo/king/init', [PhaseController::class, 'initKingElection']);
     // PHASE ::::: CARDS
     // -----------------
 
-Route::post('/draw/card', [CardsController::class, 'draw']);
-Route::post('/discard', [CardsController::class, 'discard']);
+Route::post('/cards/discard', [CardsController::class, 'discard']);
+
+Route::post('/cards/draw/init', [CardsController::class, 'initDraw']);
+Route::post('/cards/draw', [CardsController::class, 'draw']);
+
 Route::post('/shuffle', [CardsController::class, 'shuffle']);
 
 Route::get('/disasters/show', [CardsController::class, 'showDisasters']);

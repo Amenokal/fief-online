@@ -2075,7 +2075,9 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "firstLordAnimation": () => (/* binding */ firstLordAnimation),
+/* harmony export */   "otherPlayerDiscard": () => (/* binding */ otherPlayerDiscard),
 /* harmony export */   "drawAnimation": () => (/* binding */ drawAnimation),
+/* harmony export */   "otherPlayerDraw": () => (/* binding */ otherPlayerDraw),
 /* harmony export */   "disasterAnimation": () => (/* binding */ disasterAnimation)
 /* harmony export */ });
 /* harmony import */ var _classes_GameElements__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/GameElements */ "./resources/js/classes/GameElements.js");
@@ -2121,11 +2123,14 @@ function firstLordAnimation(cardName) {
         setTimeout(function () {
           card.remove();
         }, 2000);
-      } // setTimeout(() => {
-      //     Game.update();
-      // }, 1000);
-
+      }
     }, 500);
+  }, 1000);
+}
+function otherPlayerDiscard(otherPlayer, pile, cardType) {
+  document.getElementById(pile + 'DiscardPile').innerHTML += "<span class=\"card ".concat(cardType, "-verso other-player-discard\"></span>");
+  setTimeout(function () {
+    document.querySelector('.other-player-discard').classList.remove('other-player-discard');
   }, 1000);
 }
 function drawAnimation(newCard, nextCardType) {
@@ -2137,10 +2142,19 @@ function drawAnimation(newCard, nextCardType) {
   card.classList.add('draw-animation');
   setTimeout(function () {
     card.remove();
-    document.querySelector('.player-hand').innerHTML += "<span\n            class=\"card\"\n            id=\"".concat(newCard.deck, "-").concat(newCard.name, "\"\n            style=\"background-image: url(").concat(newCard.img_src, ")\"\n        ></span>");
+    document.querySelector('.player-hand').innerHTML += "<span class=\"card ".concat(newCard.name, "-card\"></span>");
+  }, 1000);
+}
+function otherPlayerDraw(otherPlayer, pile, nextCardType) {
+  document.getElementById(pile + 'CardPile').children[0].classList.add('other-player-draw');
+  console.log(document.getElementById(pile + 'CardPile').children[0]);
+  document.getElementById(pile + 'CardPile').innerHTML += "<span class=\"card ".concat(nextCardType, "-verso\"></span>");
+  setTimeout(function () {
+    document.querySelector('.other-player-draw').remove();
   }, 1000);
 }
 function disasterAnimation(nextCardType) {
+  console.log('disaster animation go brrrr');
   var pile = document.getElementById('eventCardPile');
   pile.children[0].id = 'to-inc-pile';
   pile.innerHTML += "<span class=\"card ".concat(nextCardType, "-verso\"></span>");
@@ -2675,7 +2689,8 @@ _defineProperty(GameElements, "localPlayer", {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Phases": () => (/* binding */ Phases)
+/* harmony export */   "Phases": () => (/* binding */ Phases),
+/* harmony export */   "initDraw": () => (/* binding */ initDraw)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2792,8 +2807,6 @@ function prepareGame() {
 
 function initMarriage() {
   axios__WEBPACK_IMPORTED_MODULE_0___default().post('./diplo/marriage/init').then(function (res) {
-    console.log(res.data.allowed);
-
     if (res.data.allowed) {
       if (res.data.allowed !== 'end-turn') {
         document.getElementById('marryMyself').classList.add('allowed');
@@ -2835,15 +2848,31 @@ function initDiscard() {
   document.querySelectorAll('.player-hand>.card').forEach(function (card) {
     card.addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_4__.discard);
   });
+  document.getElementById('end-turn').classList.add('allowed');
+  document.getElementById('end-turn').addEventListener('click', _classes_Game__WEBPACK_IMPORTED_MODULE_1__.Game.endTurn);
 } // DRAW
 
 
 function initDraw() {
-  document.querySelectorAll('#lordCardPile>span, #eventCardPile>span').forEach(function (pile) {
-    pile.addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_4__.draw);
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post('./cards/draw/init').then(function (res) {
+    console.log(res.data);
+
+    if (res.data.allowed) {
+      if (res.data.lord) {
+        document.querySelector('#lordCardPile>span').classList.add('can-draw');
+        document.querySelector('#lordCardPile>span').addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_4__.draw);
+      }
+
+      if (res.data.event) {
+        document.querySelector('#eventCardPile>span').classList.add('can-draw');
+        document.querySelector('#eventCardPile>span').addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_4__.draw);
+      }
+    }
+
+    document.getElementById('end-turn').classList.add('allowed');
+    document.getElementById('end-turn').addEventListener('click', _classes_Game__WEBPACK_IMPORTED_MODULE_1__.Game.endTurn);
   });
 } // DISASTERS
-
 
 function initDisasters() {
   document.getElementById('disasters-btn').addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_4__.showDisasters);
@@ -3219,8 +3248,6 @@ function validateBishopChoice(e) {
   document.querySelector('.modal-btn').removeEventListener('click', validateBishopChoice);
   document.querySelector('.modal-btn').innerText = "En attente des autres joueurs...";
   axios__WEBPACK_IMPORTED_MODULE_0___default().post('./diplo/bishop/validate/choice').then(function () {
-    console.log(!document.querySelector('.not-decided'));
-
     if (!document.querySelector('.not-decided')) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('./diplo/bishop/election', {
         zone: document.querySelector('.cross-election').className.split(' ')[1].split('-')[1]
@@ -3250,6 +3277,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _classes_Game_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../classes/Game.js */ "./resources/js/classes/Game.js");
 /* harmony import */ var _classes_Village_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../classes/Village.js */ "./resources/js/classes/Village.js");
 /* harmony import */ var _animations_cards_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../animations/cards.js */ "./resources/js/animations/cards.js");
+/* harmony import */ var _classes_Phases_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../classes/Phases.js */ "./resources/js/classes/Phases.js");
+
 
 
 
@@ -3262,11 +3291,9 @@ __webpack_require__.r(__webpack_exports__);
 
 function discard(e) {
   var card = e.target;
-  var cardType = e.target.id.split('-')[0];
-  var cardName = e.target.id.split('-')[1];
-  axios__WEBPACK_IMPORTED_MODULE_0___default().post('./discard', {
-    deck: cardType,
-    card: cardName
+  var cardName = e.target.className.split(' ')[1].split('-')[0];
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post('./cards/discard', {
+    cardName: cardName
   }).then(function () {
     card.classList.add('discarded');
     setTimeout(function () {
@@ -3280,30 +3307,28 @@ function discard(e) {
 // ///
 
 function draw(e) {
-  var phase = document.querySelector('.current-phase').id.split('-')[1];
-  var pile = e.target.parentNode.id.split('CardPile')[0];
-  var isDisaster = e.target.className.includes('disaster'); // DRAW
+  var deck = e.target.parentNode.id.includes('lord') ? 'lord' : 'event'; // DRAW
 
-  if ((pile == 'lord' || pile == 'event') && e.target.className.includes('card')) {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().post('./draw/card', {
-      deck: pile,
-      isDisaster: isDisaster
+  if ((deck == 'lord' || deck == 'event') && e.target.className.includes('card')) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().post('./cards/draw', {
+      deck: deck
     }).then(function (res) {
-      if (!isDisaster) {
+      if (!res.data.wasDisaster) {
         (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_3__.drawAnimation)(res.data.drawnCard, res.data.nextCardType);
       } else {
         (0,_animations_cards_js__WEBPACK_IMPORTED_MODULE_3__.disasterAnimation)(res.data.nextCardType);
       }
     });
-  } // SHUFFLE IF EMPTY
+  }
 
+  (0,_classes_Phases_js__WEBPACK_IMPORTED_MODULE_4__.initDraw)(); // SHUFFLE IF EMPTY
 
   if (e.target.id.includes('shuffle')) {
-    var deck = e.target.id.split('-')[1];
+    var _deck = e.target.id.split('-')[1];
     axios__WEBPACK_IMPORTED_MODULE_0___default().post('./shuffle', {
-      deck: deck
+      deck: _deck
     }).then(function (res) {
-      document.querySelector("".concat(deck, "-pile-wrapper")).innerHTML = "<span class=\"card ".concat(res.data.nextCardType, "-verso\"/>");
+      document.querySelector("".concat(_deck, "-pile-wrapper")).innerHTML = "<span class=\"card ".concat(res.data.nextCardType, "-verso\"/>");
     });
   }
 } // \\\
@@ -28156,11 +28181,14 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
 /*!******************************!*\
   !*** ./resources/js/game.js ***!
   \******************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _animations_cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animations/cards */ "./resources/js/animations/cards.js");
 var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
     axios = _require["default"];
 
@@ -28170,11 +28198,12 @@ var _require2 = __webpack_require__(/*! ./classes/Game */ "./resources/js/classe
 var _require3 = __webpack_require__(/*! ./classes/GameElements */ "./resources/js/classes/GameElements.js"),
     GameElements = _require3.GameElements;
 
+
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 document.onload = Game.update();
 window.Echo.channel('lobby').listen('.newUserJoin', function (e) {
-  console.log('channel received = ', e);
   document.querySelector('.waiting-lobby').innerHTML += "\n            <div class='lobby-users'>\n                <span class='waiting-user'>".concat(e.username, "</span>\n            </div>");
 }).listen('.createGame', function () {
   Game.update();
@@ -28282,7 +28311,6 @@ function countVotes() {
   var send = true;
   document.querySelectorAll('.votes').forEach(function (el) {
     if (el.children.length > 1) {
-      console.log(el.children.length);
       send = false;
     }
   });
@@ -28329,7 +28357,15 @@ function displayMarriageProposal(data) {
 
 function upCase(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
-} // document.querySelectorAll('.village').forEach(el=>{
+}
+
+window.Echo.channel('game').listen('.discard', function (e) {
+  (0,_animations_cards__WEBPACK_IMPORTED_MODULE_0__.otherPlayerDiscard)(e.playerOrder, e.pile, e.cardType);
+}).listen('.draw', function (e) {
+  (0,_animations_cards__WEBPACK_IMPORTED_MODULE_0__.otherPlayerDraw)(e.playerOrder, e.pile, e.nextCardType);
+}).listen('.drawDisaster', function (e) {
+  (0,_animations_cards__WEBPACK_IMPORTED_MODULE_0__.disasterAnimation)(e.nextCardType);
+}); // document.querySelectorAll('.village').forEach(el=>{
 //     el.addEventListener('click', e=>{
 //         if(!e.currentTarget.className.includes('empty')){
 //             e.currentTarget.classList.toggle(`show-influence`);

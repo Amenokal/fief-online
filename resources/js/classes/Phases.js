@@ -81,7 +81,6 @@ export class Phases {
     function initMarriage(){
         axios.post('./diplo/marriage/init')
         .then(res=>{
-            console.log(res.data.allowed);
             if(res.data.allowed){
                 if(res.data.allowed !== 'end-turn'){
                     document.getElementById('marryMyself').classList.add('allowed');
@@ -131,12 +130,28 @@ export class Phases {
         document.querySelectorAll('.player-hand>.card').forEach(card=>{
             card.addEventListener('click', discard);
         })
+
+        document.getElementById('end-turn').classList.add('allowed');
+        document.getElementById('end-turn').addEventListener('click', Game.endTurn);
     }
 
     // DRAW
-    function initDraw(){
-        document.querySelectorAll('#lordCardPile>span, #eventCardPile>span').forEach(pile=>{
-            pile.addEventListener('click', draw);
+    export function initDraw(){
+        axios.post('./cards/draw/init')
+        .then(res=>{
+            console.log(res.data);
+            if(res.data.allowed){
+                if(res.data.lord){
+                    document.querySelector('#lordCardPile>span').classList.add('can-draw');
+                    document.querySelector('#lordCardPile>span').addEventListener('click', draw);
+                }
+                if(res.data.event){
+                    document.querySelector('#eventCardPile>span').classList.add('can-draw');
+                    document.querySelector('#eventCardPile>span').addEventListener('click', draw);
+                }
+            }
+            document.getElementById('end-turn').classList.add('allowed');
+            document.getElementById('end-turn').addEventListener('click', Game.endTurn);
         })
     }
 

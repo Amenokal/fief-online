@@ -13,8 +13,8 @@ use App\Custom\Helpers\Gipsy;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
-use App\Events\CreateGameEvent;
-use App\Events\NewUserJoinGame;
+use App\Events\Lobby\CreateGameEvent;
+use App\Events\Lobby\NewUserJoinGame;
 use App\Http\Controllers\Controller;
 use App\Custom\Services\BootServices;
 use App\Custom\Services\TurnServices;
@@ -48,8 +48,8 @@ class GameController extends Controller
 
                 'remaining_lords' => Realm::remainingLords(),
                 'remaining_buildings' => Realm::remainingBuildings(),
-                'next_lord_card' => Gipsy::nextCard('lord'),
-                'next_event_card' => Gipsy::nextCard('event'),
+                'next_lord_card' => Card::getNext('lord'),
+                'next_event_card' => Card::getNext('event'),
                 'lord_discard_pile' => Gipsy::discardedCards('lord'),
                 'event_discard_pile' => Gipsy::discardedCards('event'),
                 'inc_disasters' => Realm::incommingDisasters(),

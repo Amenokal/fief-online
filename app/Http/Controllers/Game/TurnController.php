@@ -31,7 +31,7 @@ class TurnController extends Controller
     public static function endTurn(Request $request)
     {
         if($request->user()->player->turn_order === Game::current()->current_player){
-            return TurnServices::passTurn();
+            return TurnServices::passTurn($request);
         }
     }
 

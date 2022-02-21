@@ -32,7 +32,7 @@
     <div class='card-pile' id='lordDiscardPile'>
         @if($lorddiscard->isNotEmpty())
             @foreach($lorddiscard as $card)
-                <span class='card lord-verso discarded-lord'></span>
+                <span class='card lord-verso'></span>
             @endforeach
         @endif
     </div>
@@ -81,7 +81,6 @@
             @foreach($eventdiscard as $card)
                 <span @class([
                     'card',
-                    'discarded-event',
                     "event-verso" => !$card->disaster,
                     "disaster-verso" => $card->disaster
                 ])></span>

@@ -6,10 +6,15 @@ use App\Models\Card;
 use App\Models\Game;
 use App\Models\Player;
 use App\Models\Village;
+use Illuminate\Http\Request;
 use App\Custom\Helpers\Gipsy;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Realm;
+use App\Events\Cards\PlayerDrawEvent;
 use App\Custom\Helpers\Librarian;
+use Illuminate\Http\JsonResponse;
+use App\Events\Cards\PlayerDiscardEvent;
+use App\Events\Cards\PlayerDrawDisasterEvent;
 
 class DeckServices {
 
@@ -44,58 +49,62 @@ class DeckServices {
         Gipsy::shuffleDeck('event');
     }
 
-    public static function draw(string $deck, bool $isDisaster) : array
-    {
-        // if drawn card is a disaster
-        // either put on waiting line
-        // or discard it
-        // then return disaster data to client
-        if($isDisaster){
-
-            if(Realm::incommingDisasters()->count() < 3){
-                Gipsy::nextCard('event')->update([
-                    'is_next' => false,
-                    'on_board' => true
-                ]);
-            }elseif(Realm::incommingDisasters()->count() >= 3){
-                $disas = Gipsy::nextCard('event');
-                $disas->update([
-                    'is_next' => false,
-                ]);
-                $disas->delete();
-            }
-
-            Gipsy::makeNewNextCard('event');
-            return ['nextCardType' => Gipsy::getNextType($deck)];
-        }
-
-        // if not a disaster, get the next card
-        // updates it
-        // make new next card
-        // send drawn card data & next card color to client
-        $card = Gipsy::nextCard($deck);
-        $card->update([
-            'player_id' => Local::player()->id,
-            'is_next' => false
-        ]);
-        Gipsy::makeNewNextCard($deck);
-        return ['drawnCard' => $card, 'nextCardType' => Gipsy::getNextType($deck)];
-    }
-
-    public static function discard(string $deck, string $card_name)
+    public static function discard(Request $request, string $cardName)
     {
         $card = Card::where([
             'game_id' => Game::current()->id,
-            'deck' => $deck,
-            'name' => $card_name
-        ]);
-        $card->update([
-            'on_board' => false,
-            'village_id' => null,
-            'player_id' => null
-        ]);
+            'player_id' => $request->user()->player->id,
+            'name' => $cardName
+        ])
+        ->first();
+
         $card->delete();
+
+        broadcast(new PlayerDiscardEvent($request, $card))->toOthers();
     }
+
+    public static function draw(Request $request) : JsonResponse
+    {
+        $card = Card::getNext($request->deck);
+
+        if($card->disaster){
+
+            if(Card::where(['disaster'=>true, 'on_board'=>true])->get()->count() < 3){
+                $card->update(['is_next'=>false, 'on_board'=>true]);
+            }
+            else {
+                $card->delete();
+            }
+        }
+        else {
+            $card->update(['is_next'=>false, 'player_id'=>$request->user()->player->id]);
+        }
+
+        if(is_null($request->user()->player->drawn_card) && !$card->disaster){
+            $request->user()->player->update(['drawn_card'=>$card->deck]);
+        }
+        elseif(!is_null($request->user()->player->drawn_card) && !$card->disaster){
+            $request->user()->player->update(['drawn_card'=>'stop']);
+        }
+
+        Gipsy::makeNewNextCard($request->deck);
+
+        if($card->disaster){
+            broadcast(new PlayerDrawDisasterEvent(Card::getNext($request->deck)))->toOthers();
+        }
+        else {
+            broadcast(new PlayerDrawEvent($request, $card, Card::getNext($request->deck)))->toOthers();
+        }
+
+        return response()->json([
+            'wasDisaster' => $card->disaster,
+            'nextCardType' => Card::getNext($request->deck)->deck,
+            'drawnCard' => $card,
+        ]);
+
+    }
+
+
 
     public static function showDisasters()
     {

@@ -2,6 +2,8 @@ const { default: axios } = require('axios');
 const { Game } = require('./classes/Game');
 const { GameElements } = require('./classes/GameElements');
 
+import { disasterAnimation, otherPlayerDiscard, otherPlayerDraw } from './animations/cards';
+
 require('./bootstrap');
 
 
@@ -12,7 +14,6 @@ document.onload = Game.update();
 
 window.Echo.channel('lobby')
     .listen('.newUserJoin', e=>{
-        console.log('channel received = ', e);
         document.querySelector('.waiting-lobby').innerHTML += `
             <div class='lobby-users'>
                 <span class='waiting-user'>${e.username}</span>
@@ -170,7 +171,6 @@ function countVotes(){
     let send = true;
     document.querySelectorAll('.votes').forEach(el=>{
         if(el.children.length > 1){
-            console.log(el.children.length)
             send = false;
         }
     })
@@ -234,6 +234,21 @@ function displayMarriageProposal(data){
 function upCase(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+
+
+
+window.Echo.channel('game')
+    .listen('.discard', e=>{
+        otherPlayerDiscard(e.playerOrder, e.pile, e.cardType);
+    })
+    .listen('.draw', e=>{
+        otherPlayerDraw(e.playerOrder, e.pile, e.nextCardType);
+    })
+    .listen('.drawDisaster', e=>{
+        disasterAnimation(e.nextCardType);
+    })
+
 
 // document.querySelectorAll('.village').forEach(el=>{
 //     el.addEventListener('click', e=>{

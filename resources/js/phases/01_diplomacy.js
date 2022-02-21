@@ -148,7 +148,6 @@ function validateBishopChoice(e){
     document.querySelector('.modal-btn').innerText = "En attente des autres joueurs...";
     axios.post('./diplo/bishop/validate/choice')
     .then(()=>{
-        console.log(!document.querySelector('.not-decided'))
         if(!document.querySelector('.not-decided')){
             axios.post('./diplo/bishop/election', {
                 zone: document.querySelector('.cross-election').className.split(' ')[1].split('-')[1]

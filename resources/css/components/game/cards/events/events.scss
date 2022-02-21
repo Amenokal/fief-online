@@ -1,7 +1,7 @@
 @import '../card.scss';
 
 @mixin event-img($card){
-    background-image: url('../public/images/cards/events/'+$card+'.png');
+    background-image: url('../public/storage/cards/events/'+$card+'.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

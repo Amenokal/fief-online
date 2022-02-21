@@ -20,6 +20,7 @@ class Player extends Model
         'family_name',
         'color',
         'gold',
+        'drawn_card',
         'married_to',
         'turn_order',
         'user_id',

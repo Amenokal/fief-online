@@ -1235,28 +1235,6 @@
     transform: translateX(-500px) translateY(600px) rotate(-90deg) scale(1.3);
   }
 }
-.drawn {
-  -webkit-animation: "drawn" forwards 0.5s ease;
-          animation: "drawn" forwards 0.5s ease;
-}
-
-@-webkit-keyframes drawn {
-  from {
-    transform: translateY(1.5em);
-  }
-  to {
-    transform: translateY(0em);
-  }
-}
-
-@keyframes drawn {
-  from {
-    transform: translateY(1.5em);
-  }
-  to {
-    transform: translateY(0em);
-  }
-}
 .discarded {
   transform: scale(1.5) translateY(-3em);
   -webkit-animation: "discarded" 1s forwards ease-out;
@@ -1290,6 +1268,74 @@
   to {
     transform: scale(3) translateY(-6em) rotate(20deg);
     opacity: 0;
+  }
+}
+.other-player-discard {
+  transform: translateX(-1000%) rotate(-90deg);
+  -webkit-animation: "other-player-discard" 1s forwards ease-out;
+          animation: "other-player-discard" 1s forwards ease-out;
+}
+
+@-webkit-keyframes other-player-discard {
+  from {
+    transform: translateX(-1000%) rotate(-90deg);
+  }
+  to {
+    transform: translateX(0%) rotate(0deg);
+  }
+}
+
+@keyframes other-player-discard {
+  from {
+    transform: translateX(-1000%) rotate(-90deg);
+  }
+  to {
+    transform: translateX(0%) rotate(0deg);
+  }
+}
+.drawn {
+  -webkit-animation: "drawn" forwards 0.5s ease;
+          animation: "drawn" forwards 0.5s ease;
+}
+
+@-webkit-keyframes drawn {
+  from {
+    transform: translateY(1.5em);
+  }
+  to {
+    transform: translateY(0em);
+  }
+}
+
+@keyframes drawn {
+  from {
+    transform: translateY(1.5em);
+  }
+  to {
+    transform: translateY(0em);
+  }
+}
+.other-player-draw {
+  -webkit-animation: "other-player-draw" 1s forwards ease-out;
+          animation: "other-player-draw" 1s forwards ease-out;
+  transform: translateX(0%) rotate(0deg);
+}
+
+@-webkit-keyframes other-player-draw {
+  from {
+    transform: translateX(0%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-1000%) rotate(-90deg);
+  }
+}
+
+@keyframes other-player-draw {
+  from {
+    transform: translateX(0%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-1000%) rotate(-90deg);
   }
 }
 .disas-animation-0 {
@@ -2486,7 +2532,7 @@ header section:nth-of-type(14) > .turn-icon {
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("../public/images/cards/events/ambush.png");
+  background-image: url("../public/storage/cards/events/ambush.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2501,7 +2547,7 @@ header section:nth-of-type(14) > .turn-icon {
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("../public/images/cards/events/harvest.png");
+  background-image: url("../public/storage/cards/events/harvest.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2516,7 +2562,7 @@ header section:nth-of-type(14) > .turn-icon {
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("../public/images/cards/events/justice.png");
+  background-image: url("../public/storage/cards/events/justice.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2531,7 +2577,7 @@ header section:nth-of-type(14) > .turn-icon {
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("../public/images/cards/events/murder.png");
+  background-image: url("../public/storage/cards/events/murder.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2546,7 +2592,7 @@ header section:nth-of-type(14) > .turn-icon {
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("../public/images/cards/events/plague.png");
+  background-image: url("../public/storage/cards/events/plague.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2561,7 +2607,7 @@ header section:nth-of-type(14) > .turn-icon {
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("../public/images/cards/events/plague.png");
+  background-image: url("../public/storage/cards/events/plague.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2576,7 +2622,7 @@ header section:nth-of-type(14) > .turn-icon {
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("../public/images/cards/events/revolt.png");
+  background-image: url("../public/storage/cards/events/revolt.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2591,7 +2637,7 @@ header section:nth-of-type(14) > .turn-icon {
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("../public/images/cards/events/starvation.png");
+  background-image: url("../public/storage/cards/events/starvation.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2606,7 +2652,7 @@ header section:nth-of-type(14) > .turn-icon {
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("../public/images/cards/events/storm.png");
+  background-image: url("../public/storage/cards/events/storm.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2621,7 +2667,7 @@ header section:nth-of-type(14) > .turn-icon {
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("../public/images/cards/events/tax.png");
+  background-image: url("../public/storage/cards/events/tax.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2636,7 +2682,7 @@ header section:nth-of-type(14) > .turn-icon {
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("../public/images/cards/events/tunnel.png");
+  background-image: url("../public/storage/cards/events/tunnel.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2651,7 +2697,7 @@ header section:nth-of-type(14) > .turn-icon {
   align-items: center;
   position: absolute;
   z-index: 10;
-  background-image: url("../public/images/cards/events/wealth.png");
+  background-image: url("../public/storage/cards/events/wealth.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -3573,19 +3619,6 @@ header section:nth-of-type(14) > .turn-icon {
     transform: translateX(-500px) translateY(600px) rotate(-90deg) scale(1.3);
   }
 }
-.drawn {
-  -webkit-animation: "drawn" forwards 0.5s ease;
-          animation: "drawn" forwards 0.5s ease;
-}
-
-@keyframes drawn {
-  from {
-    transform: translateY(1.5em);
-  }
-  to {
-    transform: translateY(0em);
-  }
-}
 .discarded {
   transform: scale(1.5) translateY(-3em);
   -webkit-animation: "discarded" 1s forwards ease-out;
@@ -3604,6 +3637,47 @@ header section:nth-of-type(14) > .turn-icon {
   to {
     transform: scale(3) translateY(-6em) rotate(20deg);
     opacity: 0;
+  }
+}
+.other-player-discard {
+  transform: translateX(-1000%) rotate(-90deg);
+  -webkit-animation: "other-player-discard" 1s forwards ease-out;
+          animation: "other-player-discard" 1s forwards ease-out;
+}
+
+@keyframes other-player-discard {
+  from {
+    transform: translateX(-1000%) rotate(-90deg);
+  }
+  to {
+    transform: translateX(0%) rotate(0deg);
+  }
+}
+.drawn {
+  -webkit-animation: "drawn" forwards 0.5s ease;
+          animation: "drawn" forwards 0.5s ease;
+}
+
+@keyframes drawn {
+  from {
+    transform: translateY(1.5em);
+  }
+  to {
+    transform: translateY(0em);
+  }
+}
+.other-player-draw {
+  -webkit-animation: "other-player-draw" 1s forwards ease-out;
+          animation: "other-player-draw" 1s forwards ease-out;
+  transform: translateX(0%) rotate(0deg);
+}
+
+@keyframes other-player-draw {
+  from {
+    transform: translateX(0%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-1000%) rotate(-90deg);
   }
 }
 .disas-animation-0 {

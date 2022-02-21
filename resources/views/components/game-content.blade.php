@@ -48,7 +48,7 @@
 
         <aside class='player-hand hand-{{$playercards->count()}}'>
             @foreach ($playercards as $card)
-                @if(!$card->on_board)
+                @if(!$card->on_board && $game->current_phase>0)
                     <span draggable="true" class="card {{$card->name}}-card"></span>
                 @endif
             @endforeach

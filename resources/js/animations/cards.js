@@ -52,17 +52,19 @@ export function firstLordAnimation(cardName, player = false){
                     }, 2000);
                 }
 
-                // setTimeout(() => {
-                //     Game.update();
-                // }, 1000);
-
             }, 500);
 
     }, 1000);
 }
 
-export function drawAnimation(newCard, nextCardType){
+export function otherPlayerDiscard(otherPlayer, pile, cardType){
+    document.getElementById(pile+'DiscardPile').innerHTML += `<span class="card ${cardType}-verso other-player-discard"></span>`;
+    setTimeout(() => {
+        document.querySelector('.other-player-discard').classList.remove('other-player-discard');
+    }, 1000);
+}
 
+export function drawAnimation(newCard, nextCardType){
     let pile = document.getElementById(`${newCard.deck}CardPile`);
     pile.children[0].id = 'to-draw';
     pile.children[0].style.zIndex = 2;
@@ -74,15 +76,23 @@ export function drawAnimation(newCard, nextCardType){
     setTimeout(() => {
         card.remove();
         document.querySelector('.player-hand').innerHTML +=
-        `<span
-            class="card"
-            id="${newCard.deck}-${newCard.name}"
-            style="background-image: url(${newCard.img_src})"
-        ></span>`
+            `<span class="card ${newCard.name}-card"></span>`
+    }, 1000);
+}
+
+export function otherPlayerDraw(otherPlayer, pile, nextCardType){
+    document.getElementById(pile+'CardPile').children[0].classList.add('other-player-draw');
+    console.log(document.getElementById(pile+'CardPile').children[0]);
+
+    document.getElementById(pile+'CardPile').innerHTML += `<span class="card ${nextCardType}-verso"></span>`;
+
+    setTimeout(() => {
+        document.querySelector('.other-player-draw').remove();
     }, 1000);
 }
 
 export function disasterAnimation(nextCardType){
+    console.log('disaster animation go brrrr')
     let pile = document.getElementById('eventCardPile');
     pile.children[0].id = 'to-inc-pile';
     pile.innerHTML += `<span class="card ${nextCardType}-verso"></span>`;

@@ -82,20 +82,6 @@
 
 
 
-// DRAWN ANIMATION
-.drawn {
-    animation: 'drawn' forwards .5s ease;
-}
-@keyframes drawn {
-    from {
-        transform: translateY(1.5em)
-    }
-    to {
-        transform: translateY(0em);
-    }
-}
-
-
 // DISCARDED ANIMATION
 .discarded {
     transform: scale(1.5) translateY(-3em);
@@ -116,6 +102,45 @@
     }
 }
 
+.other-player-discard {
+    transform: translateX(-1000%) rotate(-90deg);
+    animation: 'other-player-discard' 1s forwards ease-out;
+}
+@keyframes other-player-discard {
+    from {
+        transform: translateX(-1000%) rotate(-90deg);
+    }
+    to {
+        transform: translateX(0%) rotate(0deg);;
+    }
+}
+
+
+
+// DRAWN ANIMATION
+.drawn {
+    animation: 'drawn' forwards .5s ease;
+}
+@keyframes drawn {
+    from {
+        transform: translateY(1.5em)
+    }
+    to {
+        transform: translateY(0em);
+    }
+}
+.other-player-draw {
+    animation: 'other-player-draw' 1s forwards ease-out;
+    transform: translateX(0%) rotate(0deg);
+}
+@keyframes other-player-draw {
+    from {
+        transform: translateX(0%) rotate(0deg);
+    }
+    to {
+        transform: translateX(-1000%) rotate(-90deg);;
+    }
+}
 
 
 // DISASTERS ANIMATIONS

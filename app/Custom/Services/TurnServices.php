@@ -30,7 +30,7 @@ class TurnServices {
         event(new UpdateGameEvent());
     }
 
-    public static function passTurn()
+    public static function passTurn(Request $request)
     {
         $phases = Librarian::decipherJson('meta/turn.json');
 
@@ -48,6 +48,11 @@ class TurnServices {
             }
 
         }
+
+        if(Game::current()->current_phase === 7){
+            $request->user()->player->update(['drawn_card'=>null]);
+        }
+
         event(new UpdateGameEvent());
     }
 

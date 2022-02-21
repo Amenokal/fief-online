@@ -5,6 +5,7 @@ import { Village } from '../classes/Village.js';
 
 import { drawAnimation } from '../animations/cards.js';
 import { disasterAnimation } from '../animations/cards.js';
+import { initDraw } from "../classes/Phases.js";
 
 
 
@@ -16,12 +17,10 @@ import { disasterAnimation } from '../animations/cards.js';
 
 export function discard(e){
     let card = e.target;
-    let cardType = e.target.id.split('-')[0];
-    let cardName = e.target.id.split('-')[1];
+    let cardName = e.target.className.split(' ')[1].split('-')[0];
 
-    axios.post('./discard', {
-        deck: cardType,
-        card: cardName
+    axios.post('./cards/discard', {
+        cardName: cardName
     })
     .then(()=>{
         card.classList.add('discarded');
@@ -40,25 +39,24 @@ export function discard(e){
 // ///
 
 export function draw(e){
-    let phase = document.querySelector('.current-phase').id.split('-')[1];
-    let pile = e.target.parentNode.id.split('CardPile')[0];
-    let isDisaster = e.target.className.includes('disaster');
+    let deck = e.target.parentNode.id.includes('lord') ? 'lord' : 'event';
 
     // DRAW
-    if((pile == 'lord' || pile == 'event') && e.target.className.includes('card')){
-        axios.post('./draw/card', {
-            deck: pile,
-            isDisaster: isDisaster
+    if((deck == 'lord' || deck == 'event') && e.target.className.includes('card')){
+        axios.post('./cards/draw', {
+            deck: deck,
         })
         .then(res=>{
-            if(!isDisaster){
-                drawAnimation(res.data.drawnCard, res.data.nextCardType)
+            if(!res.data.wasDisaster){
+                drawAnimation(res.data.drawnCard, res.data.nextCardType);
             }
             else{
-                disasterAnimation(res.data.nextCardType)
+                disasterAnimation(res.data.nextCardType);
             }
         })
     }
+
+    initDraw();
 
     // SHUFFLE IF EMPTY
     if(e.target.id.includes('shuffle')){

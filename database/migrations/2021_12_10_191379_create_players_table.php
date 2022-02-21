@@ -18,6 +18,7 @@ class CreatePlayersTable extends Migration
             $table->string('family_name')->nullable();
             $table->string('color')->nullable();
             $table->integer('gold');
+            $table->string('drawn_card')->nullable()->default(null);
             $table->integer('married_to')->nullable();
             $table->integer('turn_order')->nullable();
             $table->foreignId('user_id')->constrained();

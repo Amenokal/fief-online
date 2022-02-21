@@ -17,9 +17,12 @@ class IsUserAllowedToPlay
      */
     public function handle(Request $request, Closure $next)
     {
-        $game = Game::current();
-        if($game && $game->is_started){
+
+        if(!Game::current() || $request->user()->player->turn_order === Game::current()->current_player || Game::current()->current_phase<2){
             return $next($request);
+        }
+        else{
+            return back();
         }
     }
 }

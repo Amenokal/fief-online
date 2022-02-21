@@ -10,18 +10,39 @@ use App\Custom\Helpers\Realm;
 use App\Custom\Helpers\Marechal;
 use App\Http\Controllers\Controller;
 use App\Custom\Services\DeckServices;
+use Illuminate\Http\JsonResponse;
 
 class CardsController extends Controller
 {
-    public static function draw(Request $request)
-    {
-        return DeckServices::draw($request->deck, $request->isDisaster);
-    }
-
     public static function discard(Request $request)
     {
-        DeckServices::discard($request->deck, $request->card);
+        DeckServices::discard($request, $request->cardName);
     }
+
+    public static function initDraw(Request $request) : JsonResponse
+    {
+        if($request->user()->player->inHandCards()->count() > 2){
+            return response()->json(['allowed'=>false]);
+        }
+        else {
+            if(is_null($request->user()->player->drawn_card) || $request->user()->player->drawn_card === 'event'){
+                return response()->json(['allowed'=>true, 'event'=>true, 'lord'=>true]);
+            }
+            elseif($request->user()->player->drawn_card === 'lord'){
+                return response()->json(['allowed'=>true, 'event'=>true]);
+            }
+            else {
+                return response()->json(['allowed'=>false]);
+            }
+        }
+    }
+
+    public static function draw(Request $request)
+    {
+        return DeckServices::draw($request);
+    }
+
+
 
     public static function shuffle(Request $request)
     {
