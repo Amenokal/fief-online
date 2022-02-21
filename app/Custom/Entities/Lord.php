@@ -11,6 +11,17 @@ use Illuminate\Support\Collection;
 class Lord {
 
    /**
+    * Return all Lords as Card Collection.
+    */
+    public static function all() : Collection
+    {
+        return Card::whereNotNull('gender')
+        ->where('gender', '!=', 'O')
+        ->get();
+    }
+
+
+   /**
     * Return the corresponding card.
     */
     public static function asCard(string $name) : Card
@@ -62,6 +73,5 @@ class Lord {
         ])
         ->exists();
     }
-
 
 }

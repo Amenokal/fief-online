@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use App\Models\Village;
+use App\Custom\Entities\Lord;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Title extends Model
 {
@@ -82,12 +83,13 @@ class Title extends Model
     }
 
 
+
     public static function bishops() : Collection
     {
         return Title::where('title_m', 'Évêque')->get();
     }
 
-    public function isAvailable() : bool
+    public function isBishopZoneAvailable() : bool
     {
         foreach($this->villages() as $vilg){
             if(!$vilg->hasOwner()){
@@ -100,5 +102,69 @@ class Title extends Model
         }
 
         return true;
+    }
+
+
+
+    public static function takenCardinals() : Collection
+    {
+        return Title::where('title_m', 'Cardinal')->whereNotNull('lord_name')->get();
+    }
+
+
+
+    public static function pope() : Title
+    {
+        return Title::where('title_m', 'Pape')->first();
+    }
+    public function canPopeBeElected() : bool
+    {
+        $canBeElected = true;
+
+        if(!is_null($this->lord_name)){
+            $canBeElected = false;
+        }
+
+        $cardinals = Title::where('title_m', 'Cardinal')->whereNotNull('lord_name')->get();
+        if($cardinals->count() < 2){
+            $canBeElected = false;
+        }
+
+        return $canBeElected;
+    }
+
+
+
+    public static function king() : Title
+    {
+        return Title::where('title_m', 'Roi')->first();
+    }
+    public function canKingBeElected() : bool
+    {
+        $canBeElected = true;
+
+        if(!is_null($this->lord_name)){
+            $canBeElected = false;
+        }
+
+        $nobleLords = [];
+        $religiousLords = [];
+        foreach(Title::all() as $title){
+            if(!is_null($title->lord_name) && $title->type === 'crown'){
+                $nobleLords[] = Lord::asCard($title->lord_name)->name;
+            }
+            elseif(!is_null($title->lord_name) && ($title->type === 'cross' || $title->type === 'payed-cross')){
+                $religiousLords[] = Lord::asCard($title->lord_name)->name;
+            }
+        }
+
+        $nobleLords = array_unique($nobleLords);
+        $religiousLords = array_unique($religiousLords);
+
+        if(count($religiousLords) < 2 || count($nobleLords) + count($religiousLords) < 3){
+            $canBeElected = false;
+        }
+
+        return $canBeElected;
     }
 }

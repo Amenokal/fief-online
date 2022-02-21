@@ -35,6 +35,7 @@ class PhaseController extends Controller
     public function whithWhoCanMarry(Request $request)      {return DiplomacyPhase::whithWhoCanMarry($request);}
     public function sendProposal(Request $request)          {return DiplomacyPhase::sendProposal($request);}
     public function acceptProposal(Request $request)        {return DiplomacyPhase::acceptProposal($request);}
+    public function refuseProposal(Request $request)        {return DiplomacyPhase::refuseProposal($request);}
 
     // bishop election
     public function initBishopElection(Request $request)        {return DiplomacyPhase::initBishopElection($request);}
@@ -44,10 +45,18 @@ class PhaseController extends Controller
     public function playerVoted(Request $request)               {return DiplomacyPhase::playerVoted($request);}
     public function playerVoteValidated(Request $request)       {return DiplomacyPhase::playerVoteValidated($request);}
     public function voteCount(Request $request)                 {return DiplomacyPhase::voteCount($request);}
-    public function nextBishopElection(Request $request)         {return DiplomacyPhase::nextBishopElection($request);}
+    public function nextBishopElection(Request $request)        {return DiplomacyPhase::nextBishopElection($request);}
     public function endBishopElection(Request $request)         {return DiplomacyPhase::endBishopElection($request);}
 
-    // PHASE ::::: REVENUS
+    // pope election
+    public function initPopeElection(Request $request)      {return DiplomacyPhase::initPopeElection($request);}
+
+    // king election
+    public function initKingElection(Request $request)      {return DiplomacyPhase::initKingElection($request);}
+
+
+
+    // ::::: REVENUS :::::
     public function getIncome()
     {
         $data = BankServices::income();

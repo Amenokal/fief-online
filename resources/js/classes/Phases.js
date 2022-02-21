@@ -17,7 +17,7 @@ export class Phases {
 
         switch(phase){
 
-            case -1: initPrepareGame();
+            case -1: prepareGame();
             break;
 
             case 0: drawFirstLord();
@@ -28,6 +28,10 @@ export class Phases {
             case 2: initMarriage();
             break;
             case 3: initBishopElection();
+            break;
+            case 4: initPopeElection();
+            break;
+            case 5: initKingElection();
             break;
 
             case 6: initDiscard();
@@ -57,7 +61,7 @@ export class Phases {
 // PHASE 00 ::::: GAME START
 // -------------------------
 
-    function initPrepareGame(){
+    function prepareGame(){
         if(document.getElementById('userReadyBtn')){
             document.getElementById('userReadyBtn').addEventListener('click', playerReady);
             document.getElementById('userReadyBtn').classList.add('allowed');
@@ -77,13 +81,15 @@ export class Phases {
     function initMarriage(){
         axios.post('./diplo/marriage/init')
         .then(res=>{
+            console.log(res.data.allowed);
             if(res.data.allowed){
-                document.getElementById('marryMyself').classList.add('allowed');
-                document.getElementById('marryMyself').addEventListener('click', chooseMyMembers);
+                if(res.data.allowed !== 'end-turn'){
+                    document.getElementById('marryMyself').classList.add('allowed');
+                    document.getElementById('marryMyself').addEventListener('click', chooseMyMembers);
+                }
 
                 document.getElementById('end-turn').classList.add('allowed');
                 document.getElementById('end-turn').addEventListener('click', Game.endTurn);
-
             }
         })
     }
@@ -98,6 +104,21 @@ export class Phases {
                 startBishopElection(res.data.zone);
             }
         })
+    }
+
+    function initPopeElection(){
+        axios.post('./diplo/pope/init')
+        .then(res=>{
+            console.log(res);
+        })
+    }
+
+    function initKingElection(){
+        axios.post('./diplo/king/init')
+        .then(res=>{
+            console.log(res);
+        })
+
     }
 
 

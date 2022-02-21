@@ -1,27 +1,29 @@
+import { Game } from '../classes/Game';
 import { chooseMyMembers } from '../phases/01_diplomacy';
 
 export async function showModal(){
-    await loadImg1();
-    await loadImg2();
-    return 'done';
-}
+    document.getElementById('marryMyself').classList.remove('allowed');
+    document.getElementById('marryMyself').removeEventListener('click', chooseMyMembers);
+    document.getElementById('end-turn').classList.remove('allowed');
+    document.getElementById('end-turn').removeEventListener('click', Game.endTurn);
 
-function loadImg1(){
     let imgTop = new Image();
     imgTop.src = '../fief-online.com/public/storage/images/parchemin-top.png';
     imgTop.onload = ()=>{
-        return true;
-    }
-}
-function loadImg2(){
-    let imgBot = new Image();
-    imgBot.src = '../fief-online.com/public/storage/images/parchemin-bottom.png';
-    imgBot.onload = ()=>{
-        return true;
+        let imgBot = new Image();
+        imgBot.src = '../fief-online.com/public/storage/images/parchemin-bottom.png';
+        imgBot.onload = ()=>{
+            document.querySelector('.modal').classList.add('showpacity');
+        }
     }
 }
 
 export function closeMarriageModal(){
+    document.getElementById('marryMyself').classList.add('allowed');
+    document.getElementById('marryMyself').addEventListener('click', chooseMyMembers);
+    document.getElementById('end-turn').classList.add('allowed');
+    document.getElementById('end-turn').addEventListener('click', Game.endTurn);
+
     document.querySelector('.modal').style.opacity = "0";
     document.querySelector('.game-view').classList.remove('blurred');
     document.getElementById('marryMyself').addEventListener('click', chooseMyMembers)

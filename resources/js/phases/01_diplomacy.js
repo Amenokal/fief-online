@@ -17,7 +17,7 @@ export function chooseMyMembers(){
         document.getElementById('end-turn').addEventListener('click', Game.endTurn);
     })
     .then(res=>{
-        document.querySelector('.modal').classList.add('showpacity');
+        showModal()
         document.querySelector('.close-modal-btn').addEventListener('click', closeMarriageModal);
         document.querySelectorAll('.player-name').forEach(el=>{
             if(el.innerText !== GameElements.localPlayer.familyName()){
@@ -109,7 +109,7 @@ export function startBishopElection(zone){
         document.querySelector('.game-container').innerHTML += res.data;
     })
     .then(()=>{
-        document.querySelector('.modal').classList.add('showpacity');
+        showModal();
         document.querySelector('.modal-btn').classList.add('active')
         document.querySelector('.modal-btn').addEventListener('click', validateBishopChoice)
         document.querySelector('.cross-election').classList.add('cross-'+zone);

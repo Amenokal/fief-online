@@ -6,18 +6,22 @@ use App\Models\Card;
 use App\Models\Game;
 use App\Models\Title;
 use App\Models\Player;
-use Illuminate\Http\Request;
+
 use App\Custom\Entities\Lord;
-use App\Events\MarriageEvent;
+
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Events\MarryProposalEvent;
-use App\Events\BishopCandidatEvent;
-use App\Events\BishopElectionEvent;
-use App\Events\ValidateChoiceEvent;
-use App\Events\EndBishopElectionEvent;
-use App\Events\BishopVoteValidatedEvent;
-use App\Events\PlayerVotedForBishopEvent;
+
 use App\Events\UpdateGameEvent;
+use App\Events\Marriage\MarriageEvent;
+use App\Events\Marriage\MarryProposalEvent;
+use App\Events\Marriage\RefuseProposalEvent;
+use App\Events\BishopElection\BishopCandidatEvent;
+use App\Events\BishopElection\BishopElectionEvent;
+use App\Events\BishopElection\BishopVoteValidatedEvent;
+use App\Events\BishopElection\PlayerVotedForBishopEvent;
+use App\Events\BishopElection\ValidateBishopCandidatEvent;
+
 
 class DiplomacyPhase {
 
@@ -27,8 +31,11 @@ class DiplomacyPhase {
     {
         $player = $request->user()->player;
 
-        if(!!$player->married_to || $player->turn_order === Game::current()->current_player){
+        if(is_null($player->married_to) && $player->turn_order === Game::current()->current_player){
             return response()->json(['allowed'=>true]);
+        }
+        elseif(!is_null($player->married_to) && $player->turn_order === Game::current()->current_player){
+            return response()->json(['allowed'=>'end-turn']);
         }
         else {
             return response()->json(['allowed'=>false]);
@@ -101,6 +108,13 @@ class DiplomacyPhase {
         event(new MarriageEvent($askingFamily, $askingLord, $askedFamily, $askedLord));
     }
 
+    public static function refuseProposal(Request $request) : void
+    {
+        event(new RefuseProposalEvent($request->askingLord, $request->askedLord));
+    }
+
+
+
 
 
     // BISHOP ELECTION
@@ -117,7 +131,7 @@ class DiplomacyPhase {
             if(!empty($eligibles)){
 
                 foreach(Title::bishops() as $title){
-                    if($title->isAvailable()){
+                    if($title->isBishopZoneAvailable()){
                         return response()->json(['zone' => $title->zone]);
                     }
                 }
@@ -136,7 +150,7 @@ class DiplomacyPhase {
 
     public static function validateChoice(Request $request) : void
     {
-        event(new ValidateChoiceEvent($request->user()->player));
+        event(new ValidateBishopCandidatEvent($request->user()->player));
     }
 
 
@@ -192,4 +206,36 @@ class DiplomacyPhase {
         event(new UpdateGameEvent());
     }
 
+
+
+
+    // POPE ELECTION
+
+    public static function initPopeElection(Request $request)
+    {
+        if(Title::pope()->canPopeBeElected()){
+            return response()->json(['message'=>'pope election triggered']);
+        }
+        else {
+            Game::current()->update(['current_phase' => 5]);
+            event(new UpdateGameEvent());
+            return response()->json(['message'=>'pope election not triggered']);
+        }
+    }
+
+
+
+
+    // KING ELECTION
+    public static function initKingElection(Request $request)
+    {
+        if(Title::king()->canKingBeElected()){
+            return response()->json(['message'=>'king election triggered']);
+        }
+        else {
+            Game::current()->update(['current_phase' => 6]);
+            event(new UpdateGameEvent());
+            return response()->json(['message'=>'king election not triggered']);
+        }
+    }
 }

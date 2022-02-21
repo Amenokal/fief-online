@@ -108,6 +108,7 @@ Route::post('/diplo/marriage/0', [PhaseController::class, 'getOtherLords']);
 Route::post('/diplo/marriage/1', [PhaseController::class, 'whithWhoCanMarry']);
 Route::post('/diplo/marriage/2', [PhaseController::class, 'sendProposal']);
 Route::post('/diplo/marriage/accept', [PhaseController::class, 'acceptProposal']);
+Route::post('/diplo/marriage/refuse', [PhaseController::class, 'refuseProposal']);
 
 Route::post('/diplo/bishop/init', [PhaseController::class, 'initBishopElection']);
 Route::post('/diplo/bishop/candidat', [PhaseController::class, 'newBishopCandidat']);
@@ -118,6 +119,11 @@ Route::post('/diplo/bishop/vote/validated', [PhaseController::class, 'playerVote
 Route::post('/diplo/bishop/vote/count', [PhaseController::class, 'voteCount']);
 Route::post('/diplo/bishop/next', [PhaseController::class, 'nextBishopElection']);
 Route::post('/diplo/bishop/end', [PhaseController::class, 'endBishopElection']);
+
+Route::post('/diplo/pope/init', [PhaseController::class, 'initPopeElection']);
+
+Route::post('/diplo/king/init', [PhaseController::class, 'initKingElection']);
+
 
 
     // PHASE ::::: CARDS

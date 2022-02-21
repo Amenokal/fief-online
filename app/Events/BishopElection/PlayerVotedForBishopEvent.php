@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\BishopElection;
 
-use App\Models\Player;
+use Illuminate\Http\Request;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -11,29 +11,22 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class MarryProposalEvent implements ShouldBroadcast
+class PlayerVotedForBishopEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $channel;
-    public $askingFamily;
-    public $askingLord;
-    public $askedFamily;
-    public $askedLord;
+    public $color;
+    public $lordVotedOn;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Player $askingFamily, string $askingLordName, Player $askedFamily, string $askedLordName)
+    public function __construct(Request $request)
     {
-        $this->channel = $askedFamily->turn_order;
-
-        $this->askingFamily = $askingFamily->family_name;
-        $this->askingLord = $askingLordName;
-        $this->askedFamily = $askedFamily->family_name;
-        $this->askedLord = $askedLordName;
+        $this->color = $request->user()->player->color;
+        $this->lordVotedOn = $request->lordVotedOn;
     }
 
     /**
@@ -43,11 +36,10 @@ class MarryProposalEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('special-'.$this->channel);
+        return new Channel('game');
     }
-
     public function broadcastAs()
     {
-        return 'marryProposal';
+        return 'playerVoted';
     }
 }

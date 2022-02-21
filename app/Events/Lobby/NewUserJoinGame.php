@@ -1,30 +1,29 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Lobby;
 
-use Illuminate\Http\Request;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
-class BishopVoteValidatedEvent implements ShouldBroadcast
+class NewUserJoinGame implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $color;
+    public $username;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Request $request)
+    public function __construct($user)
     {
-        $this->color = $request->user()->player->color;
+        $this->username = $user->username;
     }
 
     /**
@@ -34,10 +33,11 @@ class BishopVoteValidatedEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('game');
+        return new Channel('lobby');
     }
+
     public function broadcastAs()
     {
-        return 'bishopVoteValidated';
+        return 'newUserJoin';
     }
 }

@@ -1,27 +1,31 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\BishopElection;
 
+use App\Models\Player;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\Broadcaster;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class EndBishopElectionEvent implements ShouldBroadcast
+class ValidateBishopCandidatEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $color;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Player $player)
     {
-        $this->shouldContinue = 1 ;
+        $this->color = $player->color;
     }
 
     /**
@@ -33,9 +37,8 @@ class EndBishopElectionEvent implements ShouldBroadcast
     {
         return new Channel('game');
     }
-
     public function broadcastAs()
     {
-        return 'endBishopElection';
+        return 'validateChoice';
     }
 }

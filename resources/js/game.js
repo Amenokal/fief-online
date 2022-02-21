@@ -15,7 +15,7 @@ window.Echo.channel('lobby')
         console.log('channel received = ', e);
         document.querySelector('.waiting-lobby').innerHTML += `
             <div class='lobby-users'>
-                <span>${e.username}</span>
+                <span class='waiting-user'>${e.username}</span>
             </div>`
     })
     .listen('.createGame', ()=>{
@@ -186,9 +186,18 @@ function countVotes(){
 }
 
 
+
+
+
 window.Echo.channel('special-'+GameElements.localPlayer.order())
     .listen('.marryProposal', e=>{
         displayMarriageProposal(e);
+    })
+    .listen('.refuseMarriage', e=>{
+        document.querySelector('.players').innerHTML+=
+            `<span class='message'>
+                ${e.message}
+            </span>`;
     })
 
 function displayMarriageProposal(data){
@@ -206,7 +215,6 @@ function displayMarriageProposal(data){
     document.querySelectorAll('.acceptProposal').forEach(el=>{
         el.addEventListener('click', (e)=>{
             e.target.parentNode.remove();
-            console.log(askingLord, askedLord)
             axios.post('./diplo/marriage/accept', {
                 askingLord: askingLord,
                 askedLord: askedLord
@@ -216,6 +224,10 @@ function displayMarriageProposal(data){
     document.querySelectorAll('.refuseProposal').forEach(el=>{
         el.addEventListener('click', (e)=>{
             e.target.parentNode.remove();
+            axios.post('./diplo/marriage/refuse', {
+                askingLord: askingLord,
+                askedLord: askedLord
+            })
         })
     })
 }
