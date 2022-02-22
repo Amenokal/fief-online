@@ -1,0 +1,39 @@
+@import '../../meta/mixin';
+
+.banner {
+    opacity: 0;
+    width: 800px;
+    height: 100px;
+    @include back-img('images/banner.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20%;
+    left: 20%;
+    filter: drop-shadow(0px 0px 2px black);
+    color: black;
+    z-index: 100;
+
+    p{
+        position: relative;
+        top: -15%;
+    }
+}
+.show-banner{
+    animation: 'showBanner' forwards 4s ease;
+}
+@keyframes showBanner {
+    from {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

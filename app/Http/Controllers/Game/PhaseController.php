@@ -24,9 +24,10 @@ use App\Custom\Services\TurnServices;
 class PhaseController extends Controller
 {
     // ::::: START GAME :::::
-    public function getFirstLordsData(Request $request)             {return StarterPhase::getFirstLordsData($request);}
-    public function isItMyTurnToChooseVillage(Request $request)     {return response()->json(['allowed'=>StarterPhase::isItMyTurnToChooseVillage($request)]);}
-    public function chooseVillage(Request $request)                 {StarterPhase::chooseVillage($request, Village::get($request->village));}
+    public function getFirstLordsData(Request $request)                 {return StarterPhase::getFirstLordsData($request);}
+    public function endFirstLord(Request $request)                      {return StarterPhase::endFirstLord($request);}
+    // public function isItMyTurnToChooseVillage(Request $request)      {return response()->json(['allowed'=>StarterPhase::isItMyTurnToChooseVillage($request)]);}
+    public function chooseVillage(Request $request)                     {StarterPhase::chooseVillage($request, Village::get($request->village));}
 
     // ::::: DIPLOMACY ::::::
     // marriage

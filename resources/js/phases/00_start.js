@@ -50,11 +50,9 @@ export function drawFirstLord(){
 
                 if(i==amount-1){
                     setTimeout(() => {
-                        axios.post('./gamestart/2')
-                        .then(res=>{
-                            if(res.data.allowed){
-                                setStartVillageListeners();
-                            }
+                        axios.post('./gamestart/end/first/lord')
+                        .then(()=>{
+                            Game.update();
                         })
                     }, 5000);
                 }
@@ -72,9 +70,10 @@ export function drawFirstLord(){
 // ///
 
 export function checkForChooseVillage(){
-    axios.post('./gamestart/2')
+    axios.post('./check/phase')
     .then(res=>{
-        if(res.data.allowed){
+        console.log(res.data);
+        if(res.data){
             setStartVillageListeners();
         }
     })

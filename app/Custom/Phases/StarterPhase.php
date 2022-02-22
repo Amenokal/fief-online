@@ -8,20 +8,21 @@ use App\Models\Player;
 use App\Models\Village;
 use App\Models\Building;
 use Illuminate\Http\Request;
+use App\Custom\Entities\Lord;
 use App\Custom\Helpers\Local;
 use App\Custom\Helpers\Mayor;
 use App\Custom\Helpers\Realm;
-use App\Custom\Entities\Lord;
 use App\Events\UpdateGameEvent;
 use App\Custom\Helpers\Marechal;
 use App\Custom\Helpers\Architect;
+use Illuminate\Http\JsonResponse;
 use App\Events\drawFirstLordEvent;
 use App\Custom\Services\DeckServices;
 use App\Custom\Services\TurnServices;
 
 class StarterPhase {
 
-    public static function getFirstLordsData(Request $request)
+    public static function getFirstLordsData(Request $request) : JsonResponse
     {
         $players = Player::orderBy('turn_order')->get()->pluck('turn_order');
         $cards = Card::whereNotNull('player_id')->get();
@@ -32,11 +33,17 @@ class StarterPhase {
         return response()->json(['cards'=>[$cards->pluck('name'), $players, $isItMyCard]]);
     }
 
-    public static function isItMyTurnToChooseVillage(Request $request) : bool
+    public static function endFirstLord(Request $request)
     {
-        Game::current()->update(['current_phase'=>1]);
-        return $request->user()->id === Game::current()->current_player;
+        Game::current()->update(['current_phase' => 1]);
+        return response()->json(['game'=>Game::current()]);
     }
+
+    // public static function isItMyTurnToChooseVillage(Request $request) : bool
+    // {
+    //     Game::current()->update(['current_phase'=>1]);
+    //     return $request->user()->id === Game::current()->current_player;
+    // }
 
     public static function chooseVillage(Request $request, Village $village)
     {
@@ -57,7 +64,7 @@ class StarterPhase {
             Marechal::recruit($starter_army, $village);
             Mayor::administrate();
 
-            TurnServices::passTurn();
+            TurnServices::passTurn($request);
 
             event(new UpdateGameEvent());
         }

@@ -1,16 +1,12 @@
 <?php
 
-use App\Custom\Phases\DiplomacyPhase;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
-use App\Http\Controllers\EventController;
 use App\Http\Controllers\Web\GameController;
 use App\Http\Controllers\Game\TurnController;
-use App\Http\Controllers\Web\LobbyController;
 use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Game\CardsController;
 use App\Http\Controllers\Game\PhaseController;
-use App\Http\Controllers\Event\LogEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +71,7 @@ Route::post('/reset/board', [TestController::class, 'resetBoard']);
     // TURNS
     // -----
 
-Route::post('/check/phase', [TurnController::class, 'giveTurn'])->middleware(['allowed.to.play']);
+Route::post('/check/phase', [TurnController::class, 'giveTurn']);
 Route::post('/changeturn', [TurnController::class, 'changeTurn']);
 Route::post('/endturn', [TurnController::class, 'endTurn']);
 
@@ -97,7 +93,9 @@ Route::post('/game/phase', [PhaseController::class, 'index']);
 
 Route::post('/gamestart/0', [GameController::class, 'start']);
 Route::post('/gamestart/1', [PhaseController::class, 'getFirstLordsData']);
-Route::post('/gamestart/2', [PhaseController::class, 'isItMyTurnToChooseVillage']);
+Route::post('/gamestart/end/first/lord', [PhaseController::class, 'endFirstLord']);
+
+// Route::post('/gamestart/2', [PhaseController::class, 'isItMyTurnToChooseVillage']);
 Route::post('/gamestart/3', [PhaseController::class, 'chooseVillage']);
 
     // PHASE ::::: DIPLOMACY

@@ -59,16 +59,16 @@ export function draw(e){
     initDraw();
 
     // SHUFFLE IF EMPTY
-    if(e.target.id.includes('shuffle')){
-        let deck = e.target.id.split('-')[1];
-        axios.post('./shuffle', {
-            deck: deck
-        })
-        .then(res=>{
-            document.querySelector(`${deck}-pile-wrapper`).innerHTML =
-            `<span class="card ${res.data.nextCardType}-verso"/>`
-        })
-    }
+    // if(e.target.id.includes('shuffle')){
+    //     let deck = e.target.id.split('-')[1];
+    //     axios.post('./shuffle', {
+    //         deck: deck
+    //     })
+    //     .then(res=>{
+    //         document.querySelector(`${deck}-pile-wrapper`).innerHTML =
+    //         `<span class="card ${res.data.nextCardType}-verso"/>`
+    //     })
+    // }
 
 }
 

@@ -2,6 +2,7 @@ const { default: axios } = require('axios');
 const { Game } = require('./classes/Game');
 const { GameElements } = require('./classes/GameElements');
 
+import { showBanner } from './animations/banner';
 import { disasterAnimation, otherPlayerDiscard, otherPlayerDraw } from './animations/cards';
 
 require('./bootstrap');
@@ -26,6 +27,9 @@ window.Echo.channel('lobby')
 
 
 window.Echo.channel('game')
+    .listen('.newTurnBannerInfo', e=>{
+        showBanner(e.message);
+    })
     .listen('.shouldUpdate', e=>{
         Game.update();
     })
@@ -188,8 +192,10 @@ function countVotes(){
 
 
 
-
 window.Echo.channel('special-'+GameElements.localPlayer.order())
+    .listen('.newTurnBannerInfo', e=>{
+        showBanner(e.message);
+    })
     .listen('.marryProposal', e=>{
         displayMarriageProposal(e);
     })

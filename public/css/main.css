@@ -1551,6 +1551,64 @@
     transform: scale(1);
   }
 }
+.banner {
+  opacity: 0;
+  width: 800px;
+  height: 100px;
+  background-image: url("../public/storage/images/banner.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 20%;
+  left: 20%;
+  filter: drop-shadow(0px 0px 2px black);
+  color: black;
+  z-index: 100;
+}
+
+.banner p {
+  position: relative;
+  top: -15%;
+}
+
+.show-banner {
+  -webkit-animation: "showBanner" forwards 4s ease;
+          animation: "showBanner" forwards 4s ease;
+}
+
+@-webkit-keyframes showBanner {
+  from {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes showBanner {
+  from {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 .game-board-titles {
   height: 100%;
   width: 100%;
@@ -2173,6 +2231,19 @@ header section:nth-of-type(14) > .turn-icon {
   box-shadow: 0px 0px 4px 4px gold;
 }
 
+.can-draw:hover {
+  transform-origin: top right 0.5cm;
+  transition: 0.5s ease;
+  z-index: 10;
+  transform: rotate3d(1, 2, 0, 25deg) scale(1.2) translate(10%, -10%) !important;
+  cursor: url("../public/storage/cursors/take.png") 10 10, pointer;
+  z-index: 11;
+  border-bottom: 0.5px solid;
+  border-left: 0.5px solid;
+  box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.53);
+  border-radius: 0.3em;
+}
+
 .disaster-recto {
   height: 55px;
   width: 80px;
@@ -2196,6 +2267,19 @@ header section:nth-of-type(14) > .turn-icon {
   box-sizing: border-box;
   border: 3px solid goldenrod;
   box-shadow: 0px 0px 4px 4px gold;
+}
+
+.can-draw:hover {
+  transform-origin: top right 0.5cm;
+  transition: 0.5s ease;
+  z-index: 10;
+  transform: rotate3d(1, 2, 0, 25deg) scale(1.2) translate(10%, -10%) !important;
+  cursor: url("../public/storage/cursors/take.png") 10 10, pointer;
+  z-index: 11;
+  border-bottom: 0.5px solid;
+  border-left: 0.5px solid;
+  box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.53);
+  border-radius: 0.3em;
 }
 
 .alienor-card {
@@ -2523,6 +2607,19 @@ header section:nth-of-type(14) > .turn-icon {
   box-shadow: 0px 0px 4px 4px gold;
 }
 
+.can-draw:hover {
+  transform-origin: top right 0.5cm;
+  transition: 0.5s ease;
+  z-index: 10;
+  transform: rotate3d(1, 2, 0, 25deg) scale(1.2) translate(10%, -10%) !important;
+  cursor: url("../public/storage/cursors/take.png") 10 10, pointer;
+  z-index: 11;
+  border-bottom: 0.5px solid;
+  border-left: 0.5px solid;
+  box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.53);
+  border-radius: 0.3em;
+}
+
 .ambush-card {
   height: 200px;
   width: 130px;
@@ -2578,21 +2675,6 @@ header section:nth-of-type(14) > .turn-icon {
   position: absolute;
   z-index: 10;
   background-image: url("../public/storage/cards/events/murder.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.plague-card {
-  height: 200px;
-  width: 130px;
-  border-radius: 0.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  z-index: 10;
-  background-image: url("../public/storage/cards/events/plague.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2716,18 +2798,6 @@ header section:nth-of-type(14) > .turn-icon {
 .card-pile .card {
   position: absolute;
 }
-.card-pile .card:hover {
-  transform-origin: top right 0.5cm;
-  transition: 0.5s ease;
-  z-index: 10;
-  transform: rotate3d(1, 2, 0, 25deg) scale(1.2) translate(10%, -10%) !important;
-  cursor: url("../public/storage/cursors/take.png") 10 10, pointer;
-  z-index: 11;
-  border-bottom: 0.5px solid;
-  border-left: 0.5px solid;
-  box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.53);
-  border-radius: 0.3em;
-}
 
 .lord-verso {
   height: 50px;
@@ -2769,19 +2839,6 @@ header section:nth-of-type(14) > .turn-icon {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-}
-
-.can-draw:hover {
-  transform-origin: top right 0.5cm;
-  transition: 0.5s ease;
-  z-index: 10;
-  transform: rotate3d(1, 2, 0, 25deg) scale(1.2) translate(10%, -10%) !important;
-  cursor: url("../public/storage/cursors/take.png") 10 10, pointer;
-  z-index: 11;
-  border-bottom: 0.5px solid;
-  border-left: 0.5px solid;
-  box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.53);
-  border-radius: 0.3em;
 }
 
 @keyframes lightGlow {
@@ -3793,6 +3850,48 @@ header section:nth-of-type(14) > .turn-icon {
   }
   to {
     transform: scale(1);
+  }
+}
+.banner {
+  opacity: 0;
+  width: 800px;
+  height: 100px;
+  background-image: url("../public/storage/images/banner.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 20%;
+  left: 20%;
+  filter: drop-shadow(0px 0px 2px black);
+  color: black;
+  z-index: 100;
+}
+.banner p {
+  position: relative;
+  top: -15%;
+}
+
+.show-banner {
+  -webkit-animation: "showBanner" forwards 4s ease;
+          animation: "showBanner" forwards 4s ease;
+}
+
+@keyframes showBanner {
+  from {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 * {

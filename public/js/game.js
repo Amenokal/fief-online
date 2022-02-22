@@ -2065,6 +2065,26 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/animations/banner.js":
+/*!*******************************************!*\
+  !*** ./resources/js/animations/banner.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "showBanner": () => (/* binding */ showBanner)
+/* harmony export */ });
+function showBanner(message) {
+  document.querySelector('.game-view').innerHTML += "<span class='banner show-banner'><p>".concat(message, "</p></span>");
+  setTimeout(function () {
+    document.querySelector('.banner').remove();
+  }, 4000);
+}
+
+/***/ }),
+
 /***/ "./resources/js/animations/cards.js":
 /*!******************************************!*\
   !*** ./resources/js/animations/cards.js ***!
@@ -2081,10 +2101,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "disasterAnimation": () => (/* binding */ disasterAnimation)
 /* harmony export */ });
 /* harmony import */ var _classes_GameElements__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/GameElements */ "./resources/js/classes/GameElements.js");
-/* harmony import */ var _classes_Game_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../classes/Game.js */ "./resources/js/classes/Game.js");
-/* harmony import */ var _phases_00_start__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../phases/00_start */ "./resources/js/phases/00_start.js");
-
-
  // \\\
 // ---------------------
 // ANIMATIONS ::::: CARD
@@ -2093,12 +2109,11 @@ __webpack_require__.r(__webpack_exports__);
 
 function firstLordAnimation(cardName) {
   var player = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  console.log('fLord animation');
   var pile = document.getElementById('lordCardPile');
   pile.innerHTML += '<span class="card lord-verso"></span>';
-  console.log(pile);
   var card = pile.children[0];
   card.classList.add('draw-first-lord');
-  console.log(card);
   setTimeout(function () {
     card.classList.add('reveal-1');
     setTimeout(function () {
@@ -2495,8 +2510,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Game": () => (/* binding */ Game)
 /* harmony export */ });
-/* harmony import */ var _animations_playerBoard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../animations/playerBoard */ "./resources/js/animations/playerBoard.js");
-/* harmony import */ var _phases_01_diplomacy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../phases/01_diplomacy */ "./resources/js/phases/01_diplomacy.js");
+/* harmony import */ var _animations_banner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../animations/banner */ "./resources/js/animations/banner.js");
+/* harmony import */ var _animations_playerBoard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../animations/playerBoard */ "./resources/js/animations/playerBoard.js");
+/* harmony import */ var _phases_01_diplomacy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../phases/01_diplomacy */ "./resources/js/phases/01_diplomacy.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2508,6 +2524,7 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 var _require2 = __webpack_require__(/*! ./Phases */ "./resources/js/classes/Phases.js"),
     Phases = _require2.Phases;
+
 
 
  // \\\
@@ -2569,7 +2586,7 @@ function addPermanentListeners() {
   console.log('adding permanent listeners...'); // player-boards
 
   document.querySelectorAll('.player-name').forEach(function (el) {
-    el.addEventListener('click', _animations_playerBoard__WEBPACK_IMPORTED_MODULE_0__.showBoard);
+    el.addEventListener('click', _animations_playerBoard__WEBPACK_IMPORTED_MODULE_1__.showBoard);
   }); // turns
 
   if (document.getElementById('turn-indicator')) {
@@ -2762,7 +2779,7 @@ var Phases = /*#__PURE__*/function () {
           break;
 
         case 8:
-          initDisasters();
+          (0,_phases_02_cards__WEBPACK_IMPORTED_MODULE_4__.showDisasters)();
           break;
 
         case 9:
@@ -2872,12 +2889,7 @@ function initDraw() {
     document.getElementById('end-turn').classList.add('allowed');
     document.getElementById('end-turn').addEventListener('click', _classes_Game__WEBPACK_IMPORTED_MODULE_1__.Game.endTurn);
   });
-} // DISASTERS
-
-function initDisasters() {
-  document.getElementById('disasters-btn').addEventListener('click', _phases_02_cards__WEBPACK_IMPORTED_MODULE_4__.showDisasters);
 } // PLAY
-
 
 function initPlayCards() {
   document.querySelectorAll('.player-hand>.card').forEach(function (el) {
@@ -3037,10 +3049,8 @@ function drawFirstLord() {
 
         if (i == amount - 1) {
           setTimeout(function () {
-            axios__WEBPACK_IMPORTED_MODULE_0___default().post('./gamestart/2').then(function (res) {
-              if (res.data.allowed) {
-                setStartVillageListeners();
-              }
+            axios__WEBPACK_IMPORTED_MODULE_0___default().post('./gamestart/end/first/lord').then(function () {
+              _classes_Game_js__WEBPACK_IMPORTED_MODULE_1__.Game.update();
             });
           }, 5000);
         }
@@ -3059,8 +3069,10 @@ function drawFirstLord() {
 // ///
 
 function checkForChooseVillage() {
-  axios__WEBPACK_IMPORTED_MODULE_0___default().post('./gamestart/2').then(function (res) {
-    if (res.data.allowed) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post('./check/phase').then(function (res) {
+    console.log(res.data);
+
+    if (res.data) {
       setStartVillageListeners();
     }
   });
@@ -3322,15 +3334,16 @@ function draw(e) {
   }
 
   (0,_classes_Phases_js__WEBPACK_IMPORTED_MODULE_4__.initDraw)(); // SHUFFLE IF EMPTY
-
-  if (e.target.id.includes('shuffle')) {
-    var _deck = e.target.id.split('-')[1];
-    axios__WEBPACK_IMPORTED_MODULE_0___default().post('./shuffle', {
-      deck: _deck
-    }).then(function (res) {
-      document.querySelector("".concat(_deck, "-pile-wrapper")).innerHTML = "<span class=\"card ".concat(res.data.nextCardType, "-verso\"/>");
-    });
-  }
+  // if(e.target.id.includes('shuffle')){
+  //     let deck = e.target.id.split('-')[1];
+  //     axios.post('./shuffle', {
+  //         deck: deck
+  //     })
+  //     .then(res=>{
+  //         document.querySelector(`${deck}-pile-wrapper`).innerHTML =
+  //         `<span class="card ${res.data.nextCardType}-verso"/>`
+  //     })
+  // }
 } // \\\
 // --------------------
 // CARDS ::::: DISASTER
@@ -28188,7 +28201,8 @@ var __webpack_exports__ = {};
   !*** ./resources/js/game.js ***!
   \******************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _animations_cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animations/cards */ "./resources/js/animations/cards.js");
+/* harmony import */ var _animations_banner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animations/banner */ "./resources/js/animations/banner.js");
+/* harmony import */ var _animations_cards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./animations/cards */ "./resources/js/animations/cards.js");
 var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
     axios = _require["default"];
 
@@ -28200,6 +28214,7 @@ var _require3 = __webpack_require__(/*! ./classes/GameElements */ "./resources/j
 
 
 
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 document.onload = Game.update();
@@ -28208,7 +28223,9 @@ window.Echo.channel('lobby').listen('.newUserJoin', function (e) {
 }).listen('.createGame', function () {
   Game.update();
 });
-window.Echo.channel('game').listen('.shouldUpdate', function (e) {
+window.Echo.channel('game').listen('.newTurnBannerInfo', function (e) {
+  (0,_animations_banner__WEBPACK_IMPORTED_MODULE_0__.showBanner)(e.message);
+}).listen('.shouldUpdate', function (e) {
   Game.update();
 }).listen('.newMarriage', function (e) {
   document.querySelector('.players').innerHTML += "<span class='message'>\n                ".concat(upCase(e.askingLord), ", de la ").concat(e.askingFamily, " se marie avec ").concat(upCase(e.askedLord), ", de la ").concat(e.askedFamily, " !\n            </span>");
@@ -28324,7 +28341,9 @@ function countVotes() {
   }
 }
 
-window.Echo.channel('special-' + GameElements.localPlayer.order()).listen('.marryProposal', function (e) {
+window.Echo.channel('special-' + GameElements.localPlayer.order()).listen('.newTurnBannerInfo', function (e) {
+  (0,_animations_banner__WEBPACK_IMPORTED_MODULE_0__.showBanner)(e.message);
+}).listen('.marryProposal', function (e) {
   displayMarriageProposal(e);
 }).listen('.refuseMarriage', function (e) {
   document.querySelector('.players').innerHTML += "<span class='message'>\n                ".concat(e.message, "\n            </span>");
@@ -28360,11 +28379,11 @@ function upCase(string) {
 }
 
 window.Echo.channel('game').listen('.discard', function (e) {
-  (0,_animations_cards__WEBPACK_IMPORTED_MODULE_0__.otherPlayerDiscard)(e.playerOrder, e.pile, e.cardType);
+  (0,_animations_cards__WEBPACK_IMPORTED_MODULE_1__.otherPlayerDiscard)(e.playerOrder, e.pile, e.cardType);
 }).listen('.draw', function (e) {
-  (0,_animations_cards__WEBPACK_IMPORTED_MODULE_0__.otherPlayerDraw)(e.playerOrder, e.pile, e.nextCardType);
+  (0,_animations_cards__WEBPACK_IMPORTED_MODULE_1__.otherPlayerDraw)(e.playerOrder, e.pile, e.nextCardType);
 }).listen('.drawDisaster', function (e) {
-  (0,_animations_cards__WEBPACK_IMPORTED_MODULE_0__.disasterAnimation)(e.nextCardType);
+  (0,_animations_cards__WEBPACK_IMPORTED_MODULE_1__.disasterAnimation)(e.nextCardType);
 }); // document.querySelectorAll('.village').forEach(el=>{
 //     el.addEventListener('click', e=>{
 //         if(!e.currentTarget.className.includes('empty')){

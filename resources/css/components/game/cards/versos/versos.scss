@@ -16,7 +16,6 @@
 
     .card{
         position: absolute;
-        @include takeAnimation;
     }
 }
 
@@ -31,8 +30,4 @@
 .disaster-verso {
     @include card-pile;
     @include back-img('cards/versos/disaster-90.png');
-}
-
-.can-draw {
-    @include takeAnimation;
 }

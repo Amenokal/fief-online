@@ -1,6 +1,4 @@
 import { GameElements } from '../classes/GameElements';
-import { Game } from '../classes/Game.js';
-import { drawFirstLord } from '../phases/00_start';
 
 
 // \\\
@@ -10,13 +8,12 @@ import { drawFirstLord } from '../phases/00_start';
 // ///
 
 export function firstLordAnimation(cardName, player = false){
+    console.log('fLord animation');
     let pile = document.getElementById('lordCardPile');
     pile.innerHTML += '<span class="card lord-verso"></span>';
-    console.log(pile);
 
     let card = pile.children[0];
     card.classList.add('draw-first-lord');
-    console.log(card);
 
     setTimeout(() => {
 

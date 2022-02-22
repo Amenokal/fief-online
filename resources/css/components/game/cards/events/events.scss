@@ -27,10 +27,6 @@
     @include card;
     @include event-img('plague');
 }
-.plague-card{
-    @include card;
-    @include event-img('plague');
-}
 .revolt-card{
     @include card;
     @include event-img('revolt');

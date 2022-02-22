@@ -56,11 +56,11 @@
                 <span class='texture'></span>
 
                 @if (!Auth::user()->in_game)
-                    <span class='btn-content' id='userReadyBtn'>
+                    <span class='btn-content allowed' id='userReadyBtn'>
                         PRÊT
                     </span>
                 @else
-                    <span class='btn-content' id='startGameBtn'>
+                    <span class='btn-content allowed' id='startGameBtn'>
                         COMMENCER
                     </span>
                 @endif

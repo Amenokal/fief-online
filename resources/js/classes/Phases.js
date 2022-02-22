@@ -38,7 +38,7 @@ export class Phases {
             break;
             case 7: initDraw();
             break;
-            case 8: initDisasters();
+            case 8: showDisasters();
             break;
             case 9: initPlayCards();
             break;
@@ -153,11 +153,6 @@ export class Phases {
             document.getElementById('end-turn').classList.add('allowed');
             document.getElementById('end-turn').addEventListener('click', Game.endTurn);
         })
-    }
-
-    // DISASTERS
-    function initDisasters(){
-        document.getElementById('disasters-btn').addEventListener('click', showDisasters);
     }
 
     // PLAY
